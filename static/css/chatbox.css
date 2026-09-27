@@ -90,6 +90,25 @@
   font-weight: 600;
   color: var(--cream);
 }
+.chat-info {
+  flex: 1;
+  min-width: 0;
+}
+#chat-clear-btn {
+  background: transparent;
+  border: 1px solid rgba(224,0,110,.25);
+  border-radius: 8px;
+  color: var(--magenta-light);
+  font-size: .85rem;
+  padding: 6px 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background .2s, border-color .2s;
+}
+#chat-clear-btn:hover {
+  background: rgba(224,0,110,.15);
+  border-color: var(--magenta);
+}
 .chat-info p {
   font-size: .72rem;
   color: var(--magenta-light);
@@ -234,6 +253,18 @@
 }
 #chat-input:focus {
   border-color: rgba(224,0,110,.4);
+}
+.char-counter {
+  text-align: right;
+  font-size: .68rem;
+  color: rgba(200,200,200,.35);
+  padding: 0 16px 8px;
+}
+.char-counter.limit-near {
+  color: #ffb347;
+}
+.char-counter.limit-reached {
+  color: #ff4d4d;
 }
 
 #send-btn {

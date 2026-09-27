@@ -2,6 +2,40 @@
 let isLoading = false;
 let hasWelcomed = false;
 
+// ─── MEJORA 1: HISTORIAL PERSISTENTE (localStorage) ───
+const CHAT_HISTORY_KEY = 'tutawayta_chat_history';
+const CHAT_MAX_CHARS = 300;
+
+function loadChatHistory() {
+  try {
+    const raw = localStorage.getItem(CHAT_HISTORY_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch (e) {
+    console.warn('No se pudo leer el historial del chat:', e);
+    return [];
+  }
+}
+
+function saveChatHistory(history) {
+  try {
+    localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(history));
+  } catch (e) {
+    console.warn('No se pudo guardar el historial del chat:', e);
+  }
+}
+
+function appendToHistory(role, text) {
+  const history = loadChatHistory();
+  history.push({ role, text, time: Date.now() });
+  saveChatHistory(history);
+}
+
+function clearChatHistory() {
+  localStorage.removeItem(CHAT_HISTORY_KEY);
+  chatMessages.innerHTML = '';
+  hasWelcomed = false;
+}
+
 // ─── DICCIONARIO MULTIIDIOMA ───
 const chatboxTranslations = {
   es: {
@@ -360,6 +394,8 @@ const quickReplies = document.getElementById('quick-replies');
 const input = document.getElementById('chat-input');
 const sendBtn = document.getElementById('send-btn');
 const langSelector = document.getElementById('langSelector');
+const clearBtn = document.getElementById('chat-clear-btn');
+const charCounter = document.getElementById('char-counter');
 
 // ─── LOGICA DE IDIOMA NATIVO ───
 function getCurrentLang() {
@@ -378,11 +414,26 @@ toggle.addEventListener('click', () => {
   const isOpen = !chatWindow.classList.contains('open');
   openState(isOpen);
   if (isOpen && !hasWelcomed && chatMessages.children.length === 0) {
-    showWelcome();
+    const history = loadChatHistory();
+    if (history.length > 0) {
+      // MEJORA 1: restaurar conversación guardada en localStorage
+      history.forEach(item => addMessage(item.role, item.text, false));
+    } else {
+      showWelcome();
+    }
     hasWelcomed = true;
     replayQuickRepliesAnimation();
   }
 });
+
+if (clearBtn) {
+  clearBtn.addEventListener('click', () => {
+    clearChatHistory();
+    showWelcome();
+    hasWelcomed = true;
+    replayQuickRepliesAnimation();
+  });
+}
 
 function showWelcome() {
   const lang = getCurrentLang();
@@ -390,7 +441,7 @@ function showWelcome() {
 }
 
 // ─── ENVIAR / RENDERIZAR MENSAJES ───
-function addMessage(role, text) {
+function addMessage(role, text, persist = true) {
   const msg = document.createElement('div');
   msg.classList.add('msg', role);
 
@@ -408,6 +459,8 @@ function addMessage(role, text) {
   msg.appendChild(time);
   chatMessages.appendChild(msg);
   chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  if (persist) appendToHistory(role, text);
 }
 
 function showTyping() {
@@ -436,6 +489,34 @@ function pickRandom(items) {
   return items[Math.floor(Math.random() * items.length)];
 }
 
+// ─── MEJORA 4: HORARIO DINÁMICO CON Date() ───
+// Horario real del negocio: Lunes(1) a Sábado(6), 8:00 a 18:00. Domingo(0) cerrado.
+function isBusinessOpenNow() {
+  const now = new Date();
+  const day = now.getDay();
+  const hour = now.getHours();
+  if (day === 0) return false;
+  return hour >= 8 && hour < 18;
+}
+
+const scheduleStatusText = {
+  es: { open: '🟢 Ahora mismo estamos abiertos.', closed: '🔴 Ahora mismo estamos cerrados.' },
+  en: { open: '🟢 We are currently open.', closed: '🔴 We are currently closed.' },
+  zh: { open: '🟢 我们现在营业中。', closed: '🔴 我们现在已打烊。' },
+  pt: { open: '🟢 Estamos abertos agora.', closed: '🔴 Estamos fechados agora.' },
+  de: { open: '🟢 Wir haben gerade geöffnet.', closed: '🔴 Wir sind gerade geschlossen.' },
+  it: { open: '🟢 Siamo aperti in questo momento.', closed: '🔴 Siamo chiusi in questo momento.' },
+  fr: { open: '🟢 Nous sommes actuellement ouverts.', closed: '🔴 Nous sommes actuellement fermés.' }
+};
+
+function getDynamicHoursReply(lang) {
+  const i18n = chatboxTranslations[lang] || chatboxTranslations.es;
+  const statusText = scheduleStatusText[lang] || scheduleStatusText.es;
+  const baseReply = pickRandom(i18n.hours);
+  const status = isBusinessOpenNow() ? statusText.open : statusText.closed;
+  return `${status}\n${baseReply}`;
+}
+
 // ─── PROCESADOR DE RESPUESTAS SIMULADAS ───
 function getSimulatedReply(userText) {
   const lang = getCurrentLang();
@@ -443,6 +524,7 @@ function getSimulatedReply(userText) {
   const text = normalizeText(userText);
 
   if (i18n[userText]) {
+    if (userText === 'hours') return getDynamicHoursReply(lang);
     return pickRandom(i18n[userText]);
   }
 
@@ -459,20 +541,55 @@ function getSimulatedReply(userText) {
   };
 
   if (keywords.greetings.some(k => text.includes(k))) return pickRandom(i18n.greetings);
-  if (keywords.order.some(k => text.includes(k))) return pickRandom(i18n.order);
-  if (keywords.hours.some(k => text.includes(k))) return pickRandom(i18n.hours);
-  if (keywords.products.some(k => text.includes(k))) return pickRandom(i18n.products);
-  if (keywords.shipping.some(k => text.includes(k))) return pickRandom(i18n.shipping);
-  if (keywords.contact.some(k => text.includes(k))) return pickRandom(i18n.contact);
-  if (keywords.location.some(k => text.includes(k))) return pickRandom(i18n.location);
-  if (keywords.benefits.some(k => text.includes(k))) return pickRandom(i18n.benefits);
+
+  // MEJORA 2: detección de intención por puntaje.
+  // En vez de responder con la PRIMERA categoría que coincide, contamos
+  // cuántas palabras clave de cada categoría aparecen en el mensaje y
+  // elegimos la de mayor puntaje. Esto evita respuestas incorrectas cuando
+  // un mensaje toca varios temas (ej. "precio de envio a lima" menciona
+  // "products", "shipping" y "location" a la vez).
+  const scoreCategories = ['order', 'hours', 'products', 'shipping', 'contact', 'location', 'benefits'];
+  let bestCategory = null;
+  let bestScore = 0;
+
+  scoreCategories.forEach(category => {
+    const matches = keywords[category].filter(k => text.includes(k)).length;
+    if (matches > bestScore) {
+      bestScore = matches;
+      bestCategory = category;
+    }
+  });
+
+  if (bestCategory) {
+    if (bestCategory === 'hours') return getDynamicHoursReply(lang);
+    return pickRandom(i18n[bestCategory]);
+  }
 
   return pickRandom(i18n.fallback);
 }
 
 // ─── LOGICA DE ENVIO CON TIEMPO NATURAL ───
+let lastSentText = '';
+let lastSentAt = 0;
+
 async function sendMessage(userText, textToDisplay = null) {
-  if (!userText.trim() || isLoading) return;
+  const cleanText = userText.trim();
+
+  // MEJORA 3: validación de entrada
+  if (!cleanText || isLoading) return;
+
+  if (cleanText.length > CHAT_MAX_CHARS) {
+    userText = cleanText.slice(0, CHAT_MAX_CHARS);
+  }
+
+  const now = Date.now();
+  const isDuplicate = cleanText === lastSentText && (now - lastSentAt) < 2000;
+  if (isDuplicate) {
+    // Evita envíos duplicados accidentales (doble clic / doble Enter)
+    return;
+  }
+  lastSentText = cleanText;
+  lastSentAt = now;
 
   isLoading = true;
   quickReplies.style.display = 'none';
@@ -482,6 +599,7 @@ async function sendMessage(userText, textToDisplay = null) {
   
   input.value = '';
   input.style.height = 'auto';
+  updateCharCounter();
   sendBtn.disabled = true;
   showTyping();
 
@@ -504,9 +622,18 @@ function sendQuick(key) {
 }
 
 // ─── ESCUCHADORES DE EVENTOS DE ENTRADA ───
+function updateCharCounter() {
+  if (!charCounter) return;
+  const len = input.value.length;
+  charCounter.textContent = `${len}/${CHAT_MAX_CHARS}`;
+  charCounter.classList.toggle('limit-near', len >= CHAT_MAX_CHARS * 0.85 && len < CHAT_MAX_CHARS);
+  charCounter.classList.toggle('limit-reached', len >= CHAT_MAX_CHARS);
+}
+
 input.addEventListener('input', () => {
   input.style.height = 'auto';
   input.style.height = Math.min(input.scrollHeight, 100) + 'px';
+  updateCharCounter();
 });
 
 input.addEventListener('keydown', (e) => {
@@ -580,4 +707,3 @@ document.addEventListener('languageChanged', () => {
     });
   }
 });
-

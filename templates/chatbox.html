@@ -16,6 +16,7 @@
       <h3 data-i18n="chat_header_title">Asistente Tuta Wayta</h3>
       <p><span class="online-dot"></span> <span data-i18n="chat_header_status">En línea</span></p>
     </div>
+    <button id="chat-clear-btn" title="Borrar conversación" data-i18n-title="chat_clear_title">🗑️</button>
   </div>
   <div class="chat-messages" id="chat-messages">
 
@@ -87,9 +88,10 @@
     <button class="quick-btn" onclick="sendQuick('shipping')" data-i18n="chat_quick_shipping">Envíos</button>
   </div>
   <div class="chat-input-area">
-    <textarea id="chat-input" rows="1" placeholder="Escribe tu pregunta…" data-i18n-placeholder="chat_input_ph"></textarea>
+    <textarea id="chat-input" rows="1" maxlength="300" placeholder="Escribe tu pregunta…" data-i18n-placeholder="chat_input_ph"></textarea>
     <button id="send-btn" title="Enviar" data-i18n-title="chat_btn_send_title">
       <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
     </button>
   </div>
+  <div id="char-counter" class="char-counter">0/300</div>
 </div>
