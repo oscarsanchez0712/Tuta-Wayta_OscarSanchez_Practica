@@ -1,0 +1,2582 @@
+/* =======================================================
+   PARTE 1: CINTA INFINITA (MARQUEE - PREMIUM)
+   Esta sección controla la franja de texto en movimiento.
+======================================================= */
+
+.marquee-wrapper {
+    background-color: #ffffff;
+    padding: 20px 0;
+    overflow: hidden;
+    border-top: 1px solid rgba(0,0,0,0.03);
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+    display: flex;
+    width: 100%;
+}
+
+.marquee-content {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee-scroll 35s linear infinite;
+}
+
+.marquee-content span {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: #000000;
+    margin: 0 60px;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+.marquee-content span::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background-color: #a21942;
+    border-radius: 50%;
+    margin-right: 25px;
+    box-shadow: 0 0 10px rgba(162, 25, 66, 0.4);
+}
+
+@keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* --- MODO OSCURO: MARQUEE --- */
+body.dark .marquee-wrapper {
+    background-color: #0b1020;
+    border-color: rgba(255,255,255,0.03);
+}
+
+body.dark .marquee-content span {
+    color: #94a3b8;
+}
+
+
+/* =======================================================
+   PARTE 2: PROCESO PITAHAYA (ULTRA PREMIUM)
+   Esta sección controla el grid, iconos y el timeline.
+   (DISEÑO PROFESIONAL MEJORADO)
+======================================================= */
+
+.proceso-pitahaya {
+  padding: 120px 20px;
+  background-color: #fcfbf9; /* Fondo más cálido y premium */
+  text-align: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glow decorativo de fondo */
+.proceso-pitahaya::before {
+  content: "";
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(162, 25, 66, 0.04) 0%, transparent 65%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- CABECERA (BADGE Y TÍTULOS) --- */
+.proceso-pitahaya .proceso-header {
+  max-width: 750px;
+  margin: 0 auto 100px;
+  position: relative;
+  z-index: 1;
+}
+
+.proceso-pitahaya .badge-superior {
+  background: #fdf2f4;
+  color: #a21942;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  display: inline-block;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.proceso-pitahaya .titulo-principal {
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-weight: 800;
+  color: #1e293b;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.proceso-pitahaya .script-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: #a21942;
+  font-weight: 600;
+}
+
+.proceso-pitahaya .descripcion-principal {
+  color: #475569;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* --- LÍNEA DE TIEMPO (TIMELINE) --- */
+.proceso-pitahaya .timeline-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.proceso-pitahaya .timeline-linea-rosa {
+  position: absolute;
+  top: 70px; /* Alineado con el centro de los iconos */
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: #e2e8f0;
+  z-index: 0;
+}
+
+.proceso-pitahaya .timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+/* --- TARJETAS E ICONOS (CARDS) --- */
+.proceso-pitahaya .timeline-item {
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.proceso-pitahaya .icon-container {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 25px;
+}
+
+.proceso-pitahaya .icon-box {
+  width: 140px; /* Más grande */
+  height: 140px; /* Más grande */
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 50%; /* Círculos */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #e2e8f0;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+}
+
+.proceso-pitahaya .icon-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.proceso-pitahaya .timeline-item:hover .icon-box {
+  transform: translateY(-10px) scale(1.05);
+  border-color: #a21942;
+  box-shadow: 0 20px 40px rgba(162, 25, 66, 0.2);
+}
+
+.proceso-pitahaya .timeline-item:hover .icon-box img {
+  transform: scale(1.1);
+}
+
+.proceso-pitahaya .dot-decorativo {
+  width: 14px;
+  height: 14px;
+  background: #cbd5e1;
+  border: 3px solid #fcfbf9;
+  border-radius: 50%;
+  margin: -7px auto 0; /* Centrado sobre la línea */
+  position: relative;
+  z-index: 1;
+  transition: all 0.4s ease;
+}
+
+.proceso-pitahaya .timeline-item:hover .dot-decorativo {
+  background: #a21942;
+  transform: scale(1.2);
+}
+
+/* --- ESTADO ACTIVO / CLICK --- */
+.proceso-pitahaya .timeline-item.active .icon-box {
+  border-color: #a21942;
+  box-shadow: 0 20px 40px rgba(162, 25, 66, 0.2);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.proceso-pitahaya .timeline-item.active .dot-decorativo {
+  background: #a21942;
+  transform: scale(1.5);
+}
+
+.proceso-pitahaya .timeline-item h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.proceso-pitahaya .timeline-item p {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+/* --- MODO OSCURO: PROCESO --- */
+body.dark .proceso-pitahaya {
+  background: #0f172a;
+}
+
+body.dark .proceso-pitahaya .titulo-principal,
+body.dark .proceso-pitahaya .timeline-item h3 {
+  color: #f8fafc;
+}
+
+body.dark .proceso-pitahaya .descripcion-principal,
+body.dark .proceso-pitahaya .timeline-item p {
+  color: #94a3b8;
+}
+
+body.dark .proceso-pitahaya .icon-box {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+body.dark .proceso-pitahaya .timeline-linea-rosa {
+  background: #334155;
+}
+
+body.dark .proceso-pitahaya .dot-decorativo {
+  background: #475569;
+  border-color: #0f172a;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+  .proceso-pitahaya { padding: 80px 20px; }
+  .proceso-pitahaya .timeline-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  .proceso-pitahaya .timeline-linea-rosa {
+    display: none;
+  }
+  .proceso-pitahaya .dot-decorativo {
+    display: none;
+  }
+  .proceso-pitahaya .timeline-item h3 {
+    margin-top: 20px;
+  }
+}
+
+/* =========================================================
+  PARTE 3  SECCIÓN LEGADO — DISEÑO PREMIUM
+========================================================= */
+/* =========================================================
+    SECCIÓN ESPECÍFICA LEGADO - ESTILOS BASE (MODO CLARO)
+   ========================================================= */
+
+.seccion-especifica-legado{
+    padding:100px 5%;
+    background:linear-gradient(180deg,#fffdfb 0%,#f7f5f2 100%);
+    font-family:'Plus Jakarta Sans',sans-serif;
+    transition: background 0.3s ease;
+}
+
+/* TITULO */
+.seccion-especifica-legado .titulo-seccion{
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.seccion-especifica-legado .titulo-seccion h2{
+    font-size:clamp(2.5rem,5vw,4rem);
+    font-weight:900;
+    color:#111827;
+    margin-bottom:18px;
+    line-height:1.1;
+    transition: color 0.3s ease;
+}
+
+.seccion-especifica-legado .titulo-seccion h2 span{
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    color:#d33a6b;
+    font-weight:500;
+}
+
+.seccion-especifica-legado .titulo-seccion p{
+    max-width:700px;
+    margin:auto;
+    color:#6b7280;
+    line-height:1.8;
+    transition: color 0.3s ease;
+}
+
+/* GRID */
+.seccion-especifica-legado .legado-container{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    align-items:center;
+}
+
+/* IMAGEN */
+.seccion-especifica-legado .legado-media{
+    position:relative;
+}
+
+.seccion-especifica-legado .imagen-wrapper{
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+    transition: box-shadow 0.3s ease;
+}
+
+.seccion-especifica-legado .imagen-wrapper img{
+    width:100%;
+    display:block;
+    transition:.5s ease;
+}
+
+.seccion-especifica-legado .imagen-wrapper:hover img{
+    transform:scale(1.05);
+}
+
+/* FLOAT */
+.seccion-especifica-legado .stats-float{
+    position:absolute;
+    right:-20px;
+    bottom:-20px;
+    background:#d33a6b;
+    color:#fff;
+    width:210px;
+    padding:35px 25px;
+    border-radius:24px;
+    text-align:center;
+    box-shadow:0 20px 40px rgba(211,58,107,.3);
+}
+
+.seccion-especifica-legado .stats-float .numero{
+    font-size:4rem;
+    font-weight:900;
+    line-height:1;
+}
+
+.seccion-especifica-legado .stats-float .subtexto{
+    font-size:.75rem;
+    font-weight:800;
+    letter-spacing:2px;
+    margin-top:12px;
+    display:block;
+}
+
+/* TEXTO */
+.seccion-especifica-legado .titulo-legado{
+    font-size:clamp(2.3rem,4vw,3.8rem);
+    font-weight:900;
+    color:#111827;
+    margin-bottom:25px;
+    line-height:1.1;
+    transition: color 0.3s ease;
+}
+
+.seccion-especifica-legado .titulo-legado span{
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    color:#d33a6b;
+    font-weight:500;
+}
+
+.seccion-especifica-legado p{
+    font-size:1rem;
+    color:#4b5563;
+    line-height:1.9;
+    margin-bottom:20px;
+    transition: color 0.3s ease;
+}
+
+.seccion-especifica-legado .resaltado{
+    color:#d33a6b;
+    font-weight:800;
+}
+
+/* SELLOS */
+.seccion-especifica-legado .sellos-container{
+    display:flex;
+    gap:35px;
+    margin-top:35px;
+    padding-top:25px;
+    border-top:1px solid #e5e7eb;
+    transition: border-color 0.3s ease;
+}
+
+.seccion-especifica-legado .sello-item{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background-color: rgba(255,255,255,0.5);
+    padding: 12px 20px;
+    border-radius: 16px;
+    border: 1px solid #f0e9e4;
+    transition: var(--transition);
+}
+
+.seccion-especifica-legado .sello-icon{
+    width:38px;
+    height:38px;
+    color:#c66039; /* Usando el color arcilla para consistencia */
+    transition: var(--transition);
+}
+
+.seccion-especifica-legado .sello-item span{
+    font-weight:700;
+    color:#111827;
+    font-size:.9rem;
+    transition: color 0.3s ease;
+}
+
+.seccion-especifica-legado .sello-item:hover {
+    background-color: #ffffff;
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    border-color: #fff;
+}
+
+.seccion-especifica-legado .sello-item:hover .sello-icon {
+    color: #d33a6b; /* Cambia al rosa en hover */
+    transform: scale(1.1);
+}
+
+
+/* RESPONSIVE LEGADO */
+@media(max-width:992px){
+    .seccion-especifica-legado .legado-container{
+        grid-template-columns:1fr;
+        gap:90px;
+    }
+
+    .seccion-especifica-legado .stats-float{
+        right:20px;
+    }
+
+    .seccion-especifica-legado .sellos-container{
+        flex-direction:column;
+        gap:20px;
+    }
+}
+
+
+/* =========================================================
+    PARTE 4 ESTADÍSTICAS OSCURAS - ESTILOS BASE
+   ========================================================= */
+
+.seccion-estadisticas-oscura {
+    background-color: #1a1a1a !important; /* Mantiene su color original base */
+    background: #1a1a1a !important;
+    padding: 110px 20px;
+    text-align: center;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Contenedor Grid */
+.seccion-estadisticas-oscura .contenedor-stats {
+    max-width: 1150px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    position: relative;
+    z-index: 2;
+    background-color: transparent !important; /* Evita parches internos */
+    background: transparent !important;
+}
+
+/* Item de estadística individual */
+.seccion-estadisticas-oscura .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent !important;
+    background: transparent !important;
+}
+
+/* NÚMEROS */
+.seccion-estadisticas-oscura .stat-numero {
+    font-family: 'Playfair Display', serif;
+    font-size: 5.5rem;
+    color: #ffffff !important; /* Siempre blanco original */
+    font-weight: 400;
+    margin: 0 0 12px 0;
+    letter-spacing: -2px;
+    line-height: 1;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* Animación al pasar el mouse */
+.seccion-estadisticas-oscura .stat-item:hover .stat-numero {
+    transform: scale(1.05);
+}
+
+/* TEXTOS DESCRIPCIONES */
+.seccion-estadisticas-oscura .stat-descripcion {
+    font-size: 11px;
+    color: #888888 !important; /* Conserva su gris de lectura original */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* RESPONSIVE ESTADÍSTICAS */
+@media (max-width: 1024px) {
+    .seccion-estadisticas-oscura .stat-numero {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .seccion-estadisticas-oscura {
+        padding: 80px 20px;
+    }
+    .seccion-estadisticas-oscura .contenedor-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 60px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .seccion-estadisticas-oscura .contenedor-stats {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    .seccion-estadisticas-oscura .stat-numero {
+        font-size: 4.5rem;
+    }
+}
+
+
+/* =========================================================
+    SISTEMA DE MODO OSCURO APLICADO (BODY.DARK)
+   ========================================================= */
+
+/* Modificaciones para la sección Legado al activar modo oscuro */
+body.dark .seccion-especifica-legado{
+    background: #0b1220 !important; /* Cambia a fondo oscuro */
+}
+
+body.dark .seccion-especifica-legado .titulo-seccion h2,
+body.dark .seccion-especifica-legado .titulo-legado,
+body.dark .seccion-especifica-legado .sello-item span{
+    color: #ffffff !important; /* Textos cambian a blanco */
+}
+
+body.dark .seccion-especifica-legado p,
+body.dark .seccion-especifica-legado .titulo-seccion p{
+    color: #94a3b8 !important; /* Textos secundarios a gris claro */
+}
+
+body.dark .seccion-especifica-legado .imagen-wrapper{
+    box-shadow: 0 20px 45px rgba(0,0,0,.35) !important;
+}
+
+body.dark .seccion-especifica-legado .sellos-container{
+    border-color: #1f2937 !important;
+}
+
+/* MODO OSCURO PROTEGIDO PARA LAS ESTADÍSTICAS (Conserva su color original plano) */
+body.dark .seccion-estadisticas-oscura {
+    background-color: #1a1a1a !important; /* Protege el gris carbón original de la imagen */
+    background: #1a1a1a !important;
+}
+
+body.dark .seccion-estadisticas-oscura .contenedor-stats,
+body.dark .seccion-estadisticas-oscura .stat-item {
+    background-color: transparent !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+body.dark .seccion-estadisticas-oscura .stat-numero {
+    color: #ffffff !important; /* Sigue viéndose blanco puro e idéntico */
+}
+
+body.dark .seccion-estadisticas-oscura .stat-descripcion {
+    color: #888888 !important; /* Sigue viéndose gris elegante original */
+}
+
+
+
+
+/* =========================================================
+      PARTE 4 ESTADÍSTICAS OSCURAS (DARK STATS SECTION)
+   ========================================================= */
+
+.seccion-estadisticas-oscura {
+    background-color: #1a1a1a; /* Fondo gris carbón oscuro */
+    padding: 110px 20px;
+    text-align: center;
+    font-family: 'Plus Jakarta Sans', sans-serif; /* Texto base */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Contenedor Grid */
+.seccion-estadisticas-oscura .contenedor-stats {
+    max-width: 1150px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 Columnas exactas como en la imagen */
+    gap: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Item de estadística individual */
+.seccion-estadisticas-oscura .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* NÚMEROS: Estilo Serif Elegante */
+.seccion-estadisticas-oscura .stat-numero {
+    font-family: 'Playfair Display', serif; /* Importante: Cargar esta fuente en HTML */
+    font-size: 5.5rem; /* Tamaño grande premium */
+    color: #ffffff;
+    font-weight: 400;
+    margin: 0 0 12px 0;
+    letter-spacing: -2px;
+    line-height: 1;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* Animación sutil al pasar el mouse por el item */
+.seccion-estadisticas-oscura .stat-item:hover .stat-numero {
+    transform: scale(1.05);
+}
+
+/* TEXTOS: Estilo Sans-Serif Moderno */
+.seccion-estadisticas-oscura .stat-descripcion {
+    font-size: 11px; /* Pequeño y elegante */
+    color: #888888; /* Gris medio para contraste suave */
+    text-transform: uppercase; /* Mayúsculas obligatorias */
+    letter-spacing: 3px; /* Espaciado ancho profesional */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* --- ADAPTACIÓN PARA MÓVILES (RESPONSIVE) --- */
+
+@media (max-width: 1024px) {
+    .seccion-estadisticas-oscura .stat-numero {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .seccion-estadisticas-oscura {
+        padding: 80px 20px;
+    }
+    
+    .seccion-estadisticas-oscura .contenedor-stats {
+        grid-template-columns: repeat(2, 1fr); /* 2x2 en tablets */
+        gap: 60px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .seccion-estadisticas-oscura .contenedor-stats {
+        grid-template-columns: 1fr; /* 1 columna en móviles pequeños */
+        gap: 50px;
+    }
+    
+    .seccion-estadisticas-oscura .stat-numero {
+        font-size: 4.5rem;
+    }
+}
+
+
+/* =========================================================
+      PARTE 5 TESTIMONIOS — DISEÑO PROFESIONAL PREMIUM
+========================================================= */
+
+.seccion-especifica-testimonios{
+    background:#f7f5f2;
+    padding:110px 0;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    overflow:hidden;
+    position:relative;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.seccion-especifica-testimonios .testimonios-header{
+    text-align:center;
+    margin-bottom:70px;
+    padding:0 20px;
+}
+
+.seccion-especifica-testimonios .badge-testimonio{
+    display:inline-block;
+    background:#f5dfe6;
+    color:#c63b6d;
+    padding:8px 18px;
+    border-radius:30px;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:3px;
+    margin-bottom:25px;
+    border:1px solid #f0cad6;
+}
+
+.seccion-especifica-testimonios .titulo-principal{
+    font-size:clamp(2.7rem,5vw,4.5rem);
+    font-family:'Playfair Display',serif;
+    font-weight:700;
+    color:#1f2937;
+    line-height:1.1;
+    margin-bottom:15px;
+}
+
+.seccion-especifica-testimonios .script-text{
+    color:#d14677;
+    font-style:italic;
+}
+
+.seccion-especifica-testimonios .subtitulo{
+    color:#6b7280;
+    font-size:1rem;
+    max-width:650px;
+    margin:auto;
+    line-height:1.8;
+}
+
+/* =========================================================
+   CARRUSEL
+========================================================= */
+
+.seccion-especifica-testimonios .carrusel-wrapper{
+    max-width:1280px;
+    margin:auto;
+    overflow:hidden;
+    position:relative;
+    padding:20px 25px;
+}
+
+.seccion-especifica-testimonios .testimonios-track{
+    display:flex;
+    gap:25px;
+    transition:transform .6s ease;
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.seccion-especifica-testimonios .card-testimonio{
+    min-width:calc(33.333% - 17px);
+    background:#ffffff;
+    border-radius:26px;
+    padding:38px;
+    border:1px solid #ececec;
+    box-shadow:0 10px 30px rgba(0,0,0,.04);
+    position:relative;
+    transition:.35s ease;
+}
+
+.seccion-especifica-testimonios .card-testimonio:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+}
+
+.seccion-especifica-testimonios .card-testimonio::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:4px;
+    background:linear-gradient(90deg,#d14677,#f3a6be);
+    border-radius:30px 30px 0 0;
+}
+
+/* =========================================================
+   ESTRELLAS
+========================================================= */
+
+.seccion-especifica-testimonios .estrellas{
+    color:#f4b400;
+    font-size:15px;
+    letter-spacing:4px;
+    margin-bottom:22px;
+}
+
+/* =========================================================
+   TEXTO
+========================================================= */
+
+.seccion-especifica-testimonios .texto-testimonio{
+    color:#5f6368;
+    font-size:.96rem;
+    line-height:2;
+    font-style:italic;
+    margin-bottom:35px;
+    min-height:170px;
+}
+
+/* =========================================================
+   PERFIL
+========================================================= */
+
+.seccion-especifica-testimonios .perfil-usuario{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    border-top:1px solid #f1f1f1;
+    padding-top:22px;
+}
+
+.seccion-especifica-testimonios .perfil-usuario img{
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #fff;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.seccion-especifica-testimonios .info-user{
+    display:flex;
+    flex-direction:column;
+}
+
+.seccion-especifica-testimonios .nombre{
+    font-size:.95rem;
+    font-weight:800;
+    color:#1f2937;
+}
+
+.seccion-especifica-testimonios .cargo{
+    font-size:.8rem;
+    color:#8b8b8b;
+    margin-top:4px;
+}
+
+/* =========================================================
+   NAVEGACIÓN ABAJO
+========================================================= */
+
+.seccion-especifica-testimonios .testimonios-nav{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    margin-top:45px;
+}
+
+/* flechas */
+
+.seccion-especifica-testimonios .nav-btn{
+    width:52px;
+    height:52px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#ffffff;
+    color:#d14677;
+
+    font-size:18px;
+    font-weight:700;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.10);
+
+    transition:.3s ease;
+}
+
+.seccion-especifica-testimonios .nav-btn:hover{
+    background:#d14677;
+    color:#ffffff;
+    transform:scale(1.08);
+    box-shadow:0 14px 28px rgba(209,70,119,.25);
+}
+
+/* =========================================================
+   DOTS
+========================================================= */
+
+.seccion-especifica-testimonios .dots-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+/* MOSTRAR 6 PUNTOS */
+
+.seccion-especifica-testimonios .dots-container span{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#d6d3d1;
+    cursor:pointer;
+    transition:.35s ease;
+    opacity:.8;
+}
+
+.seccion-especifica-testimonios .dots-container span.active{
+    width:30px;
+    border-radius:20px;
+    background:#d14677;
+    opacity:1;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1024px){
+
+    .seccion-especifica-testimonios .card-testimonio{
+        min-width:calc(50% - 13px);
+    }
+
+    .seccion-especifica-testimonios .texto-testimonio{
+        min-height:190px;
+    }
+}
+
+@media(max-width:768px){
+
+    .seccion-especifica-testimonios{
+        padding:90px 0;
+    }
+
+    .seccion-especifica-testimonios .card-testimonio{
+        min-width:100%;
+        padding:30px;
+    }
+
+    .seccion-especifica-testimonios .texto-testimonio{
+        min-height:auto;
+    }
+
+    .seccion-especifica-testimonios .titulo-principal{
+        font-size:2.6rem;
+    }
+
+    .seccion-especifica-testimonios .nav-btn{
+        width:45px;
+        height:45px;
+        font-size:15px;
+    }
+
+    .seccion-especifica-testimonios .testimonios-nav{
+        gap:12px;
+    }
+}
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+body.dark .seccion-especifica-testimonios{
+    background:#0b1220;
+}
+
+body.dark .seccion-especifica-testimonios .titulo-principal,
+body.dark .seccion-especifica-testimonios .nombre{
+    color:#ffffff;
+}
+
+body.dark .seccion-especifica-testimonios .subtitulo,
+body.dark .seccion-especifica-testimonios .texto-testimonio,
+body.dark .seccion-especifica-testimonios .cargo{
+    color:#94a3b8;
+}
+
+body.dark .seccion-especifica-testimonios .card-testimonio{
+    background:#111827;
+    border-color:#1f2937;
+    box-shadow:none;
+}
+
+body.dark .seccion-especifica-testimonios .perfil-usuario{
+    border-color:#1f2937;
+}
+
+body.dark .seccion-especifica-testimonios .nav-btn{
+    background:#111827;
+    color:#ffffff;
+}
+
+body.dark .seccion-especifica-testimonios .nav-btn:hover{
+    background:#ff4d8d;
+}
+
+body.dark .seccion-especifica-testimonios .dots-container span{
+    background:#334155;
+}
+
+body.dark .seccion-especifica-testimonios .dots-container span.active{
+    background:#ff4d8d;
+}
+
+
+/* =========================================================
+    PARTE 6 RECETAS PITAHAYA — VERSION PRO FINAL (AISLADO)
+========================================================= */
+
+.seccion-recetas-pitahaya {
+    padding: 80px 5%;
+    background: linear-gradient(170deg, #fffdfb 0%, #f7f3f0 100%);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+/* =========================
+    GLOW SUAVE
+========================= */
+
+.seccion-recetas-pitahaya::before,
+.seccion-recetas-pitahaya::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: .5;
+}
+
+.seccion-recetas-pitahaya::before {
+    width: 420px;
+    height: 420px;
+    top: -140px;
+    right: -140px;
+    background: radial-gradient(circle, rgba(209,70,119,.16), transparent 70%);
+}
+
+.seccion-recetas-pitahaya::after {
+    width: 460px;
+    height: 460px;
+    bottom: -180px;
+    left: -180px;
+    background: radial-gradient(circle, rgba(255,170,200,.14), transparent 70%);
+}
+
+/* CONTENEDOR ANCHO (CORREGIDO: Permite espacio suficiente para las 4 en fila) */
+.seccion-recetas-pitahaya .contenedor-recetas {
+    max-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+    HEADER
+========================================================= */
+
+.seccion-recetas-pitahaya .badge-verde {
+    background: #e9f6ef;
+    color: #2c5f4e;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    display: inline-flex;
+    margin-bottom: 18px;
+}
+
+.seccion-recetas-pitahaya .titulo-recetas {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 5vw, 4.6rem);
+    color: #141414;
+    line-height: 1.05;
+}
+
+.seccion-recetas-pitahaya .italica-rosa {
+    color: #d14677;
+    font-style: italic;
+}
+
+/* =========================================================
+    FILTROS
+========================================================= */
+
+.seccion-recetas-pitahaya .filtros-recetas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 40px 0 40px;
+}
+
+.seccion-recetas-pitahaya .btn-filtro {
+    padding: 12px 22px;
+    border-radius: 999px;
+    border: 1px solid #ececec;
+    background: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.seccion-recetas-pitahaya .btn-filtro:hover {
+    transform: translateY(-2px);
+}
+
+.seccion-recetas-pitahaya .btn-filtro.activo {
+    background: linear-gradient(135deg, #d14677, #f06a9a);
+    color: #fff;
+    border-color: transparent;
+}
+
+/* =========================================================
+    GRID (CORREGIDO: Forzado estricto a 4 columnas en una sola fila)
+========================================================= */
+
+.seccion-recetas-pitahaya .grid-recetas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 Tarjetas obligatorias en una sola fila */
+    gap: 20px; /* Reducido ligeramente de 30px a 20px para un ajuste perfecto de las 4 */
+    width: 100%;
+    align-items: stretch;
+}
+
+/* =========================================================
+    CARD
+========================================================= */
+
+.seccion-recetas-pitahaya .card-receta {
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid #f1f1f1;
+    transition: all .3s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,.04);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.seccion-recetas-pitahaya .card-receta:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 22px 55px rgba(0,0,0,.10);
+}
+
+/* =========================================================
+    IMAGEN
+========================================================= */
+
+.seccion-recetas-pitahaya .portada-receta {
+    position: relative;
+    height: 200px; /* Ajustado de 230px a 200px para equilibrar la vista de 4 columnas */
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.seccion-recetas-pitahaya .portada-receta img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .7s ease;
+}
+
+.seccion-recetas-pitahaya .card-receta:hover img {
+    transform: scale(1.08);
+}
+
+.seccion-recetas-pitahaya .portada-receta::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.28), transparent 65%);
+}
+
+/* =========================================================
+    BADGES
+========================================================= */
+
+.seccion-recetas-pitahaya .etiqueta-categoria {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(255,255,255,.92);
+    padding: 6px 10px;
+    font-size: 10px;
+    font-weight: 800;
+    border-radius: 8px;
+    z-index: 2;
+}
+
+.seccion-recetas-pitahaya .tiempo-prep {
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+    background: rgba(0,0,0,.75);
+    color: #fff;
+    padding: 6px 12px;
+    font-size: 11px;
+    border-radius: 999px;
+    z-index: 2;
+}
+
+/* =========================================================
+    INFO
+========================================================= */
+
+.seccion-recetas-pitahaya .info-receta {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.seccion-recetas-pitahaya .info-receta h3 {
+    font-size: 1.1rem; /* Un toque más compacto para optimizar el ancho de 4 en fila */
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.seccion-recetas-pitahaya .card-receta:hover h3 {
+    color: #d14677;
+}
+
+/* META */
+.seccion-recetas-pitahaya .detalles-meta {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    min-height: 26px; /* Evita desalineación si una tarjeta no lleva etiquetas */
+}
+
+.seccion-recetas-pitahaya .dificultad,
+.seccion-recetas-pitahaya .porciones {
+    background: #f6f6f6;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: .75rem;
+    font-weight: 600;
+}
+
+/* TEXTO */
+.seccion-recetas-pitahaya .info-receta p {
+    font-size: .88rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+/* =========================================================
+    🔥 BOTÓN VER RECETA
+========================================================= */
+
+.seccion-recetas-pitahaya .enlace-receta {
+    color: #d14677;
+    font-weight: 800;
+    text-decoration: none;
+    display: inline-flex;
+    gap: 6px;
+    align-self: flex-start;
+
+    /* Oculto por defecto en monitores */
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+
+    transition: all .35s ease;
+}
+
+.seccion-recetas-pitahaya .card-receta:hover .enlace-receta {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.seccion-recetas-pitahaya .enlace-receta:hover {
+    gap: 12px;
+}
+
+/* =========================================================
+    RESPONSIVE (Ajustes de Grid para móviles)
+========================================================= */
+
+@media (max-width: 1024px) {
+    /* En tablets medianas cambia a 2 por fila para que no se compriman demasiado */
+    .seccion-recetas-pitahaya .grid-recetas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .seccion-recetas-pitahaya {
+        padding: 60px 20px;
+    }
+
+    /* En celulares va 1 por fila */
+    .seccion-recetas-pitahaya .grid-recetas {
+        grid-template-columns: 1fr;
+    }
+
+    .seccion-recetas-pitahaya .filtros-recetas {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 10px;
+    }
+
+    .seccion-recetas-pitahaya .enlace-receta {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+    }
+}
+
+/* =========================================================
+    DARK MODE — RECETAS PITAHAYA
+========================================================= */
+
+body.dark .seccion-recetas-pitahaya {
+    background: linear-gradient(180deg, #0b1220 0%, #0f172a 100%);
+}
+
+body.dark .seccion-recetas-pitahaya .titulo-recetas {
+    color: #ffffff;
+}
+
+body.dark .seccion-recetas-pitahaya .badge-verde {
+    background: rgba(34,197,94,.12);
+    color: #86efac;
+    border: 1px solid rgba(34,197,94,.25);
+}
+
+body.dark .seccion-recetas-pitahaya .btn-filtro {
+    background: #111827;
+    border-color: #1f2937;
+    color: #e5e7eb;
+}
+
+body.dark .seccion-recetas-pitahaya .btn-filtro:hover {
+    background: #1f2937;
+}
+
+body.dark .seccion-recetas-pitahaya .btn-filtro.activo {
+    background: linear-gradient(135deg, #d14677, #f06a9a);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 8px 25px rgba(209, 70, 119, 0.3);
+}
+
+body.dark .seccion-recetas-pitahaya .card-receta {
+    background: #111827;
+    border-color: #1f2937;
+    box-shadow: none;
+    transition: all .3s ease; /* Añadido para suavizar el hover */
+}
+
+body.dark .seccion-recetas-pitahaya .card-receta:hover {
+    box-shadow: 0 25px 60px rgba(0,0,0,.55);
+}
+
+body.dark .seccion-recetas-pitahaya .info-receta h3 {
+    color: #f8fafc;
+}
+
+body.dark .seccion-recetas-pitahaya .info-receta p {
+    color: #94a3b8;
+}
+
+body.dark .seccion-recetas-pitahaya .dificultad,
+body.dark .seccion-recetas-pitahaya .porciones {
+    background: #1f2937;
+    color: #cbd5e1;
+}
+
+body.dark .seccion-recetas-pitahaya .enlace-receta {
+    color: #f472b6;
+}
+
+body.dark .seccion-recetas-pitahaya .etiqueta-categoria {
+    background: rgba(30, 41, 59, 0.6); /* Fondo más oscuro y translúcido */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #e5e7eb;
+}
+
+body.dark .seccion-recetas-pitahaya .tiempo-prep {
+    background: rgba(165, 24, 24, 0.6);
+}
+
+body.dark .seccion-recetas-pitahaya .portada-receta::after {
+    background: linear-gradient(to top, rgba(0,0,0,.6), transparent 70%);
+}
+
+/* =========================================
+   1.  PARTE 7 CONFIGURACIÓN Y CABECERA (VERSION PRO)
+   ========================================= */
+
+.seccion-galeria {
+    background: linear-gradient(180deg, #fdfaf5 0%, #f7f4ef 100%);
+    padding: 90px 20px;
+    font-family: 'Playfair Display', serif;
+    position: relative;
+    overflow: hidden;
+}
+
+/* glow decorativo suave */
+.seccion-galeria::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: -200px;
+    right: -200px;
+    background: radial-gradient(circle, rgba(214,51,132,0.10), transparent 70%);
+    filter: blur(40px);
+}
+
+.contenedor-galeria {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.header-galeria {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 50px;
+}
+
+/* TITULOS */
+.titulos-col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.badge-galeria {
+    color: #d63384;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    opacity: .9;
+}
+
+.titulo-principal {
+    font-size: clamp(34px, 5vw, 52px);
+    color: #1a3c34;
+    margin: 0;
+    line-height: 1.1;
+    font-weight: 800;
+}
+
+.italica-verde {
+    font-style: italic;
+    color: #4a7c66;
+    font-weight: 500;
+}
+
+/* LINK */
+.ver-galeria {
+    color: #d63384;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: .35s ease;
+}
+
+.ver-galeria:hover {
+    gap: 14px;
+    opacity: .85;
+}
+
+/* =========================================
+   2. GRID GALERÍA (UX PREMIUM ADAPTATIVA)
+   ========================================= */
+
+.grid-galeria {
+    display: grid;
+    /* Cambio clave: auto-fit inteligente para maquetación fluida por defecto */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    width: 100%;
+}
+
+.item-galeria {
+    position: relative;
+    border-radius: 24px; /* Radio optimizado para pantallas modernas */
+    overflow: hidden;
+    height: 360px; /* Altura base estilizada */
+    cursor: pointer;
+    transition: transform .4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .4s ease;
+    width: 100%;
+}
+
+.item-galeria:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* IMAGEN INTERNA */
+.item-galeria img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.item-galeria:hover img {
+    transform: scale(1.08);
+}
+
+/* OVERLAY DE INFORMACIÓN */
+.info-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box; /* Evita que el padding rompa las dimensiones */
+    padding: 35px 24px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.4) 65%, transparent 100%);
+    color: #ffffff;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity .35s ease, transform .35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.item-galeria:hover .info-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.categoria-foto {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #ffb3d9;
+    font-family: sans-serif;
+    text-transform: uppercase;
+}
+
+.descripcion-foto {
+    font-size: 14px;
+    font-family: sans-serif;
+    margin-top: 6px;
+    line-height: 1.4;
+    opacity: 0.95;
+}
+
+/* =========================================
+   3. MODAL (VISOR PREMIUM ULTRA FLUIDO)
+   ========================================= */
+
+.modal-full {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Fondo blur cinematográfico */
+.modal-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: blur(30px) brightness(0.2);
+    background-color: rgba(11, 18, 32, 0.8); /* Respaldo oscuro elegante */
+}
+
+/* CONTENIDO DEL VISOR */
+.modal-contenido {
+    text-align: center;
+    width: 100%;
+    max-width: 850px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* BOTÓN CERRAR */
+.btn-cerrar {
+    background: #ffffff;
+    color: #1a3c34;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: background-color .3s ease, color .3s ease, transform .2s ease;
+}
+
+.btn-cerrar:hover {
+    background: #d63384;
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+/* MARCO CONTENEDOR DE IMAGEN */
+.modal-frame {
+    border: 3px solid #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-frame img {
+    max-height: 55vh; /* Dinámico para no romper pantallas llanas u horizontales */
+    width: 100%;
+    object-fit: contain; /* Mantiene proporciones reales de la foto */
+    display: block;
+}
+
+/* TEXTO DE DESCRIPCIÓN MODAL */
+.modal-descripcion {
+    font-family: sans-serif;
+    margin-top: 20px;
+    font-size: 16px;
+    max-width: 600px;
+    line-height: 1.5;
+    opacity: .95;
+}
+
+/* NAVEGACIÓN */
+.modal-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 24px;
+}
+
+.nav-arrow {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 38px;
+    cursor: pointer;
+    opacity: .6;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity .25s ease, transform .25s ease;
+}
+
+.nav-arrow:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+/* PUNTOS INDICADORES */
+.modal-dots {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transition: background-color .3s ease, transform .3s ease;
+}
+
+.dot.active {
+    background: #ffffff;
+    transform: scale(1.35);
+}
+
+/* =========================================
+   4. DISEÑO RESPONSIVO ESTRICTO (BREAKPOINTS)
+   ========================================= */
+
+/* --- TABLETS Y PANTALLAS MEDIANAS --- */
+@media (max-width: 1024px) {
+    .grid-galeria {
+        grid-template-columns: repeat(2, 1fr) !important; /* Cuadrícula sólida de 2 columnas */
+        gap: 20px;
+    }
+
+    .item-galeria {
+        height: 330px;
+    }
+}
+
+/* --- TELÉFONOS MÓVILES (UX SMARTPHONE OPTIMIZADA) --- */
+@media (max-width: 600px) {
+    .grid-galeria {
+        grid-template-columns: 1fr !important; /* Columna única limpia */
+        gap: 18px;
+    }
+
+    .item-galeria {
+        height: 290px; /* Altura contenida para evitar scroll infinito tosco */
+        border-radius: 20px;
+    }
+
+    /* En smartphones la información es persistente (Sin hover obligado para pantallas táctiles) */
+    .info-overlay {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        padding: 22px 18px;
+    }
+
+    .categoria-foto {
+        font-size: 10px;
+    }
+
+    .descripcion-foto {
+        font-size: 13px;
+    }
+
+    /* Ajustes estructurales del Visor Modal en móviles */
+    .modal-full {
+        padding: 12px;
+    }
+
+    .btn-cerrar {
+        padding: 8px 22px;
+        font-size: 12px;
+        margin-bottom: 16px;
+    }
+
+    .modal-frame {
+        border-width: 2px;
+        border-radius: 14px;
+    }
+
+    .modal-frame img {
+        max-height: 48vh; /* Control riguroso del alto de la imagen en móviles */
+    }
+
+    .modal-descripcion {
+        font-size: 14px;
+        margin-top: 14px;
+        padding: 0 8px;
+    }
+
+    .modal-nav {
+        gap: 20px;
+        margin-top: 18px;
+    }
+
+    .nav-arrow {
+        font-size: 30px;
+    }
+}
+
+/* =========================================
+   5. MODO OSCURO (DARK MODE PRO)
+   ========================================= */
+
+body.dark .seccion-galeria {
+    background: linear-gradient(180deg, #0b1220 0%, #0f172a 100%);
+}
+
+/* TITULOS */
+body.dark .titulo-principal {
+    color: #f8fafc;
+}
+
+body.dark .italica-verde {
+    color: #7dd3fc;
+}
+
+/* BADGE */
+body.dark .badge-galeria {
+    color: #f472b6;
+}
+
+/* LINK */
+body.dark .ver-galeria {
+    color: #f472b6;
+}
+
+/* GRID ITEMS */
+body.dark .item-galeria {
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* OVERLAY (más elegante en dark) */
+body.dark .info-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+}
+
+body.dark .categoria-foto {
+    color: #f9a8d4;
+}
+
+body.dark .descripcion-foto {
+    color: #e2e8f0;
+}
+
+/* MODAL */
+body.dark .modal-frame {
+    border-color: rgba(255,255,255,0.15);
+}
+
+body.dark .modal-descripcion {
+    color: #cbd5e1;
+}
+
+body.dark .btn-cerrar {
+    background: #111827;
+    color: #f8fafc;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+body.dark .btn-cerrar:hover {
+    background: #d63384;
+    color: #fff;
+}
+
+/* NAV */
+body.dark .nav-arrow {
+    color: #f8fafc;
+}
+
+/* DOTS */
+body.dark .dot {
+    background: rgba(255,255,255,0.2);
+}
+
+body.dark .dot.active {
+    background: #f472b6;
+}
+/* =======================================================
+   10. SELECTOR DE IDIOMA (ESTILO ORGÁNICO & PREMIUM MÁCH)
+   ======================================================= */
+
+.lang-selector-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px; 
+  
+  /* Efecto cristal translúcido sutil para que se integre con el fondo fucsia */
+  background-color: rgba(255, 255, 255, 0.15); 
+  padding: 6px 14px;
+  border-radius: 100px; /* Mantiene la forma de píldora idéntica a tus otros botones */
+  
+  /* Borde fino y elegante, no metálico tosco */
+  border: 1px solid rgba(255, 255, 255, 0.4); 
+  
+  /* Transición suave para una experiencia fluida */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Efecto de destello orgánico al pasar el ratón */
+.lang-selector-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transition: all 0.5s ease;
+}
+
+.lang-selector-container:hover {
+  /* Al pasar el mouse, se vuelve blanco sólido brillante */
+  background-color: rgba(255, 255, 255, 1);
+  border-color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.lang-selector-container:hover::after {
+  left: 100%;
+}
+
+/* El icono de Google Material Icons */
+.lang-selector-container .material-symbols-outlined {
+  font-size: 1.25rem; 
+  color: #ffffff; /* Blanco para resaltar sobre el fucsia */
+  transition: color 0.3s ease;
+}
+
+/* Cambia el color del icono cuando pasas el ratón encima */
+.lang-selector-container:hover .material-symbols-outlined {
+  color: #d10074; /* Toma el color fucsia de tu marca */
+}
+
+/* El elemento select */
+.lang-selector-select {
+  background: transparent;
+  border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem; /* Un poco más estilizado y compacto */
+  color: #ffffff; /* Texto blanco en reposo */
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 2px;
+  transition: color 0.3s ease;
+}
+
+/* Cambia el color del texto cuando pasas el ratón encima */
+.lang-selector-container:hover .lang-selector-select {
+  color: #1e293b; /* Texto oscuro para contrastar con el fondo blanco */
+}
+
+/* Estilos para el menú desplegable (las opciones internas) */
+.lang-selector-select option {
+  background-color: #ffffff !important;
+  color: #1e293b !important;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  padding: 10px;
+}
+
+/* =======================================================
+   ESTILOS PARA MODO OSCURO (SI TU HEADER CAMBIA A OSCURO)
+   ======================================================= */
+
+body.dark .lang-selector-container {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+body.dark .lang-selector-container:hover {
+  background-color: #ffffff;
+}
+
+body.dark .lang-selector-container .material-symbols-outlined {
+  color: #f1f5f9;
+}
+
+body.dark .lang-selector-select {
+  color: #f1f5f9;
+}
+
+/* =========================================
+   FIX: RENDERIZADO DE ICONOS MATERIAL SYMBOLS
+   ========================================= */
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+  user-select: none; /* Evita que el ícono se pueda seleccionar como texto */
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* =========================================
+   6. BOTÓN VOLVER ARRIBA (SCROLL TO TOP)
+   ========================================= */
+
+#scrollTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Justo debajo del chat */
+
+    width: 50px;
+    height: 50px;
+
+    background: #d63384;
+    color: white;
+
+    border: none;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 25px rgba(214, 51, 132, 0.3);
+
+    /* Estado inicial oculto */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+
+    transition: all 0.35s ease;
+}
+
+#scrollTopBtn.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#scrollTopBtn:hover {
+    background: #1a3c34; /* Verde oscuro al pasar el mouse */
+    transform: scale(1.1);
+}
+
+/* --- MODO OSCURO --- */
+body.dark #scrollTopBtn {
+    background-color: #f472b6; /* Rosa más brillante en modo oscuro */
+    color: #111827;
+    box-shadow: 0 8px 25px rgba(244, 114, 182, 0.3);
+}
+
+body.dark #scrollTopBtn:hover {
+    background-color: #ffffff;
+    color: #111827;
+}
+
+
+/* =========================================
+     PARTE 8 SECCIÓN EQUIPO - AISLADA PRO
+========================================= */
+
+.seccion-equipo {
+    background-color: #fdfaf5;
+    padding: 80px 20px;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    overflow: hidden;
+    animation: eqFadeUp .8s ease both;
+    transition: background .4s ease, color .4s ease;
+}
+
+@keyframes eqFadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.seccion-equipo .contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.seccion-equipo .header-equipo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 50px;
+}
+
+.seccion-equipo .badge-superior {
+    background: #fce4ec;
+    color: #d81b60;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 6px 16px;
+    border-radius: 999px;
+}
+
+.seccion-equipo .titulo-principal {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    color: #1a3c34;
+}
+
+.seccion-equipo .italica-rosa {
+    font-style: italic;
+    color: #d63384;
+}
+
+.seccion-equipo .link-equipo {
+    color: #d63384;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* =========================================
+   GRID
+========================================= */
+
+.seccion-equipo .grid-equipo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* =========================================
+   CARD
+========================================= */
+
+.seccion-equipo .card-miembro {
+    background: white;
+    padding: 35px;
+    border-radius: 30px;
+    border: 1px solid #f0f0f0;
+    transition: .4s ease;
+}
+
+.seccion-equipo .card-miembro:hover {
+    transform: translateY(-8px);
+}
+
+.seccion-equipo .card-header {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.seccion-equipo .foto-perfil {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.seccion-equipo .info-nombre h3 {
+    margin: 0;
+    font-size: 19px;
+    color: #1a3c34;
+    font-family: 'Playfair Display', serif;
+}
+
+.seccion-equipo .cargo {
+    font-size: 13px;
+    color: #7a9a8c;
+    font-style: italic;
+}
+
+.seccion-equipo .biografia {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    margin: 15px 0;
+}
+
+.seccion-equipo .tag-especialidad {
+    background: #f1f8f5;
+    color: #4a7c66;
+    font-size: 10px;
+    padding: 6px 12px;
+    border-radius: 999px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+    .seccion-equipo .header-equipo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .seccion-equipo .titulo-principal {
+        font-size: 32px;
+    }
+}
+
+/* =========================================
+   🌙 MODO OSCURO FUNCIONAL
+   ACTIVA CON: <body class="dark">
+========================================= */
+
+body.dark .seccion-equipo {
+    background: #0f172a;
+    color: #e2e8f0;
+}
+
+body.dark .seccion-equipo .titulo-principal {
+    color: #ffffff;
+}
+
+body.dark .seccion-equipo .card-miembro {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+body.dark .seccion-equipo .info-nombre h3 {
+    color: #ffffff;
+}
+
+body.dark .seccion-equipo .biografia {
+    color: #cbd5e1;
+}
+
+body.dark .seccion-equipo .cargo {
+    color: #94a3b8;
+}
+
+body.dark .seccion-equipo .tag-especialidad {
+    background: #334155;
+    color: #ffffff;
+}
+
+body.dark .seccion-equipo .link-equipo {
+    color: #f472b6;
+}
+
+body.dark .seccion-equipo .badge-superior {
+    background: #1e293b;
+    color: #ffffff;
+}
+
+/* =========================================
+     PARTE 9 COntacto(VERSION PRO)
+   ========================================= */
+.contacto-cta {
+    background-color: #fdfaf5;
+    padding: 60px 20px 100px; /* 👈 MÁS ARRIBA (antes 100px) */
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    transition: all .4s ease;
+}
+
+.contenedor-cta {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.badge-cta {
+    background-color: #fce4ec;
+    color: #d81b60;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 6px 16px;
+    border-radius: 20px;
+    letter-spacing: 2px;
+    transition: .3s ease;
+}
+
+.titulo-cta {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 54px);
+    color: #1a3c34;
+    margin: 25px 0;
+}
+
+.italica-tuta {
+    font-style: italic;
+    color: #d63384;
+}
+
+.texto-cta {
+    color: #4a7c66;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+/* BOTÓN */
+.btn-escribenos {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #c24471;
+    color: white;
+    padding: 16px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 10px 25px rgba(194,68,113,0.15);
+}
+
+.btn-escribenos:hover {
+    background-color: #1a3c34;
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* =========================================
+   🌙 MODO OSCURO
+========================================= */
+
+body.dark .contacto-cta {
+    background: #0f172a;
+}
+
+body.dark .titulo-cta {
+    color: #ffffff;
+}
+
+body.dark .texto-cta {
+    color: #cbd5e1;
+}
+
+body.dark .italica-tuta {
+    color: #f472b6;
+}
+
+body.dark .badge-cta {
+    background: #1e293b;
+    color: #ffffff;
+}
+
+body.dark .btn-escribenos {
+    background: #f472b6;
+    color: #0f172a;
+}
+
+body.dark .btn-escribenos:hover {
+    background: #22c55e;
+    color: #0f172a;
+}
+
+
+
+
+/* =========================================================
+   CONTENEDOR PRINCIPAL   patye veridades pitahaya
+========================================================= */
+.seccion-variedades {
+    padding: 80px 5%;
+    background-color: #fdfcf9;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.contenedor-variedades {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- CABECERA --- */
+.variedades-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.badge-rosa {
+    color: #d33a6b;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.titulo-variedades {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+/* =========================================================
+   GRID Y TARJETAS
+========================================================= */
+.grid-variedades {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.card-variedad {
+    background: #ffffff;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid #f1f1f1;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.03);
+    transition: all 0.4s ease;
+}
+
+.card-variedad:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.07);
+}
+
+.imagen-variedad {
+    height: 220px;
+    overflow: hidden;
+}
+
+.imagen-variedad img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.card-variedad:hover .imagen-variedad img {
+    transform: scale(1.05);
+}
+
+/* --- CONTENIDO --- */
+.contenido-variedad {
+    padding: 22px;
+}
+
+.contenido-variedad h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.contenido-variedad p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    min-height: auto;
+    transition: color 0.3s ease;
+}
+
+.sello-organico {
+    color: #d33a6b;
+    font-weight: 700;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-top: 1px solid #f8f8f8;
+    padding-top: 15px;
+    transition: border-color 0.3s ease;
+}
+
+.dot-rosa {
+    width: 6px;
+    height: 6px;
+    background-color: #d33a6b;
+    border-radius: 50%;
+}
+
+/* =========================================================
+   MODO RESPONSIVO (MÓVIL)
+========================================================= */
+@media (max-width: 768px) {
+    .seccion-variedades {
+        padding: 60px 20px;
+    }
+
+    .titulo-variedades {
+        font-size: 2.2rem;
+    }
+
+    .grid-variedades {
+        grid-template-columns: 1fr; /* Una columna en móvil */
+        gap: 20px;
+    }
+
+    .imagen-variedad {
+        height: 200px; /* Un poco más bajo en móvil */
+    }
+}
+
+/* =========================================================
+   MODO OSCURO (DARK MODE)
+========================================================= */
+body.dark .seccion-variedades {
+    background-color: #0b1220;
+}
+
+body.dark .titulo-variedades {
+    color: #ffffff;
+}
+
+body.dark .card-variedad {
+    background: #111827;
+    border-color: #1f2937;
+    box-shadow: none;
+}
+
+body.dark .contenido-variedad h3 {
+    color: #ffffff;
+}
+
+body.dark .contenido-variedad p {
+    color: #94a3b8;
+}
+
+body.dark .sello-organico {
+    border-top-color: #1f2937;
+    color: #ff4d8d; /* Rosa un poco más brillante para contraste */
+}
+
+body.dark .dot-rosa {
+    background-color: #ff4d8d;
+}

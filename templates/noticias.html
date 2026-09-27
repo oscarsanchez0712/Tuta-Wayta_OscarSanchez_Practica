@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+
+{% block title %}Noticias - Tuta Wayta{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/Blog.css') }}?v=1.1">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/noticias.css') }}?v=1.1">
+{% endblock %}
+
+{% block content %}
+<main class="news-page">
+  <section class="news-hero">
+    <div class="news-hero-content">
+      <h1 class="blog-title" data-i18n="news_hero_title">Noticias de <span>Tuta Wayta</span></h1>
+      <p class="blog-desc" data-i18n="news_hero_subtitle">
+        Mantente al día con los logros, eventos y el impacto de nuestra comunidad en el valle de Cañete.
+      </p>
+    </div>
+  </section>
+
+  <div class="blog-nutrition-container">
+    <!-- Buscador -->
+    <div class="blog-search-bar-wrapper">
+      <span class="search-glass-icon">🔍</span>
+      <input type="text" placeholder="Buscar noticias..." data-i18n-placeholder="blog_search_placeholder">
+    </div>
+
+    <!-- Filtros por categoría -->
+    <div class="blog-filter-buttons">
+      <button class="filter-btn active" data-filter="all" data-i18n="gallery_f_all">Todas</button>
+      <button class="filter-btn" data-filter="logro" data-i18n="news_cat_milestone">Logro</button>
+      <button class="filter-btn" data-filter="comunidad" data-i18n="news_cat_community">Comunidad</button>
+      <button class="filter-btn" data-filter="innovacion" data-i18n="news_cat_innovation">Innovación</button>
+      <button class="filter-btn" data-filter="alianza" data-i18n="news_cat_alliance">Alianza</button>
+    </div>
+
+    <!-- Rejilla de artículos -->
+    <div class="blog-articles-grid news-articles-grid">
+      
+      <article class="blog-card style-portrait" data-category="logro" onclick="openNewsModal('news1')">
+        <div class="card-image-wrapper">
+          <img src="https://readdy.ai/api/search-image?query=International%20organic%20food%20trade%20fair%20BioFach%20exhibition%20hall%20with%20Peru%20country%20pavilion%20colorful%20pitahaya%20dragon%20fruit%20display%20business%20people%20networking%20modern%20convention%20center%20professional%20editorial%20photography%20clean%20style%20high%20detail%20wide%20angle&width=1200&height=700&seq=noticia-biofach-2026&orientation=landscape" alt="Certificación Global G.A.P.">
+          <span class="category-tag logro" data-i18n="news_cat_milestone">LOGRO</span>
+        </div>
+        <div class="card-body">
+          <div class="card-top-meta">
+            <span class="date" data-i18n="news_a1_date">15 DE JULIO, 2026</span>
+          </div>
+          <h3 data-i18n="news_a1_title">Tuta Wayta obtiene la prestigiosa certificación Global G.A.P.</h3>
+          <p data-i18n="news_a1_p">Tras un riguroso proceso de auditoría, nuestra asociación ha sido galardonada con la certificación Global G.A.P., un estándar internacional que reconoce las buenas prácticas agrícolas y abre las puertas a nuevos mercados de exportación en Europa y Norteamérica.</p>
+        </div>
+      </article>
+
+      <article class="blog-card style-portrait" data-category="comunidad" onclick="openNewsModal('news2')">
+        <div class="card-image-wrapper">
+          <img src="https://i.ibb.co/LzDSLJ71/IMG-8387.avif" alt="Feria de Salud en Cañete">
+          <span class="category-tag comunidad" data-i18n="news_cat_community">COMUNIDAD</span>
+        </div>
+        <div class="card-body">
+          <div class="card-top-meta">
+            <span class="date" data-i18n="news_a2_date">5 DE JULIO, 2026</span>
+          </div>
+          <h3 data-i18n="news_a2_title">Exitosa Feria de Salud y Bienestar para las familias de Tuta Wayta</h3>
+          <p data-i18n="news_a2_p">En alianza con el centro de salud local, organizamos una jornada de atención médica gratuita, charlas de nutrición y actividades recreativas para más de 100 miembros de nuestra comunidad.</p>
+        </div>
+      </article>
+
+      <article class="blog-card style-portrait" data-category="innovacion" onclick="openNewsModal('news3')">
+        <div class="card-image-wrapper">
+          <img src="https://i.ibb.co/bM06Yjck/IMG-20260705-133439-jpg.jpg" alt="Nuevos empaques ecológicos">
+          <span class="category-tag innovacion" data-i18n="news_cat_innovation">INNOVACIÓN</span>
+        </div>
+        <div class="card-body">
+          <div class="card-top-meta">
+            <span class="date" data-i18n="news_a3_date">28 DE JUNIO, 2026</span>
+          </div>
+          <h3 data-i18n="news_a3_title">Lanzamos nueva línea de empaques 100% biodegradables</h3>
+          <p data-i18n="news_a3_p">Reafirmando nuestro compromiso con el planeta, hemos implementado empaques compostables para toda nuestra línea de fruta fresca, reduciendo nuestro impacto ambiental.</p>
+        </div>
+      </article>
+
+      <article class="blog-card style-portrait" data-category="innovacion" onclick="openNewsModal('news11')">
+        <div class="card-image-wrapper">
+          <img src="https://i.ibb.co/0pDQkx0z/IMG-8393.avif" alt="Riego Inteligente con IA">
+          <span class="category-tag innovacion" data-i18n="news_cat_innovation">INNOVACIÓN</span>
+        </div>
+        <div class="card-body">
+          <div class="card-top-meta">
+            <span class="date" data-i18n="news_a11_date">18 DE JUNIO, 2026</span>
+          </div>
+          <h3 data-i18n="news_a11_title">Tuta Wayta implementa sistema de riego inteligente con IA</h3>
+          <p data-i18n="news_a11_p">En nuestro afán por la sostenibilidad, hemos implementado un sistema de riego por goteo asistido por Inteligencia Artificial que optimiza el uso del agua hasta en un 40%, basándose en datos climáticos en tiempo real.</p>
+        </div>
+      </article>
+
+      <article class="blog-card style-portrait" data-category="innovacion" onclick="openNewsModal('news12')">
+        <div class="card-image-wrapper">
+          <img src="https://i.ibb.co/qFhsNQ8s/IMG-8380.avif" alt="Desarrollo de Biopesticida">
+          <span class="category-tag innovacion" data-i18n="news_cat_innovation">INNOVACIÓN</span>
+        </div>
+        <div class="card-body">
+          <div class="card-top-meta">
+            <span class="date" data-i18n="news_a12_date">10 DE JUNIO, 2026</span>
+          </div>
+          <h3 data-i18n="news_a12_title">Desarrollo de nuevo biopesticida a base de extractos de plantas nativas</h3>
+          <p data-i18n="news_a12_p">En colaboración con institutos de investigación, estamos desarrollando un biopesticida 100% orgánico a partir de extractos de plantas de la región, reforzando nuestro compromiso con una agricultura libre de químicos.</p>
+        </div>
+      </article>
+
+      <article class="blog-card style-portrait" data-category="alianza" onclick="openNewsModal('news4')">
+        <div class="card-image-wrapper">
+          <img src="{{ url_for('static', filename='img/valle grande.png') }}" alt="Alianza con Instituto Valle Grande">
+          <span class="category-tag alianza" data-i18n="news_cat_alliance">ALIANZA</span>
+        </div>
+        <div class="card-body">
+          <div class="card-top-meta">
+            <span class="date" data-i18n="news_a4_date">12 DE JUNIO, 2026</span>
+          </div>
+          <h3 data-i18n="news_a4_title">Alianza con Instituto Valle Grande para el Desarrollo Digital</h3>
+          <p data-i18n="news_a4_p">Gracias al apoyo del Instituto Valle Grande, hemos desarrollado nuestra nueva página web, una plataforma para conectar con nuestros clientes y mostrar la calidad de nuestra pitahaya al mundo.</p>
+        </div>
+      </article>
+
+      <article class="blog-card style-portrait" data-category="alianza" onclick="openNewsModal('news7')">
+        <div class="card-image-wrapper">
+          <img src="{{ url_for('static', filename='img/SENASA LOGO.jpeg') }}" alt="Alianza con SENASA">
+          <span class="category-tag alianza" data-i18n="news_cat_alliance">ALIANZA</span>
+        </div>
+        <div class="card-body">
+          <div class="card-top-meta">
+            <span class="date" data-i18n="news_a7_date">20 DE ABRIL, 2026</span>
+          </div>
+          <h3 data-i18n="news_a7_title">Tuta Wayta y SENASA: Alianza por la Calidad Orgánica</h3>
+          <p data-i18n="news_a7_p">Gracias a nuestra colaboración con SENASA, hemos obtenido el reconocimiento sanitario para nuestra producción orgánica, asegurando la trazabilidad y calidad de cada fruta desde nuestros campos en Cañete.</p>
+        </div>
+      </article>
+
+      <article class="blog-card style-portrait" data-category="alianza" onclick="openNewsModal('news8')">
+        <div class="card-image-wrapper">
+          <img src="{{ url_for('static', filename='img/AGROMERCADO.jpeg') }}" alt="Alianza con Agromercado">
+          <span class="category-tag alianza" data-i18n="news_cat_alliance">ALIANZA</span>
+        </div>
+        <div class="card-body">
+          <div class="card-top-meta">
+            <span class="date" data-i18n="news_a8_date">15 DE ABRIL, 2026</span>
+          </div>
+          <h3 data-i18n="news_a8_title">Agromercado impulsa el crecimiento de Tuta Wayta</h3>
+          <p data-i18n="news_a8_p">El apoyo institucional de Agromercado ha sido clave en nuestra formalización y capacitación, abriéndonos las puertas a mercados más competitivos y fortaleciendo nuestro modelo asociativo.</p>
+        </div>
+      </article>
+
+      <article class="blog-card style-portrait" data-category="comunidad" onclick="openNewsModal('news5')">
+        <div class="card-image-wrapper">
+          <img src="https://i.ibb.co/5hwHgBCr/IMG-8365.avif" alt="Visita de escolares a campos">
+          <span class="category-tag comunidad" data-i18n="news_cat_community">COMUNIDAD</span>
+        </div>
+        <div class="card-body">
+          <div class="card-top-meta">
+            <span class="date" data-i18n="news_a5_date">25 DE MAYO, 2026</span>
+          </div>
+          <h3 data-i18n="news_a5_title">Recibimos la visita de 50 escolares como parte del programa "Siembra Futuro"</h3>
+          <p data-i18n="news_a5_p">Los estudiantes de la escuela local aprendieron sobre el ciclo de la pitahaya, la importancia de la agricultura orgánica y participaron en una cosecha simbólica.</p>
+        </div>
+      </article>
+
+      <article class="blog-card style-portrait" data-category="logro" onclick="openNewsModal('news6')">
+        <div class="card-image-wrapper">
+          <img src="{{ url_for('static', filename='img/IMG_20260705_134543.jpg.jpeg') }}" alt="Premio a la Innovación Agrícola">
+          <span class="category-tag logro" data-i18n="news_cat_milestone">LOGRO</span>
+        </div>
+        <div class="card-body">
+          <div class="card-top-meta">
+            <span class="date" data-i18n="news_a6_date">10 DE MAYO, 2026</span>
+          </div>
+          <h3 data-i18n="news_a6_title">Tuta Wayta gana el Premio Nacional a la Innovación Agraria 2026</h3>
+          <p data-i18n="news_a6_p">Nuestro modelo de asociatividad y el desarrollo de productos derivados con valor agregado fueron reconocidos por el Ministerio de Desarrollo Agrario y Riego.</p>
+        </div>
+      </article>
+
+      <article class="blog-card style-portrait" data-category="logro" onclick="openNewsModal('news9')">
+        <div class="card-image-wrapper">
+          <img src="https://i.ibb.co/W40X6zqJ/IMG-8442.avif" alt="Premio Asociación del Año">
+          <span class="category-tag logro" data-i18n="news_cat_milestone">LOGRO</span>
+        </div>
+        <div class="card-body">
+          <div class="card-top-meta">
+            <span class="date" data-i18n="news_a9_date">30 DE MARZO, 2026</span>
+          </div>
+          <h3 data-i18n="news_a9_title">Tuta Wayta reconocida como 'Asociación del Año' en Agro-Produce 2026</h3>
+          <p data-i18n="news_a9_p">Nuestro compromiso con la calidad, la sostenibilidad y el desarrollo comunitario fue premiado en la feria regional más importante del sector agrícola.</p>
+        </div>
+      </article>
+
+      <article class="blog-card style-portrait" data-category="comunidad" onclick="openNewsModal('news10')">
+        <div class="card-image-wrapper">
+          <img src="https://i.ibb.co/d4Mr5vB7/IMG-8402.avif" alt="Taller de compostaje">
+          <span class="category-tag comunidad" data-i18n="news_cat_community">COMUNIDAD</span>
+        </div>
+        <div class="card-body">
+          <div class="card-top-meta">
+            <span class="date" data-i18n="news_a10_date">5 DE MARZO, 2026</span>
+          </div>
+          <h3 data-i18n="news_a10_title">Taller de compostaje y agricultura regenerativa para socios</h3>
+          <p data-i18n="news_a10_p">Más de 25 socios participaron en una jornada de capacitación práctica para mejorar la salud del suelo y optimizar el uso de recursos orgánicos en nuestras parcelas.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <section class="final-cta-section reveal">
+    <div class="cta-container">
+      <span class="cta-badge" data-i18n="blog_cta_badge">🌱 Apoya al campo peruano</span>
+      <h2 class="cta-main-title" data-i18n="blog_cta_title">La historia continúa contigo</h2>
+      <p class="cta-description" data-i18n="blog_cta_description">
+        Cada pitahaya que compras apoya a más de 30 familias productoras. Cada pedido fortalece una comunidad rural que apostó por la formalidad, la calidad y el desarrollo sostenible del valle de Cañete.
+      </p>
+      <div class="cta-button-group">
+        <a href="{{ url_for('productos') }}" class="btn-primary-pink">
+          <span data-i18n="blog_cta_btn_products">Ver Productos</span>
+        </a>
+        <a href="{{ url_for('contacto') }}" class="btn-secondary-white">
+          <span data-i18n="blog_cta_btn_contact">Contáctanos</span>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+      </div>
+      <script src="{{ url_for('static', filename='js/noticias.js') }}"></script>
+
+    </div>
+  </div>
+</main>
+{% endblock %}

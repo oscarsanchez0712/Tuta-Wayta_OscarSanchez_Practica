@@ -1,0 +1,2148 @@
+/* ==========================================================================
+   VARIABLES Y BASES
+   ========================================================================== */
+:root {
+    --rosa-principal: #d14677;
+    --rosa-claro: #fdf2f5;
+    --amarillo-tuta: #ffb400;
+    --verde-recetas: #4caf50;
+    --gris-texto: #5f6368;
+    --oscuro: #1a1a1a;
+    --blanco: #ffffff;
+    --fondo-crema: #fdfcf9;
+    --shadow-soft: 0 10px 30px rgba(0,0,0,0.08);
+    --shadow-soft-2: 0 16px 40px rgba(0,0,0,0.12);
+}
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+.beneficios-hero {
+    position: relative;
+    height: 60vh;
+    min-height: 450px;
+    background: linear-gradient(rgba(101, 53, 20, 0.65), rgba(101, 53, 20, 0.65)),
+                url('https://readdy.ai/api/search-image?query=beautiful-display-of-fresh-dragon-fruits-on-rustic-wooden-table-pink-pitahaya-cut-in-half-revealing-white-flesh-with-black-seeds-warm-natural-light-organic-market-style-food-photography&width=1400&height=500&seq=50&orientation=landscape') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--blanco);
+    padding: 0 20px;
+    overflow: hidden;
+}
+
+.beneficios-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(800px 300px at 20% 10%, rgba(209, 70, 119, 0.25), transparent 60%),
+        radial-gradient(700px 260px at 85% 30%, rgba(255, 180, 0, 0.18), transparent 55%),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.15));
+    pointer-events: none;
+}
+.beneficios-hero-content {
+    position: relative;
+    max-width: 980px;
+    z-index: 2;
+}
+
+
+.hero-eyebrow {
+    background: var(--rosa-claro);
+    color: var(--rosa-principal);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 16px;
+}
+
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5.2vw, 4rem);
+    line-height: 1.05;
+    margin-bottom: 18px;
+}
+
+
+.hero-subtitle {
+    max-width: 760px;
+    margin: 0 auto;
+    font-size: clamp(1rem, 1.5vw, 1.18rem);
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.6;
+}
+
+
+.text-accent {
+    font-style: italic;
+    font-weight: 400;
+}
+
+
+/* ==========================================================================
+   ADAPTACIÓN MODO OSCURO - SECCIÓN BENEFICIOS
+   ========================================================================== */
+
+/* Fondo general de la sección en Modo Oscuro */
+body.dark .beneficios-grid-section {
+    background: radial-gradient(circle at top left, rgba(255, 92, 167, 0.05), transparent 40%),
+                radial-gradient(circle at bottom right, rgba(255, 92, 167, 0.05), transparent 40%),
+                #0b1020 !important;
+    transition: background 0.3s ease;
+}
+
+/* Títulos y descripciones de cabecera */
+body.dark .section-title {
+    color: #f8fafc !important;
+}
+
+body.dark .section-description {
+    color: #cbd5e1 !important;
+}
+
+/* CARD PREMIUM - MODO OSCURO */
+body.dark .beneficio-card {
+    background: #111827 !important; /* El color que usas en tus otras cards dark */
+    border-color: #243042 !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: none; /* Mejor rendimiento en fondos oscuros */
+}
+
+/* Glow decorativo de la card en Modo Oscuro */
+body.dark .beneficio-card::after {
+    background: radial-gradient(
+        circle at top right,
+        rgba(255, 92, 167, 0.05),
+        transparent 50%
+    );
+}
+
+/* Icono en Modo Oscuro */
+body.dark .card-icon {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+body.dark .card-icon span {
+    color: #ff5ca7 !important; /* El rosa vibrante de tu modo oscuro */
+}
+
+/* Textos de la card en Modo Oscuro */
+body.dark .card-title {
+    color: #f8fafc !important;
+}
+
+body.dark .card-text {
+    color: #cbd5e1 !important;
+}
+
+body.dark .card-text strong {
+    color: #ff5ca7 !important;
+}
+
+/* ==========================================================================
+   EFECTO HOVER EN MODO OSCURO (Mantiene Identidad Rosa)
+   ========================================================================== */
+
+body.dark .beneficio-card:hover {
+    background: #a21942 !important; /* Fondo rosa sólido al hacer hover */
+    border-color: #ff5ca7 !important;
+    transform: translateY(-10px);
+}
+
+/* Asegurar que el contenido sea legible sobre el rosa en el hover dark */
+body.dark .beneficio-card:hover .card-title,
+body.dark .beneficio-card:hover .card-text,
+body.dark .beneficio-card:hover .card-icon span {
+    color: #ffffff !important;
+}
+
+body.dark .beneficio-card:hover .card-text strong {
+    color: #ffd6e2 !important;
+}
+
+body.dark .beneficio-card:hover .card-icon {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+body.dark .beneficio-card:hover::before {
+    background: #ffffff !important; /* Línea decorativa blanca en hover */
+}
+
+/* ==========================================================================
+   ADAPTACIÓN HERO (Opcional si usas el Hero arriba)
+   ========================================================================== */
+body.dark .hero-subtitle {
+    color: #cbd5e1 !important;
+}
+
+body.dark .hero-eyebrow {
+    background: #1e1e1e !important;
+    color: #ff5ca7 !important;
+    border: 1px solid rgba(255, 92, 167, 0.3);
+}
+
+
+
+
+/* ==========================================================================
+   GRID / CARDS — DISEÑO PREMIUM EMPRESARIAL
+   ========================================================================== */
+
+
+.beneficios-grid-section {
+    position: relative;
+    background:
+        radial-gradient(circle at top left, rgba(162, 25, 66, 0.08), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(162, 25, 66, 0.08), transparent 30%),
+        linear-gradient(180deg, #fffdfb 0%, #ffffff 100%);
+    padding: 110px 20px;
+    overflow: hidden;
+}
+
+
+.beneficios-container {
+    max-width: 1220px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+
+
+.beneficios-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.3rem);
+    font-weight: 700;
+    color: #a21942;
+    margin-bottom: 18px;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+}
+
+
+.section-description {
+    margin: 0 auto;
+    max-width: 760px;
+    color: #5f6368;
+    line-height: 1.9;
+    font-size: 1.06rem;
+    font-weight: 400;
+}
+
+
+/* ==========================================================================
+   GRID
+   ========================================================================== */
+
+
+.beneficios-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+
+/* ==========================================================================
+   CARD PREMIUM
+   ========================================================================== */
+
+
+.beneficio-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(162, 25, 66, 0.10);
+    border-radius: 28px;
+    padding: 34px 28px;
+    overflow: hidden;
+
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-height: 280px;
+    box-shadow:
+        0 12px 40px rgba(162, 25, 66, 0.08),
+        0 3px 10px rgba(162, 25, 66, 0.04);
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+/* Línea decorativa superior */
+.beneficio-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 28px;
+    width: 70px;
+    height: 4px;
+    border-radius: 50px;
+    background: linear-gradient(
+        90deg,
+        #a21942,
+        #c72d5a
+    );
+}
+
+
+/* Glow suave */
+.beneficio-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at top right,
+        rgba(162, 25, 66, 0.08),
+        transparent 45%
+    );
+    pointer-events: none;
+}
+
+
+.beneficio-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(162, 25, 66, 0.22);
+
+
+    box-shadow:
+        0 20px 50px rgba(162, 25, 66, 0.12),
+        0 8px 18px rgba(162, 25, 66, 0.10);
+}
+
+/* ==========================================================================
+   ICONO
+   ========================================================================== */
+.card-icon {
+    width: 66px;
+    height: 66px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(162, 25, 66, 0.14),
+            rgba(199, 45, 90, 0.14)
+        );
+    border: 1px solid rgba(162, 25, 66, 0.14);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.8),
+        0 8px 20px rgba(162, 25, 66, 0.10);
+    transition: transform 0.3s ease;
+}
+
+
+.beneficio-card:hover .card-icon {
+    transform: scale(1.08) rotate(-3deg);
+}
+
+.card-icon span {
+    font-size: 28px;
+    color: #a21942;
+}
+
+/* ==========================================================================
+   TEXTO
+   ========================================================================== */
+.card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.28rem;
+    font-weight: 700;
+    color: #a21942;
+    margin: 0;
+    line-height: 1.35;
+}
+
+.card-text {
+    margin: 0;
+    color: #5f6368;
+    line-height: 1.9;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.card-text strong {
+    color: #a21942;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   ANIMACIONES
+   ========================================================================== */
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+.fade-up.visible,
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fade-up {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .beneficio-card,
+    .card-icon {
+        transition: none;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1100px) {
+    .beneficios-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .beneficios-grid-section {
+        padding: 90px 18px;
+    }
+    .beneficios-header {
+        margin-bottom: 42px;
+    }
+    .beneficio-card {
+        min-height: auto;
+        padding: 28px 24px;
+    }
+}
+@media (max-width: 560px) {
+    .beneficios-grid {
+        grid-template-columns: 1fr;
+    }
+    .section-title {
+        font-size: 2rem;
+    }
+    .section-description {
+        font-size: 0.98rem;
+        line-height: 1.8;
+    }
+    .beneficio-card {
+        border-radius: 24px;
+    }
+}
+
+/* SOLO EFECTO COLOR HOVER */
+.beneficio-card {
+    transition: all 0.35s ease;
+}
+
+/* Hover elegante */
+.beneficio-card:hover {
+    background: #a21942;
+    transform: translateY(-10px);
+}
+
+/* Títulos blancos */
+.beneficio-card:hover .card-title {
+    color: #ffffff;
+}
+
+/* Texto blanco */
+.beneficio-card:hover .card-text {
+    color: rgba(255,255,255,0.92);
+}
+
+/* Strong más claro */
+.beneficio-card:hover .card-text strong {
+    color: #ffd6e2;
+}
+
+/* Icono */
+.beneficio-card:hover .card-icon {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.2);
+}
+
+
+.beneficio-card:hover .card-icon span {
+    color: #ffffff;
+}
+
+/* Línea superior */
+.beneficio-card:hover::before {
+    background: #ffffff;
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+      PARTEV2 SISTEMA DE DISEÑO TUTA WAYTA - COMPLETO (MODO LUZ + OSCURO)
+   ========================================================================== */
+
+:root {
+    /* Paleta de colores Corporativa (Modo Luz por defecto) */
+    --primary: #a21942;
+    --secondary: #d14677;
+    --pink-vibrant: #ff5ca7;
+    --gold: #f5c24b;
+    --bg-main: #fcfaf8;
+    --card-bg: #ffffff;
+    --text-main: #221b16;
+    --text-gray: #6f6f6f;
+    --border-card: rgba(162, 25, 66, 0.05);
+    --stat-bg: #faf7f6;
+
+    /* Sombras */
+    --shadow-sm: 0 10px 30px rgba(0,0,0,.05);
+    --shadow-hover: 0 20px 50px rgba(162,25,66,.12);
+    
+    /* Curvas y Transiciones */
+    --radius-lg: 24px;
+    --radius-sm: 14px;
+    --ease-premium: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* ==========================================================================
+   MODO OSCURO - APLICACIÓN DE VARIABLES
+   ========================================================================== */
+
+body.dark {
+    --bg-main: #0b1020;
+    --card-bg: #111827;
+    --text-main: #f8fafc;
+    --text-gray: #cbd5e1;
+    --border-card: #243042;
+    --stat-bg: #0f172a;
+    --shadow-sm: 0 12px 30px rgba(0, 0, 0, 0.4);
+    --shadow-hover: 0 20px 50px rgba(255, 92, 167, 0.15);
+}
+
+/* ==========================================================================
+   BASE & LAYOUT
+   ========================================================================== */
+
+body {
+    background: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ==========================================================================
+   HEADER SECCIÓN
+   ========================================================================== */
+
+.header-centrado {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px;
+    padding: 80px 20px 0;
+}
+
+.sub-tag {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 50px;
+    background: rgba(162, 25, 66, 0.07);
+    color: var(--primary);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+}
+
+body.dark .sub-tag {
+    background: rgba(255, 92, 167, 0.1);
+    color: var(--pink-vibrant);
+}
+
+.titulo-editorial {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4.5vw, 3.5rem); 
+    line-height: 1.1;
+    margin: 15px 0;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.bajada-editorial {
+    color: var(--text-gray);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   GRID DE CONTENEDOR
+   ========================================================================== */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 30px; 
+    max-width: 1250px;
+    margin: 0 auto 100px;
+    padding: 0 25px;
+}
+
+/* ==========================================================================
+   CARD (TAMAÑO COMPACTO PREMIUM)
+   ========================================================================== */
+
+.card-variedad {
+    display: flex;
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-card);
+    min-height: 400px; 
+    transition: all .5s var(--ease-premium);
+}
+
+.card-variedad:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--secondary);
+}
+
+body.dark .card-variedad:hover {
+    border-color: var(--pink-vibrant);
+}
+
+/* ==========================================================================
+   IMAGEN DE LA CARD (35% ANCHO)
+   ========================================================================== */
+
+.card-img {
+    width: 35%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-img::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1));
+}
+
+body.dark .card-img::after {
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.4));
+}
+
+.card-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 6px 14px;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 2;
+}
+
+.card-badge.pink      { background: linear-gradient(135deg, #a21942, #d14677); }
+.card-badge.yellow    { background: linear-gradient(135deg, #f5c24b, #ffd76a); color: #3a2a00; }
+.card-badge.red       { background: linear-gradient(135deg, #c62828, #ef5350); }
+.card-badge.soft-pink { background: linear-gradient(135deg, #d14677, #f48fb1); }
+
+/* ==========================================================================
+   CONTENIDO INTERNO (65% ANCHO)
+   ========================================================================== */
+
+.card-content {
+    width: 65%;
+    padding: 30px 28px;
+    display: flex;
+    flex-direction: column;
+}
+
+.color-tag {
+    font-size: 10px;
+    color: #b0b0b0;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+body.dark .color-tag { color: #94a3b8; }
+
+.card-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    margin: 8px 0 15px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+/* LISTA */
+.list-check {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.list-check li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 10px;
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.list-check li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: 900;
+}
+
+body.dark .list-check li::before { color: var(--pink-vibrant); }
+
+/* ==========================================================================
+   STATS NUTRICIONALES
+   ========================================================================== */
+
+.stats-row {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.stat {
+    flex: 1;
+    padding: 12px 8px;
+    border-radius: var(--radius-sm);
+    background: var(--stat-bg);
+    border: 1px solid var(--border-card);
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.stat strong {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--primary);
+}
+
+body.dark .stat strong { color: var(--pink-vibrant); }
+
+.stat span {
+    font-size: 8px;
+    color: #999;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Hover effect en stats */
+.card-variedad:hover .stat {
+    background: var(--card-bg);
+    border-color: rgba(162, 25, 66, 0.2);
+}
+
+body.dark .card-variedad:hover .stat {
+    border-color: rgba(255, 92, 167, 0.3);
+}
+
+/* ==========================================================================
+   BOTÓN DE ACCIÓN
+   ========================================================================== */
+
+.link-action {
+    margin-top: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+    transition: .3s var(--ease-premium);
+}
+
+body.dark .link-action { color: var(--pink-vibrant); }
+
+.link-action:hover {
+    transform: translateX(5px);
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .grid-container { grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); }
+}
+
+@media (max-width: 768px) {
+    .grid-container { grid-template-columns: 1fr; }
+    .card-variedad { flex-direction: column; min-height: auto; }
+    .card-img, .card-content { width: 100%; }
+    .card-img { height: 220px; }
+    .card-content { padding: 25px; }
+}
+
+@media (max-width: 480px) {
+    .titulo-editorial { font-size: 2rem; }
+    .stats-row { display: grid; grid-template-columns: 1fr 1fr; }
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+      PARTE 3 VARIABLES Y REGLAS BASE
+   ========================================================== */
+:root {
+    --bg-lab: #fdfaf3;
+    --card-white: #ffffff;
+    --text-dark: #2d2621;
+    --text-muted: #7a726c;
+    --pink: #d14677;
+    --orange: #e67e22;
+    --green: #2ecc71;
+    --yellow: #ffb400;
+    --border: rgba(0,0,0,0.05);
+    --shadow-premium: 0 15px 35px rgba(0,0,0,0.03);
+    --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+body.dark {
+    --bg-lab: #0b1020;
+    --card-white: #111827;
+    --text-dark: #f8fafc;
+    --text-muted: #94a3b8;
+    --border: rgba(255,255,255,0.08);
+}
+
+.lab-nutricional { 
+    background: var(--bg-lab); 
+    padding: 80px 20px; 
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--text-dark);
+}
+
+.container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    animation: fadeIn 1s ease-out;
+}
+
+/* ==========================================================
+   2. HEADER (TÍTULOS)
+   ========================================================== */
+.section-header { 
+    text-align: center; 
+    margin-bottom: 50px; 
+}
+
+.eyebrow { 
+    font-size: 12px; 
+    font-weight: 800; 
+    color: var(--pink); 
+    letter-spacing: 3px; 
+    text-transform: uppercase;
+}
+
+.display-title { 
+    font-family: 'Playfair Display', serif; 
+    font-size: 3.2rem; 
+    margin: 15px 0;
+    line-height: 1.1;
+}
+
+/* ==========================================================
+   3. ESTRUCTURA DEL GRID (SELECTOR ARRIBA)
+   ========================================================== */
+.lab-grid { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 40px; 
+}
+
+/* ==========================================================
+   4. SELECTOR DE NUTRIENTES (5 COLUMNAS X 2 FILAS)
+   ========================================================== */
+.sidebar-nutrientes {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    width: 100%;
+}
+
+.sidebar-label { 
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 11px; 
+    font-weight: 800; 
+    color: var(--text-muted); 
+    margin-bottom: 15px; 
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.nutriente-item {
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    gap: 12px; 
+    padding: 25px 15px;
+    background: var(--card-white); 
+    border-radius: 24px; 
+    border: 1px solid var(--border);
+    cursor: pointer; 
+    transition: var(--transition);
+    text-align: center;
+    box-shadow: var(--shadow-premium);
+}
+
+.nutriente-item:hover { 
+    transform: translateY(-8px); 
+    border-color: var(--pink);
+    box-shadow: 0 15px 30px rgba(209, 70, 119, 0.1);
+}
+
+.nutriente-item.active { 
+    border-color: var(--pink); 
+    border-width: 2px;
+    transform: scale(1.02);
+    box-shadow: 0 20px 40px rgba(209, 70, 119, 0.12);
+}
+
+.nutriente-icon { 
+    font-size: 28px; 
+}
+
+.n-title { 
+    display: block; 
+    font-weight: 700; 
+    font-size: 0.95rem;
+}
+
+.n-best { 
+    font-size: 10px; 
+    color: var(--text-muted); 
+}
+
+.arrow { display: none !important; }
+
+/* ==========================================================
+   5. PANEL DE RESULTADOS
+   ========================================================== */
+.panel-card { 
+    background: var(--card-white); 
+    border-radius: 35px; 
+    padding: 50px; 
+    border: 1px solid var(--border); 
+    box-shadow: var(--shadow-premium);
+    animation: slideUp 0.8s ease-out;
+}
+
+.panel-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 40px; 
+}
+
+.icon-circle { 
+    width: 60px; height: 60px; 
+    background: rgba(209,70,119,0.08); 
+    border-radius: 50%; 
+    display: flex; align-items: center; justify-content: center; 
+    font-size: 26px; color: var(--pink);
+}
+
+/* BARRAS DE PROGRESO */
+.bar-row { margin-bottom: 25px; }
+.bar-info { 
+    display: flex; 
+    justify-content: space-between; 
+    font-size: 15px; 
+    font-weight: 700; 
+    margin-bottom: 10px; 
+}
+
+.bar-track { 
+    height: 12px; 
+    background: rgba(0,0,0,0.03); 
+    border-radius: 20px; 
+    overflow: hidden;
+}
+
+.bar-fill { 
+    height: 100%; 
+    border-radius: 20px; 
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); 
+    position: relative;
+}
+
+/* Animación de brillo en las barras */
+.bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shine 3s infinite;
+}
+
+.bar-fill.pink { background: var(--pink); }
+.bar-fill.orange { background: var(--orange); }
+.bar-fill.green { background: var(--green); }
+.bar-fill.yellow { background: var(--yellow); }
+
+.badge-winner { 
+    font-size: 9px; 
+    font-weight: 800;
+    background: #fff; 
+    color: #92400e; 
+    padding: 3px 10px; 
+    border-radius: 50px; 
+    margin-left: 10px; 
+    border: 1px solid #fef3c7; 
+}
+
+/* ==========================================================
+   6. CAJA DE RECOMENDACIÓN (FONDO DE COLOR)
+   ========================================================== */
+.recommendation-box { 
+    display: flex; 
+    gap: 20px; 
+    padding: 30px; 
+    /* Fondo con degradado suave amarillento/naranja */
+    background: linear-gradient(135deg, rgba(255, 180, 0, 0.08) 0%, rgba(255, 255, 255, 0.5) 100%);
+    border-radius: 24px; 
+    border: 1px solid rgba(255, 180, 0, 0.15); 
+    margin-top: 40px; 
+}
+
+.rec-icon { font-size: 28px; }
+
+.rec-content strong {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.rec-text { 
+    font-size: 15px; 
+    color: var(--text-muted); 
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.rec-tags { display: flex; gap: 10px; }
+
+.pill { 
+    font-size: 12px; 
+    font-weight: 700;
+    padding: 8px 18px; 
+    background: var(--card-white); 
+    border: 1px solid var(--border); 
+    border-radius: 50px; 
+    color: var(--pink);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    transition: var(--transition);
+}
+
+.pill:hover {
+    background: var(--pink);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* ==========================================================
+   7. ANIMACIONES
+   ========================================================== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* ==========================================================
+   8. RESPONSIVE
+   ========================================================== */
+@media (max-width: 1100px) {
+    .sidebar-nutrientes { grid-template-columns: repeat(3, 1fr); }
+    .display-title { font-size: 2.5rem; }
+}
+
+@media (max-width: 650px) {
+    .sidebar-nutrientes { grid-template-columns: repeat(2, 1fr); }
+    .panel-card { padding: 30px 20px; }
+}
+
+
+
+
+/* ==========================================================
+   PARTE 4 VARIABLES DE MARCA PREMIUM TABLAS
+   ========================================================== */
+:root {
+    --brand-color: #a21942; /* Tono cereza premium */
+    --brand-soft: #fdf2f4;
+
+    --text-main: #030303;
+    --text-light: #6b7280;
+
+    --border-color: #f3f4f6;
+    --white: #ffffff;
+
+    /* Fondos */
+    --bg-body: #fafafa;
+    --bg-card: #ffffff;
+
+    /* Variedades armonizadas */
+    --v-rose: #a21942;
+    --v-orange: #c2410c;
+    --v-green: #15803d;
+    --v-gold: #b45309;
+
+    --shadow-premium: 0 20px 50px rgba(162, 25, 66, 0.05);
+
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================
+   BASE GENERAL
+   ========================================================== */
+body {
+    background: var(--bg-body);
+    color: var(--text-main);
+    transition: var(--transition);
+}
+
+/* ==========================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================== */
+.tabla-resumen-container {
+    background: var(--bg-card);
+    border-radius: 40px;
+    padding: 50px;
+    box-shadow: var(--shadow-premium);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    max-width: 1100px;
+    margin: 40px auto;
+    border: 1px solid var(--border-color);
+    animation: fadeInSlide 0.8s ease-out;
+    transition: var(--transition);
+}
+
+/* ==========================================================
+   HEADER
+   ========================================================== */
+.tabla-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    padding-bottom: 25px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.eyebrow {
+    color: var(--brand-color);
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.tabla-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.valores-referencia {
+    text-align: right;
+    color: var(--text-light);
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.tabla-header .btn-descargar-pdf {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--brand-soft);
+    color: var(--brand-color);
+    border: 1px solid var(--brand-color);
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+/* ==========================================================
+   TABLA
+   ========================================================== */
+.tabla-nutricional-resumen {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+
+    /* 🔥 GRID COMPLETO */
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* ==========================================================
+   ENCABEZADOS
+   ========================================================== */
+.tabla-nutricional-resumen th {
+    padding: 20px 15px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.tabla-nutricional-resumen th:last-child {
+    border-right: none;
+}
+
+.col-variedad img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.col-nutriente {
+    text-align: left;
+    color: var(--text-light);
+}
+
+.v-american { color: var(--v-rose); }
+.v-hibrida  { color: var(--v-orange); }
+.v-blanco   { color: var(--v-green); }
+.v-amarilla { color: var(--v-gold); }
+
+/* ==========================================================
+   CELDAS
+   ========================================================== */
+.tabla-nutricional-resumen td {
+    padding: 22px 15px;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    font-weight: 600;
+    text-align: center;
+    color: var(--text-main);
+    transition: var(--transition);
+}
+
+.tabla-nutricional-resumen td:last-child {
+    border-right: none;
+}
+
+.row-label {
+    text-align: left !important;
+    font-weight: 700 !important;
+    width: 260px;
+}
+
+.unit {
+    color: var(--text-light);
+    font-weight: 400;
+    font-size: 0.8rem;
+    margin-left: 4px;
+}
+
+/* ==========================================================
+   HOVER EFECTOS
+   ========================================================== */
+.tabla-nutricional-resumen tbody tr:hover td {
+    background-color: var(--brand-soft);
+    color: var(--brand-color);
+}
+
+/* TOP highlight */
+.mejor-opcion {
+    position: relative;
+    color: var(--brand-color) !important;
+    background: rgba(162, 25, 66, 0.03);
+}
+
+.mejor-opcion::after {
+    content: 'TOP';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 8px;
+    font-weight: 800;
+    background: var(--brand-color);
+    color: #ffffff;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+.tabla-footer {
+    margin-top: 30px;
+    padding-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    border-top: 1px solid var(--border-color);
+}
+
+.badge-group {
+    display: flex;
+    gap: 10px;
+}
+
+.badge {
+    border: 1px solid var(--border-color);
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 10px;
+    text-transform: uppercase;
+    background: #fafafa;
+    color: var(--text-main);
+    transition: var(--transition);
+}
+
+/* ==========================================================
+   ANIMACIÓN
+   ========================================================== */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+@media (max-width: 768px) {
+
+    .tabla-resumen-container {
+        padding: 30px 20px;
+        border-radius: 28px;
+    }
+
+    .tabla-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .tabla-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .valores-referencia {
+        text-align: left;
+    }
+
+    .tabla-nutricional-resumen {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .row-label {
+        width: auto;
+    }
+
+    .tabla-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+}
+
+/* ==========================================================
+   MODO OSCURO AUTOMÁTICO
+   ========================================================== */
+@media (prefers-color-scheme: dark) {
+
+    :root {
+        --bg-body: #0f172a;
+        --bg-card: #1e293b;
+
+        --text-main: #f8fafc;
+        --text-light: #94a3b8;
+
+        --border-color: rgba(255, 255, 255, 0.08);
+
+        --brand-soft: rgba(162, 25, 66, 0.15);
+
+        --shadow-premium: 0 25px 60px rgba(0, 0, 0, 0.4);
+
+        --v-rose: #f43f5e;
+        --v-orange: #fb923c;
+        --v-green: #4ade80;
+        --v-gold: #fbbf24;
+    }
+
+    body {
+        background-color: var(--bg-body);
+    }
+
+    .tabla-resumen-container {
+        background: var(--bg-card);
+        border-color: var(--border-color);
+        box-shadow: var(--shadow-premium);
+    }
+
+    .tabla-header,
+    .tabla-nutricional-resumen th,
+    .tabla-nutricional-resumen td,
+    .tabla-footer {
+        border-color: var(--border-color);
+    }
+
+    .tabla-header h2 {
+        color: var(--text-main);
+    }
+
+    .eyebrow {
+        color: #fb7185;
+    }
+
+    .tabla-nutricional-resumen tbody tr:hover td {
+        background-color: rgba(162, 25, 66, 0.25);
+        color: #ffb4c2;
+    }
+
+    .badge {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--border-color);
+        color: var(--text-light);
+    }
+
+    .mejor-opcion {
+        background: rgba(162, 25, 66, 0.15);
+    }
+
+    .mejor-opcion::after {
+        background: #fb7185;
+        color: #ffffff;
+    }
+}
+
+/* ==========================================================
+   MODO OSCURO MANUAL
+   ========================================================== */
+body.dark {
+    --bg-body: #0f172a;
+    --bg-card: #1e293b;
+
+    --text-main: #f8fafc;
+    --text-light: #94a3b8;
+
+    --border-color: rgba(255, 255, 255, 0.08);
+
+    --brand-soft: rgba(162, 25, 66, 0.15);
+
+    --shadow-premium: 0 25px 60px rgba(0, 0, 0, 0.4);
+
+    --v-rose: #f43f5e;
+    --v-orange: #fb923c;
+    --v-green: #4ade80;
+    --v-gold: #fbbf24;
+}
+
+body.dark .tabla-nutricional-resumen tbody tr:hover td {
+    background-color: rgba(162, 25, 66, 0.25);
+    color: #ffb4c2;
+}
+
+/* Footer fix colores */
+.tabla-footer {
+    color: #000;
+}
+
+body.dark .tabla-footer {
+    color: #fff;
+}
+th.col-nutriente {
+    color: var(--text-main);
+}
+
+.tabla-footer {
+    margin-top: 30px;
+    padding-top: 25px;
+    font-size: 0.8rem;
+    color: #000; /* modo claro: negro */
+}
+body.dark .tabla-footer {
+    color: #fff; /* modo oscuro: blanco */
+}
+
+
+
+/* ==========================================================
+     PARTE 5 SECCIÓN: IDEAS PRÁCTICAS (MODO LUZ POR DEFECTO)
+   ========================================================== */
+:root {
+    --brand-color: #a21942;
+    --glass-bg: rgba(255, 255, 255, 0.12);
+    --glass-border: rgba(255, 255, 255, 0.25);
+    --text-white: #ffffff;
+}
+
+.ideas-practicas {
+    background-color: var(--brand-color);
+    padding: 80px 20px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--text-white);
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.ideas-header .eyebrow {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.ideas-header .display-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.ideas-header .lead-text {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 50px;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.ideas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.idea-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 35px;
+    padding: 40px 30px;
+    text-align: left;
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.idea-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.icon-box {
+    width: 55px;
+    height: 55px;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    font-size: 22px;
+    border: 1px solid var(--glass-border);
+}
+
+.idea-card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.idea-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    opacity: 0.85;
+}
+
+/* ==========================================================
+   MODO OSCURO (ACTIVADO CON body.dark)
+   ========================================================== */
+body.dark .ideas-practicas {
+    background-color: #0b1020 !important; /* Azul noche de tu sistema */
+}
+
+body.dark .idea-card {
+    background: rgba(17, 24, 39, 0.6) !important; /* Cristal ahumado */
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+body.dark .idea-card:hover {
+    background: rgba(255, 92, 167, 0.05) !important; /* Rosa sutil */
+    border-color: #ff5ca7 !important; /* Tu rosa vibrante */
+}
+
+body.dark .icon-box {
+    background: rgba(255, 92, 167, 0.15) !important;
+    color: #ff5ca7 !important;
+    border-color: rgba(255, 92, 167, 0.3) !important;
+}
+
+body.dark .ideas-header .eyebrow {
+    color: #ff5ca7 !important;
+    opacity: 1;
+}
+
+body.dark .ideas-header .display-title {
+    color: #f8fafc !important;
+}
+
+body.dark .idea-card p,
+body.dark .ideas-header .lead-text {
+    color: #cbd5e1 !important;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .ideas-header .display-title { font-size: 2rem; }
+    .ideas-practicas { padding: 50px 20px; }
+}
+
+
+
+
+
+
+
+/* ==========================================================
+    PARTE 6  SECCIÓN TESTIMONIOS (MODO LUZ)
+   ========================================================== */
+.testimonios {
+    background-color: #f9f7f2; /* Fondo crema suave de la imagen */
+    padding: 100px 20px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    text-align: center;
+}
+
+.testimonios-header {
+    margin-bottom: 60px;
+}
+
+.testimonios-header .eyebrow {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #5d6d4e; /* Verde oliva de la imagen */
+    text-transform: uppercase;
+}
+
+.testimonios-header .display-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: #3f2e1e;
+    margin-top: 15px;
+}
+
+.testimonios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.testimonio-card {
+    background: #ffffff;
+    border-radius: 25px;
+    padding: 40px;
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    transition: transform 0.3s ease;
+}
+
+.testimonio-card:hover {
+    transform: translateY(-5px);
+}
+
+.perfil {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.foto {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.info h3 {
+    font-size: 1.2rem;
+    color: #3f2e1e;
+    margin: 0;
+    font-weight: 700;
+}
+
+.puesto {
+    font-size: 0.9rem;
+    color: #a21942; /* Tu color cereza para el puesto */
+    margin: 2px 0 0;
+}
+
+.cita {
+    font-style: italic;
+    line-height: 1.6;
+    color: #6a5a4a;
+    font-size: 1.05rem;
+    margin: 0;
+}
+
+/* ==========================================================
+   MODO OSCURO (UNIFICADO CON body.dark)
+   ========================================================== */
+body.dark .testimonios {
+    background-color: #0b1020 !important;
+}
+
+body.dark .testimonio-card {
+    background: #111827 !important;
+    border: 1px solid #243042 !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+body.dark .display-title,
+body.dark .info h3 {
+    color: #f8fafc !important;
+}
+
+body.dark .puesto {
+    color: #ff5ca7 !important; /* Tu rosa vibrante de modo oscuro */
+}
+
+body.dark .cita,
+body.dark .testimonios-header .eyebrow {
+    color: #cbd5e1 !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .testimonios-header .display-title { font-size: 2.5rem; }
+    .testimonios { padding: 60px 20px; }
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+    PARTE 7 SECCIÓN Dudas sobre el Consumo
+ (MODO LUZ)
+   ========================================================== */
+.faq-section {
+    background-color: #f9f7f2; /* Fondo crema de la imagen */
+    padding: 100px 20px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    text-align: center;
+}
+
+.faq-header {
+    margin-bottom: 50px;
+}
+
+.faq-header .eyebrow {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #5d6d4e; /* Verde oliva de tus imágenes */
+    text-transform: uppercase;
+}
+
+.faq-header .display-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: #3f2e1e;
+    margin-top: 15px;
+}
+
+.faq-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.faq-item {
+    background: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.faq-question {
+    width: 100%;
+    padding: 25px 30px;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #3f2e1e;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.3s ease;
+}
+
+.faq-question i {
+    color: #a21942; /* Tu color cereza para el icono */
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background: #fff;
+    text-align: left;
+}
+
+.faq-answer p {
+    padding: 0 30px 25px 30px;
+    color: #6a5a4a;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Estado Activo */
+.faq-item.active i {
+    transform: rotate(180deg);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px; /* Ajustar según largo del texto */
+}
+
+/* ==========================================================
+   MODO OSCURO (body.dark)
+   ========================================================== */
+body.dark .faq-section {
+    background-color: #0b1020 !important;
+}
+
+body.dark .faq-item {
+    background: #111827 !important;
+    border: 1px solid #243042 !important;
+}
+
+body.dark .faq-question {
+    color: #f8fafc !important;
+}
+
+body.dark .faq-question i {
+    color: #ff5ca7 !important; /* Rosa vibrante */
+}
+
+body.dark .faq-answer {
+    background: #111827 !important;
+}
+
+body.dark .faq-answer p {
+    color: #cbd5e1 !important;
+}
+
+body.dark .faq-header .display-title {
+    color: #f8fafc !important;
+}
+
+
+
+
+
+
+/* ==========================================================
+    PARTE 8    SISTEMA DE DISEÑO - VARIABLES CORPORATIVAS
+   ========================================================== */
+:root {
+    /* Paleta de Colores (Basada en Identidad Visual) */
+    --cta-bg: #435334;          /* Verde Oliva Profundo */
+    --cta-bg-dark: #080d1a;     /* Azul Medianoche (Modo Oscuro) */
+    --cta-accent: #ff5ca7;      /* Rosa Vibrante (Acento Moderno) */
+    --text-white: #ffffff;
+    --text-light: #f8fafc;
+    --text-dim: rgba(255, 255, 255, 0.85);
+
+    /* Tipografía Fluida (Escalado automático según pantalla) */
+    --font-size-title: clamp(2.5rem, 5vw, 4rem); /* Título Principal */
+    --font-size-lead: 1.15rem;                   /* Texto de Apoyo */
+    
+    /* Transiciones Pro: Curva Bezier para suavidad */
+    --transition-hq: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* ==========================================================
+   SECCIÓN CTA (CALL TO ACTION) FINAL
+   ========================================================== */
+.cta-final {
+    position: relative;
+    padding: 110px 20px; /* Espaciado amplio para aire empresarial */
+    text-align: center;
+    color: var(--text-white);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow: hidden;
+    
+    /* Fondo con Gradiente: Aporta profundidad y evita el look plano */
+    background: linear-gradient(135deg, #435334 0%, #354229 100%);
+}
+
+/* Elementos decorativos de fondo para diseño Premium */
+.cta-final::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.cta-final .display-title {
+    font-family: 'Playfair Display', serif;
+    font-size: var(--font-size-title);
+    font-weight: 700;
+    margin-bottom: 24px;
+    line-height: 1.1;
+    letter-spacing: -0.02em; /* Kerning ajustado para títulos grandes */
+}
+
+.cta-final .lead-text {
+    max-width: 750px;
+    margin: 0 auto 48px;
+    font-size: var(--font-size-lead);
+    line-height: 1.8; /* Interlineado amplio para legibilidad pro */
+    color: var(--text-dim);
+}
+
+/* ==========================================================
+   INTERACCIONES Y BOTONES (SISTEMA DE ACCIONES)
+   ========================================================== */
+.cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Botón Primario: Sólido y Dominante */
+.btn-primary {
+    background-color: var(--text-white);
+    color: var(--cta-bg);
+    padding: 20px 45px;
+    border-radius: 100px; /* Bordes orgánicos modernos */
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: var(--transition-hq);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px); /* Efecto de elevación */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    background-color: #fcfcfc;
+}
+
+.btn-primary i {
+    transition: transform 0.3s ease;
+}
+
+.btn-primary:hover i {
+    transform: translateX(6px); /* Micro-interacción: la flecha se mueve */
+}
+
+/* Botón Secundario: Estilo Glassmorphism Pro */
+.btn-outline {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--text-white);
+    padding: 19px 45px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    backdrop-filter: blur(8px); /* Desenfoque de fondo premium */
+    transition: var(--transition-hq);
+}
+
+.btn-outline:hover {
+    background-color: var(--text-white);
+    color: var(--cta-bg);
+    border-color: var(--text-white);
+    transform: translateY(-5px);
+}
+
+/* ==========================================================
+   CONFIGURACIÓN MODO OSCURO (body.dark)
+   ========================================================== */
+body.dark .cta-final {
+    /* Fondo Azul Medianoche Técnico en modo oscuro */
+    background: radial-gradient(circle at center, #111b36 0%, #080d1a 100%) !important;
+}
+
+body.dark .btn-primary {
+    background-color: var(--cta-accent) !important; /* Cambio a Rosa Acento */
+    color: var(--text-white) !important;
+    box-shadow: 0 10px 25px rgba(255, 92, 167, 0.35);
+}
+
+body.dark .btn-outline {
+    border-color: var(--cta-accent) !important;
+    color: var(--cta-accent) !important;
+}
+
+body.dark .btn-outline:hover {
+    background-color: var(--cta-accent) !important;
+    color: var(--text-white) !important;
+}
+
+/* Ajustes de legibilidad para títulos en oscuridad */
+body.dark .display-title {
+    color: var(--text-light) !important;
+}
+
+/* ==========================================================
+   OPTIMIZACIÓN PARA DISPOSITIVOS MÓVILES
+   ========================================================== */
+@media (max-width: 768px) {
+    .cta-final { padding: 80px 24px; }
+    .cta-actions { flex-direction: column; width: 100%; max-width: 320px; margin: 0 auto; }
+    .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+}
+
+
+.footer-link{
+    color: var(--brand-color);
+    font-weight: 700;
+    text-decoration: none;
+    margin-left: 8px;
+    position: relative;
+    transition: var(--transition);
+}
+
+.footer-link::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0%;
+    height: 2px;
+    background: var(--brand-color);
+    transition: var(--transition);
+}
+
+.footer-link:hover{
+    opacity: .8;
+}
+
+.footer-link:hover::after{
+    width: 100%;
+}
+
+/* DARK MODE */
+body.dark .footer-link{
+    color: #fb7185;
+}
+
+@media (prefers-color-scheme: dark){
+    .footer-link{
+        color: #fb7185;
+    }
+}

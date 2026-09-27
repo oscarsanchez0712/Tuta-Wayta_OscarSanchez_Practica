@@ -1,0 +1,329 @@
+{% extends "base.html" %}
+
+{% block title %}Libro de Reclamaciones - Tuta Wayta{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/libro.css') }}" />
+{% endblock %}
+
+{% block content %}
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-wrap">
+        {% for cat, msg in messages %}
+          <div class="flash flash--{{ cat }}">{{ msg }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="hero__icon">&#128203;</div>
+      <div class="hero__text">
+        <h1 data-i18n="book_hero_title">Libro de <span>Reclamaciones</span></h1>
+        <p data-i18n="book_hero_subtitle">De conformidad con el Codigo de Proteccion y Defensa del Consumidor.</p>
+      </div>
+    </div>
+  </section>
+
+  <main class="main">
+    <div class="layout">
+      <div class="card">
+        <div class="card__head">
+          <h2 data-i18n="book_card_title">Nueva Reclamacion / Queja</h2>
+          <p><span data-i18n="book_required_text">Completa los campos obligatorios</span> <span class="req">*</span></p>
+        </div>
+
+        <div class="tipo">
+          <label class="tipo__opt">
+            <input type="radio" name="tipo_sel" value="reclamacion" checked />
+            <span class="tipo__card">
+              <span class="tipo__emoji">&#9888;</span>
+              <strong data-i18n="book_type_claim">Reclamacion</strong>
+              <small data-i18n="book_type_claim_sub">Producto o servicio</small>
+            </span>
+          </label>
+          <label class="tipo__opt">
+            <input type="radio" name="tipo_sel" value="queja" />
+            <span class="tipo__card">
+              <span class="tipo__emoji">&#128226;</span>
+              <strong data-i18n="book_type_complaint">Queja</strong>
+              <small data-i18n="book_type_complaint_sub">Atencion recibida</small>
+            </span>
+          </label>
+        </div>
+
+        <div class="tipo-banner" id="tipo-banner">
+          <span id="banner-icon">&#9888;</span>
+          <div>
+            <strong id="banner-title" data-i18n="book_banner_claim_title">Estas registrando una Reclamacion</strong>
+            <p id="banner-desc" data-i18n="book_banner_claim_desc">Disconformidad con productos o servicios.</p>
+          </div>
+        </div>
+
+        <div class="queja-info" id="queja-info">
+          <h4 data-i18n="book_info_title">&#128226; Que es una Queja?</h4>
+          <ul>
+            <li data-i18n="book_info_li1">Mal trato o actitud del personal de atencion</li>
+            <li data-i18n="book_info_li2">Demoras injustificadas en la atencion</li>
+            <li data-i18n="book_info_li3">Incumplimiento de procedimientos internos</li>
+            <li data-i18n="book_info_li4">Falta de informacion o asesoramiento</li>
+          </ul>
+        </div>
+
+        <form id="libroForm" method="POST" novalidate>
+          <input type="hidden" id="tipo" name="tipo" value="reclamacion" />
+
+          <fieldset class="section">
+            <legend><span class="num">01</span> <span data-i18n="book_sec1_title">Datos del Consumidor</span></legend>
+            <div class="grid">
+              <div class="field">
+                <label data-i18n="book_label_firstname">Nombres <span class="req">*</span></label>
+                <input type="text" id="nombres" name="nombres" placeholder="Ej: Maria" required minlength="3" maxlength="60" autocomplete="given-name" pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s]+" data-i18n-placeholder="book_ph_firstname" />
+                <span class="err" id="err-nombres"></span>
+              </div>
+
+              <div class="field">
+                <label data-i18n="book_label_lastname">Apellidos <span class="req">*</span></label>
+                <input type="text" id="apellidos" name="apellidos" placeholder="Ej: Garcia Lopez" required minlength="3" maxlength="60" autocomplete="family-name" pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s]+" data-i18n-placeholder="book_ph_lastname" />
+                <span class="err" id="err-apellidos"></span>
+              </div>
+
+              <div class="field">
+                <label data-i18n="book_label_doctype">Tipo Documento <span class="req">*</span></label>
+                <select id="doc_tipo" name="doc_tipo" required>
+                  <option value="" data-i18n="book_opt_select">Seleccionar...</option>
+                  <option value="DNI">DNI</option>
+                  <option value="CE" data-i18n="book_opt_ce">Carnet Extranjeria</option>
+                  <option value="Pasaporte" data-i18n="book_opt_passport">Pasaporte</option>
+                </select>
+                <span class="err" id="err-doc_tipo"></span>
+              </div>
+
+              <div class="field">
+                <label data-i18n="book_label_docnum">Numero Documento <span class="req">*</span></label>
+                <input type="text" id="doc_num" name="doc_num" placeholder="12345678" required maxlength="12" inputmode="numeric" pattern="[0-9]*" autocomplete="off" data-i18n-placeholder="book_ph_docnum" />
+                <span class="err" id="err-doc_num"></span>
+              </div>
+
+              <div class="field">
+                <label data-i18n="book_label_email">Correo <span class="req">*</span></label>
+                <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required maxlength="100" data-i18n-placeholder="book_ph_email" />
+                <span class="err" id="err-email"></span>
+              </div>
+
+              <div class="field">
+                <label data-i18n="book_label_phone">Telefono <span class="req">*</span></label>
+                <input type="tel" id="telefono" name="telefono" placeholder="987654321" required maxlength="9" inputmode="numeric" data-i18n-placeholder="book_ph_phone" />
+                <span class="err" id="err-telefono"></span>
+              </div>
+
+              <div class="field field--full">
+                <label data-i18n="book_label_address">Direccion</label>
+                <input type="text" id="direccion" name="direccion" maxlength="150" placeholder="Calle, distrito..." data-i18n-placeholder="book_ph_address" />
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="section">
+            <legend><span class="num">02</span> <span data-i18n="book_sec2_title">Bien / Servicio</span></legend>
+            <div class="grid">
+              <div class="field">
+                <label data-i18n="book_label_amount">Monto (S/)</label>
+                <input type="number" id="monto" name="monto" min="0" max="99999" step="0.01" placeholder="0.00" />
+              </div>
+
+              <div class="field">
+                <label data-i18n="book_label_buydate">Fecha Compra <span class="req">*</span></label>
+                <input type="date" id="fecha_compra" name="fecha_compra" required />
+                <span class="err" id="err-fecha_compra"></span>
+              </div>
+
+              <div class="field field--full">
+                <label data-i18n="book_label_goods">Descripcion Bien / Servicio <span class="req">*</span></label>
+                <input type="text" id="bien" name="bien" required minlength="5" maxlength="150" placeholder="Ej: Pitahaya organica 1kg" data-i18n-placeholder="book_ph_goods" />
+                <span class="err" id="err-bien"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="section queja-section" id="queja-extra">
+            <legend><span class="num num--pink">Q</span> <span data-i18n="book_secq_title">Detalles de la Queja</span></legend>
+            <div class="grid">
+              <div class="field field--full">
+                <label data-i18n="book_label_service_type">Tipo de Atencion Recibida <span class="req">*</span></label>
+                <div class="radio-group" id="rg-tipo_atencion">
+                  <label class="radio-chip">
+                    <input type="radio" name="tipo_atencion" value="presencial">
+                    <span data-i18n="book_opt_presential">&#127970; Presencial</span>
+                  </label>
+                  <label class="radio-chip">
+                    <input type="radio" name="tipo_atencion" value="telefonica">
+                    <span data-i18n="book_opt_phone">&#128222; Telefonica</span>
+                  </label>
+                  <label class="radio-chip">
+                    <input type="radio" name="tipo_atencion" value="virtual">
+                    <span data-i18n="book_opt_virtual">&#128187; Virtual / WhatsApp</span>
+                  </label>
+                  <label class="radio-chip">
+                    <input type="radio" name="tipo_atencion" value="delivery">
+                    <span data-i18n="book_opt_delivery">&#128666; Delivery</span>
+                  </label>
+                </div>
+                <span class="err" id="err-tipo_atencion"></span>
+              </div>
+
+              <div class="field field--full">
+                <label data-i18n="book_label_staff">Nombre del Personal Involucrado</label>
+                <input type="text" id="personal" name="personal" maxlength="100" placeholder="Nombre o descripcion del colaborador (opcional)" data-i18n-placeholder="book_ph_staff" />
+                <span class="field-hint" data-i18n="book_hint_staff">Si no recuerdas el nombre, describe el area o turno.</span>
+              </div>
+
+              <div class="field">
+                <label data-i18n="book_label_incident_date">Fecha del Incidente <span class="req">*</span></label>
+                <input type="date" id="fecha_incidente" name="fecha_incidente" />
+                <span class="err" id="err-fecha_incidente"></span>
+              </div>
+
+              <div class="field">
+                <label data-i18n="book_label_incident_time">Hora Aproximada</label>
+                <input type="time" id="hora_incidente" name="hora_incidente" />
+              </div>
+
+              <div class="field field--full">
+                <label data-i18n="book_label_reasons_title">Motivo Principal de la Queja <span class="req">*</span></label>
+                <div class="check-multi" id="chk-motivos">
+                  <label class="check-item">
+                    <input type="checkbox" name="motivo[]" value="trato">
+                    <span data-i18n="book_reason_1">Mal trato o falta de respeto</span>
+                  </label>
+                  <label class="check-item">
+                    <input type="checkbox" name="motivo[]" value="demora">
+                    <span data-i18n="book_reason_2">Tiempo de espera excesivo</span>
+                  </label>
+                  <label class="check-item">
+                    <input type="checkbox" name="motivo[]" value="informacion">
+                    <span data-i18n="book_reason_3">Informacion incorrecta o incompleta</span>
+                  </label>
+                  <label class="check-item">
+                    <input type="checkbox" name="motivo[]" value="incumplimiento">
+                    <span data-i18n="book_reason_4">Incumplimiento de compromisos</span>
+                  </label>
+                  <label class="check-item">
+                    <input type="checkbox" name="motivo[]" value="otro">
+                    <span data-i18n="book_reason_5">Otro motivo</span>
+                  </label>
+                </div>
+                <span class="err" id="err-motivos"></span>
+              </div>
+
+              <div class="field field--full">
+                <label data-i18n="book_label_rating">Calificacion de la Atencion Recibida <span class="req">*</span></label>
+                <div class="stars" id="stars">
+                  <span class="star" data-val="1">&#9733;</span>
+                  <span class="star" data-val="2">&#9733;</span>
+                  <span class="star" data-val="3">&#9733;</span>
+                  <span class="star" data-val="4">&#9733;</span>
+                  <span class="star" data-val="5">&#9733;</span>
+                </div>
+                <span class="cal-label" id="cal-label" data-i18n="book_rating_hint">Haz clic para calificar</span>
+                <input type="hidden" id="calificacion" name="calificacion" value="" />
+                <span class="err" id="err-calificacion"></span>
+              </div>
+
+              <div class="field field--full">
+                <label data-i18n="book_label_first_time">Es la primera vez que reportas este problema? <span class="req">*</span></label>
+                <div class="radio-group" id="rg-primera_vez">
+                  <label class="radio-chip">
+                    <input type="radio" name="primera_vez" value="si">
+                    <span data-i18n="book_opt_yes">Si, primera vez</span>
+                  </label>
+                  <label class="radio-chip">
+                    <input type="radio" name="primera_vez" value="no">
+                    <span data-i18n="book_opt_no">No, ya reporte antes</span>
+                  </label>
+                </div>
+                <span class="err" id="err-primera_vez"></span>
+              </div>
+
+              <div class="field field--full" id="ref-anterior" style="display:none;">
+                <label data-i18n="book_label_ref">Nro. de Queja Anterior (Referencia)</label>
+                <input type="text" id="ref_queja" name="ref_queja" maxlength="30" placeholder="Ej: QJ-2025-001" data-i18n-placeholder="book_ph_ref" />
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="section">
+            <legend><span class="num" id="num-detalle">03</span> <span data-i18n="book_sec3_title">Detalle</span></legend>
+            <div class="grid">
+              <div class="field field--full">
+                <label data-i18n="book_label_desc">Descripcion <span class="req">*</span></label>
+                <textarea id="detalle" name="detalle" rows="5" required minlength="20" maxlength="1000" placeholder="Describe lo ocurrido con el mayor detalle posible..." data-i18n-placeholder="book_ph_desc"></textarea>
+                <span class="err" id="err-detalle"></span>
+                <span class="counter" id="char-counter">0 / 1000 caracteres</span>
+              </div>
+
+              <div class="field field--full">
+                <label data-i18n="book_label_request">Pedido <span class="req">*</span></label>
+                <textarea id="pedido" name="pedido" rows="3" required minlength="10" maxlength="500" placeholder="Que solucion esperas?" data-i18n-placeholder="book_ph_request"></textarea>
+                <span class="err" id="err-pedido"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="section">
+            <legend><span class="num" id="num-confirmacion">04</span> <span data-i18n="book_sec4_title">Confirmacion</span></legend>
+            <div class="check-wrap">
+              <label class="check-label">
+                <input type="checkbox" id="acepto" />
+                <span class="checkmark"></span>
+                <span data-i18n="book_label_declaration">Declaro que la informacion proporcionada es veridica y completa.</span>
+              </label>
+              <span class="err" id="err-acepto"></span>
+            </div>
+            <p class="fecha-reg"><span data-i18n="book_reg_date">Fecha de registro:</span> <strong id="fecha-hoy"></strong></p>
+          </fieldset>
+
+          <div class="actions">
+            <button type="button" class="btn btn--sec" id="btnLimpiar" data-i18n="book_btn_clear">Limpiar</button>
+            <button type="submit" class="btn btn--pri" id="btnEnviar" data-i18n="book_btn_submit">Enviar Reclamacion -&gt;</button>
+          </div>
+        </form>
+      </div>
+
+      <aside class="aside">
+        <div class="info info--green">
+          <h3 data-i18n="book_aside_deadline_title">&#9201; Plazo</h3>
+          <p data-i18n="book_aside_deadline_text">Maximo <strong>15 dias habiles</strong> para dar respuesta.</p>
+        </div>
+        <div class="info info--pink">
+          <h3 data-i18n="book_aside_sheet_title">&#128278; Nro. Hoja</h3>
+          <div class="num-hoja" id="numero-hoja">-</div>
+        </div>
+        <div class="info info--blue">
+          <h3 data-i18n="book_aside_contact_title">&#128222; Contacto</h3>
+          <p data-i18n="book_aside_contact_text">Necesitas ayuda? Llamanos al <strong>01-234-5678</strong></p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div class="modal-bg" id="modal">
+    <div class="modal">
+      <div class="modal__icon" id="modal-icon">&#9989;</div>
+      <h2 id="modal-titulo" data-i18n="book_modal_title">Reclamacion Registrada!</h2>
+      <p data-i18n="book_modal_p">Tu registro ha sido guardado correctamente.</p>
+      <div class="modal__num"><span data-i18n="book_modal_sheet">Hoja Nro.</span> <strong id="modalNum"></strong></div>
+      <p class="modal__nota"><span data-i18n="book_modal_deadline_text">Respuesta maxima: 15 dias habiles</span></p>
+      <div class="modal__btns">
+        <button class="btn btn--sec" id="btnImprimir" data-i18n="book_btn_print">Imprimir</button>
+        <button class="btn btn--pri" id="btnCerrar" data-i18n="book_btn_accept">Aceptar</button>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{{ url_for('static', filename='js/libro.js') }}"></script>
+{% endblock %}

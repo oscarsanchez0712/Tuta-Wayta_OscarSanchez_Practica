@@ -1,0 +1,755 @@
+{% extends "base.html" %}
+
+{% block title %}
+Tuta Wayta – Beneficios de la Pitahaya
+{% endblock %}
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/beneficios.css') }}?v=20260422"
+/>
+
+{% endblock %}
+
+{% block content %}
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="beneficios-hero">
+
+    <div class="beneficios-hero-overlay"></div>
+
+    <div class="beneficios-hero-content fade-up">
+
+        <span class="hero-eyebrow" data-i18n="benefits_hero_eyebrow">
+            SALUD Y BIENESTAR
+        </span>
+
+        <h1 class="hero-title">
+            <span data-i18n="benefits_hero_title1">El Poder Natural de la</span>
+            <span class="text-accent" data-i18n="benefits_hero_title2">Pitahaya</span>
+        </h1>
+
+        <p class="hero-subtitle" data-i18n="benefits_hero_subtitle">
+            Descubre por qué esta superfruta, cultivada orgánicamente
+            en el corazón de Cañete, es tu mejor aliada para una vida saludable.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- =========================================================
+     BENEFICIOS GRID
+========================================================= -->
+
+<section class="beneficios-grid-section">
+
+    <div class="beneficios-container">
+
+        <!-- HEADER -->
+        <div class="beneficios-header fade-up">
+
+            <h2 class="section-title" data-i18n="benefits_grid_title">
+                Una Joya Nutricional
+            </h2>
+
+            <p class="section-description" data-i18n="benefits_grid_subtitle">
+                Cada bocado de nuestra pitahaya es una fuente de vitalidad.
+                Estos son sus principales aportes a tu bienestar.
+            </p>
+
+        </div>
+
+        <!-- GRID -->
+        <div class="beneficios-grid">
+
+            <!-- CARD 1 -->
+            <div class="beneficio-card fade-up">
+
+                <div class="card-icon">
+                    <span class="material-symbols-outlined">
+                        shield
+                    </span>
+                </div>
+
+                <h3 class="card-title" data-i18n="benefits_card1_title">
+                    Fortalece tus Defensas
+                </h3>
+
+                <p class="card-text" data-i18n="benefits_card1_p">
+                    Gracias a su alto contenido de 
+                    <strong>Vitamina C y antioxidantes</strong>, 
+                    ayuda a reforzar el sistema inmunológico y combatir
+                    los radicales libres.
+                </p>
+
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="beneficio-card fade-up">
+
+                <div class="card-icon">
+                    <span class="material-symbols-outlined">
+                        spa
+                    </span>
+                </div>
+
+                <h3 class="card-title" data-i18n="benefits_card2_title">
+                    Mejora la Digestión
+                </h3>
+
+                <p class="card-text" data-i18n="benefits_card2_p">
+                    Rica en 
+                    <strong>fibra dietética</strong>, 
+                    favorece un tránsito intestinal saludable y natural.
+                </p>
+
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="beneficio-card fade-up">
+
+                <div class="card-icon">
+                    <span class="material-symbols-outlined">
+                        favorite
+                    </span>
+                </div>
+
+                <h3 class="card-title" data-i18n="benefits_card3_title">
+                    Cuida tu Corazón
+                </h3>
+
+                <p class="card-text" data-i18n="benefits_card3_p">
+                    Sus semillas contienen 
+                    <strong>Omega-3 y Omega-6</strong>, 
+                    importantes para mantener una buena salud cardiovascular.
+                </p>
+
+            </div>
+
+            <!-- CARD 4 -->
+            <div class="beneficio-card fade-up">
+
+                <div class="card-icon">
+                    <span class="material-symbols-outlined">
+                        hydrate
+                    </span>
+                </div>
+
+                <h3 class="card-title" data-i18n="benefits_card4_title">
+                    Hidratación Natural
+                </h3>
+
+                <p class="card-text" data-i18n="benefits_card4_p">
+                    Gracias a su alto contenido de agua,
+                    ayuda a mantener el cuerpo hidratado de forma saludable.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="variedades-grid-premium">
+    <div class="header-centrado">
+        <span class="sub-tag" data-i18n="benefits_varieties_tag">4 VARIEDADES ÚNICAS</span>
+        <h2 class="titulo-editorial" data-i18n="benefits_varieties_title">Cada Variedad, un Beneficio Especial</h2>
+        <p class="bajada-editorial" data-i18n="benefits_varieties_subtitle">La naturaleza nos dio cuatro tipos de pitahaya, cada uno con propiedades nutricionales distintivas. Elige el que mejor se adapte a tus necesidades.</p>
+    </div>
+
+    <div class="grid-container">
+        <article class="card-variedad">
+            <div class="card-img" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBTLl4KKCtKnRGcUeNP5qNdx7WRjHmnV51rVXS151Ip9njCyFVtLRPT4b7DyTPUx7nigF84uMAWr1L4LZTxb-N8hOlAijHK63NqhJT7Ehe9tg4Gpof66-6GH9zBiaS12dc-nBT6W4iOpR8EulfrIrWdBwB5lMqYlVWzKWVACCb82ORfhp8YriGCfCMhIco4pOY0AIPnvsh9KwQWLD0ViLMmgItfJXiLZudKEKPYsVUt3m2WDl9hqAaRZ7OqxJwk1ji-tDLznbV03fk');">
+                <span class="card-badge pink" data-i18n="benefits_v1_badge">Más Popular</span>
+            </div>
+            <div class="card-content">
+                <span class="color-tag" data-i18n="benefits_v1_tag">Rosa intenso</span>
+                <h3 data-i18n="var_name_ab">American Beauty</h3>
+                <ul class="list-check">
+                    <li data-i18n="benefits_v1_b1">Rica en fibra dietética que mejora la digestión.</li>
+                    <li data-i18n="benefits_v1_b2">Alto contenido de antioxidantes que combaten el envejecimiento celular.</li>
+                    <li data-i18n="benefits_v1_b3">Fortalece el sistema inmunológico natural.</li>
+                    <li data-i18n="benefits_v1_b4">Regula los niveles de azúcar en sangre.</li>
+                </ul>
+                <div class="stats-row">
+                    <div class="stat"><strong>3g</strong><span data-i18n="benefits_v_fiber">Fibra<br>VD 12%</span></div>
+                    <div class="stat"><strong>9mg</strong><span data-i18n="benefits_v_vitc">Vitamina C<br>VD 10%</span></div>
+                    <div class="stat"><strong>Alto</strong><span data-i18n="benefits_v_antiox">Antioxidantes</span></div>
+                </div>
+                <a href="{{ url_for('detalles') }}?p=101" class="link-action" data-i18n="benefits_v_btn">Ver producto <span>→</span></a>
+            </div>
+        </article>
+
+        <article class="card-variedad">
+            <div class="card-img" style="background-image: url('https://readdy.ai/api/search-image?query=close-up-cross-section-of-fresh-hybrid-dragon-fruit-pink-and-white-vibrant-flesh-with-black-seeds-natural-wooden-surface-warm-sunlight-organic-fresh-food-photography-soft-bokeh-background&width=600&height=750&seq=2&orientation=portrait');">
+                <span class="card-badge soft-pink" data-i18n="benefits_v2_badge">Equilibrada</span>
+            </div>
+            <div class="card-content">
+                <span class="color-tag" data-i18n="benefits_v2_tag">Rosa medio</span>
+                <h3 data-i18n="var_name_hib">Híbrida</h3>
+                <ul class="list-check">
+                    <li data-i18n="benefits_v2_b1">Aporta vitaminas esenciales como la vitamina C y complejo B.</li>
+                    <li data-i18n="benefits_v2_b2">Minerales clave: hierro, magnesio y calcio.</li>
+                    <li data-i18n="benefits_v2_b3">Contribuye a la hidratación corporal diaria.</li>
+                    <li data-i18n="benefits_v2_b4">Favorece el buen funcionamiento general del organismo.</li>
+                </ul>
+                <div class="stats-row">
+                    <div class="stat"><strong>20mg</strong><span data-i18n="benefits_v_vitc">Vitamina C<br>VD 22%</span></div>
+                    <div class="stat"><strong>1.1mg</strong><span data-i18n="benefits_v_iron">Hierro<br>VD 8%</span></div>
+                    <div class="stat"><strong>87%</strong><span data-i18n="benefits_v_water">Agua</span></div>
+                </div>
+                <a href="{{ url_for('detalles') }}?p=103" class="link-action" data-i18n="benefits_v_btn">Ver producto <span>→</span></a>
+            </div>
+        </article>
+
+        <article class="card-variedad">
+            <div class="card-img" style="background-image: url('https://readdy.ai/api/search-image?query=close-up-cross-section-of-fresh-white-flesh-dragon-fruit-pure-white-flesh-with-black-seeds-natural-wooden-table-warm-natural-light-organic-fresh-food-photography-clean-minimal-style&width=600&height=750&seq=3&orientation=portrait');">
+                <span class="card-badge red" data-i18n="benefits_v3_badge">Light</span>
+            </div>
+            <div class="card-content">
+                <span class="color-tag" data-i18n="benefits_v3_tag">Piel rosa, pulpa blanca</span>
+                <h3 data-i18n="var_name_wb">Interior Blanco</h3>
+                <ul class="list-check">
+                    <li data-i18n="benefits_v3_b1">Baja en calorías: ideal para control de peso.</li>
+                    <li data-i18n="benefits_v3_b2">Alto contenido de agua para hidratación profunda.</li>
+                    <li data-i18n="benefits_v3_b3">Favorece la digestión y regularidad intestinal.</li>
+                    <li data-i18n="benefits_v3_b4">Perfecta para dietas saludables y balanceadas.</li>
+                </ul>
+                <div class="stats-row">
+                    <div class="stat"><strong>57</strong><span data-i18n="benefits_v_cal">Calorías<br>VD 3%</span></div>
+                    <div class="stat"><strong>90%</strong><span data-i18n="benefits_v_water">Agua</span></div>
+                    <div class="stat"><strong>2.5g</strong><span data-i18n="benefits_v_fiber">Fibra<br>VD 10%</span></div>
+                </div>
+                <a href="{{ url_for('detalles') }}?p=104" class="link-action" data-i18n="benefits_v_btn">Ver producto <span>→</span></a>
+            </div>
+        </article>
+
+        <article class="card-variedad">
+            <div class="card-img" style="background-image: url('https://readdy.ai/api/search-image?query=exotic-yellow-dragon-fruit-cut-open-showing-white-flesh-black-seeds-tropical-vibrant-food-photography-clean-background-warm-golden-lighting-minimal-styling&width=600&height=500&seq=83&orientation=landscape');">
+                <span class="card-badge yellow" data-i18n="benefits_v4_badge">Digestiva</span>
+            </div>
+            <div class="card-content">
+                <span class="color-tag" data-i18n="benefits_v4_tag">Amarilla brillante</span>
+                <h3 data-i18n="var_name_yel">Pitahaya Amarilla</h3>
+                <ul class="list-check">
+                    <li data-i18n="benefits_v4_b1">Efecto digestivo natural comprobado.</li>
+                    <li data-i18n="benefits_v4_b2">Ayuda a prevenir el estreñimiento de forma suave.</li>
+                    <li data-i18n="benefits_v4_b3">Mejora la salud intestinal y la microbiota.</li>
+                    <li data-i18n="benefits_v4_b4">Laxante natural sin químicos agresivos.</li>
+                </ul>
+                <div class="stats-row">
+                    <div class="stat"><strong>3.5g</strong><span data-i18n="benefits_v_fiber">Fibra<br>VD 14%</span></div>
+                    <div class="stat"><strong>0.1mg</strong><span data-i18n="benefits_v_vitb2">Vitamina B2<br>VD 8%</span></div>
+                    <div class="stat"><strong>36mg</strong><span data-i18n="benefits_v_phos">Fósforo<br>VD 5%</span></div>
+                </div>
+                <a href="{{ url_for('detalles') }}?p=102" class="link-action" data-i18n="benefits_v_btn">Ver producto <span>→</span></a>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="lab-nutricional" style="padding-top: 60px;">
+    <div class="container">
+        <header class="section-header" style="margin-bottom: 40px;">
+            <span class="eyebrow" data-i18n="benefits_lab_eyebrow">
+                🔬 LABORATORIO NUTRICIONAL
+            </span>
+            <h2 class="display-title" data-i18n="benefits_lab_title">
+                Comparador Nutricional Interactivo
+            </h2>
+            <p class="section-subtitle" data-i18n="benefits_lab_p">
+                Explora cada nutriente haciendo clic. Descubre cuál variedad lidera
+                y obtén recomendaciones personalizadas según tu objetivo de salud.
+            </p>
+        </header>
+
+        <div class="lab-grid">
+            
+            <aside class="sidebar-nutrientes">
+                <p class="sidebar-label" data-i18n="benefits_lab_select">SELECCIONA UN NUTRIENTE</p>
+               
+                <div class="nutriente-item" onclick="selectNutriente(this, 'calorias')">
+                    <div class="nutriente-icon">🔥</div>
+                    <div class="nutriente-text">
+                        <span class="n-title" data-i18n="benefits_lab_n1_title">Calorías</span>
+                        <span class="n-best" data-i18n="benefits_lab_n1_best">Mejor: Interior Blanco</span>
+                    </div>
+                    <span class="arrow">›</span>
+                </div>
+
+                <div class="nutriente-item" onclick="selectNutriente(this, 'carbohidratos')">
+                    <div class="nutriente-icon">🍞</div>
+                    <div class="nutriente-text">
+                        <span class="n-title" data-i18n="benefits_lab_n2_title">Carbohidratos</span>
+                        <span class="n-best" data-i18n="benefits_lab_n2_best">Mejor: Interior Blanco</span>
+                    </div>
+                    <span class="arrow">›</span>
+                </div>
+
+                <div class="nutriente-item" onclick="selectNutriente(this, 'fibra')">
+                    <div class="nutriente-icon">🌾</div>
+                    <div class="nutriente-text">
+                        <span class="n-title" data-i18n="benefits_lab_n3_title">Fibra Dietética</span>
+                        <span class="n-best" data-i18n="benefits_lab_n3_best">Mejor: Amarilla</span>
+                    </div>
+                    <span class="arrow">›</span>
+                </div>
+
+                <div class="nutriente-item active" id="default-nutriente" onclick="selectNutriente(this, 'proteinas')">
+                    <div class="nutriente-icon">❤️</div>
+                    <div class="nutriente-text">
+                        <span class="n-title" data-i18n="benefits_lab_n4_title">Proteínas</span>
+                        <span class="n-best" data-i18n="benefits_lab_n4_best">Mejor: Amarilla</span>
+                    </div>
+                    <span class="arrow">›</span>
+                </div>
+
+                <div class="nutriente-item" onclick="selectNutriente(this, 'grasas')">
+                    <div class="nutriente-icon">🥑</div>
+                    <div class="nutriente-text">
+                        <span class="n-title" data-i18n="benefits_lab_n5_title">Grasas Totales</span>
+                        <span class="n-best" data-i18n="benefits_lab_n5_best">Todas las variedades</span>
+                    </div>
+                    <span class="arrow">›</span>
+                </div>
+
+                <div class="nutriente-item" onclick="selectNutriente(this, 'vitamina_c')">
+                    <div class="nutriente-icon">☀️</div>
+                    <div class="nutriente-text">
+                        <span class="n-title" data-i18n="benefits_lab_n6_title">Vitamina C</span>
+                        <span class="n-best" data-i18n="benefits_lab_n6_best">Mejor: Híbrida</span>
+                    </div>
+                    <span class="arrow">›</span>
+                </div>
+
+                <div class="nutriente-item" onclick="selectNutriente(this, 'hierro')">
+                    <div class="nutriente-icon">🔩</div>
+                    <div class="nutriente-text">
+                        <span class="n-title" data-i18n="benefits_lab_n7_title">Hierro</span>
+                        <span class="n-best" data-i18n="benefits_lab_n7_best">Mejor: Híbrida</span>
+                    </div>
+                    <span class="arrow">›</span>
+                </div>
+
+                <div class="nutriente-item" onclick="selectNutriente(this, 'calcio')">
+                    <div class="nutriente-icon">🛡️</div>
+                    <div class="nutriente-text">
+                        <span class="n-title" data-i18n="benefits_lab_n8_title">Calcio</span>
+                        <span class="n-best" data-i18n="benefits_lab_n8_best">Mejor: Híbrida</span>
+                    </div>
+                    <span class="arrow">›</span>
+                </div>
+
+                <div class="nutriente-item" onclick="selectNutriente(this, 'magnesio')">
+                    <div class="nutriente-icon">🌙</div>
+                    <div class="nutriente-text">
+                        <span class="n-title" data-i18n="benefits_lab_n9_title">Magnesio</span>
+                        <span class="n-best" data-i18n="benefits_lab_n9_best">Mejor: Híbrida</span>
+                    </div>
+                    <span class="arrow">›</span>
+                </div>
+
+                <div class="nutriente-item" onclick="selectNutriente(this, 'agua')">
+                    <div class="nutriente-icon">💧</div>
+                    <div class="nutriente-text">
+                        <span class="n-title" data-i18n="benefits_lab_n10_title">Contenido de Agua</span>
+                        <span class="n-best" data-i18n="benefits_lab_n10_best">Mejor: Interior Blanco</span>
+                    </div>
+                    <span class="arrow">›</span>
+                </div>
+            </aside>
+
+            <main class="panel-visualizador">
+                <div class="panel-card">
+                    
+                    <div class="panel-header">
+                        <div class="header-info">
+                            <div class="icon-circle" id="main-icon">❤️</div>
+                            <div>
+                                <h3 id="main-title" data-i18n="benefits_lab_main_title">Proteínas</h3>
+                                <p id="main-desc" data-i18n="benefits_lab_main_desc">Aporte vegetal para tus músculos.</p>
+                            </div>
+                        </div>
+                        <span class="analysis-tag" data-i18n="benefits_lab_analysis">🔬 Análisis por 100g</span>
+                    </div>
+
+                    <div class="chart-container">
+                        <div class="bar-row" data-variedad="beauty">
+                            <div class="bar-info">
+                                <span>American Beauty</span>
+                                <strong class="val">1.2 g</strong>
+                            </div>
+                            <div class="bar-track">
+                                <div class="bar-fill pink"></div>
+                            </div>
+                        </div>
+
+                        <div class="bar-row" data-variedad="hibrida">
+                            <div class="bar-info">
+                                <span>Híbrida</span>
+                                <strong class="val">1.1 g</strong>
+                            </div>
+                            <div class="bar-track">
+                                <div class="bar-fill orange"></div>
+                            </div>
+                        </div>
+
+                        <div class="bar-row" data-variedad="blanca">
+                            <div class="bar-info">
+                                <span>Interior Blanco</span>
+                                <strong class="val">1.0 g</strong>
+                            </div>
+                            <div class="bar-track">
+                                <div class="bar-fill green"></div>
+                            </div>
+                        </div>
+
+                        <div class="bar-row" data-variedad="amarilla">
+                            <div class="bar-info">
+                                <span>Amarilla <span class="badge-winner">✦ MEJOR</span></span>
+                                <strong class="val">1.3 g</strong>
+                            </div>
+                            <div class="bar-track">
+                                <div class="bar-fill yellow"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recommendation-box">
+                        <div class="rec-icon">💡</div>
+                        <div class="rec-content">
+                            <p><strong data-i18n="benefits_lab_rec_title">Recomendación personalizada</strong></p>
+                            <p class="rec-text" id="main-rec" data-i18n="benefits_lab_rec_p">La Amarilla lidera. Perfecta para batidos después de entrenar.</p>
+                            <div class="rec-tags" id="main-tags">
+                                <span class="pill" data-i18n="benefits_lab_rec_tag1">Recuperación</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+</section>
+
+
+<div class="tabla-resumen-container">
+    <div class="tabla-header">
+        <div>
+            <h2 data-i18n="benefits_table_title">Resumen Rápido por Variedad</h2>
+            <span class="valores-referencia" data-i18n="benefits_table_subtitle">Valores por 100g de pulpa fresca</span>
+        </div>
+        <button id="btnDescargarPdf" class="btn-descargar-pdf">
+            <span class="material-symbols-outlined">download</span>
+            <span data-i18n="benefits_btn_download">Descargar PDF</span>
+        </button>
+    </div>
+
+    <table class="tabla-nutricional-resumen">
+        <thead>
+            <tr>
+                <th class="col-nutriente" data-i18n="benefits_table_h1">Nutriente</th>
+                <th class="col-variedad v-american" data-i18n="var_name_ab">
+                    <img src="{{ url_for('static', filename='img/Pitahaya American Beauty.png') }}" alt="American Beauty">
+                    American Beauty
+                </th>
+                <th class="col-variedad v-hibrida" data-i18n="var_name_hib">
+                    <img src="{{ url_for('static', filename='img/Pitahaya Híbrida Tesoro.png') }}" alt="Híbrida">
+                    Híbrida
+                </th>
+                <th class="col-variedad v-blanco" data-i18n="var_name_wb">
+                    <img src="{{ url_for('static', filename='img/Pitahaya Blanca.jpg') }}" alt="Interior Blanco">
+                    Interior Blanco
+                </th>
+                <th class="col-variedad v-amarilla" data-i18n="var_name_yel">
+                    <img src="{{ url_for('static', filename='img/Pitahaya Amarilla Palora.png') }}" alt="Amarilla">
+                    Amarilla
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-i18n="benefits_table_r1_name"><span class="icon">🔥</span> Calorías <span class="unit">(kcal)</span></td>
+                <td>60 kcal</td>
+                <td>57 kcal</td>
+                <td>57 kcal</td>
+                <td>62 kcal</td>
+            </tr>
+            <tr>
+                <td data-i18n="benefits_table_r2_name"><span class="icon">🍞</span> Carbohidratos <span class="unit">(g)</span></td>
+                <td>13 g</td>
+                <td>12 g</td>
+                <td>11 g</td>
+                <td>14 g</td>
+            </tr>
+            <tr>
+                <td data-i18n="benefits_table_r3_name"><span class="icon">🌾</span> Fibra Dietética <span class="unit">(g)</span></td>
+                <td>3 g</td>
+                <td>2.8 g</td>
+                <td>2.5 g</td>
+                <td>3.5 g</td>
+            </tr>
+            <tr>
+                <td data-i18n="benefits_table_r4_name"><span class="icon">❤️</span> Proteínas <span class="unit">(g)</span></td>
+                <td>1.2 g</td>
+                <td>1.1 g</td>
+                <td>1 g</td>
+                <td>1.3 g</td>
+            </tr>
+            <tr>
+              <td data-i18n="benefits_table_r5_name"><span class="icon">🥑</span> Grasas Totales <span class="unit">(g)</span></td>
+                <td> 0.4 g</td>
+                <td> 0.4 g</td>
+                <td>0.4 g</td>
+                <td>0.5 g</td>
+            </tr>
+            <tr>  
+                <td data-i18n="benefits_table_r6_name"><span class="icon">☀️</span> Vitamina C <span class="unit">(mg)</span></td>
+                <td>9 mg</td>
+                <td>20 mg</td>
+                <td>8 mg</td>
+                <td>15 mg</td>
+            </tr>
+            <tr>
+                <td data-i18n="benefits_table_r7_name"><span class="icon">🩸</span> Hierro <span class="unit">(mg)</span></td>
+                <td>0.8 mg</td>
+                <td>1.1 mg</td>
+                <td>0.6 mg</td>
+                <td>0.9 mg</td>
+            </tr>
+            <tr>
+                <td data-i18n="benefits_table_r8_name"><span class="icon">🛡️</span> Calcio <span class="unit">(mg)</span></td>
+                <td>18 mg</td>
+                <td>22 mg</td>
+                <td>15 mg</td>
+                <td>20 mg</td>
+            </tr>
+            <tr>
+                <td data-i18n="benefits_table_r9_name"><span class="icon">🌙</span> Magnesio <span class="unit">(mg)</span></td>
+                <td>20 mg</td>
+                <td>24 mg</td>
+                <td>18 mg</td>
+                <td>22 mg</td>
+            </tr>
+            <tr>
+                <td data-i18n="benefits_table_r10_name"><span class="icon">💧</span> Contenido de Agua <span class="unit">(%)</span></td>
+                <td>87 %</td>
+                <td>87 %</td>
+                <td>90 %</td>
+                <td>85 %</td>
+            </tr>
+        </tbody>
+    </table>
+    
+  <div class="tabla-footer">
+    <span data-i18n="benefits_table_f1">* Valores aproximados según análisis de laboratorio propio.</span>
+    <span data-i18n="benefits_table_vd">VD = Valor Diario recomendado en base a una dieta de 2,000 calorías.</span>
+    
+    <a href="https://www.icta.gob.gt/publicaciones/Pitaya/Manual%20del%20cultivo%20de%20la%20Pitaya.pdf" class="footer-link">
+        <span data-i18n="benefits_table_f2">Ver análisis completo</span>
+    </a>
+</div>
+</div>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<section class="ideas-practicas">
+    <div class="container">
+        <header class="ideas-header">
+            <span class="eyebrow" data-i18n="benefits_ideas_eyebrow">IDEAS PRÁCTICAS</span>
+            <h2 class="display-title" data-i18n="benefits_ideas_title">Incorpora la Pitahaya en tu Dieta</h2>
+            <p class="lead-text" data-i18n="benefits_ideas_p">
+                No hace falta ser chef. Aquí te dejamos 4 formas simples y deliciosas de consumir pitahaya todos los días.
+            </p>
+        </header>
+
+        <div class="ideas-grid">
+            <div class="idea-card">
+                <div class="icon-box">
+                    <i class="fa-solid fa-mug-hot"></i>
+                </div>
+                <h3 data-i18n="benefits_idea1_title">Smoothie Energético</h3>
+                <p data-i18n="benefits_idea1_p">1/2 pitahaya, plátano, leche de almendras y chia. Ideal para el desayuno.</p>
+            </div>
+
+            <div class="idea-card">
+                <div class="icon-box">
+                    <i class="fa-solid fa-utensils"></i>
+                </div>
+                <h3 data-i18n="benefits_idea2_title">Ensalada Tropical</h3>
+                <p data-i18n="benefits_idea2_p">Cubos de pitahaya con mango, aguacate y aderezo de limón. Fresca y nutritiva.</p>
+            </div>
+
+            <div class="idea-card">
+                <div class="icon-box">
+                    <i class="fa-solid fa-bowl-food"></i>
+                </div>
+                <h3 data-i18n="benefits_idea3_title">Yogur Natural</h3>
+                <p data-i18n="benefits_idea3_p">Pitahaya picada sobre yogur griego con granola y miel. Snack perfecto.</p>
+            </div>
+
+            <div class="idea-card">
+                <div class="icon-box">
+                    <i class="fa-solid fa-ice-cream"></i>
+                </div>
+                <h3 data-i18n="benefits_idea4_title">Postre Saludable</h3>
+                <p data-i18n="benefits_idea4_p">Helado casero de pitahaya congelada batida. Sin azúcar añadida.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="testimonios">
+    <div class="container">
+        <header class="testimonios-header">
+            <span class="eyebrow" data-i18n="benefits_experts_eyebrow">OPINIONES EXPERTAS</span>
+            <h2 class="display-title" data-i18n="benefits_experts_title">Lo que Dicen los Especialistas</h2>
+        </header>
+
+        <div class="testimonios-grid">
+            <article class="testimonio-card">
+                <div class="perfil">
+                    <img src="https://readdy.ai/api/search-image?query=professional-female-nutritionist-portrait-smiling-warm-natural-light-modern-office-background-clean-professional-photography&width=120&height=120&seq=84&orientation=squarish" alt="María Elena Ríos" class="foto">
+                    <div class="info">
+                        <h3 data-i18n="benefits_expert1_name">María Elena Ríos</h3>
+                        <p class="puesto" data-i18n="benefits_expert1_role">Nutricionista deportiva</p>
+                    </div>
+                </div>
+                <blockquote class="cita" data-i18n="benefits_expert1_q">
+                    "Recomiendo la pitahaya de Tuta Wayta a mis pacientes deportistas. La hidratación y el aporte de antioxidantes son superiores a otras marcas que he probado."
+                </blockquote>
+            </article>
+
+            <article class="testimonio-card">
+                <div class="perfil">
+                    <img src="https://readdy.ai/api/search-image?query=professional-male-doctor-portrait-white-coat-smiling-warm-natural-light-clinic-background-clean-professional-photography&width=120&height=120&seq=85&orientation=squarish" alt="Dr. Carlos Mendoza" class="foto">
+                    <div class="info">
+                        <h3 data-i18n="benefits_expert2_name">Dr. Carlos Mendoza</h3>
+                        <p class="puesto" data-i18n="benefits_expert2_role">Médico internista</p>
+                    </div>
+                </div>
+                <blockquote class="cita" data-i18n="benefits_expert2_q">
+                    "La variedad amarilla de Tuta Wayta tiene un efecto digestivo notable. La prescribo regularmente a pacientes con problemas de tránsito lento."
+                </blockquote>
+            </article>
+
+            <article class="testimonio-card">
+                <div class="perfil">
+                    <img src="https://readdy.ai/api/search-image?query=young-peruvian-woman-portrait-smiling-authentic-natural-light-casual-clothing-warm-tones-documentary-style-photography&width=120&height=120&seq=86&orientation=squarish" alt="Laura Paredes" class="foto">
+                    <div class="info">
+                        <h3 data-i18n="benefits_expert3_name">Laura Paredes</h3>
+                        <p class="puesto" data-i18n="benefits_expert3_role">Cliente frecuente</p>
+                    </div>
+                </div>
+                <blockquote class="cita" data-i18n="benefits_expert3_q">
+                    "Desde que incluyo la pitahaya American Beauty en mi dieta, mi digestión mejoró notablemente. Y el sabor es increíblemente dulce."
+                </blockquote>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="faq-section" style="padding-top: 30px; padding-bottom: 60px;"> 
+    <div class="container">
+        <header class="faq-header" style="margin-top: 0; margin-bottom: 40px; text-align: center;">
+            <span class="eyebrow" style="display: block; font-size: 12px; letter-spacing: 3px; font-weight: 800; color: #5d6d4e; text-transform: uppercase;" data-i18n="benefits_faq_eyebrow">PREGUNTAS FRECUENTES</span>
+            <h2 class="display-title" style="margin-top: 10px; font-family: 'Playfair Display', serif; font-size: 3.2rem; color: #3f2e1e;" data-i18n="benefits_faq_title">Dudas sobre el Consumo</h2>
+        </header>
+
+        <div class="faq-container" style="max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;">
+            
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span data-i18n="benefits_faq1_q">¿Cuánta pitahaya debo consumir al día?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p data-i18n="benefits_faq1_a">Se recomienda consumir entre 100g y 200g diarios (aproximadamente media a una pitahaya mediana). Esta cantidad proporciona un excelente aporte de fibra, vitaminas y antioxidantes sin exceder el consumo de azúcares naturales.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span data-i18n="benefits_faq2_q">¿La pitahaya es segura para diabéticos?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p data-i18n="benefits_faq2_a">Sí. La pitahaya tiene un índice glucémico bajo (IG 48) y su fibra ralentiza la absorción de azúcares. Sin embargo, siempre recomendamos consultar con un médico nutricionista para personalizar la porción según cada caso.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span data-i18n="benefits_faq3_q">¿Puedo comerla en ayunas?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p data-i18n="benefits_faq3_a">Absolutamente. Consumir pitahaya en ayunas potencia su efecto digestivo y permite una mejor absorción de sus nutrientes. La variedad amarilla es especialmente recomendada para este propósito.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span data-i18n="benefits_faq4_q">¿Cuál es la mejor variedad para adelgazar?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p data-i18n="benefits_faq4_a">La variedad Interior Blanco es la más recomendada por su bajo contenido calórico (57 kcal/100g) y alto porcentaje de agua. Te mantiene saciado sin aportar grasas ni azúcares refinados.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span data-i18n="benefits_faq5_q">¿Cuánto tiempo dura la pitahaya fresca?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p data-i18n="benefits_faq5_a">En refrigeración, la pitahaya fresca madura dura entre 5 y 7 días. Si está muy madura al momento de compra, consúmela en 2-3 días. Los productos transformados (yogur, néctar, mermelada) tienen mayor duración.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="cta-final">
+    <div class="container">
+        <div class="cta-content">
+            <h2 class="display-title" data-i18n="benefits_cta_title">Empieza a Cuidarte Hoy</h2>
+            <p class="lead-text" data-i18n="benefits_cta_p">
+                La pitahaya orgánica de Tuta Wayta es más que una fruta: es una inversión en tu salud. 
+                Ordena ahora y recibe en la puerta de tu casa la frescura de Cañete.
+            </p>
+            
+            <div class="cta-actions">
+                <a href="{{ url_for('productos') }}" class="btn-primary" data-i18n="benefits_cta_btn1">
+                    Ver catálogo de productos <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="{{ url_for('contacto') }}" class="btn-outline" data-i18n="benefits_cta_btn2">
+                    Consultar con un asesor
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script
+    src="{{ url_for('static', filename='js/beneficios.js') }}"
+    defer>
+</script>
+
+{% endblock %}

@@ -1,0 +1,723 @@
+.blog-hero {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url("../img/blog.jpg");
+
+  background-size: cover;
+  background-position: center;
+  padding: 120px 20px;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  animation: zoomHero 12s ease-in-out infinite;
+}
+/* 🔥 ANIMACIÓN CORRECTA (ZOOM SUAVE) */
+@keyframes zoomHero {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* TEXTO */
+.blog-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+}
+
+.blog-title span {
+  font-style: italic;
+  color: #fca5a5;
+}
+
+.blog-desc {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 1rem auto 0;
+  opacity: 0.9;
+}
+
+/* GRID */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  padding: 50px 40px;
+  max-width: 1400px;
+  margin: auto;
+}
+
+
+
+
+/* =========================================================
+   SECCIÓN DE NUTRICIÓN, CIENCIA Y SABOR (ESTILO CLARO)
+   ========================================================= */
+.blog-nutrition-container {
+  background-color: #fcf9f5; /* Color crema suave idéntico al de la imagen */
+  padding: 80px 20px;
+  text-align: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Mini Etiqueta Superior */
+.blog-top-badge {
+  display: inline-block;
+  background-color: #fbeaf0; /* Fondo rosado muy tenue */
+  color: #c83c6c; /* Color fucsia oscuro */
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+}
+
+/* Título Principal */
+.blog-main-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.3rem, 5vw, 3.8rem);
+  color: #232933;
+  font-weight: 800;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.blog-main-heading .italic-pink {
+  font-style: italic;
+  font-weight: 400;
+  color: #d65179; /* Fucsia corporativo */
+}
+
+/* Descripción */
+.blog-main-subtext {
+  color: #556070;
+  max-width: 720px;
+  margin: 0 auto 35px auto;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Barra de Búsqueda */
+.blog-search-bar-wrapper {
+  position: relative;
+  max-width: 580px;
+  margin: 0 auto 40px auto;
+}
+
+.blog-search-bar-wrapper input {
+  width: 100%;
+  padding: 15px 20px 15px 50px;
+  border: 1px solid #e2e8f0;
+  border-radius: 30px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.95rem;
+  color: #334155;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.blog-search-bar-wrapper input:focus {
+  border-color: #d65179;
+  box-shadow: 0 4px 20px rgba(214, 81, 121, 0.08);
+}
+
+.search-glass-icon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  font-size: 1.1rem;
+}
+
+/* Contenedor de Botones Redondos */
+.blog-filter-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.filter-btn {
+  background-color: #ffffff;
+  color: #475569;
+  padding: 10px 22px;
+  border: 1px solid #e2e8f0;
+  border-radius: 25px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.filter-btn:hover {
+  border-color: #d65179;
+  color: #d65179;
+  background-color: #fff9fb;
+}
+
+/* Botón Activo ("Todas") */
+.filter-btn.active {
+  background-color: #c93b69; /* Tono fucsia exacto de la imagen */
+  color: #ffffff;
+  border-color: #c93b69;
+  box-shadow: 0 5px 15px rgba(201, 59, 105, 0.25);
+}
+
+
+/* ==========================================================================
+   CONTENEDOR GRID PREMIUM (Fila de 3 con mayor presencia)
+   ========================================================================== */
+.blog-articles-grid {
+    display: grid;
+    /* Mantiene estrictamente 3 columnas en escritorio */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px; /* Espaciado más amplio y limpio entre tarjetas */
+    padding: 40px 0;
+    width: 100%;
+    /* Ampliado a 1200px para que las tarjetas tengan un ancho más imponente y elegante */
+    max-width: 1200px; 
+    margin: 0 auto;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   TARJETA ESTILO PORTRAIT MEJORADA (Más alta y robusta)
+   ========================================================================== */
+.blog-card.style-portrait {
+    background-color: #ffffff;
+    border-radius: 18px; /* Bordes ligeramente más curvos y orgánicos */
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(26, 38, 57, 0.03);
+    border: 1px solid rgba(239, 241, 245, 0.9);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    /* Ajuste de transiciones premium tipo Apple */
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    isolation: isolate;
+}
+
+.blog-card.style-portrait:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 38px rgba(26, 38, 57, 0.07);
+}
+
+/* ==========================================================================
+   CONTENEDOR DE IMAGEN (Altura ampliada para mejor impacto visual)
+   ========================================================================== */
+.card-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 210px; /* Incrementado de 190px para darle mayor protagonismo a la fotografía */
+    overflow: hidden;
+    background-color: #f8fafc;
+}
+
+.card-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.blog-card.style-portrait:hover .card-image-wrapper img {
+    transform: scale(1.05); /* Zoom sutil ultra fluido */
+}
+
+/* Capa de contraste sutil */
+.card-image-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.1));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.blog-card.style-portrait:hover .card-image-wrapper::after {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   ETIQUETAS DE CATEGORÍA (Efecto Glassmorphism Premium)
+   ========================================================================== */
+.category-tag {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background-color: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    z-index: 2;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.blog-card.style-portrait:hover .category-tag {
+    transform: scale(1.03);
+}
+
+/* Colores de categorías refinados */
+.category-tag.ciencia   { color: #5a5ca0; border: 1px solid rgba(90, 92, 160, 0.15); }
+.category-tag.nutricion { color: #aa4d71; border: 1px solid rgba(170, 77, 113, 0.15); }
+.category-tag.recetas   { color: #d97706; border: 1px solid rgba(217, 119, 6, 0.15); }
+.category-tag.digestion { color: #059669; border: 1px solid rgba(5, 150, 105, 0.15); }
+.category-tag.diabetes  { color: #dc2626; border: 1px solid rgba(220, 38, 38, 0.15); }
+.category-tag.estilo-vida { color: #2563eb; border: 1px solid rgba(37, 99, 235, 0.15); }
+.category-tag.beneficios  { color: #059669; border: 1px solid rgba(5, 150, 105, 0.15); }
+
+/* ==========================================================================
+   CUERPO DE TEXTOS (Espaciado equilibrado de revista digital)
+   ========================================================================== */
+.card-body {
+    padding: 26px; /* Más aire interno para equilibrar el nuevo tamaño */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-top-meta {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #94a3b8;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.3px;
+}
+
+/* Títulos más grandes y legibles */
+.blog-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem; /* Aumentado para un impacto visual mucho más profesional */
+    line-height: 1.4;
+    color: #0f172a;
+    margin: 0 0 12px 0;
+    font-weight: 700;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Límite inteligente a 2 líneas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 2.8em; 
+    transition: color 0.3s ease;
+}
+
+.blog-card.style-portrait:hover h3 {
+    color: #aa4d71; /* Destello de color de marca al hacer hover */
+}
+
+/* Párrafos descriptivos con excelente interletrado */
+.blog-card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #475569;
+    margin: 0 0 24px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Permite hasta 3 líneas para descripciones más ricas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 4.8em; /* Asegura una simetría perfecta en la cuadrícula */
+    flex-grow: 1;
+}
+
+/* ==========================================================================
+   BLOQUE DE AUTOR COMPACTO Y PULIDO
+   ========================================================================== */
+.author-block {
+    border-top: 1px solid #f1f5f9;
+    padding-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: auto; /* Anclado firmemente abajo */
+}
+
+.author-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid transparent;
+    transition: border-color 0.4s ease, transform 0.4s ease;
+}
+
+.blog-card.style-portrait:hover .author-avatar {
+    transform: scale(1.04);
+    border-color: rgba(170, 77, 113, 0.2);
+}
+
+.author-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.35;
+}
+
+.author-text .name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.author-text .role {
+    font-size: 0.74rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   RESPONSIVE EQUILIBRADO
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .blog-articles-grid {
+        grid-template-columns: repeat(2, 1fr); /* Pasa a 2 columnas en pantallas medianas */
+        gap: 24px;
+        padding: 24px;
+    }
+}
+
+@media (max-width: 680px) {
+    .blog-articles-grid {
+        grid-template-columns: 1fr; /* 1 sola columna perfecta en móviles */
+        padding: 16px;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   MODO OSCURO - ADAPTACIÓN COMPLETA DE LA SECCIÓN
+   ========================================================================== */
+
+body.dark .blog-nutrition-container {
+    background-color: #0b1020; /* Fondo azul noche oscuro */
+}
+
+body.dark .blog-top-badge {
+    background-color: rgba(201, 59, 105, 0.15);
+    color: #f472b6; /* Rosa neón para contraste */
+    border: 1px solid rgba(201, 59, 105, 0.2);
+}
+
+body.dark .blog-main-heading,
+body.dark .blog-card h3 {
+    color: #f8fafc; /* Blanco brillante para títulos */
+}
+
+body.dark .blog-main-subtext,
+body.dark .blog-card p {
+    color: #94a3b8; /* Gris azulado para textos */
+}
+
+/* --- BARRA DE BÚSQUEDA Y FILTROS --- */
+body.dark .blog-search-bar-wrapper input {
+    background-color: #111827;
+    border-color: #334155;
+    color: #f8fafc;
+}
+
+body.dark .blog-search-bar-wrapper input:focus {
+    border-color: #d65179;
+    box-shadow: 0 4px 20px rgba(214, 81, 121, 0.15);
+}
+
+body.dark .search-glass-icon {
+    color: #64748b;
+}
+
+body.dark .filter-btn {
+    background-color: #111827;
+    color: #cbd5e1;
+    border-color: #334155;
+}
+
+body.dark .filter-btn:hover {
+    border-color: #d65179;
+    color: #d65179;
+    background-color: #1e293b;
+}
+
+body.dark .filter-btn.active {
+    background-color: #c93b69;
+    color: #ffffff;
+    border-color: #c93b69;
+}
+
+/* --- TARJETAS EN MODO OSCURO --- */
+body.dark .blog-card.style-portrait {
+    background-color: #111827;
+    border-color: #1f2937;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+body.dark .card-top-meta {
+    color: #64748b; /* CORRECCIÓN: Color de la fecha y tiempo de lectura */
+}
+
+body.dark .author-block {
+    border-top-color: #1f2937;
+}
+
+body.dark .author-text .name {
+    color: #e5e7eb;
+}
+
+body.dark .author-text .role {
+    color: #9ca3af;
+}
+
+
+/* ==========================================================================
+   LA HISTORIA CONTINÚA CONTIGO
+   Sección final de llamado a la acción
+========================================================================== */
+
+/* --- SECCIÓN GENERAL --- */
+.final-cta-section {
+    text-align: center;
+    padding: 100px 20px;
+    background: linear-gradient(135deg, #c2185b, #8e244d); /* Fondo vino premium */
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- TÍTULO PREMIUM --- */
+.final-cta-section::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+    top: -250px;
+    left: -150px;
+}
+
+.final-cta-section::after {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+    bottom: -180px;
+    right: -100px;
+}
+
+/* CORRECCIÓN: Forzamos a que todo texto suelto dentro del contenedor (como la plantita) sea blanco */
+.cta-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    color: #ffffff !important; 
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
+}
+
+/* CORRECCIÓN: Eliminadas duplicaciones. Letras en blanco puro para contraste premium */
+.cta-main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: #ffffff !important; 
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+/* Texto especial (contigo) */
+.cta-main-title span {
+    color: #ffd6e7 !important; /* Rosa pastel suave */
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* --- DESCRIPCIÓN --- */
+.cta-description {
+    max-width: 750px;
+    margin: 0 auto 35px;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.92) !important;
+}
+
+/* --- CONTENEDOR DE BOTONES --- */
+.cta-button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+/* --- BASE DE BOTONES --- */
+.btn-primary-pink,
+.btn-secondary-white {
+    padding: 16px 34px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    transition: all 0.35s ease;
+}
+
+/* --- BOTÓN BLANCO --- */
+.btn-primary-pink {
+    background: #ffffff !important;
+    color: #c2185b !important;
+    border: 2px solid #ffffff !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.btn-primary-pink:hover {
+    background-color: #fdf2f5 !important;
+    border-color: #fdf2f5 !important;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+}
+
+/* --- BOTÓN TRANSPARENTE BORDE BLANCO --- */
+.btn-secondary-white {
+    background: transparent !important;
+    color: #ffffff !important;
+    border: 2px solid rgba(255,255,255,0.8) !important;
+}
+
+.btn-secondary-white:hover {
+    background: #ffffff !important;
+    color: #c2185b !important;
+    transform: translateY(-5px);
+}
+
+/* --- ICONOS --- */
+.cta-button-group i {
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-primary-pink:hover i {
+    transform: scale(1.2) rotate(-10deg);
+}
+
+/* --- AJUSTE MÓVIL --- */
+@media (max-width: 768px) {
+    .final-cta-section {
+        padding: 80px 24px 70px;
+    }
+    
+    .cta-main-title {
+        font-size: 2.2rem;
+    }
+
+    .cta-description {
+        font-size: 1rem;
+    }
+
+    .cta-button-group {
+        flex-direction: column;
+        gap: 18px;
+        align-items: center;
+    }
+
+    .btn-primary-pink,
+    .btn-secondary-white {
+        width: 100%;
+        max-width: 320px;
+    }
+}
+
+/* ==========================================================================
+   MODO OSCURO - SECCIÓN CTA FINAL
+   ========================================================================== */
+
+body.dark .final-cta-section {
+    background: linear-gradient(135deg, #111827, #0b1020); /* Fondo azul noche oscuro */
+}
+
+body.dark .final-cta-section::before,
+body.dark .final-cta-section::after {
+    background: rgba(255, 92, 167, 0.05); /* Brillos rosados muy sutiles */
+}
+
+body.dark .cta-container {
+    color: #cbd5e1 !important; /* La plantita cambia a gris azulado claro en modo oscuro */
+}
+
+body.dark .cta-main-title {
+    color: #f8fafc !important; /* Título en blanco brillante */
+}
+
+body.dark .cta-main-title span {
+    color: #f9a8d4 !important; /* Rosa claro para el texto en itálica */
+}
+
+body.dark .cta-description {
+    color: #cbd5e1 !important; /* Gris azulado para el párrafo */
+}
+
+/* Botón Primario (Rosa en Modo Oscuro) */
+body.dark .btn-primary-pink {
+    background: #c2185b !important;
+    color: #ffffff !important;
+    border-color: #c2185b !important;
+    box-shadow: 0 10px 30px rgba(194, 24, 91, 0.4);
+}
+
+body.dark .btn-primary-pink:hover {
+    background: #d81b60 !important;
+    border-color: #d81b60 !important;
+    box-shadow: 0 15px 35px rgba(194, 24, 91, 0.5);
+}
+
+/* Botón Secundario (Borde rosa en Modo Oscuro) */
+body.dark .btn-secondary-white {
+    border-color: rgba(255, 92, 167, 0.5) !important;
+    color: #f9a8d4 !important;
+    background: transparent !important;
+}
+
+body.dark .btn-secondary-white:hover {
+    background: rgba(255, 92, 167, 0.1) !important;
+    border-color: #ff5ca7 !important;
+    color: #ffffff !important;
+}

@@ -1,0 +1,875 @@
+/* =======================================================
+   1. REFINAMIENTO DE VARIABLES Y TIPOGRAFÍA
+   ======================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@300;500;700;800&display=swap');
+
+:root {
+    --primary: #a21942; /* Tono magenta más corporativo */
+    --primary-dark: #8a0048;
+    --primary-soft: rgba(185, 0, 96, 0.08);
+    --dark: #121412;
+    --text-muted: #5f6368;
+    --bg-light: #fdfdfc;
+    --border-color: #efefef;
+    --radius: 20px;
+    --shadow-soft: 0 12px 40px rgba(0,0,0,0.06);
+    --shadow-strong: 0 24px 60px rgba(0,0,0,0.1);
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --green-organic: #3a5a40;
+    --green-light: #eef5ef;
+    --green-dark: #2d4a34;
+}
+
+/* =======================================================
+   2. ANIMACIONES GLOBALES
+   ======================================================= */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+    animation: fadeInUp 1s var(--ease) forwards;
+}
+
+/* =======================================================
+   3. HERO SECTION - DISEÑO CINEMATOGRÁFICO
+   ======================================================= */
+.equipo-hero {
+    position: relative;
+    height: 70vh;
+    min-height: 500px; /* Mantener altura mínima para consistencia */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+    background: var(--dark);
+}
+
+/* 🔥 DEVOLVIENDO EL OVERLAY OSCURO */
+.equipo-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Capa oscura semitransparente */
+    z-index: 1; /* Se asegura que esté sobre la imagen y debajo del texto */
+}
+
+.hero-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5) scale(1.05);
+    transition: transform 10s ease-in-out;
+    z-index: 0;
+}
+
+.equipo-hero:hover .hero-bg {
+    transform: scale(1.15); /* Efecto zoom lento */
+}
+
+.hero-container {
+    position: relative;
+    z-index: 2; /* Asegura que el texto esté sobre el overlay */
+    padding: 0 20px;
+}
+
+.hero-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: inline-block;
+    color: var(--primary);
+    opacity: 0;
+    animation: fadeInUp 0.8s var(--ease) 0.2s forwards;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    line-height: 1.1;
+    margin-bottom: 25px;
+    opacity: 0;
+    animation: fadeInUp 0.8s var(--ease) 0.4s forwards;
+}
+
+.hero-title i {
+    font-weight: 400;
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+}
+
+.hero-description {
+    max-width: 650px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeInUp 0.8s var(--ease) 0.6s forwards;
+}
+
+/* =======================================================
+   4. GRID DE EQUIPO - TARJETAS MINIMALISTAS
+   ======================================================= */
+.equipo-grid-section {
+    padding: 120px 20px;
+    background: var(--bg-light);
+}
+
+.equipo-grid {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+}
+
+.team-card {
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-soft);
+    transition: all 0.5s var(--ease);
+    display: flex;
+    flex-direction: column;
+}
+
+.team-card:hover {
+    transform: translateY(-15px);
+    box-shadow: var(--shadow-strong);
+    border-color: var(--primary-soft);
+}
+
+.team-img-wrapper {
+    width: 100%;
+    height: 380px;
+    overflow: hidden;
+    position: relative;
+}
+
+.team-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s var(--ease);
+}
+
+.team-card:hover .team-img {
+    transform: scale(1.1);
+}
+
+/* Overlay sutil en la imagen */
+.team-img-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(to top, rgba(0,0,0,0.2), transparent);
+}
+
+.team-info {
+    padding: 30px;
+    background: white;
+}
+
+.team-info h3 {
+    font-size: 1.7rem;
+    margin-bottom: 5px;
+    color: var(--dark);
+    font-family: 'Playfair Display', serif;
+}
+
+.team-role {
+    color: var(--primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.team-bio {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+.team-tag {
+    display: inline-flex;
+    align-items: center;
+    background: var(--green-light);
+    color: var(--green-dark);
+    padding: 8px 18px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.team-card:hover .team-tag {
+    background: var(--primary);
+    color: white;
+}
+
+/* =======================================================
+   5. SECCIÓN SOCIOS - GLASSMORPHISM PROFESIONAL
+   ======================================================= */
+.socios-section {
+    background-color: var(--green-organic);
+    background-image: radial-gradient(circle at 0% 0%, rgba(255,255,255,0.05) 0%, transparent 50%);
+    color: #ffffff;
+    padding: 140px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.socios-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 80px;
+}
+
+.socios-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 3.8rem);
+    line-height: 1.1;
+    margin-bottom: 30px;
+}
+
+.socios-title i {
+    font-weight: 400;
+    color: rgba(255,255,255,0.7);
+}
+
+.socios-description {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 50px;
+    font-weight: 300;
+}
+
+.socios-pills {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.pill-badge {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 12px 28px;
+    border-radius: 100px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.pill-badge:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.socios-img-main {
+    width: 100%;
+    border-radius: 30px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+    transform: rotate(2deg);
+    transition: all 0.8s var(--ease);
+}
+
+.socios-visual:hover .socios-img-main {
+    transform: rotate(0deg) scale(1.05);
+}
+
+/* =======================================================
+   6. CTA - ÚNETE AL EQUIPO
+   ======================================================= */
+.cta-unete {
+    padding: 100px 20px;
+    background: var(--bg-light);
+    text-align: center;
+}
+
+.cta-container {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: var(--dark);
+    margin-bottom: 20px;
+}
+
+.cta-description {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 40px;
+}
+
+.cta-btn {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 18px 45px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.4s var(--ease);
+    box-shadow: 0 10px 25px rgba(162, 25, 66, 0.2);
+}
+
+.cta-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(162, 25, 66, 0.3);
+}
+
+/* =======================================================
+   7. AJUSTES RESPONSIVOS
+   ======================================================= */
+@media (max-width: 1024px) {
+    .socios-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 60px;
+    }
+    
+    .socios-description { margin: 0 auto 40px; }
+    .socios-pills { justify-content: center; }
+    .socios-img-main { transform: rotate(0); }
+}
+
+@media (max-width: 768px) {
+    .equipo-hero { height: 50vh; }
+    .equipo-grid { grid-template-columns: 1fr; }
+    .team-info { padding: 25px; }
+    .hero-title { font-size: 3rem; }
+}
+/* =========================================================
+   8. MODO OSCURO - PÁGINA EQUIPO
+   ========================================================= */
+
+body.dark .equipo-grid-section {
+    background: #0b1020 !important; /* Fondo principal oscuro */
+}
+
+/* --- TARJETAS DE EQUIPO --- */
+body.dark .team-card {
+    background: #161f32 !important; /* Azul oscuro profundo para tarjetas */
+    border: 1px solid #233047 !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark .team-info {
+    background: #161f32 !important; /* Coherencia con la tarjeta */
+}
+
+body.dark .team-info h3 {
+    color: #ffffff !important;
+}
+
+body.dark .team-bio {
+    color: #94a3b8 !important; /* Gris azulado para legibilidad */
+}
+
+body.dark .team-tag {
+    background: rgba(185, 0, 96, 0.15) !important; /* Fondo rosa suave */
+    color: #ff5ca7 !important; /* Texto rosa brillante */
+    border: 1px solid rgba(255, 92, 167, 0.2);
+}
+
+/* --- SECCIÓN SOCIOS (MODO OSCURO) --- */
+body.dark .socios-section {
+    background-color: #080c16 !important; /* Más oscuro que el fondo general */
+    background-image: radial-gradient(circle at 0% 0%, rgba(185, 0, 96, 0.1) 0%, transparent 60%);
+}
+
+body.dark .socios-title {
+    color: #ffffff !important;
+}
+
+body.dark .socios-description {
+    color: #cbd5e1 !important;
+}
+
+body.dark .pill-badge {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #e2e8f0 !important;
+}
+
+body.dark .pill-badge:hover {
+    background: var(--primary) !important;
+    color: white !important;
+    border-color: var(--primary) !important;
+}
+
+/* --- HERO SECTION --- */
+body.dark .equipo-hero {
+    background: #000000 !important;
+}
+
+body.dark .hero-description {
+    color: #e2e8f0 !important;
+}
+
+/* --- OVERLAY DE IMAGEN --- */
+body.dark .team-img-wrapper::after {
+    background: linear-gradient(to top, rgba(11, 16, 32, 0.8), transparent) !important;
+}
+
+/* --- HOVER EFFECTS --- */
+body.dark .team-card:hover {
+    border-color: #ff5ca7 !important; /* Borde rosa al pasar el mouse */
+    box-shadow: 0 20px 50px rgba(185, 0, 96, 0.15) !important;
+}
+
+body.dark .team-card:hover .team-tag {
+    background: #ff5ca7 !important;
+    color: #ffffff !important;
+}
+
+/* --- CTA ÚNETE --- */
+body.dark .cta-unete {
+    background: #0b1020;
+}
+
+body.dark .cta-title {
+    color: #ffffff;
+}
+
+body.dark .cta-description {
+    color: #94a3b8;
+}
+
+body.dark .cta-btn {
+    background: #ff5ca7;
+    color: #ffffff;
+}
+
+/* =========================================================
+   9. MODO OSCURO - SECCIÓN CARRUSEL EQUIPO COMPLETO
+   ========================================================= */
+
+body.dark .seccion-equipo-completo {
+    background-color: #0b1020;
+    color: #cbd5e1;
+}
+
+body.dark .encabezado-equipo .tag-quienes {
+    color: #f472b6; /* Rosa neón para contraste */
+}
+
+body.dark .encabezado-equipo h2 {
+    color: #f8fafc;
+}
+
+body.dark .frase-inspiradora {
+    color: #94a3b8;
+}
+
+body.dark .frase-inspiradora::before,
+body.dark .frase-inspiradora::after {
+    background: linear-gradient(90deg, transparent, #f472b6, transparent);
+    opacity: 0.5;
+}
+
+body.dark .contenedor-carrusel {
+    box-shadow: 0 25px 55px rgba(0, 0, 0, 0.3), 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+body.dark .contenedor-carrusel:hover {
+    box-shadow: 0 35px 70px rgba(0, 0, 0, 0.4), 0 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+body.dark .badge-titulo-flotante {
+    background: rgba(15, 23, 42, 0.5);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+body.dark .contenedor-carrusel:hover .badge-titulo-flotante {
+    background: rgba(15, 23, 42, 0.65);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+body.dark .btn-carrusel {
+    background-color: rgba(30, 41, 59, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+body.dark .btn-carrusel:hover {
+    background-color: #f472b6;
+    color: #111827;
+    border-color: #f472b6;
+}
+
+body.dark .seccion-socios-extras {
+    background: #111827;
+    border-color: #1f2937;
+}
+
+body.dark .texto-socios p {
+    color: #94a3b8;
+}
+
+body.dark .badge-item {
+    background: #1e293b;
+    color: #86efac; /* Verde claro para contraste */
+    border-color: #334155;
+}
+
+
+
+
+
+
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght=0,300;0,400;0,500;0,600;0,700;1,300&display=swap');
+
+  .seccion-equipo-completo {
+    padding: 15px 20px 80px 20px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #fafdfa;
+    color: #2c3e50;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  /* 🏛️ ENCABEZADO EDITORIAL DE ALTO NIVEL */
+  .encabezado-equipo {
+    max-width: 850px;
+    margin: 0 auto 15px auto;
+    text-align: center;
+    perspective: 1000px;
+  }
+
+  .encabezado-equipo .tag-quienes {
+    color: #c2185b; 
+    font-weight: 600; 
+    text-transform: uppercase; 
+    letter-spacing: 4px;
+    margin: 0 0 10px 0; 
+    font-size: 0.8rem;
+    display: inline-block;
+    position: relative;
+    animation: fadeInDown 0.8s ease out;
+  }
+
+  .encabezado-equipo h2 {
+    font-size: 3rem; 
+    color: #1b5e20; 
+    margin: 0 0 25px 0;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .frase-inspiradora {
+    font-size: 1.3rem;
+    font-weight: 300; 
+    font-style: italic;
+    color: #4a5a4a; 
+    margin: 0 auto 40px auto;
+    max-width: 760px;
+    line-height: 1.8;
+    position: relative;
+    padding: 0 30px;
+  }
+
+  .frase-inspiradora::before,
+  .frase-inspiradora::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #ff80ab, transparent);
+    margin: 15px auto;
+  }
+
+  /* 🎡 CONTENEDOR DEL CARRUSEL ESCENARIO PREMIUM */
+  .contenedor-carrusel {
+    position: relative;
+    max-width: 1050px; 
+    height: 580px; 
+    margin: 0 auto 50px auto;
+    overflow: hidden;
+    border-radius: 28px; 
+    box-shadow: 0 25px 55px rgba(27, 94, 32, 0.12), 0 10px 20px rgba(0, 0, 0, 0.05);
+    transform: translateZ(0); /* Forzar aceleración por hardware */
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+  }
+
+  .contenedor-carrusel:hover {
+    box-shadow: 0 35px 70px rgba(27, 94, 32, 0.18), 0 15px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .carrusel-slides {
+    display: flex;
+    transition: transform 0.85s cubic-bezier(0.25, 1, 0.3, 1);
+    width: 100%;
+    height: 100%;
+  }
+
+  .slide {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1);
+    transition: transform 6s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: brightness(0.88) contrast(1.02);
+  }
+  
+  .contenedor-carrusel:hover .slide img {
+    transform: scale(1.04);
+  }
+
+  /* 🪟 GLASSMORPHISM AVANZADO CON EFECTO HOVER 3D */
+  .badge-titulo-flotante {
+    position: absolute;
+    top: 45px;
+    left: 45px;
+    background: rgba(15, 35, 20, 0.2);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 24px 40px;
+    border-radius: 20px;
+    color: white;
+    text-align: left;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    z-index: 5;
+    pointer-events: none;
+    transform-origin: left top;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: flotarSuave 5s ease-in-out infinite alternate;
+  }
+
+  .contenedor-carrusel:hover .badge-titulo-flotante {
+    background: rgba(15, 35, 20, 0.35);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-5px) scale(1.02);
+  }
+
+  .badge-titulo-flotante span {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #b9f6ca;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .badge-titulo-flotante h1 {
+    font-size: 2.4rem;
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  }
+
+  /* 🏹 BOTONES DE NAVEGACIÓN CINEMÁTICOS */
+  .btn-carrusel {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-carrusel:hover {
+    background-color: #ffffff;
+    color: #1b5e20;
+    border-color: #ffffff;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  }
+
+  .btn-prev { left: 30px; }
+  .btn-next { right: 30px; }
+
+  /* 🪵 SECCIÓN INFERIOR: INFOGRAFÍA INTERACTIVA */
+  .seccion-socios-extras {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 40px;
+    max-width: 1050px;
+    margin: 0 auto;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.02);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    text-align: left;
+    box-sizing: border-box;
+    border: 1px solid rgba(46, 125, 50, 0.05);
+  }
+
+  .texto-socios { flex: 1; }
+  .texto-socios p { 
+    margin: 0; 
+    color: #556b55; 
+    line-height: 1.7; 
+    font-size: 1.05rem; 
+  }
+
+  .badges-socios { 
+    display: flex; 
+    gap: 20px; 
+    min-width: 360px; 
+  }
+  
+  .badge-item { 
+    flex: 1;
+    background: linear-gradient(135deg, #f7fbf7, #f0f7f0);
+    padding: 20px; 
+    border-radius: 16px; 
+    font-weight: 600; 
+    color: #2e7d32; 
+    text-align: center; 
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(46,125,50,0.03);
+    border: 1px solid rgba(46,125,50,0.08);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .badge-item span {
+    font-size: 1.4rem;
+  }
+
+  .badge-item:hover {
+    transform: translateY(-6px);
+    background: linear-gradient(135deg, #ffffff, #f4f9f4);
+    box-shadow: 0 12px 24px rgba(46,125,50,0.08);
+    border-color: rgba(46,125,50,0.2);
+  }
+
+  /* 📱 COREOGRAFÍA DE ANIMACIONES */
+  @keyframes flotarSuave {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-12px); }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* RESPONSIVO AJUSTADO */
+  @media (max-width: 850px) {
+    .encabezado-equipo h2 { font-size: 2.3rem; }
+    .contenedor-carrusel { height: 440px; margin-bottom: 30px; }
+    .badge-titulo-flotante { top: 25px; left: 25px; padding: 16px 25px; }
+    .badge-titulo-flotante h1 { font-size: 1.8rem; }
+    .seccion-socios-extras { flex-direction: column; text-align: center; padding: 30px; }
+    .badges-socios { width: 100%; min-width: auto; }
+    .btn-carrusel { width: 45px; height: 45px; font-size: 1.2rem; }
+    .btn-prev { left: 15px; }
+    .btn-next { right: 15px; }
+  }
+
+  
+/* Contenedor principal del Hero */
+.hero-section {
+  position: relative;
+  width: 100%; /* Cambiado a 100% para que abarque todo el ancho de la pantalla */
+  min-height: 70vh; 
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0b0b0b; /* Fondo oscuro de seguridad si la imagen tarda en cargar */
+}
+
+/* Imagen de Fondo (hero-bg) con Oscurecimiento Integrado */
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* Mantiene la proporción correcta y llena todo el ancho/alto */
+  object-fit: cover; 
+  object-position: center 60%; 
+  
+  /* Capa de oscurecimiento directa en la imagen mediante filtro */
+  filter: brightness(0.55) contrast(1.05); 
+  
+  /* Máxima nitidez y renderizado */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  
+  /* Garantiza que quede detrás del texto */
+  z-index: 1; 
+}
+
+/* Overlay para Gradiente Oscuro (Resalta más el texto al centro/abajo) */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  /* Gradiente elegante: más oscuro arriba y abajo, suave al centro */
+  background: linear-gradient(
+    180deg, 
+    rgba(0, 0, 0, 0.6) 0%, 
+    rgba(0, 0, 0, 0.35) 50%, 
+    rgba(0, 0, 0, 0.7) 100%
+  ); 
+  z-index: 2;
+}
+
+/* Contenido de Texto */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: #ffffff;
+  /* Sombra de texto adicional para máxima legibilidad */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}

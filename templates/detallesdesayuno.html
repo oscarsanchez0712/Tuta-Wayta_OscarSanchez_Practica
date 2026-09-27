@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Detalle Receta - Tuta Wayta{% endblock %}
+
+{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/detalle.css') }}" />
+{% endblock %}
+
+<main class="detalle-page">
+  <section class="wrap">
+
+    <div class="img-box">
+      <!-- Mantenemos el id="img-receta" para evitar conflictos en JS -->
+      <img id="img-receta" src="" alt="Receta" />
+    </div>
+
+    <div class="info-box">
+
+      <p class="eyebrow" id="etiqueta"></p>
+
+      <h1 class="nombre" id="nombre"></h1>
+
+      <h2 class="titulo" id="titulo"></h2>
+
+      <p class="desc" id="descripcion"></p>
+
+      <div class="grid">
+
+        <div class="card">
+          <p class="k" id="lbl-tiempo">TIEMPO</p>
+          <p class="v" id="tiempo"></p>
+        </div>
+
+        <div class="card">
+          <p class="k" id="lbl-porciones">PORCIONES</p>
+          <p class="v" id="porciones"></p>
+        </div>
+
+        <div class="card">
+          <p class="k" id="lbl-dificultad">DIFICULTAD</p>
+          <p class="v" id="dificultad"></p>
+        </div>
+
+        <div class="card">
+          <p class="k" id="lbl-tipo">TIPO</p>
+          <p class="v" id="tipo"></p>
+        </div>
+
+      </div>
+
+      <div class="bondades-section">
+        <h3 class="bondades-title" id="lbl-ingredientes">Ingredientes Naturales</h3>
+        <ul id="ingredientes" class="bondades-list"></ul>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-secondary" id="btn-volver" href="javascript:history.back()">
+          Volver al Catálogo
+        </a>
+      </div>
+
+    </div>
+
+  </section>
+</main>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/detallesdesayuno.js') }}"></script>
+{% endblock %}

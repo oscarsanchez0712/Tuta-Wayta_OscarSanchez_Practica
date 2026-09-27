@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Registrarme - Tuta Wayta{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}?v=20260521">
+{% endblock %}
+
+{% block content %}
+<main class="login-page">
+  <section class="login-panel" aria-labelledby="registerTitle">
+    <div class="login-brand">
+      <div class="login-mark" aria-hidden="true">
+        <svg viewBox="0 0 100 100">
+          <ellipse cx="35" cy="35" rx="14" ry="22" transform="rotate(-45 35 35)"/>
+          <ellipse cx="65" cy="35" rx="14" ry="22" transform="rotate(45 65 35)"/>
+          <ellipse cx="35" cy="65" rx="14" ry="22" transform="rotate(45 35 65)"/>
+          <ellipse cx="65" cy="65" rx="14" ry="22" transform="rotate(-45 65 65)"/>
+          <circle cx="50" cy="50" r="13"/>
+        </svg>
+      </div>
+      <p class="login-kicker" data-i18n="register_kicker">Nueva cuenta</p>
+      <h1 id="registerTitle" data-i18n="register_title">Registrarme</h1>
+      <p class="login-copy" data-i18n="register_copy">Crea una cuenta como comprador, trabajador o administrador.</p>
+    </div>
+
+    <form id="registerForm" class="login-form active" novalidate>
+      <div class="login-field">
+        <label for="registerName" data-i18n="register_label_name">Nombre completo</label>
+        <input id="registerName" name="name" type="text" autocomplete="name" placeholder="Tu nombre" data-i18n-placeholder="register_ph_name" required>
+        <span class="login-error" id="registerNameError"></span>
+      </div>
+
+      <div class="login-field">
+        <label for="registerEmail" data-i18n="register_label_email">Correo electrónico</label>
+        <input id="registerEmail" name="email" type="email" autocomplete="email" placeholder="correo@dominio.com" data-i18n-placeholder="register_ph_email" required>
+        <span class="login-error" id="registerEmailError"></span>
+      </div>
+
+      <div class="login-field">
+        <label for="registerPassword" data-i18n="register_label_password">Contraseña</label>
+        <div class="password-row">
+          <input id="registerPassword" name="password" type="password" autocomplete="new-password" placeholder="Mínimo 6 caracteres" data-i18n-placeholder="register_ph_password" required minlength="6">
+          <button type="button" class="password-toggle" data-target="registerPassword" aria-label="Mostrar contraseña">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 5c5.05 0 8.55 4.08 9.73 5.7.56.77.56 1.83 0 2.6C20.55 14.92 17.05 19 12 19s-8.55-4.08-9.73-5.7a2.2 2.2 0 0 1 0-2.6C3.45 9.08 6.95 5 12 5Zm0 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0-2.2a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6Z"/>
+            </svg>
+          </button>
+        </div>
+        <span class="login-error" id="registerPasswordError"></span>
+      </div>
+
+      <button class="login-submit" type="submit" data-i18n="register_btn_submit">Crear cuenta</button>
+      <div id="loginMessage" class="login-message" role="status" aria-live="polite"></div>
+    </form>
+  </section>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/login.js') }}?v=20260521"></script>
+{% endblock %}

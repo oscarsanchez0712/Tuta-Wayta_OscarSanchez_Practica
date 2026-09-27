@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+
+{% block title %}Tuta Wayta – Contacto{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/contacto.css') }}?v=20260422">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chatbox.css') }}?v=20260421">
+{% endblock %}
+
+{% block content %}
+<section class="hero-carousel" aria-label="Carrusel de contacto">
+  <div class="carousel-container">
+    <div class="carousel-slide active">
+      <img src="https://readdy.ai/api/search-image?query=beautiful-dragon-fruit-plantation-sunset-golden-hour-warm-light-rows-of-green-cactus-plants-with-pink-fruits-agricultural-landscape-ca%C3%B1ete-peru-natural-earthy-colors-panoramic&width=1400&height=500&seq=54&orientation=landscape" alt="Atardecer en plantación">
+    </div>
+    <div class="carousel-slide">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv22V7cgc9qWqc-2N2QO_Y3YJA3PNKoiWrGcXfgY8QLTsqBGwo8LwAHQk-fCqH1TODs4v5cJ_nsUmEGF6gSlSO-sp7qVHIcBqYnSIF4_l91VwZS1MmYuZA4G0XUI1ZSvRvZJl85E1zra0wtPaT6rm6r6zI971q9Pz3O-yhHnGNmVnQ0Q2wiuKx1VFd3ci0Xk2H1T9-fEI5mtCY0FE2HJxB15JQ30GaTM-WeMVPzMoI4sG_MlhiuHvhvkWGrLEnPxhhQESjEVw-Mog" alt="Cosecha de pitahaya">
+    </div>
+    <div class="carousel-slide">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbLn-m4Iw4tLNiSYVhh3mEoaYKNOOkuisxQLuTzCrfAu3x8DpYP7kz40KG0eMUOMyVvxeIFIc6YISWieVDqkObZ3RvPcrPvkbDfmQ4tYJGfdfk_74jmwEkxEw3OmQNzEmXrYfq7y_FKtWNg81inL8LicchlV0lZAZUvV_8Z1RrPcbNHCnLvZCO79mhb3Uw982IlNn7JcawUBYLgB29N8wGHd3luas5ETbZXRfDIIG119gahg5PU_zXgPvGBsAXs3H6G-3UBRedCfM" alt="Detalle de la fruta">
+    </div>
+
+    <div class="carousel-overlay">
+      <div class="hero-content fade-up active">
+        <h1 class="headline text-5xl md:text-7xl font-bold mb-4" data-i18n="contact_hero_title">Contáctanos</h1>
+        <p class="text-lg opacity-90 max-w-xl mx-auto" data-i18n="contact_hero_p">
+          Estamos aquí para ayudarte. Completa el formulario o utiliza nuestros canales de contacto directo.
+        </p>
+      </div>
+    </div>
+    
+    <div class="carousel-progress"><div class="progress-bar"></div></div>
+    <button class="carousel-btn-nav prev" aria-label="Imagen anterior">‹</button>
+    <button class="carousel-btn-nav next" aria-label="Siguiente imagen">›</button>
+  </div>
+</section>
+
+<main class="max-w-7xl mx-auto px-6 py-20">
+  <div class="grid lg:grid-cols-2 gap-16 items-start">
+    
+    <div class="space-y-10">
+      <h2 class="headline text-4xl font-bold text-[#5a4b3f]" data-i18n="contact_info_title">Información de Contacto</h2>
+      
+      <div class="space-y-8">
+        <div class="flex gap-5">
+          <div class="w-12 h-12 bg-[#f2f7f2] rounded-full flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-[#5b7c5b]">location_on</span>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-800" data-i18n="contact_info_loc_title">Ubicación</h4>
+            <p class="text-gray-500 text-sm leading-relaxed" data-i18n="contact_info_loc_p">
+              Asociación Tuta Wayta<br>
+              Parcela Agrícola San Vicente de Cañete<br>
+              Provincia de Cañete, Región Lima, Perú
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-5">
+          <div class="w-12 h-12 bg-[#f2f7f2] rounded-full flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-[#5b7c5b]">call</span>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-800" data-i18n="contact_info_phone_title">Teléfono</h4>
+            <p class="text-gray-500 text-sm" data-i18n="contact_info_phone_p">
+              +51 964 031 339<br>
+              
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-5">
+          <div class="info-icon-container w-12 h-12 bg-[#f2f7f2] rounded-full flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-[#5b7c5b]">mail</span>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-800" data-i18n="contact_info_email_title">Correo electrónico</h4>
+            <p class="text-gray-500 text-sm underline" data-i18n="contact_info_email_p">hola@tutawayta.org.pe</p>
+          </div>
+        </div>
+
+        <div class="flex gap-5">
+          <div class="w-12 h-12 bg-[#f2f7f2] rounded-full flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-[#5b7c5b]">storefront</span>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-800" data-i18n="contact_info_pos_title">Puntos de venta</h4>
+            <p class="text-gray-500 text-sm" data-i18n="contact_info_pos_p">
+              Agroferia Municipal de San Vicente (Sábados)<br>
+              Mercado Orgánico de Mala (Domingos)<br>
+              Delivery a Lima Metropolitana (pedidos mayores a 10kg)
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-6 border-t border-gray-100">
+        <h4 class="font-bold text-gray-800 mb-4 text-sm uppercase tracking-wider" data-i18n="contact_info_social_title">Síguenos en redes</h4>
+        <div class="flex gap-4">
+          <a href="https://www.instagram.com/reel/DV8zRACjObT/?hl=es-la" class="w-10 h-10 rounded-full bg-[#fce8ef] flex items-center justify-center text-[#d65179] hover:bg-[#d65179] hover:text-white transition-all">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.facebook.com/groups/pitahayaesquejes/?locale=es_LA" class="w-10 h-10 rounded-full bg-[#fce8ef] flex items-center justify-center text-[#d65179] hover:bg-[#d65179] hover:text-white transition-all">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.youtube.com/watch?v=3quk9SvEgz0&t=11s" class="w-10 h-10 rounded-full bg-[#fce8ef] flex items-center justify-center text-[#d65179] hover:bg-[#d65179] hover:text-white transition-all">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://www.tiktok.com/@germancaballeroz/video/7279862021737254150?q=sobre%20pitahaya%20ca%C3%B1ete&t=1781152511204" class="w-10 h-10 rounded-full bg-[#fce8ef] flex items-center justify-center text-[#d65179] hover:bg-[#d65179] hover:text-white transition-all">
+            <i class="fab fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white p-10 md:p-14 rounded-[3rem] shadow-xl border border-gray-50 fade-up active">
+      <div class="mb-8">
+        <h3 class="text-2xl font-bold text-gray-800 mb-2" data-i18n="contact_form_title">Envíanos un mensaje</h3>
+        <p class="text-gray-400 text-sm" data-i18n="contact_form_p">Completa el formulario y te responderemos en menos de 24 horas.</p>
+      </div>
+
+      <div id="alertContainer">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="mb-6 p-4 rounded-2xl text-sm font-medium flex items-center gap-3
+                {% if category == 'success' %} bg-green-100 text-green-700 {% else %} bg-red-100 text-red-700 {% endif %}">
+                <span class="material-symbols-outlined">{% if category == 'success' %}check_circle{% else %}error{% endif %}</span>
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </div>
+
+      <form id="contactForm" action="{{ url_for('contacto') }}" method="POST" class="space-y-6">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="group">
+            <label class="text-[11px] font-bold text-gray-400 uppercase ml-1 mb-2 block tracking-wider" data-i18n="contact_form_name_label">Nombre completo</label>
+            <input type="text" id="nombreInput" name="nombre" required data-i18n-placeholder="contact_form_name_ph" placeholder="Tu nombre" class="input-field w-full px-4 py-3 rounded-xl border border-gray-100 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#d65179]/10 outline-none transition-all">
+          </div>
+          <div class="group">
+            <label class="text-[11px] font-bold text-gray-400 uppercase ml-1 mb-2 block tracking-wider" data-i18n="contact_form_email_label">Correo electrónico</label>
+            <input type="email" id="correoInput" name="correo" required data-i18n-placeholder="contact_form_email_ph" placeholder="tucorreo@ejemplo.com" class="input-field w-full px-4 py-3 rounded-xl border border-gray-100 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#d65179]/10 outline-none transition-all">
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="group">
+            <label class="text-[11px] font-bold text-gray-400 uppercase ml-1 mb-2 block tracking-wider" data-i18n="contact_form_phone_label">Teléfono</label>
+            <input type="tel" id="telefonoInput" name="telefono" required data-i18n-placeholder="contact_form_phone_ph" placeholder="+51 964 031 339" class="input-field w-full px-4 py-3 rounded-xl border border-gray-100 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#d65179]/10 outline-none transition-all">
+          </div>
+
+          <div class="group relative">
+            <label class="text-[11px] font-bold text-gray-400 uppercase ml-1 mb-2 block tracking-wider" data-i18n="contact_form_subject_label">Asunto</label>
+            <select id="asuntoInput" name="asunto" required class="input-field w-full px-4 py-3 rounded-xl border border-gray-100 bg-gray-50 focus:bg-white outline-none transition-all appearance-none cursor-pointer">
+              <option value="Consulta general" selected data-i18n="contact_form_s_opt1">Consulta general</option>
+              <option value="Comprar productos" data-i18n="contact_form_s_opt2">Comprar productos</option>
+              <option value="Pedido mayorista" data-i18n="contact_form_s_opt3">Pedido mayorista</option>
+              <option value="Quiero ser socio productor" data-i18n="contact_form_s_opt4">Quiero ser socio productor</option>
+              <option value="Prensa / Medios" data-i18n="contact_form_s_opt5">Prensa / Medios</option>
+              <option value="Otro" data-i18n="contact_form_s_opt6">Otro</option>
+            </select>
+            
+            <div class="absolute right-4 top-[38px] pointer-events-none text-gray-400">
+              <span class="material-symbols-outlined text-sm">expand_more</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="group">
+          <label class="text-[11px] font-bold text-gray-400 uppercase ml-1 mb-2 block tracking-wider" data-i18n="contact_form_msg_label">Mensaje</label>
+          <textarea id="mensajeInput" name="mensaje" rows="4" required data-i18n-placeholder="contact_form_msg_ph" placeholder="¿Cómo podemos ayudarte?" class="input-field w-full px-4 py-3 rounded-xl border border-gray-100 bg-gray-50 focus:bg-white outline-none transition-all resize-none"></textarea>
+          <span id="charCounter" class="text-[10px] text-gray-400 float-right mt-1">0/500</span>
+        </div>
+
+        <button type="submit" id="submitBtn" class="w-full bg-[#d65179] hover:bg-[#b94265] text-white font-bold py-4 rounded-full flex items-center justify-center gap-3 transition-all shadow-lg shadow-[#d65179]/20 transform hover:-translate-y-1">
+          <span id="btnText" data-i18n="contact_form_btn">Enviar mensaje</span>
+          <div class="w-6 h-6 bg-black/10 rounded-full flex items-center justify-center">
+            <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+          </div>
+        </button>
+      </form>
+    </div>
+  </div>
+</main>
+
+<section class="max-w-7xl mx-auto px-6 pb-20">
+  <div class="rounded-[3.5rem] overflow-hidden shadow-2xl h-[500px] border-8 border-white">
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d62334.83737222564!2d-76.3864!3d-13.0761!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x910ffbe9700f7e1b%3A0x6b876371f65d6c!2sSan%20Vicente%20de%20Ca%C3%B1ete!5e0!3m2!1ses!2spe!4v1716300000000!5m2!1ses!2spe" 
+        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+     Bled
+    </iframe>
+  </div>
+</section>
+
+{% include "chatbox.html" %}
+
+<!-- =======================================================
+     PANTALLA DE CONFIRMACIÓN DE ENVÍO
+     ======================================================= -->
+<div id="confirmationScreen" class="confirmation-overlay">
+  <div class="confirmation-card">
+    <div class="confirmation-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+    </div>
+    <h2 class="confirmation-title" data-i18n="contact_conf_title">¡Mensaje Enviado!</h2>
+    <p class="confirmation-text" data-i18n="contact_conf_p">Gracias por ponerte en contacto con nosotros. Hemos recibido tu mensaje y te responderemos a la brevedad posible.</p>
+    <button id="closeConfirmationBtn" class="confirmation-btn" data-i18n="contact_conf_btn">Volver al inicio</button>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="{{ url_for('static', filename='js/mapa.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/contact.js') }}?v=20260625"></script>
+<script src="{{ url_for('static', filename='js/chatbox.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/carousel.js') }}?v=20260421" defer></script>
+
+{% endblock %}

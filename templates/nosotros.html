@@ -1,0 +1,226 @@
+{% extends "base.html" %}
+{% block title %}Tuta Wayta – Nosotros{% endblock %}
+
+{% block content %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/nosotros.css') }}?v=20260420"/>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1 data-i18n="about_hero_title">Nosotros</h1>
+    <p data-i18n="about_hero_subtitle">Cultivando el futuro de la pitahaya orgánica con raíces de tradición y excelencia.</p>
+  </div>
+  
+</section>
+
+<!-- QUIÉNES SOMOS -->
+<section id="quienes-somos" class="about-section-custom reveal">
+    <div class="origenes-container">
+        <div class="origenes-content">
+            <span class="origenes-tag" data-i18n="about_who_we_are_tag">QUIÉNES SOMOS</span>
+            <h2 class="origenes-title">
+                <span data-i18n="about_who_we_are_title1">Una gran</span><br><i><span data-i18n="about_who_we_are_title2">familia agrícola</span></i>
+            </h2>
+            
+            <p class="origenes-text" data-i18n="about_origins_p1">
+                Somos la Asociación de Productores de Pitahaya Tuta Wayta, una gran familia de más de 30 agricultores artesanales dedicados al cultivo y comercialización de pitahaya de la más alta calidad en los fértiles valles de Cañete. Tuta Wayta rinde homenaje a la mística 'Flor de Noche'. Nacimos con la firme convicción de revalorizar el trabajo del campo peruano, transformando nuestra pasión por el agro en un modelo de negocio sostenible.
+            </p>
+        </div>
+
+        <div class="origenes-visual">
+            <div class="img-wrapper">
+                <img src="https://i.ibb.co/JjRVjWQ3/FLOR.jpg" alt="Flor de la Pitahaya Tuta Wayta">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MISIÓN -->
+<section id="mision" class="about-section-custom reversed reveal">
+    <div class="origenes-container">
+        <div class="origenes-visual">
+            <div class="img-wrapper">
+                <img src="https://i.ibb.co/96JY58t/IMG-8466.avif" alt="Misión de Tuta Wayta">
+            </div>
+        </div>
+        <div class="origenes-content">
+            <span class="origenes-tag" data-i18n="about_mission_tag">MISIÓN</span>
+            <h2 class="origenes-title">
+                <span data-i18n="about_mission_title1">Sabor y</span><br><i><span data-i18n="about_mission_title2">bienestar para todos</span></i>
+            </h2>
+            <p class="origenes-text" data-i18n="about_mission_p">
+                Llevar a las mesas del Perú y el mundo la mejor pitahaya y sus derivados, garantizando un sabor auténtico. Nos comprometemos a impulsar el bienestar de nuestros consumidores a través de alimentos altamente nutritivos, mientras promovemos prácticas agrícolas sostenibles y aseguramos el crecimiento de toda la asociación.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- VISIÓN -->
+<section id="vision" class="about-section-custom reveal">
+    <div class="origenes-container">
+        <div class="origenes-content">
+            <span class="origenes-tag" data-i18n="about_vision_tag">VISIÓN</span>
+            <h2 class="origenes-title">
+                <span data-i18n="about_vision_title1">Líderes en calidad</span><br><i><span data-i18n="about_vision_title2">y sostenibilidad</span></i>
+            </h2>
+            <p class="origenes-text" data-i18n="about_vision_p">
+                Ser reconocidos a nivel nacional e internacional como la asociación líder en la producción de pitahaya, destacando por nuestra excelencia técnica e innovación y el fortalecimiento de la identidad agrícola de Cañete.
+            </p>
+        </div>
+        <div class="origenes-visual">
+            <div class="img-wrapper">
+                <img src="https://i.ibb.co/Y4Cx1KF0/IMG-20260705-134543-jpg-1.jpg" alt="Visión Global de Tuta Wayta">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- VALORES -->
+<section class="valores-v2" style="margin-top: -70px;">
+
+    <div class="valores-header">
+        <span class="valores-tag" data-i18n="about_values_tag">LO QUE NOS GUÍA</span>
+        <h2 class="section-title reveal" data-i18n="about_values_title">Nuestros Valores</h2>
+        <p class="section-subtitle reveal" data-i18n="about_values_subtitle">
+            Principios que representan nuestra identidad y compromiso con la calidad, el medio ambiente y el desarrollo sostenible.
+        </p>
+    </div>
+
+    <div class="valores-grid-v2">
+        <div class="valor-card reveal" onclick="gestionarValor(this)">
+            <div class="icon-circle"><span>♻️</span></div>
+            <h4 data-i18n="about_value1_title">Sostenibilidad</h4>
+            <div class="desc"><p data-i18n="about_value1_desc">Compromiso absoluto con el ciclo vital del medio ambiente, regenerando el suelo para futuras generaciones.</p></div>
+        </div>
+
+        <div class="valor-card reveal" onclick="gestionarValor(this)">
+            <div class="icon-circle"><span>🤝</span></div>
+            <h4 data-i18n="about_value2_title">Asociatividad</h4>
+            <div class="desc"><p data-i18n="about_value2_desc">La fuerza colectiva de nuestros productores permite llevar la mejor fruta del mundo a su mesa.</p></div>
+        </div>
+
+        <div class="valor-card reveal" onclick="gestionarValor(this)">
+            <div class="icon-circle"><span>⭐</span></div>
+            <h4 data-i18n="about_value3_title">Calidad</h4>
+            <div class="desc"><p data-i18n="about_value3_desc">Perseguimos la excelencia técnica en cada fruto, desde el tamaño hasta el nivel de grados Brix.</p></div>
+        </div>
+</section>
+
+
+
+<section class="stats-section">
+    <div class="stats-grid">
+        <div class="stat-item">
+            <span class="stat-num" data-i18n="about_stat1_num">6+</span>
+            <span class="stat-label" data-i18n="about_stat1_label">AÑOS DE HISTORIA</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-num" data-i18n="about_stat2_num">30+</span>
+            <span class="stat-label" data-i18n="about_stat2_label">SOCIOS PRODUCTORES</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-num" data-i18n="about_stat3_num">4</span>
+            <span class="stat-label" data-i18n="about_stat3_label">VARIEDADES CULTIVADAS</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-num" data-i18n="about_stat4_num">100%</span>
+            <span class="stat-label" data-i18n="about_stat4_label">ORGÁNICO</span>
+        </div>
+    </div>
+</section>
+
+<section class="certificaciones reveal">
+    <div class="equipo-header">
+        <span class="equipo-tag" data-i18n="about_certs_tag">RECONOCIMIENTOS</span>
+        <h2 class="section-title">
+            <span data-i18n="about_certs_title1">Certificaciones y</span>
+            <i><span data-i18n="about_certs_title2">apoyos</span></i>
+        </h2>
+        <p class="section-subtitle" data-i18n="about_certs_subtitle">
+            La formalización y la calidad de nuestros procesos nos han abierto puertas con instituciones nacionales.
+        </p>
+    </div>
+
+    <div class="certificaciones-grid">
+
+        <div class="pilar-card white">
+            <img src="{{ url_for('static', filename='img/SENASA LOGO.jpeg') }}" alt="SENASA" class="pilar-icon">
+            <h3 data-i18n="about_cert1_title">SENASA</h3>
+            <p data-i18n="about_cert1_desc">
+                Reconocimiento sanitario para producción orgánica y trazabilidad de cultivos en Cañete.
+            </p>
+        </div>
+
+        <div class="pilar-card white">
+            <img src="{{ url_for('static', filename='img/AGROMERCADO.jpeg') }}" alt="Agromercado" class="pilar-icon">
+            <h3 data-i18n="about_cert2_title">Agromercado</h3>
+            <p data-i18n="about_cert2_desc">
+                Apoyo institucional en formalización, capacitación y acceso a mercados formales.
+            </p>
+        </div>
+
+        <div class="pilar-card white">
+            <span class="pilar-icon">💡</span>
+            <h3 data-i18n="about_cert3_title">Certificación Orgánica</h3>
+            <p data-i18n="about_cert3_desc">
+                En proceso de obtención de certificación orgánica formal para exportación futura.
+            </p>
+        </div>
+
+        <div class="pilar-card white">
+            <img src="{{ url_for('static', filename='img/valle grande.png') }}" alt="Instituto Valle Grande" class="pilar-icon">
+            <h3 data-i18n="about_cert4_title">Instituto Valle Grande</h3>
+            <p data-i18n="about_cert4_desc">
+                Página web desarrollada para la Asociación Tuta Wayta con el apoyo del Instituto Valle Grande.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- EQUIPO -->
+<section class="equipo-v2">
+  <div class="equipo-header">
+    <span class="equipo-tag" data-i18n="about_team_tag">QUIENES LIDERAN</span>
+    <h2 class="section-title" data-i18n="about_team_title">Nuestro Equipo Directivo</h2>
+    <p class="section-subtitle" data-i18n="about_team_subtitle">Liderando la transformación y la calidad orgánica desde el campo hasta el cliente final.</p>
+  </div>
+
+  <div class="equipo-grid-v2">
+    <div class="card-miembro reveal">
+      <div class="photo-container">
+        <img src="{{ url_for('static', filename='img/presidenta.png') }}" alt="Kelly Maynard">
+      </div>
+      <h4 data-i18n="team_m1_name">Kelly Maynard</h4>
+      <span class="role" data-i18n="team_m1_role">Presidenta</span>
+    </div>
+
+    <div class="card-miembro reveal">
+      <div class="photo-container">
+        <img src="{{ url_for('static', filename='img/vicepresidenta.png') }}" alt="Talia Rodríguez">
+      </div>
+      <h4 data-i18n="team_m2_name">Talia Rodríguez</h4>
+      <span class="role" data-i18n="team_m2_role">Vicepresidenta</span>
+    </div>
+
+   <div class="card-miembro family-card reveal">
+    <div class="photo-container family-bg">
+        <div class="counter-overlay">
+            <span class="num" data-i18n="about_team_m3_num">+30</span>
+            <span class="label" data-i18n="about_team_m3_label">Integrantes</span>
+        </div>
+
+        <a href="{{ url_for('equipo') }}">
+            <img src="{{ url_for('static', filename='img/pitahaya_American_beauty.png') }}" alt="Equipo">
+        </a>
+    </div>
+
+    <h4 data-i18n="about_team_m3_name">Nuestra Familia</h4>
+    <span class="role" data-i18n="about_team_m3_role">Equipo Interno</span>
+</div>
+
+  
+</section>
+
+<script src="{{ url_for('static', filename='js/animacionvalores.js') }}?v=20260420"></script>
+<script src="{{ url_for('static', filename='js/nosotros.js') }}?v=1.0"></script>
+{% endblock %}

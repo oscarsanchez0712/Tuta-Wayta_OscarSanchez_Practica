@@ -1,0 +1,1033 @@
+{% extends "base.html" %}
+
+{% block title %}Nuestros Servicios - Tuta Wayta{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/servicios.css') }}">
+{% endblock %}
+
+{% block content %}
+<main class="servicios-page">
+    <section class="servicios-hero">
+        <div class="hero-media">
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="{{ url_for('static', filename='video/5944794-hd_1920_1080_25fps.mp4') }}" type="video/mp4">
+                Tu navegador no soporta video HTML5.
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+
+        <div class="hero-content">
+<h1>
+    <span data-i18n="services_hero_title1">Nuestros</span> 
+    <span data-i18n="services_hero_title2">Servicios</span>
+</h1>            <p data-i18n="services_hero_p">
+                Descubre cómo Tuta Wayta puede ayudarte con nuestros servicios especializados en pitahaya orgánica.
+            </p>
+            <a href="{{ url_for('productos') }}" class="btn-servicios-contacto" data-i18n="services_hero_btn">
+                Conoce nuestros productos
+            </a>
+        </div>
+    </section>
+
+    <section class="servicios-grid-section">
+        <div class="servicios-header-grid">
+            <span class="servicios-badge" data-i18n="services_grid_badge">QUÉ OFRECEMOS</span>
+            <h2 data-i18n="services_grid_title">Un Mundo de Posibilidades</h2>
+            <p data-i18n="services_grid_p">Desde la fruta fresca hasta el desarrollo de productos innovadores, nuestros servicios están diseñados para llevar la calidad de Tuta Wayta a tu negocio y comunidad.</p>
+        </div>
+        <div class="servicios-grid">
+            <div class="servicio-card">
+                <div class="servicio-icon">
+                    <span class="material-symbols-outlined">local_shipping</span>
+                </div>
+                <h3 data-i18n="services_card1_title">Venta de Fruta Fresca al por Mayor</h3>
+                <p data-i18n="services_card1_p">Proveemos pitahaya orgánica de alta calidad a restaurantes, mercados y distribuidores, garantizando frescura y trazabilidad.</p>
+            </div>
+
+            <div class="servicio-card">
+                <div class="servicio-icon">
+                    <span class="material-symbols-outlined">auto_awesome</span>
+                </div>
+                <h3 data-i18n="services_card2_title">Desarrollo de Productos Derivados</h3>
+                <p data-i18n="services_card2_p">Colaboramos con marcas para crear productos innovadores como mermeladas, néctares y pulpas, usando nuestra pitahaya como ingrediente principal.</p>
+            </div>
+
+            <div class="servicio-card">
+                <div class="servicio-icon">
+                    <span class="material-symbols-outlined">school</span>
+                </div>
+                <h3 data-i18n="services_card3_title">Asesoría en Cultivo Orgánico</h3>
+                <p data-i18n="services_card3_p">Ofrecemos capacitaciones y asesorías técnicas en cultivo orgánico de pitahaya para agricultores y asociaciones.</p>
+            </div>
+
+            <div class="servicio-card">
+                <div class="servicio-icon">
+                    <span class="material-symbols-outlined">hiking</span>
+                </div>
+                <h3 data-i18n="services_card4_title">Visitas Guiadas y Agroturismo</h3>
+                <p data-i18n="services_card4_p">Organizamos visitas guiadas a nuestras plantaciones en Cañete para que conozcas de cerca el proceso de cultivo y cosecha.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="ecosistema-section">
+        <div class="ecosistema-header">
+            <span class="ecosistema-eyebrow" data-i18n="services_eco_eyebrow">Nuestro Ecosistema</span>
+            <h2 data-i18n="services_eco_title">Servicios de <i>cultivo a mesa</i></h2>
+            <p data-i18n="services_eco_p">Desde la siembra hasta la exportación, cada servicio está pensado para entregar la mejor pitahaya peruana.</p>
+        </div>
+
+        <div class="servicios-accordion-container">
+            <div class="servicio-panel panel-active" id="p1" style="background-image: url('https://readdy.ai/api/search-image?query=Organic%20pitahaya%20dragon%20fruit%20cultivation%20in%20Peruvian%20farm%20rows%20of%20cactus%20plants%20with%20fuchsia%20fruits%20hanging%20tall%20green%20posts%20warm%20sunlight%20agricultural%20landscape%20natural%20farming%20clean%20background%20editorial%20photography%20high%20detail&width=800&height=1000&seq=servicio-cultivo-v2&orientation=portrait');">
+                <div class="panel-content">
+                    <span class="panel-eyebrow" data-i18n="services_p1_eyebrow">Siembra y producción sostenible</span>
+                    <h3 data-i18n="services_p1_title">Cultivo Orgánico</h3>
+                    <p class="panel-desc" data-i18n="services_p1_p">Desde la preparación de suelos con compost natural hasta la siembra de plántulas de pitahaya, cultivamos cada hectárea con respeto profundo por la tierra.</p>
+                    <div class="panel-tags">
+                        <span class="panel-pill" data-i18n="services_p1_t1">Plántulas certificadas</span>
+                        <span class="panel-pill" data-i18n="services_p1_t2">Abonamiento orgánico</span>
+                        <span class="panel-pill" data-i18n="services_p1_t3">Control biológico</span>
+                    </div>
+                    <a href="#modal-cultivo" class="panel-btn" data-i18n="services_panel_btn">Conoce más →</a>
+                </div>
+            </div>
+
+            <div class="servicio-panel" id="p2" style="background-image: url('https://readdy.ai/api/search-image?query=Hands%20harvesting%20fresh%20fuchsia%20dragon%20fruit%20pitahaya%20from%20cactus%20plant%20in%20tropical%20farm%20warm%20golden%20light%20close%20up%20agriculture%20artisan%20farming%20natural%20sunlight%20editorial%20photography%20clean%20background%20high%20detail&width=800&height=1000&seq=servicio-cosecha-v2&orientation=portrait');">
+                <div class="panel-content">
+                    <span class="panel-eyebrow" data-i18n="services_p2_eyebrow">Recolección en punto óptimo</span>
+                    <h3 data-i18n="services_p2_title">Cosecha Artesanal</h3>
+                    <p class="panel-desc" data-i18n="services_p2_p">Cada fruta se cosecha a mano en el momento exacto de maduración, asegurando la máxima dulzura y calidad.</p>
+                    <div class="panel-tags">
+                        <span class="panel-pill" data-i18n="services_p2_t1">Selección manual</span>
+                        <span class="panel-pill" data-i18n="services_p2_t2">Horas frescas</span>
+                        <span class="panel-pill" data-i18n="services_p2_t3">Protección de cáscara</span>
+                    </div>
+                    <a href="#modal-cosecha" class="panel-btn" data-i18n="services_panel_btn">Conoce más →</a>
+                </div>
+            </div>
+
+            <div class="servicio-panel" id="p3" style="background-image: url('https://readdy.ai/api/search-image?query=Pitahaya%20dragon%20fruit%20processing%20into%20jam%20nectar%20yogurt%20products%20industrial%20kitchen%20clean%20bright%20white%20background%20artisan%20food%20production%20vibrant%20fuchsia%20colors%20editorial%20photography%20high%20detail&width=800&height=1000&seq=servicio-transformacion-v2&orientation=portrait');">
+                <div class="panel-content">
+                    <span class="panel-eyebrow" data-i18n="services_p3_eyebrow">Productos derivados</span>
+                    <h3 data-i18n="services_p3_title">Transformación</h3>
+                    <p class="panel-desc" data-i18n="services_p3_p">Transformamos la pitahaya fresca en productos de alto valor preservando sus nutrientes esenciales y su vibrante color.</p>
+                    <div class="panel-tags">
+                        <span class="panel-pill" data-i18n="services_p3_t1">Néctar 100% natural</span>
+                        <span class="panel-pill" data-i18n="services_p3_t2">Mermelada artesanal</span>
+                        <span class="panel-pill" data-i18n="services_p3_t3">Sin conservantes</span>
+                    </div>
+                    <a href="#modal-transformacion" class="panel-btn" data-i18n="services_panel_btn">Conoce más →</a>
+                </div>
+            </div>
+
+            <div class="servicio-panel" id="p4" style="background-image: url('https://readdy.ai/api/search-image?query=Fresh%20dragon%20fruit%20pitahaya%20in%20market%20crates%20with%20price%20tags%20local%20farmers%20market%20stand%20vibrant%20fuchsia%20fruits%20display%20sunny%20day%20warm%20light%20clean%20editorial%20photography%20style%20high%20detail&width=800&height=1000&seq=servicio-comercializacion-v2&orientation=portrait');">
+                <div class="panel-content">
+                    <span class="panel-eyebrow" data-i18n="services_p4_eyebrow">Desde el campo a tu mercado</span>
+                    <h3 data-i18n="services_p4_title">Comercialización</h3>
+                    <p class="panel-desc" data-i18n="services_p4_p">Conectamos a los productores directos con los mercados locales, restaurantes de prestigio y grandes cadenas comerciales.</p>
+                    <div class="panel-tags">
+                        <span class="panel-pill" data-i18n="services_p4_t1">Venta directa</span>
+                        <span class="panel-pill" data-i18n="services_p4_t2">Horeca</span>
+                        <span class="panel-pill" data-i18n="services_p4_t3">Logística completa</span>
+                    </div>
+                    <a href="#modal-comercializacion" class="panel-btn" data-i18n="services_panel_btn">Conoce más →</a>
+                </div>
+            </div>
+
+            <div class="servicio-panel" id="p5" style="background-image: url('https://readdy.ai/api/search-image?query=Peruvian%20farmers%20training%20workshop%20learning%20about%20dragon%20fruit%20cultivation%20group%20of%20people%20in%20outdoor%20classroom%20tropical%20farm%20setting%20sunlight%20warm%20atmosphere%20knowledge%20sharing%20editorial%20photography%20clean%20style&width=800&height=1000&seq=servicio-capacitacion-v2&orientation=portrait');">
+                <div class="panel-content">
+                    <span class="panel-eyebrow" data-i18n="services_p5_eyebrow">Formación técnica constante</span>
+                    <h3 data-i18n="services_p5_title">Capacitación</h3>
+                    <p class="panel-desc" data-i18n="services_p5_p">Ofrecemos talleres prácticos y asesorías de alta especialización para optimizar el rendimiento por hectárea.</p>
+                    <div class="panel-tags">
+                        <span class="panel-pill" data-i18n="services_p5_t1">Talleres orgánicos</span>
+                        <span class="panel-pill" data-i18n="services_p5_t2">Asesoría técnica</span>
+                        <span class="panel-pill" data-i18n="services_p5_t3">Asociatividad</span>
+                    </div>
+                    <a href="#modal-capacitacion" class="panel-btn" data-i18n="services_panel_btn">Conoce más →</a>
+                </div>
+            </div>
+
+            <div class="servicio-panel" id="p6" style="background-image: url('https://readdy.ai/api/search-image?query=Export%20quality%20dragon%20fruit%20pitahaya%20in%20premium%20cardboard%20boxes%20with%20Peruvian%20flag%20sticker%20airport%20cargo%20area%20export%20logistics%20professional%20photography%20clean%20editorial%20style%20high%20detail&width=800&height=1000&seq=servicio-exportacion-v2&orientation=portrait');">
+                <div class="panel-content">
+                    <span class="panel-eyebrow" data-i18n="services_p6_eyebrow">Pitahaya peruana al mundo</span>
+                    <h3 data-i18n="services_p6_title">Exportación</h3>
+                    <p class="panel-desc" data-i18n="services_p6_p">Cumplimos con las normativas fitosanitarias internacionales más exigentes para cruzar fronteras de forma segura.</p>
+                    <div class="panel-tags">
+                        <span class="panel-pill" data-i18n="services_p6_t1">Certificación origen</span>
+                        <span class="panel-pill" data-i18n="services_p6_t2">Trazabilidad</span>
+                        <span class="panel-pill" data-i18n="services_p6_t3">Embalaje premium</span>
+                    </div>
+                    <a href="#modal-exportacion" class="panel-btn" data-i18n="services_panel_btn">Conoce más →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="modal-cultivo" class="modal-servicio">
+        <div class="modal-wrapper">
+            <a href="#!" class="modal-close-btn">✕</a>
+            <div class="modal-hero" style="background-image: url('https://readdy.ai/api/search-image?query=Organic%20pitahaya%20dragon%20fruit%20cultivation%20in%20Peruvian%20farm%20rows%20of%20cactus%20plants%20with%20fuchsia%20fruits%20hanging%20tall%20green%20posts%20warm%20sunlight%20agricultural%20landscape%20natural%20farming%20clean%20background%20editorial%20photography%20high%20detail&width=800&height=1000&seq=servicio-cultivo-v2&orientation=portrait');">
+                <div class="modal-hero-content">
+                    <span data-i18n="services_p1_eyebrow">Siembra y producción sostenible</span>
+                    <h2 data-i18n="services_p1_title">Cultivo Orgánico</h2>
+                    <p data-i18n="services_p1_p">Desde la preparación de suelos con compost natural hasta la siembra de plántulas de pitahaya, cultivamos cada hectárea con respeto profundo por la tierra.</p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="proceso-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-num">01</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m1_s1_title">Análisis e Inoculación de Suelos</h4>
+                            <p data-i18n="services_m1_s1_p">Evaluamos la microbiota de la tierra e incorporamos abonos bioorganizados de alta calidad para nutrir las raíces profundamente desde el primer día.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-num">02</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m1_s2_title">Instalación de Sistemas de Tutorado</h4>
+                            <p data-i18n="services_m1_s2_p">Montamos estructuras firmes que soportarán las ramas pesadas del cactus, maximizando la captación solar y el correcto flujo del aire de las plantas.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-num">03</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m1_s3_title">Riego Técnico por Goteo</h4>
+                            <p data-i18n="services_m1_s3_p">Aplicamos sistemas de microgoteo automatizado para administrar el agua exacta en las zonas radiculares, protegiendo este vital recurso sin desperdicios.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-num">04</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m1_s4_title">Manejo Integrado de Plagas (MIP)</h4>
+                            <p data-i18n="services_m1_s4_p">Implementamos soluciones biológicas y repelentes botánicos completamente naturales, descartando el uso de agroquímicos nocivos para la salud.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-sidebar">
+                    <h4 data-i18n="services_modal_benefits_title">Beneficios clave</h4>
+                    <ul class="sidebar-list">
+                        <li data-i18n="services_m1_b1">Sin pesticidas químicos</li>
+                        <li data-i18n="services_m1_b2">Compostaje circular</li>
+                        <li data-i18n="services_m1_b3">Riego por goteo inteligente</li>
+                        <li data-i18n="services_m1_b4">Certificación orgánica</li>
+                    </ul>
+                    <a href="{{ url_for('contacto') }}" class="btn-escribenos" data-i18n="services_modal_btn1">Conoce nuestros estándares</a>
+                    <a href="#!" class="btn-sidebar-back" data-i18n="services_modal_btn2">← Volver a servicios</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-cosecha" class="modal-servicio">
+        <div class="modal-wrapper">
+            <a href="#!" class="modal-close-btn">✕</a>
+            <div class="modal-hero" style="background-image: url('https://readdy.ai/api/search-image?query=Hands%20harvesting%20fresh%20fuchsia%20dragon%20fruit%20pitahaya%20from%20cactus%20plant%20in%20tropical%20farm%20warm%20golden%20light%20close%20up%20agriculture%20artisan%20farming%20natural%20sunlight%20editorial%20photography%20clean%20background%20high%20detail&width=800&height=1000&seq=servicio-cosecha-v2&orientation=portrait');">
+                <div class="modal-hero-content">
+                    <span data-i18n="services_p2_eyebrow">Recolección en punto óptimo</span>
+                    <h2 data-i18n="services_p2_title">Cosecha Artesanal</h2>
+                    <p data-i18n="services_p2_p">Cada fruta se cosecha a mano en el momento exacto de maduración, asegurando la máxima dulzura y calidad.</p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="proceso-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-num">01</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m2_s1_title">Identificación del Punto Óptimo</h4>
+                            <p data-i18n="services_m2_s1_p">Nuestros cosechadores identifican la madurez ideal mediante indicadores visuales: color uniforme fucsia intenso, textura ligeramente elástica y aroma característico.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-num">02</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m2_s2_title">Cosecha Manual Cuidadosa</h4>
+                            <p data-i18n="services_m2_s2_p">Usamos tijeras de poda esterilizadas para cortar el pedúnculo sin dañar la cáscara. Cada fruta se maneja individualmente para evitar magulladuras.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-num">03</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m2_s3_title">Clasificación Inmediata</h4>
+                            <p data-i18n="services_m2_s3_p">En el campo, clasificamos por calibre (peso), calidad visual y firmeza. Solo el 75% de la producción alcanza el estándar de exportación.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-num">04</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m2_s4_title">Enfriamiento Rápido</h4>
+                            <p data-i18n="services_m2_s4_p">Dentro de las 2 horas post-cosecha, la fruta se transporta a cámaras de pre-enfriamiento a 8°C para frenar la maduración y preservar la vida útil.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-sidebar">
+                    <h4 data-i18n="services_modal_benefits_title">Beneficios clave</h4>
+                    <ul class="sidebar-list">
+                        <li data-i18n="services_m2_b1">Cosecha matutina óptima</li>
+                        <li data-i18n="services_m2_b2">Manejo sin magulladuras</li>
+                        <li data-i18n="services_m2_b3">Clasificación por calibre</li>
+                        <li data-i18n="services_m2_b4">Cadena de frío inmediata</li>
+                    </ul>
+                    <a href="{{ url_for('contacto') }}" class="btn-escribenos" data-i18n="services_modal_btn1">Conoce nuestros estándares</a>
+                    <a href="#!" class="btn-sidebar-back" data-i18n="services_modal_btn2">← Volver a servicios</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-transformacion" class="modal-servicio">
+        <div class="modal-wrapper">
+            <a href="#!" class="modal-close-btn">✕</a>
+            <div class="modal-hero" style="background-image: url('https://readdy.ai/api/search-image?query=Pitahaya%20dragon%20fruit%20processing%20into%20jam%20nectar%20yogurt%20products%20industrial%20kitchen%20clean%20bright%20white%20background%20artisan%20food%20production%20vibrant%20fuchsia%20colors%20editorial%20photography%20high%20detail&width=800&height=1000&seq=servicio-transformacion-v2&orientation=portrait');">
+                <div class="modal-hero-content">
+                    <span data-i18n="services_p3_eyebrow">Productos derivados</span>
+                    <h2 data-i18n="services_p3_title">Transformación</h2>
+                    <p data-i18n="services_p3_p">Transformamos la pitahaya fresca en productos de alto valor preservando sus nutrientes esenciales y su vibrante color.</p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="proceso-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-num">01</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m3_s1_title">Despulpado Criogénico</h4>
+                            <p data-i18n="services_m3_s1_p">Extraemos la pulpa de pitahaya controlar estrictamente las temperaturas bajas para conservar intactos todos sus antioxidantes y fibra natural.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-num">02</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m3_s2_title">Formulación de Líneas</h4>
+                            <p data-i18n="services_m3_s2_p">Procesamos néctares purificados, mermeladas endulzadas naturalmente y bases frutadas premium para yogures finos sin aditivos artificiales.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-num">03</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m3_s3_title">Pasteurización Flash</h4>
+                            <p data-i18n="services_m3_s3_p">Aplicamos un golpe de calor ultrarrápido y seguro que elimina bacterias perjudiciales sin alterar el color fucsia característico ni el sabor natural de la fruta.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-num">04</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m3_s4_title">Envasado al Vacío</h4>
+                            <p data-i18n="services_m3_s4_p">Sellamos los derivados en botellas y frascos de alta resistencia térmica que extienden los tiempos de consumo sin necesidad de aditivos artificiales.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-sidebar">
+                    <h4 data-i18n="services_modal_benefits_title">Beneficios clave</h4>
+                    <ul class="sidebar-list">
+                        <li data-i18n="services_m3_b1">Nutrientes preservados</li>
+                        <li data-i18n="services_m3_b2">Sin saborizantes químicos</li>
+                        <li data-i18n="services_m3_b3">Color 100% natural</li>
+                        <li data-i18n="services_m3_b4">Larga vida útil comercial</li>
+                    </ul>
+                    <a href="{{ url_for('contacto') }}" class="btn-escribenos" data-i18n="services_modal_btn1">Conoce nuestros estándares</a>
+                    <a href="#!" class="btn-sidebar-back" data-i18n="services_modal_btn2">← Volver a servicios</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-comercializacion" class="modal-servicio">
+        <div class="modal-wrapper">
+            <a href="#!" class="modal-close-btn">✕</a>
+            <div class="modal-hero" style="background-image: url('https://readdy.ai/api/search-image?query=Fresh%20dragon%20fruit%20pitahaya%20in%20market%20crates%20with%20price%20tags%20local%20farmers%20market%20stand%20vibrant%20fuchsia%20fruits%20display%20sunny%20day%20warm%20light%20clean%20editorial%20photography%20style%20high%20detail&width=800&height=1000&seq=servicio-comercializacion-v2&orientation=portrait');">
+                <div class="modal-hero-content">
+                    <span data-i18n="services_p4_eyebrow">Desde el campo a tu mercado</span>
+                    <h2 data-i18n="services_p4_title">Comercialización</h2>
+                    <p data-i18n="services_p4_p">Conectamos a los productores directos con los mercados locales, restaurantes de prestigio y grandes cadenas comerciales.</p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="proceso-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-num">01</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m4_s1_title">Consolidación de Lotes</h4>
+                            <p data-i18n="services_m4_s1_p">Reunimos las frutas seleccionadas por categorías uniformes dentro de nuestro almacén central para responder pedidos masivos de forma eficaz.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-num">02</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m4_s2_title">Alianzas con Canal HORECA</h4>
+                            <p data-i18n="services_m4_s2_p">Abastecemos de manera prioritaria a hoteles, restaurantes de alta cocina y cafeterías que valoran insumos frescos y con identidad local.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-num">03</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m4_s3_title">Distribución en Supermercados</h4>
+                            <p data-i18n="services_m4_s3_p">Colocamos la pitahaya fresca en las góndolas de las cadenas minoristas más importantes del país bajo rigurosas pautas de entrega puntual.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-num">04</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m4_s4_title">Campañas de Consumo</h4>
+                            <p data-i18n="services_m4_s4_p">Desarrollamos activaciones estratégicas en ferias y plataformas digitales para promover los múltiples beneficios saludables de esta superfruta.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-sidebar">
+                    <h4 data-i18n="services_modal_benefits_title">Beneficios clave</h4>
+                    <ul class="sidebar-list">
+                        <li data-i18n="services_m4_b1">Precios justos al productor</li>
+                        <li data-i18n="services_m4_b2">Logística de frío continua</li>
+                        <li data-i18n="services_m4_b3">Suministro estable todo el año</li>
+                        <li data-i18n="services_m4_b4">Trazabilidad del origen</li>
+                    </ul>
+                    <a href="{{ url_for('contacto') }}" class="btn-escribenos" data-i18n="services_modal_btn1">Conoce nuestros estándares</a>
+                    <a href="#!" class="btn-sidebar-back" data-i18n="services_modal_btn2">← Volver a servicios</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-capacitacion" class="modal-servicio">
+        <div class="modal-wrapper">
+            <a href="#!" class="modal-close-btn">✕</a>
+            <div class="modal-hero" style="background-image: url('https://readdy.ai/api/search-image?query=Peruvian%20farmers%20training%20workshop%20learning%20about%20dragon%20fruit%20cultivation%20group%20of%20people%20in%20outdoor%20classroom%20tropical%20farm%20setting%20sunlight%20warm%20atmosphere%20knowledge%20sharing%20editorial%20photography%20clean%20style&width=800&height=1000&seq=servicio-capacitacion-v2&orientation=portrait');">
+                <div class="modal-hero-content">
+                    <span data-i18n="services_p5_eyebrow">Formación técnica constante</span>
+                    <h2 data-i18n="services_p5_title">Capacitación</h2>
+                    <p data-i18n="services_p5_p">Ofrecemos talleres prácticos y asesorías de alta especialización para optimizar el rendimiento por hectárea.</p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="proceso-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-num">01</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m5_s1_title">Escuela de Campo (ECA)</h4>
+                            <p data-i18n="services_m5_s1_p">Dictamos clases en vivo directamente sobre el terreno, enseñando métodos de manejo agrícola avanzado a pequeños y medianos agricultores.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-num">02</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m5_s2_title">Talleres de Podas Técnicas</h4>
+                            <p data-i18n="services_m5_s2_p">Capacitamos al personal en cortes de formación, limpieza y producción para asegurar la brotación constante de flores saludables.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-num">03</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m5_s3_title">Gestión de Certificaciones</h4>
+                            <p data-i18n="services_m5_s3_p">Guiamos paso a paso a las asociaciones asociadas para obtener los sellos Global GAP y orgánicos obligatorios para mercados exteriores.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-num">04</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m5_s4_title">Administración del Agronegocio</h4>
+                            <p data-i18n="services_m5_s4_p">Brindamos herramientas contables y comerciales para que los agricultores calculen con precisión sus costos de producción y rentabilidad real.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-sidebar">
+                    <h4 data-i18n="services_modal_benefits_title">Beneficios clave</h4>
+                    <ul class="sidebar-list">
+                        <li data-i18n="services_m5_b1">Profesionalización agrícola</li>
+                        <li data-i18n="services_m5_b2">Aumento de kilos por planta</li>
+                        <li data-i18n="services_m5_b3">Acceso a certificaciones</li>
+                        <li data-i18n="services_m5_b4">Fomento de la asociatividad</li>
+                    </ul>
+                    <a href="{{ url_for('contacto') }}" class="btn-escribenos" data-i18n="services_modal_btn1">Conoce nuestros estándares</a>
+                    <a href="#!" class="btn-sidebar-back" data-i18n="services_modal_btn2">← Volver a servicios</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-exportacion" class="modal-servicio">
+        <div class="modal-wrapper">
+            <a href="#!" class="modal-close-btn">✕</a>
+            <div class="modal-hero" style="background-image: url('https://readdy.ai/api/search-image?query=Export%20quality%20dragon%20fruit%20pitahaya%20in%20premium%20cardboard%20boxes%20with%20Peruvian%20flag%20sticker%20airport%20cargo%20area%20export%20logistics%20professional%20photography%20clean%20editorial%20style%20high%20detail&width=800&height=1000&seq=servicio-exportacion-v2&orientation=portrait');">
+                <div class="modal-hero-content">
+                    <span data-i18n="services_p6_eyebrow">Pitahaya peruana al mundo</span>
+                    <h2 data-i18n="services_p6_title">Exportación</h2>
+                    <p data-i18n="services_p6_p">Cumplimos con las normativas fitosanitarias internacionales más exigentes para cruzar fronteras de forma segura.</p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="proceso-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-num">01</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m6_s1_title">Inspección Fitosanitaria SENASA</h4>
+                            <p data-i18n="services_m6_s1_p">Sometemos todos los lotes a exhaustivos controles oficiales que descartan la presencia de plagas cuarentenarias asegurando fruta limpia.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-num">02</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m6_s2_title">Empaque Premium de Exportación</h4>
+                            <p data-i18n="services_m6_s2_p">Acondicionamos la pitahaya en cajas de cartón corrugado autoarmables con rejillas ventiladas individuales para mitigar impactos del viaje.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-num">03</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m6_s3_title">Trámites Aduaneros Especializados</h4>
+                            <p data-i18n="services_m6_s3_p">Gestionamos la documentación de origen, permisos aduaneros y certificados de embarque agilizando el paso por puertos internacionales.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-num">04</div>
+                        <div class="timeline-info">
+                            <h4 data-i18n="services_m6_s4_title">Monitoreo Satelital de Contenedores</h4>
+                            <p data-i18n="services_m6_s4_p">Utilizamos contenedores de atmósfera controlada acoplados con sensores térmicos GPS en tiempo real hasta su entrega con el cliente extranjero.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-sidebar">
+                    <h4 data-i18n="services_modal_benefits_title">Beneficios clave</h4>
+                    <ul class="sidebar-list">
+                        <li data-i18n="services_m6_b1">Presencia internacional global</li>
+                        <li data-i18n="services_m6_b2">Garantía fitosanitaria completa</li>
+                        <li data-i18n="services_m6_b3">Trazabilidad total satelital</li>
+                        <li data-i18n="services_m6_b4">Logística internacional ágil</li>
+                    </ul>
+        <a href="{{ url_for('contacto') }}" class="btn-escribenos" data-i18n="services_modal_btn1">Conoce nuestros estándares</a>
+                    <a href="#!" class="btn-sidebar-back" data-i18n="services_modal_btn2">← Volver a servicios</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    
+<div id="modal-exportacion" class="modal-servicio">
+  <div class="modal-wrapper">
+    <a href="#!" class="modal-close-btn">✕</a>
+    <div class="modal-hero" style="background-image: url('https://readdy.ai/api/search-image?query=Export%20quality%20dragon%20fruit%20pitahaya%20in%20premium%20cardboard%20boxes%20with%20Peruvian%20flag%20sticker%20airport%20cargo%20area%20export%20logistics%20professional%20photography%20clean%20editorial%20style%20high%20detail&width=800&height=1000&seq=servicio-exportacion-v2&orientation=portrait');">
+      <div class="modal-hero-content">
+        <span data-i18n="services_p6_eyebrow">Pitahaya peruana al mundo</span>
+        <h2 data-i18n="services_p6_title">Exportación</h2>
+        <p data-i18n="services_p6_p">Cumplimos con las normativas fitosanitarias internacionales más exigentes para cruzar fronteras de forma segura.</p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="proceso-timeline">
+        <div class="timeline-item">
+          <div class="timeline-num">01</div>
+          <div class="timeline-info">
+            <h4 data-i18n="services_m6_s1_title">Inspección Fitosanitaria SENASA</h4>
+            <p data-i18n="services_m6_s1_p">Sometemos todos los lotes a exhaustivos controles oficiales que descartan la presencia de plagas cuarentenarias asegurando fruta limpia.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-num">02</div>
+          <div class="timeline-info">
+            <h4 data-i18n="services_m6_s2_title">Empaque Premium de Exportación</h4>
+            <p data-i18n="services_m6_s2_p">Acondicionamos la pitahaya en cajas de cartón corrugado autoarmables con rejillas ventiladas individuales para mitigar impactos del viaje.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-num">03</div>
+          <div class="timeline-info">
+            <h4 data-i18n="services_m6_s3_title">Trámites Aduaneros Especializados</h4>
+            <p data-i18n="services_m6_s3_p">Gestionamos la documentación de origen, permisos aduaneros y certificados de embarque agilizando el paso por puertos internacionales.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-num">04</div>
+          <div class="timeline-info">
+            <h4 data-i18n="services_m6_s4_title">Monitoreo Satelital de Contenedores</h4>
+            <p data-i18n="services_m6_s4_p">Utilizamos contenedores de atmósfera controlada acoplados con sensores térmicos GPS en tiempo real hasta su entrega con el cliente extranjero.</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-sidebar">
+        <h4 data-i18n="services_modal_benefits_title">Beneficios clave</h4>
+        <ul class="sidebar-list">
+          <li data-i18n="services_m6_b1">Presencia internacional global</li>
+          <li data-i18n="services_m6_b2">Cumplimiento estricto de frío</li>
+          <li data-i18n="services_m6_b3">Seguridad jurídica aduanera</li>
+          <li data-i18n="services_m6_b4">Embalaje con identidad Perú</li>
+        </ul>
+        <a href="contacto" class="btn-escribenos" data-i18n="services_modal_btn1">Conoce nuestros estándares</a>
+        <a href="#!" class="btn-sidebar-back" data-i18n="services_modal_btn2">← Volver a servicios</a>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="proyectos-section">
+  <div class="proyectos-container">
+
+    <div class="proyecto-row">
+      <div class="proyecto-text-block">
+        <span class="proyecto-badge" data-i18n="services_pro1_badge">Planificación Estratégica</span>
+        <h3 data-i18n="services_pro1_title">Gestión de proyectos de inversión</h3>
+        <p data-i18n="services_pro1_p">Diseñamos y estructuramos proyectos completos de cultivo de pitahaya, definiendo la configuración del cultivo, la densidad de plantación, el sistema productivo y las necesidades de infraestructura.</p>
+        
+        <div class="info-extra-box">
+          <h4 data-i18n="services_pro1_b_title">Optimización de Recursos</h4>
+          <p data-i18n="services_pro1_b_p">Cada proyecto se adapta a las características únicas de la finca y a los objetivos de retorno financiero del inversionista, asegurando la máxima eficiencia desde la siembra inicial.</p>
+        </div>
+      </div>
+      <div class="proyecto-image-wrapper">
+        <div class="proyecto-image-block" style="background-image: url('https://media.istockphoto.com/id/2254575186/photo/freshly-harvested-dragon-fruits-on-a-cart-in-a-long-orchard-row.jpg?s=612x612&w=0&k=20&c=ZzeSOkYdDWKmobdjtSb8dT91Y_TOj6kmOzG1MFgc-wg=');"></div>
+      </div>
+    </div>
+
+    <div class="proyecto-row reverse">
+      <div class="proyecto-image-wrapper">
+        <div class="proyecto-image-block" style="background-image: url('https://media.istockphoto.com/id/2227390606/photo/pitaya-on-the-plant-in-a-farm.jpg?s=612x612&w=0&k=20&c=4YIPPz5LPqyiag2ZnnhdNtm408omaIXACq_jixgspcY=');"></div>
+      </div>
+      <div class="proyecto-text-block">
+        <span class="proyecto-badge" data-i18n="services_pro2_badge">Tecnología Agrícola</span>
+        <h3 data-i18n="services_pro2_title">Infraestructuras</h3>
+        <p data-i18n="services_pro2_p">Instalamos infraestructuras agrícolas adaptadas a las condiciones del entorno, incluyendo invernaderos, sistemas de soporte del cultivo y soluciones de riego y fertirrigación.</p>
+        
+        <div class="info-extra-box">
+          <h4 data-i18n="services_pro2_b_title">Ingeniería a la Medida</h4>
+          <p data-i18n="services_pro2_b_p">Trabajamos con diferentes niveles de tecnificación, desde estructuras esenciales hasta los sistemas automatizados más avanzados en función del alcance del proyecto.</p>
+        </div>
+        
+        <a href="#modal-ver-invernaderos" class="btn-ver-invernaderos" data-i18n="services_pro2_btn">
+          Conocer más del Proyecto <span>→</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div id="modal-ver-invernaderos" class="modal-invernadero">
+  <div class="modal-inv-wrapper">
+    <a href="#!" class="modal-inv-close">✕</a>
+    
+    <div class="modal-inv-hero" style="background-image: url('https://media.istockphoto.com/id/2227390606/photo/pitaya-on-the-plant-in-a-farm.jpg?s=612x612&w=0&k=20&c=4YIPPz5LPqyiag2ZnnhdNtm408omaIXACq_jixgspcY=');">
+      <div class="modal-inv-hero-content">
+        <h2 data-i18n="services_m_inv_title">Modelos de Invernadero</h2>
+      </div>
+    </div>
+
+    <div class="modal-inv-body">
+      <div class="tech-specs-list">
+        <div class="spec-item">
+          <div class="spec-icon">01</div>
+          <div class="spec-info">
+            <h4 data-i18n="services_m_inv_s1_title">Estructura Anti-Plagas y Climatizada</h4>
+            <p data-i18n="services_m_inv_s1_p">Invernaderos construidos con materiales de alta resistencia mecánica y cubiertas plásticas con protección UV que difunden la luz de manera homogénea para evitar quemaduras en el cactus.</p>
+          </div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-icon">02</div>
+          <div class="spec-info">
+            <h4 data-i18n="services_m_inv_s2_title">Automatización de Riego y Fertirrigación</h4>
+            <p data-i18n="services_m_inv_s2_p">Sistemas integrados que dosifican con precisión quirúrgica los nutrientes líquidos y el agua directo a las raíces, reduciendo drásticamente el consumo hídrico.</p>
+          </div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-icon">03</div>
+          <div class="spec-info">
+            <h4 data-i18n="services_m_inv_s3_title">Sistemas de Tutorado Vertical</h4>
+            <p data-i18n="services_m_inv_s3_p">Postes y líneas de soporte optimizados para soportar cargas pesadas de producción, facilitando las tareas de poda y acelerando la recolección manual limpia.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-inv-sidebar">
+        <h4 data-i18n="services_m_inv_b_title">Ventajas Técnicas</h4>
+        <ul class="inv-features">
+          <li data-i18n="services_m_inv_b1">Control climático absoluto</li>
+          <li data-i18n="services_m_inv_b2">Ahorro de agua de un 40%</li>
+          <li data-i18n="services_m_inv_b3">Protección integral de cultivos</li>
+          <li data-i18n="services_m_inv_b4">Mayor rendimiento por m²</li>
+        </ul>
+        <a href="contacto" class="btn-escribenos" data-i18n="services_m_inv_btn">Solicitar cotización técnica</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<section class="produccion-vivero">
+  <div class="container-vivero">
+    
+    <h2 class="vivero-title" data-i18n="services_nursery_title">Producción y vivero certificado</h2>
+    
+    <div class="vivero-description">
+      <p data-i18n="services_nursery_p1">Cultivamos pitahaya mediante métodos <strong>100% ecológicos</strong>, ofreciéndole las mejores condiciones y cuidados para producir una fruta de excelente calidad y sabor.</p>
+      <p data-i18n="services_nursery_p2">Suministramos material vegetal seleccionado, con control técnico y pasaporte fitosanitario, garantizando la trazabilidad y la sanidad del cultivo desde su implantación. Nuestra producción está orientada a ofrecer plantas homogéneas y adaptadas a las condiciones de cada proyecto.</p>
+    </div>
+    
+    <div class="vivero-gallery">
+      
+      <a href="#modal-vivero-metodos" class="vivero-item">
+        <img src="https://images.pexels.com/photos/5945924/pexels-photo-5945924.jpeg" alt="Pitahayas enteras en la planta">
+        <div class="vivero-overlay-btn">
+          <div class="btn-saber-mas" data-i18n="services_panel_btn">Saber más <span>→</span></div>
+        </div>
+      </a>
+
+      <a href="#modal-vivero-transformacion" class="vivero-item">
+        <img src="https://images.pexels.com/photos/5945762/pexels-photo-5945762.jpeg" alt="Pitahaya cortada por la mitad pulpa roja y blanca">
+        <div class="vivero-overlay-btn">
+          <div class="btn-saber-mas" data-i18n="services_panel_btn">Saber más <span>→</span></div>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+<div id="modal-vivero-metodos" class="modal-vivero-overlay">
+  <div class="modal-vivero-container">
+    <a href="#!" class="modal-vivero-cerrar">✕</a>
+    
+    <div class="modal-vivero-banner" style="background-image: url('https://images.pexels.com/photos/5945924/pexels-photo-5945924.jpeg');">
+      <div class="modal-vivero-info">
+        <span class="modal-vivero-tag" data-i18n="services_m_nur1_tag">Métodos de Cultivo Sostenibles</span>
+        <h2 data-i18n="services_m_nur1_title">Producción Ecológica</h2>
+      </div>
+    </div>
+
+    <div class="modal-vivero-body">
+      <p class="modal-vivero-desc" data-i18n="services_m_nur1_p">Garantizamos un manejo enfocado en la nutrición orgánica integral y el equilibrio del ecosistema agrícola, maximizando el rendimiento de cada planta.</p>
+      
+      <div class="lista-pasos-vivero">
+        <div class="paso-vivero-item">
+          <div class="paso-vivero-num">01</div>
+          <div class="paso-vivero-texto">
+            <h4 data-i18n="services_m_nur1_s1_title">Nutrición de Precisión</h4>
+            <p data-i18n="services_m_nur1_s1_p">Utilizamos biofertilizantes y compost maduro rico en microorganismos benéficos para estimular un sistema radicular fuerte y resistente.</p>
+          </div>
+        </div>
+        <div class="paso-vivero-item">
+          <div class="paso-vivero-num">02</div>
+          <div class="paso-vivero-texto">
+            <h4 data-i18n="services_m_nur1_s2_title">Monitoreo Biológico</h4>
+            <p data-i18n="services_m_nur1_s2_p">Implementamos inspecciones técnicas continuas para prevenir plagas de forma natural, evitando el uso de químicos sintéticos nocivos.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-vivero-footer">
+        <a href="#!" class="link-volver" data-i18n="services_modal_btn2">← Volver a servicios</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="modal-vivero-transformacion" class="modal-vivero-overlay">
+  <div class="modal-vivero-container">
+    <a href="#!" class="modal-vivero-cerrar">✕</a>
+    
+    <div class="modal-vivero-banner" style="background-image: url('https://images.pexels.com/photos/5945762/pexels-photo-5945762.jpeg');">
+      <div class="modal-vivero-info">
+        <span class="modal-vivero-tag" data-i18n="services_m_nur2_tag">Productos derivados de valor</span>
+        <h2 data-i18n="services_p3_title">Transformación</h2>
+      </div>
+    </div>
+
+    <div class="modal-vivero-body">
+      <p class="modal-vivero-desc" data-i18n="services_m_nur2_p">Transformamos la pitahaya fresca en productos de alto valor: néctar, mermelada, pulpa deshidratada y yogur.</p>
+      
+      <div class="lista-pasos-vivero">
+        
+        <div class="paso-vivero-item">
+          <div class="paso-vivero-num">01</div>
+          <div class="paso-vivero-texto">
+            <h4 data-i18n="services_m_nur2_s1_title">Recepción y Selección</h4>
+            <p data-i18n="services_m_nur2_s1_p">Recepcionamos fruta de segundo y tercer calibre — fruta perfectamente comestible pero no apta para exportación fresca — evitando desperdicio alimentario.</p>
+          </div>
+        </div>
+
+        <div class="paso-vivero-item">
+          <div class="paso-vivero-num">02</div>
+          <div class="paso-vivero-texto">
+            <h4 data-i18n="services_m_nur2_s2_title">Procesamiento a Baja Temperatura</h4>
+            <p data-i18n="services_m_nur2_s2_p">Todos los procesos se realizan entre 4°C y 15°C para preservar vitaminas, antioxidantes y el color natural vibrante de la pitahaya.</p>
+          </div>
+        </div>
+
+        <div class="paso-vivero-item">
+          <div class="paso-vivero-num">03</div>
+          <div class="paso-vivero-texto">
+            <h4 data-i18n="services_m_nur2_s3_title">Néctar 100% Natural</h4>
+            <p data-i18n="services_m_nur2_s3_p">Exprimimos la pulpa y la filtramos sin agregar agua ni azúcar. El néctar se pasteuriza a 85°C por 30 segundos y se envasa en condiciones asépticas.</p>
+          </div>
+        </div>
+
+        <div class="paso-vivero-item">
+          <div class="paso-vivero-num">04</div>
+          <div class="paso-vivero-texto">
+            <h4 data-i18n="services_m_nur2_s4_title">Mermelada Artesanal</h4>
+            <p data-i18n="services_m_nur2_s4_p">Cocinamos la pulpa con un 35% de azúcar orgánica de caña y jugo de limón natural. El proceso dura 45 minutos en ollas de acero inoxidable.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="bloque-beneficios">
+        <h5 data-i18n="services_modal_benefits_title">Beneficios clave</h5>
+        <div class="grid-beneficios">
+          <div class="beneficio-item" data-i18n="services_m_nur2_b1">Sin conservantes artificiales</div>
+          <div class="beneficio-item" data-i18n="services_m_nur2_b2">Aprovechamiento del 100%</div>
+          <div class="beneficio-item" data-i18n="services_m_nur2_b3">Procesos artesanales</div>
+          <div class="beneficio-item" data-i18n="services_m_nur2_b4">Etiquetado transparente</div>
+        </div>
+      </div>
+        <a href="#!" class="link-volver" data-i18n="services_modal_btn2">Volver a servicios</a>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<section class="seccion-procesos-stack">
+  <div class="container-stack-layout">
+    
+    <div class="stack-header-center">
+      <span class="badge-procesos-rosa" data-i18n="services_stack_badge">Nuestros Procesos</span>
+      <h2 class="titulo-trabajo-conjunto" data-i18n="services_stack_title">Trabajo <em>en conjunto</em></h2>
+      <p class="subtitulo-colaboracion" data-i18n="services_stack_p">
+        Cada proceso es el resultado de la colaboración entre nuestros productores, aliados y la comunidad de Cañete.
+      </p>
+    </div>
+
+    <div class="card-stack-wrapper">
+      <div class="card-stack-container" id="cardsContainer">
+        
+        <div class="stacked-card" id="card-01">
+          <div class="card-image-background">
+            <img src="https://readdy.ai/api/search-image?query=Peruvian%20farmers%20community%20working%20together%20in%20pitahaya%20field%20laughing%20collaborative%20spirit%20warm%20natural%20sunlight%20documentary%20photography%20clean%20editorial%20style&width=600&height=800&seq=aliado-comunidad-v2&orientation=portrait" alt="Comunidad Valle Verde">
+          </div>
+          <div class="card-content-overlay">
+            <span class="card-tag-number" data-i18n="services_stack1_tag">Trabajo comunitario · 01</span>
+            <h3 class="card-title-internal" data-i18n="services_stack1_title">Comunidad</h3>
+            <p class="card-description-text" data-i18n="services_stack1_p">
+              Trabajamos de la mano con familias de Valle Verde para fortalecer la producción sostenible y la calidad de cada cosecha.
+            </p>
+          </div>
+        </div>
+
+        <div class="stacked-card" id="card-02">
+          <div class="card-image-background">
+            <img src="https://readdy.ai/api/search-image?query=Farmers%20meeting%20around%20table%20planning%20pitahaya%20cultivation%20season%20reviewing%20charts%20maps%20peruvian%20rural%20setting%20warm%20natural%20light%20editorial%20photography%20clean%20style&width=600&height=800&seq=aliado-planificacion-v2&orientation=portrait" alt="Planificación Conjunta">
+          </div>
+          <div class="card-content-overlay">
+            <span class="card-tag-number" data-i18n="services_stack2_tag">Coordinación estratégica · 02</span>
+            <h3 class="card-title-internal" data-i18n="services_stack2_title">Planificación Conjunta</h3>
+            <p class="card-description-text" data-i18n="services_stack2_p">
+              Coordinamos con nuestros socios cada etapa del proceso, desde el cultivo en campo hasta la distribución final.
+            </p>
+          </div>
+        </div>
+
+        <div class="stacked-card" id="card-03">
+          <div class="card-image-background">
+            <img src="https://readdy.ai/api/search-image?query=Peruvian%20farmers%20celebrating%20harvest%20together%20sharing%20success%20holding%20dragon%20fruit%20smiling%20warm%20sunlight%20documentary%20photography%20clean%20editorial%20style%20high%20detail&width=600&height=800&seq=aliado-compartidos-v2&orientation=portrait" alt="Resultados Compartidos">
+          </div>
+          <div class="card-content-overlay">
+            <span class="card-tag-number" data-i18n="services_stack3_tag">Resultados compartidos · 03</span>
+            <h3 class="card-title-internal" data-i18n="services_stack3_title">Compartidos</h3>
+            <p class="card-description-text" data-i18n="services_stack3_p">
+              El éxito es el resultado de esfuerzos unidos y trabajo en equipo. Cada logro es de toda la comunidad.
+            </p>
+          </div>
+        </div>
+
+        <div class="stacked-card" id="card-04">
+          <div class="card-image-background">
+            <img src="https://readdy.ai/api/search-image?query=Peruvian%20farmer%20inspecting%20dragon%20fruit%20cactus%20plants%20in%20field%20early%20morning%20golden%20light%20agricultural%20work%20documentary%20photography%20clean%20editorial%20style%20high%20detail&width=600&height=800&seq=aliado-campo-v2&orientation=portrait" alt="Trabajo en Terreno">
+          </div>
+          <div class="card-content-overlay">
+            <span class="card-tag-number" data-i18n="services_stack4_tag">Trabajo en terreno · 04</span>
+            <h3 class="card-title-internal" data-i18n="services_stack4_title">En el Campo</h3>
+            <p class="card-description-text" data-i18n="services_stack4_p">
+              Trabajamos las tierras sostenibles de Cañete para producir pitahaya de la más alta calidad, respetando la naturaleza.
+            </p>
+          </div>
+        </div>
+
+        <div class="stacked-card" id="card-05">
+          <div class="card-image-background">
+            <img src="https://readdy.ai/api/search-image?query=Two%20business%20people%20shaking%20hands%20agricultural%20partnership%20agreement%20peruvian%20farm%20background%20warm%20natural%20light%20professional%20editorial%20photography%20clean%20style%20high%20detail&width=600&height=800&seq=aliado-estrategias-v2&orientation=portrait" alt="Colaboración de largo plazo">
+          </div>
+          <div class="card-content-overlay">
+            <span class="card-tag-number" data-i18n="services_stack5_tag">Colaboración de largo plazo · 05</span>
+            <h3 class="card-title-internal" data-i18n="services_stack5_title">Alianzas Estratégicas</h3>
+            <p class="card-description-text" data-i18n="services_stack5_p">
+              Construimos alianzas de largo plazo con instituciones que comparten nuestra visión de agricultura sostenible.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="stack-navigation-controls">
+      <button type="button" class="btn-stack-nav btn-anterior" id="prevStackBtn" data-i18n="services_stack_prev">
+        <span class="arrow-icon">←</span> Anterior
+      </button>
+      
+      <button type="button" class="btn-stack-nav btn-siguiente-rosa" id="nextStackBtn" data-i18n="services_stack_next">
+        Siguiente <span class="arrow-icon">→</span>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- Sección Premium: Sobre Nosotros - Tuta Wayta (Caja Azul debajo del Texto) -->
+
+<section class="seccion-sobre-nosotros-god">
+  <div class="container-nosotros-grid-god">
+    
+    <!-- COLUMNA IZQUIERDA: INFORMACIÓN DE TUTA WAYTA + CAJA AZUL -->
+    <div class="columna-texto-god" id="nosotrosTextoCol">
+      <h2 class="titulo-sobre-nosotros-god" data-i18n="services_about_title">SOBRE NOSOTROS</h2>
+      
+      <p class="parrafo-nosotros-god" data-i18n="services_about_p1">
+        La Asociación de Productores de Pitahaya "Tuta Wayta" es una organización ubicada en la provincia de Cañete, región Lima, Perú. Nuestra asociación está conformada por aproximadamente 30 socios productores y nos dedicamos con orgullo a la producción, transformación y comercialización de pitahaya (fruta del dragón) y sus productos derivados de forma orgánica y sostenible.
+      </p>
+      
+      <p class="parrafo-nosotros-god" data-i18n="services_about_p2">
+        Más de 30 socios productores del valle trabajan coordinadamente bajo la directiva central, garantizando un manejo técnico óptimo y la mejor calidad de exportación de nuestras pitahayas hacia tu mesa.
+      </p>
+
+      <!-- Tarjeta informativa inferior (Ahora aquí abajo) -->
+      <div class="caja-calidad-certificado-god">
+        <p class="texto-calidad-certificado-god" data-i18n="services_about_box">
+          Nuestra calidad certificada refleja el respeto por quienes consumen nuestros productos
+        </p>
+      </div>
+    </div>
+
+    <!-- COLUMNA DERECHA: IMAGEN COMPLETA CON ZOOM DE PRECISIÓN -->
+    <div class="columna-media-god" id="nosotrosMediaCol">
+      
+      <!-- Contenedor del Zoom Magnético -->
+      <div class="imagen-finca-wrapper-god" id="zoomContainer">
+        <img src="https://static.bainet.es/clip/7a258a3a-6c5c-4bf4-8d3b-33e8e57670cf_source-aspect-ratio_1600w_0.jpg" alt="Campos de Pitahaya Tuta Wayta en Cañete" id="zoomImage">
+      </div>
+      
+    </div>
+
+  </div>
+</section>
+
+<!-- JAVASCRIPT: DETECTOR DE SCROLL Y ALGORITMO DE ZOOM MAGNÉTICO -->
+
+    <section class="services-section" id="dynamic-services-section">
+        <div class="services-header">
+            <span class="badge" data-i18n="services_carousel_badge">SERVICIOS DESTACADOS</span>
+            <h2 data-i18n="services_carousel_title">Servicios <span class="italic-title">especializados</span></h2>
+            <p data-i18n="services_carousel_p">Ecosistema estratégico enfocado en la excelencia de producción, valor añadido y distribución global.</p>
+        </div>
+
+        <div class="carousel-container">
+            <button class="carousel-btn prev" onclick="scrollCarousel(-1)">&#10094;</button>
+            
+            <div class="cards-slider-wrapper" id="carouselSlider">
+                
+                <div class="card-item" onclick="openModal(1)">
+                    <img src="https://images.pexels.com/photos/5945924/pexels-photo-5945924.jpeg" alt="Cultivo Sostenible">
+                    <div class="card-overlay">
+                        <h3 class="card-title" data-i18n="services_c_card1_title">Cultivo Sostenible</h3>
+                        <p class="card-description" data-i18n="services_c_card1_p">Únete a nuestros esfuerzos de cultivo sostenible para reducir la huella de carbono y promover un ambiente más saludable.</p>
+                        <span class="card-link" data-i18n="services_panel_btn">Conoce más <span>&rarr;</span></span>
+                    </div>
+                </div>
+
+                <div class="card-item" onclick="openModal(2)">
+                    <img src="https://images.pexels.com/photos/5945762/pexels-photo-5945762.jpeg" alt="Transformación de Fruta">
+                    <div class="card-overlay">
+                        <h3 class="card-title" data-i18n="services_c_card2_title">Transformación de Fruta</h3>
+                        <p class="card-description" data-i18n="services_c_card2_p">Participa en la transformación de la pitahaya en productos de alto valor: néctar, mermelada, yogur y pulpa.</p>
+                        <span class="card-link" data-i18n="services_panel_btn">Conoce más <span>&rarr;</span></span>
+                    </div>
+                </div>
+
+                <div class="card-item" onclick="openModal(3)">
+                    <img src="https://images.pexels.com/photos/27175835/pexels-photo-27175835.jpeg" alt="Distribución a Mercados">
+                    <div class="card-overlay">
+                        <h3 class="card-title" data-i18n="services_c_card3_title">Distribución a Mercados</h3>
+                        <p class="card-description" data-i18n="services_c_card3_p">Ayuda a mantener nuestros canales de distribución limpios y eficientes desde el campo hasta la mesa.</p>
+                        <span class="card-link" data-i18n="services_panel_btn">Conoce más <span>&rarr;</span></span>
+                    </div>
+                </div>
+
+                <div class="card-item" onclick="openModal(4)">
+                    <img src="https://images.pexels.com/photos/18925477/pexels-photo-18925477.jpeg" alt="Desarrollo de Variedades">
+                    <div class="card-overlay">
+                        <h3 class="card-title" data-i18n="services_c_card4_title">Desarrollo de Variedades</h3>
+                        <p class="card-description" data-i18n="services_c_card4_p">Impulsamos el desarrollo de nuevas variedades de la fruta del dragón con asesoría técnica permanente.</p>
+                        <span class="card-link" data-i18n="services_panel_btn">Conoce más <span>&rarr;</span></span>
+                    </div>
+                </div>
+
+                <div class="card-item" onclick="openModal(5)">
+                    <img src="https://images.pexels.com/photos/37796583/pexels-photo-37796583.jpeg" alt="Asesoría Agrícola">
+                    <div class="card-overlay">
+                        <h3 class="card-title" data-i18n="services_c_card5_title">Asesoría Agrícola</h3>
+                        <p class="card-description" data-i18n="services_c_card5_p">Ingenieros técnicos consultores agrícolas para ingenierías o consultas de asesorías técnicas al agricultor.</p>
+                        <span class="card-link" data-i18n="services_panel_btn">Conoce más <span>&rarr;</span></span>
+                    </div>
+                </div>
+
+                <div class="card-item" onclick="openModal(6)">
+                    <img src="https://images.pexels.com/photos/11760084/pexels-photo-11760084.jpeg" alt="Logística Fría">
+                    <div class="card-overlay">
+                        <h3 class="card-title" data-i18n="services_c_card6_title">Logística Fría</h3>
+                        <p class="card-description" data-i18n="services_c_card6_p">Gestión a temperatura controlada de cadena de frío, asegurando un control óptimo en toda la cadena.</p>
+                        <span class="card-link" data-i18n="services_panel_btn">Conoce más <span>&rarr;</span></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="carousel-btn next" onclick="scrollCarousel(1)">&#10095;</button>
+        </div>
+    </section>
+
+    <div class="modal-overlay" id="serviceModal" onclick="closeModal(event)">
+        <div class="modal-wrapper" onclick="event.stopPropagation()">
+            <button class="modal-close-btn" onclick="closeModalForce()">&times;</button>
+            
+            <div class="modal-hero" id="modalHero">
+                <div class="modal-hero-content">
+                    <span class="modal-badge" id="modalBadge" data-i18n="services_c_modal_badge">Insignia</span>
+                    <h3 id="modalTitle" data-i18n="services_c_modal_title">Título del Servicio</h3>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <p class="modal-intro" id="modalIntro" data-i18n="services_c_modal_intro">Descripción...</p>
+
+                <div class="modal-steps" id="modalSteps"></div>
+
+                <div class="benefits-box">
+                    <h4 data-i18n="services_c_modal_benefits_title">Beneficios clave corporativos</h4>
+                    <div class="benefits-grid" id="modalBenefits"></div>
+                </div>
+                    <button class="btn-back" onclick="closeModalForce()" data-i18n="services_c_modal_btn_back">&larr; Volver a Servicios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="servicios-cta">
+        <h2 data-i18n="services_cta_title">¿Interesado en nuestros servicios?</h2>
+        <p data-i18n="services_cta_p">Nos encantaría colaborar contigo. Contáctanos para obtener más información y cotizaciones personalizadas.</p>
+        <a href="{{ url_for('contacto') }}" class="btn-servicios-contacto" data-i18n="services_cta_btn">Contactar ahora</a>
+    </section>
+
+</main>
+{% endblock %}
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/servicios.js') }}"></script>
+{% endblock %}

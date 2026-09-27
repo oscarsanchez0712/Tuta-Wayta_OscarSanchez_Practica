@@ -1,0 +1,23 @@
+# Python virtual environments
+venv/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Node dependencies
+node_modules/
+
+# Logs
+*.log
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+venv/
+.venv/
+__pycache__/
+*.pyc

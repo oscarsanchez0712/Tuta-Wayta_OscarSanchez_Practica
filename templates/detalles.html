@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block title %}<span data-i18n="details_page_title">Detalle Producto</span> - Tuta Wayta{% endblock %}
+
+{% block content %}
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=20260524"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/input.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/modooscuro.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/detalle.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/carrusel2.css') }}?v=20260420"/>
+
+<main class="detalle-page">
+
+  <section class="wrap">
+    
+    <div class="img-box">
+      <img id="img" src="" alt="Cargando producto..." />
+    </div>
+
+    <div class="info-box">
+
+      <p id="etiqueta" class="eyebrow" data-i18n="details_loading">Cargando...</p>
+
+      <p id="titulo" class="titulo">
+        ...
+      </p>
+
+      <h1 id="nombre" class="nombre">
+        <span data-i18n="details_loading_product">Cargando Producto</span>
+      </h1>
+
+      <p id="descripcion" class="desc">
+        <span data-i18n="details_product_detail">Detalle del producto.</span>
+      </p>
+
+      <div class="rating-box">
+        <span class="stars">★★★★☆</span>
+        <span id="resenas" data-i18n="details_reviews">4.8 (32 reseñas)</span>
+      </div>
+
+      <div class="detail-price-action-box">
+        <div class="price-display">
+          <span class="price-label" data-i18n="details_price_kg">Precio por Kg</span>
+          <span id="precio" class="price-amount">S/ 0.00</span>
+        </div>
+
+        <button id="addToCartBtn" class="product-btn add-cart" style="position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer;">
+          <div class="cart-icon-container" style="position: relative; display: flex; align-items: center;">
+            <span class="material-symbols-outlined" style="font-size: 20px;">add_shopping_cart</span>
+            <span id="button-cart-badge" class="cart-badge" style="position: absolute; top: -9px; right: -8px; background: #ffffff; color: #e0006e; border-radius: 50%; font-size: 0.65rem; font-weight: 700; min-width: 15px; height: 15px; display: flex; align-items: center; justify-content: center; padding: 1px;">0</span>
+          </div>
+          <span class="btn-text" data-i18n="details_add_to_cart">Agregar al carrito</span>
+        </button>
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+          <p class="k" data-i18n="details_origin">ORIGEN</p>
+          <p id="origen" class="v">-</p>
+        </div>
+
+        <div class="card">
+          <p class="k" data-i18n="details_handling">MANEJO</p>
+          <p id="certificacion" class="v">-</p>
+        </div>
+
+        <div class="card">
+          <p class="k" data-i18n="details_variety">VARIEDAD</p>
+          <p id="variedad" class="v">-</p>
+        </div>
+
+        <div class="card">
+          <p class="k" data-i18n="details_season">TEMPORADA</p>
+          <p id="temporada" class="v">-</p>
+        </div>
+
+      </div>
+
+      <div class="bondades-section">
+
+        <h3 class="bondades-title" data-i18n="details_natural_goodness">
+          Bondades Naturales
+        </h3>
+
+        <ul id="bondades" class="bondades-list">
+          </ul>
+
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-secondary" href="{{ url_for('productos') }}" data-i18n="details_back_to_catalog">
+          Volver al Catálogo
+        </a>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="related">
+
+    <div class="header">
+
+      <h2 data-i18n="details_also_like">También te puede interesar</h2>
+
+      <div class="controls">
+        <button class="carousel-btn prev">&#10094;</button>
+        <button class="carousel-btn next">&#10095;</button>
+      </div>
+
+    </div>
+
+    <div class="carousel-container">
+      <div id="related" class="carousel-track"></div>
+    </div>
+
+  </section>
+
+</main>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script src="{{ url_for('static', filename='js/detalle.js') }}?v=20260620-2"></script>
+<script src="{{ url_for('static', filename='js/carrusel2.js') }}?v=20260420"></script>
+<script src="{{ url_for('static', filename='js/carrito.js') }}?v=20260420"></script>
+<script src="{{ url_for('static', filename='js/login.js') }}?v=20260420"></script>
+
+{% endblock %}

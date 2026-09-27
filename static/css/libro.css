@@ -1,0 +1,2081 @@
+/* =============================================
+   TUTA WAYTA - Libro de Reclamaciones
+   Adaptado para usar navbar y footer de base.html
+   ============================================= */
+
+:root {
+  --pink: #ff00aa;
+  --pink-light: #ffe0f7;
+  --pink-hover: #cc0088;
+  --green: #4caf50;
+  --green-light: #e8f5e9;
+  --yellow: #fff8e1;
+  --yellow-border: #f59e0b;
+  --blue-border: #ff00aa;
+  --gray: #6b7280;
+  --gray-light: #f3f4f6;
+  --border: #e5e7eb;
+  --error: #e53935;
+  --error-bg: #fdecea;
+  --radius: 10px;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --font: 'DM Sans', sans-serif;
+  --font-display: 'Playfair Display', serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: #f5f5f5;
+}
+
+.flash-wrap {
+  max-width: 960px;
+  margin: 16px auto;
+  padding: 0 16px;
+}
+
+.flash {
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.flash--success {
+  background: var(--green-light);
+  border-left: 4px solid var(--green);
+  color: #2e7d32;
+}
+
+.flash--error {
+  background: var(--error-bg);
+  border-left: 4px solid var(--error);
+  color: var(--error);
+}
+
+.hero {
+  position: relative;
+  min-height: auto;
+  overflow: hidden;
+  text-align: left;
+  background: linear-gradient(135deg, #ff00aa 0%, #cc0088 100%) !important;
+  background-image: linear-gradient(135deg, #ff00aa 0%, #cc0088 100%) !important;
+  color: white;
+  padding: 42px 24px;
+}
+
+.hero::before,
+.hero::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  animation: none !important;
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.hero__icon {
+  font-size: 48px;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: #fff;
+}
+
+.hero h1 span,
+.hero h1 em {
+  color: #fff8e1;
+  font-style: normal;
+}
+
+.hero p {
+  color: #fff;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.main {
+  max-width: 960px;
+  margin: 28px auto 60px;
+  padding: 0 16px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 20px;
+  align-items: start;
+}
+
+.card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.card__head {
+  padding: 22px 26px 6px;
+}
+
+.card__head h2 {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: var(--font-display);
+  color: #222;
+}
+
+.card__head p {
+  color: var(--gray);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.req {
+  color: var(--pink);
+  font-weight: 700;
+}
+
+.tipo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.tipo__opt {
+  cursor: pointer;
+}
+
+.tipo__opt input {
+  display: none;
+}
+
+.tipo__card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 72px;
+  padding: 14px 20px;
+  background: var(--gray-light);
+  border-bottom: 3px solid transparent;
+  border-right: 1px solid var(--border);
+  transition: all 0.2s;
+}
+
+.tipo__opt:last-child .tipo__card {
+  border-right: none;
+}
+
+.tipo__opt input:checked + .tipo__card {
+  background: white;
+  border-bottom-color: var(--pink);
+}
+
+.tipo__emoji {
+  font-size: 22px;
+}
+
+.tipo__card strong {
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
+  color: #222;
+}
+
+.tipo__card small {
+  color: var(--gray);
+  font-size: 11px;
+}
+
+.tipo-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 20px;
+  margin: 16px 26px;
+  background: var(--yellow);
+  border: 1px solid var(--yellow-border);
+  border-radius: var(--radius);
+  font-size: 13px;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.tipo-banner > span {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.tipo-banner strong {
+  display: block;
+  font-weight: 600;
+  color: #222;
+}
+
+.tipo-banner p {
+  color: var(--gray);
+  margin: 0;
+  font-size: 12px;
+}
+
+.queja-info {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 26px 16px;
+  padding: 14px 18px;
+  background: #fff0f7;
+  border: 1px solid var(--pink);
+  border-radius: var(--radius);
+  font-size: 13px;
+  animation: slideDown 0.3s ease;
+}
+
+.queja-info h4 {
+  color: var(--pink);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.queja-info ul {
+  padding-left: 18px;
+  color: #555;
+  line-height: 1.9;
+}
+
+#libroForm {
+  padding: 0 26px 26px;
+}
+
+fieldset {
+  border: none;
+  margin-bottom: 24px;
+}
+
+legend {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 0 12px;
+  width: 100%;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 18px;
+  color: #222;
+}
+
+.num {
+  background: #1a1a2e;
+  color: white;
+  min-width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.num--pink {
+  background: var(--pink);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.field--full {
+  grid-column: 1 / -1;
+}
+
+.field label,
+.check-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+}
+
+.field input,
+.field select,
+.field textarea {
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 13px;
+  font-family: var(--font);
+  transition: border 0.2s, box-shadow 0.2s;
+  outline: none;
+  width: 100%;
+  background: #fafafa;
+  color: #222;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--pink);
+  box-shadow: 0 0 0 3px rgba(255, 0, 170, 0.15);
+  background: white;
+}
+
+.field input.invalid,
+.field select.invalid,
+.field textarea.invalid,
+.field input.bad,
+.field select.bad,
+.field textarea.bad {
+  border-color: var(--error);
+  background: var(--error-bg);
+}
+
+.field input.valid,
+.field select.valid,
+.field textarea.valid {
+  border-color: var(--green);
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.err {
+  color: var(--error);
+  font-size: 11px;
+  min-height: 15px;
+  display: block;
+  font-weight: 500;
+}
+
+.counter {
+  color: var(--gray);
+  font-size: 11px;
+  text-align: right;
+  margin-top: 2px;
+}
+
+.field-hint {
+  color: var(--gray);
+  font-size: 11px;
+  font-style: italic;
+}
+
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.radio-chip {
+  cursor: pointer;
+}
+
+.radio-chip input {
+  display: none;
+}
+
+.radio-chip span {
+  display: inline-block;
+  padding: 7px 15px;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s;
+  background: #fafafa;
+  user-select: none;
+  color: #333;
+}
+
+.radio-chip input:checked + span {
+  background: var(--pink);
+  color: white;
+  border-color: var(--pink);
+}
+
+.radio-group.invalid-group .radio-chip span {
+  border-color: var(--error);
+}
+
+.check-multi {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  transition: all 0.2s;
+  background: #fafafa;
+  color: #333;
+}
+
+.check-item:hover {
+  border-color: var(--pink);
+  background: #fff0f7;
+}
+
+.check-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--pink);
+  flex-shrink: 0;
+}
+
+.check-multi.invalid-group .check-item {
+  border-color: var(--error);
+}
+
+.stars {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.star {
+  font-size: 32px;
+  cursor: pointer;
+  color: #ddd;
+  transition: color 0.15s, transform 0.1s;
+  user-select: none;
+}
+
+.star:hover,
+.star.hover {
+  color: #f59e0b;
+  transform: scale(1.1);
+}
+
+.star.active {
+  color: #f59e0b;
+}
+
+.cal-label {
+  font-size: 12px;
+  color: var(--gray);
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.stars.invalid-stars .star {
+  color: #f8d7da;
+}
+
+.queja-section {
+  display: none;
+  animation: slideDown 0.35s ease;
+  background: #fffafa;
+  border: 1.5px dashed var(--pink);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 24px;
+}
+
+.check-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.check-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.check-label input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--pink);
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.fecha-reg {
+  font-size: 12px;
+  color: var(--gray);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.btn {
+  padding: 11px 24px;
+  border-radius: 8px;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font);
+}
+
+.btn--sec {
+  background: var(--gray-light);
+  color: #333;
+}
+
+.btn--sec:hover {
+  background: #e5e7eb;
+}
+
+.btn--pri {
+  background: var(--pink);
+  color: white;
+}
+
+.btn--pri:hover {
+  background: var(--pink-hover);
+  transform: translateY(-1px);
+}
+
+.btn--pri:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.info {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.info h3 {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+.info p {
+  font-size: 12px;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+.info--green {
+  border-top: 4px solid var(--green);
+}
+
+.info--pink {
+  border-top: 4px solid var(--pink);
+}
+
+.info--blue {
+  border-top: 4px solid var(--blue-border);
+}
+
+.num-hoja {
+  font-size: 28px;
+  font-weight: 700;
+  font-family: var(--font-display);
+  color: var(--pink);
+  margin-top: 4px;
+}
+
+.modal-bg {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-bg.open,
+.modal-bg.show {
+  display: flex;
+}
+
+.modal {
+  background: white;
+  border-radius: 18px;
+  padding: 36px 32px;
+  max-width: 380px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  animation: scaleIn 0.25s ease;
+}
+
+.modal__icon {
+  font-size: 52px;
+  margin-bottom: 12px;
+}
+
+.modal h2 {
+  font-size: 20px;
+  font-family: var(--font-display);
+  margin-bottom: 8px;
+  color: #222;
+}
+
+.modal p {
+  color: var(--gray);
+  font-size: 13px;
+}
+
+.modal__num {
+  margin: 16px 0 8px;
+  font-size: 15px;
+  background: var(--gray-light);
+  border-radius: 8px;
+  padding: 10px 16px;
+}
+
+.modal__num strong {
+  color: var(--pink);
+  font-size: 20px;
+  font-family: var(--font-display);
+}
+
+.modal__nota {
+  font-size: 12px;
+  color: var(--gray);
+  margin-bottom: 20px;
+}
+
+.modal__btns {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+@media (max-width: 700px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .aside {
+    order: -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero__inner {
+    align-items: flex-start;
+  }
+
+  .hero__icon {
+    display: none;
+  }
+
+  .tipo__card {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .field--full {
+    grid-column: 1;
+  }
+
+  .actions,
+  .modal__btns {
+    flex-direction: column;
+  }
+
+  .aside {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media print {
+  nav,
+  .hero,
+  .aside,
+  .actions,
+  .modal-bg,
+  footer {
+    display: none !important;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}
+
+
+/* ELIMINACIÓN TOTAL DE LA SOMBRA INICIAL */
+.modal-bg {
+  display: none !important; /* Prohibido mostrarse al cargar */
+  visibility: hidden;       /* Doble seguridad */
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8); 
+  z-index: -1;              /* Se va al fondo de todo */
+}
+
+/* SOLO APARECE CUANDO EL FORMULARIO SE ENVÍA CON ÉXITO */
+/* CORREGIDO: el JS (libro.js) usa modal.classList.add('open') para abrir
+   el modal, pero esta regla solo escuchaba la clase .show, que nunca se
+   asigna desde el JS. Por eso el modal nunca se hacía visible aunque no
+   hubiera errores en consola. Se agrega .open junto a .show para que
+   ambas clases funcionen igual. No se quita ni se reemplaza nada más. */
+.modal-bg.open,
+.modal-bg.show {
+  display: flex !important;
+  visibility: visible;
+  z-index: 9999;            /* Sube al frente solo al final */
+}
+
+/* ==========================================================================
+   🎯 RIGOROUS ADAPTATION: MODO OSCURO (body.dark) - LIBRO DE RECLAMACIONES
+   ========================================================================== */
+
+body.dark {
+  background-color: #0f172a; /* Fondo oscuro profundo general */
+  color: #f8fafc;
+}
+
+/* --- Layout y Tarjetas Principal --- */
+body.dark .card,
+body.dark .info {
+  background-color: #1e293b !important; /* Tarjeta gris oscuro pizarra */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body.dark .card__head h2,
+body.dark .info h3 {
+  color: #ffffff !important;
+}
+
+body.dark .card__head p,
+body.dark .info p,
+body.dark .field-hint,
+body.dark .counter,
+body.dark .fecha-reg {
+  color: #94a3b8 !important; /* Texto secundario gris suavizado */
+}
+
+/* --- Selectores de Tipo (Reclamación / Queja) --- */
+body.dark .tipo__card {
+  background-color: #151f32 !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 3px solid transparent;
+}
+
+body.dark .tipo__card strong {
+  color: #ffffff !important;
+}
+
+body.dark .tipo__card small {
+  color: #94a3b8 !important;
+}
+
+body.dark .tipo__opt input:checked + .tipo__card {
+  background-color: #1e293b !important;
+  border-bottom-color: var(--pink) !important;
+}
+
+/* --- Banner de Estado Informativo --- */
+body.dark .tipo-banner {
+  background-color: rgba(245, 158, 11, 0.1) !important; /* Ámbar translúcido */
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
+}
+body.dark .tipo-banner strong {
+  color: #f59e0b !important;
+}
+body.dark .tipo-banner p {
+  color: #cbd5e1 !important;
+}
+
+/* --- Panel Desplegable de Detalles de Queja --- */
+/* --- Sección Desplegable de Detalles de Queja --- */
+body.dark .queja-info {
+  background-color: rgba(255, 0, 170, 0.05) !important;
+  border: 1px solid rgba(255, 0, 170, 0.25) !important;
+}
+body.dark .queja-info ul {
+  color: #cbd5e1 !important;
+}
+
+body.dark .queja-section {
+  background-color: #151f32 !important;
+  border: 1.5px dashed rgba(255, 0, 170, 0.4) !important;
+}
+
+/* --- Campos de Formulario (Inputs, Selects, Textareas) --- */
+body.dark legend {
+  color: #ffffff !important;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark .field label,
+body.dark .check-label {
+  color: #cbd5e1 !important;
+}
+
+body.dark .field input,
+body.dark .field select,
+body.dark .field textarea {
+  background-color: #151f32 !important; /* Fondo de entrada oscuro */
+  border: 1.5px solid rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+
+body.dark .field input:focus,
+body.dark .field select:focus,
+body.dark .field textarea:focus {
+  border-color: var(--pink) !important;
+  box-shadow: 0 0 0 3px rgba(255, 0, 170, 0.25) !important;
+  background-color: #1e293b !important;
+}
+
+/* --- Validación de Errores y Aciertos --- */
+body.dark .field input.invalid,
+body.dark .field select.invalid,
+body.dark .field textarea.invalid {
+  border-color: #ef4444 !important;
+  background-color: rgba(239, 68, 68, 0.1) !important;
+}
+
+body.dark .field input.valid,
+body.dark .field select.valid,
+body.dark .field textarea.valid {
+  border-color: #10b981 !important;
+}
+
+/* --- Chips de Selección de Radio y Checkbox --- */
+body.dark .radio-chip span,
+body.dark .check-item {
+  background-color: #151f32 !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.1) !important;
+  color: #cbd5e1 !important;
+}
+
+body.dark .check-item:hover {
+  border-color: var(--pink) !important;
+  background-color: rgba(255, 0, 170, 0.08) !important;
+}
+
+body.dark .radio-chip input:checked + span {
+  background-color: var(--pink) !important;
+  color: #ffffff !important;
+  border-color: var(--pink) !important;
+}
+
+/* --- Estrellas de Calificación --- */
+body.dark .star {
+  color: #334155 !important; /* Estrellas inactivas oscurecidas */
+}
+body.dark .star:hover,
+body.dark .star.hover,
+body.dark .star.active {
+  color: #fbbf24 !important; /* Color dorado brillante al seleccionar */
+}
+
+body.dark .cal-label {
+  color: #94a3b8 !important;
+}
+
+/* --- Botones --- */
+body.dark .btn--sec {
+  background-color: #334155 !important;
+  color: #f8fafc !important;
+}
+body.dark .btn--sec:hover {
+  background-color: #475569 !important;
+}
+
+/* --- Modal Final de Éxito --- */
+body.dark .modal-bg {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+body.dark .modal {
+  background-color: #1e293b !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+}
+
+body.dark .modal h2 {
+  color: #ffffff !important;
+}
+
+body.dark .modal__num {
+  background-color: #151f32 !important;
+  color: #cbd5e1 !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   MEJORAS — diseño más profesional y elegante
+   (todo lo anterior se mantiene intacto; estas reglas
+   refinan look & feel, modo claro y oscuro)
+   ══════════════════════════════════════════════════════ */
+
+/* --- Hero: textura sutil tipo papel oficial + sombra de profundidad --- */
+.hero {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.07) 0%, transparent 45%),
+    linear-gradient(135deg, #ff00aa 0%, #a3006e 100%) !important;
+  background-image:
+    linear-gradient(135deg, rgba(255,255,255,.07) 0%, transparent 45%),
+    linear-gradient(135deg, #ff00aa 0%, #a3006e 100%) !important;
+  box-shadow: 0 8px 30px rgba(179,0,110,.25);
+}
+.hero h1 {
+  letter-spacing: .2px;
+  text-shadow: 0 2px 18px rgba(0,0,0,.12);
+}
+.hero p {
+  opacity: .92;
+}
+
+/* --- Card principal: sombra más profunda y borde casi invisible --- */
+.card {
+  border: 1px solid rgba(0,0,0,.04);
+  box-shadow:
+    0 1px 2px rgba(0,0,0,.04),
+    0 16px 40px rgba(0,0,0,.08);
+}
+
+.card__head h2 {
+  letter-spacing: .15px;
+}
+
+/* --- Legend / numeración de secciones: más "expediente oficial" --- */
+legend {
+  position: relative;
+}
+.num {
+  box-shadow: 0 2px 6px rgba(26,26,46,.25);
+  font-family: var(--font-display);
+  font-size: 12px;
+}
+.num--pink {
+  box-shadow: 0 2px 8px rgba(255,0,170,.35);
+}
+
+/* --- Tipo selector (Reclamación/Queja): hover más elegante --- */
+.tipo__card {
+  transition: background .2s ease, border-color .2s ease, transform .15s ease;
+}
+.tipo__opt:hover .tipo__card {
+  background: #fff7fc;
+}
+.tipo__opt input:checked + .tipo__card {
+  box-shadow: inset 0 -3px 0 var(--pink);
+}
+
+/* --- Campos de formulario: foco más refinado --- */
+.field input,
+.field select,
+.field textarea {
+  transition: border .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.field input:hover:not(:focus),
+.field select:hover:not(:focus),
+.field textarea:hover:not(:focus) {
+  border-color: #d8d8de;
+}
+
+/* --- Radio chips y checkboxes: micro-interacción al elegir --- */
+.radio-chip input:checked + span {
+  box-shadow: 0 3px 10px rgba(255,0,170,.3);
+  transform: translateY(-1px);
+}
+.check-item {
+  transition: all .2s ease, transform .15s ease;
+}
+.check-item:has(input:checked) {
+  border-color: var(--pink);
+  background: #fff0f7;
+  box-shadow: 0 2px 8px rgba(255,0,170,.12);
+}
+
+/* --- Estrellas: easing más suave --- */
+.star {
+  transition: color .15s ease, transform .15s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* --- Botones: elevación y feedback más profesional --- */
+.btn--pri {
+  box-shadow: 0 4px 14px rgba(255,0,170,.3);
+}
+.btn--pri:hover {
+  box-shadow: 0 6px 18px rgba(255,0,170,.4);
+}
+.btn--pri:active:not(:disabled) {
+  transform: translateY(0) scale(.98);
+}
+.btn--sec:active {
+  transform: scale(.98);
+}
+
+/* --- Aside / tarjetas info: leve elevación al hover --- */
+.info {
+  transition: box-shadow .25s ease, transform .25s ease;
+  border: 1px solid rgba(0,0,0,.04);
+}
+.info:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0,0,0,.1);
+}
+.num-hoja {
+  letter-spacing: .3px;
+}
+
+/* --- Modal de confirmación: entrada más elegante + ícono con halo --- */
+.modal {
+  border: 1px solid rgba(0,0,0,.04);
+}
+.modal__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  animation: modalIconPop .45s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes modalIconPop {
+  0%   { transform: scale(.4); opacity: 0; }
+  60%  { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.modal__num {
+  border: 1px solid rgba(255,0,170,.12);
+}
+.modal__btns .btn--pri {
+  box-shadow: 0 4px 14px rgba(255,0,170,.3);
+}
+
+/* --- Modo oscuro: ajustes finos para coherencia con las mejoras --- */
+body.dark .hero {
+  box-shadow: 0 8px 34px rgba(0,0,0,.45);
+}
+body.dark .card {
+  border: 1px solid rgba(255,255,255,.05);
+}
+body.dark .info {
+  border: 1px solid rgba(255,255,255,.05);
+}
+body.dark .info:hover {
+  box-shadow: 0 12px 30px rgba(0,0,0,.35);
+}
+body.dark .tipo__opt:hover .tipo__card {
+  background-color: #182338 !important;
+}
+body.dark .check-item:has(input:checked) {
+  border-color: var(--pink) !important;
+  background-color: rgba(255,0,170,.1) !important;
+}
+body.dark .modal {
+  border: 1px solid rgba(255,255,255,.07);
+}
+
+/* --- Accesibilidad: foco visible consistente con el resto del sitio --- */
+.btn:focus-visible,
+.quick-btn:focus-visible,
+.radio-chip input:focus-visible + span,
+.check-item input:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 2px;
+}
+
+/* --- Respeta preferencia de reducción de movimiento --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   MEJORAS 2 — pulido específico de Reclamación y Queja
+   (se suma a las mejoras anteriores, sin reemplazar nada)
+   ══════════════════════════════════════════════════════ */
+
+/* --- Banner de tipo (amarillo): más cálido y con ícono destacado --- */
+.tipo-banner {
+  position: relative;
+  box-shadow: 0 2px 10px rgba(245,158,11,.1);
+}
+.tipo-banner > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: rgba(245,158,11,.12);
+  border-radius: 50%;
+}
+
+/* --- Panel "¿Qué es una Queja?": tarjeta más definida --- */
+.queja-info {
+  box-shadow: 0 2px 12px rgba(255,0,170,.06);
+}
+.queja-info h4 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.queja-info li {
+  position: relative;
+}
+
+/* --- Sección de Queja (fieldset punteado): más "carpeta especial" --- */
+.queja-section {
+  box-shadow: 0 2px 14px rgba(255,0,170,.05);
+  position: relative;
+}
+.queja-section legend {
+  border-bottom-color: rgba(255,0,170,.25);
+}
+
+/* --- Radio chips de Tipo de Atención / Primera vez: tamaño táctil mejor --- */
+.radio-chip span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* --- Checkboxes de motivos: alineación e ícono más cuidados --- */
+.check-item {
+  line-height: 1.4;
+}
+.check-item input[type="checkbox"] {
+  transition: transform .15s ease;
+}
+.check-item input[type="checkbox"]:checked {
+  transform: scale(1.08);
+}
+
+/* --- Bloque de estrellas: contenedor con leve respiro visual --- */
+.stars {
+  padding: 2px 0;
+}
+
+/* --- Referencia de queja anterior: aparece con más cuidado --- */
+#ref-anterior {
+  animation: slideDown .25s ease;
+}
+
+/* --- Textareas (Descripción / Pedido): foco más generoso --- */
+.field textarea:focus {
+  box-shadow: 0 0 0 4px rgba(255,0,170,.1);
+}
+
+/* --- Checkbox de aceptación final: más prominente --- */
+.check-wrap {
+  padding: 12px 14px;
+  background: #fafafa;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  transition: border-color .2s ease, background .2s ease;
+}
+.check-wrap:has(input:checked) {
+  border-color: rgba(255,0,170,.3);
+  background: #fff7fc;
+}
+
+/* --- Botón Limpiar: menos competencia visual con el primario --- */
+.btn--sec {
+  border: 1px solid var(--border);
+}
+
+/* --- Modo oscuro: complementos para los elementos de Queja --- */
+body.dark .tipo-banner > span {
+  background: rgba(245,158,11,.15);
+}
+body.dark .check-wrap {
+  background-color: #151f32 !important;
+  border-color: rgba(255,255,255,.08) !important;
+}
+body.dark .check-wrap:has(input:checked) {
+  border-color: rgba(255,0,170,.35) !important;
+  background-color: rgba(255,0,170,.07) !important;
+}
+body.dark .btn--sec {
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+/* ══════════════════════════════════════════════════════
+   MEJORAS 3 — acabado premium
+   (acento dorado de cortesía, tipografía editorial con
+   más protagonismo, sombras cinematográficas. Se suma a
+   todo lo anterior sin reemplazar nada)
+   ══════════════════════════════════════════════════════ */
+
+:root {
+  --gold: #c9a04a;
+  --gold-soft: rgba(201,160,74,.35);
+}
+
+/* --- Hero: línea dorada fina como detalle de papelería oficial --- */
+.hero {
+  border-bottom: 1px solid var(--gold-soft);
+}
+.hero__icon {
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,.25));
+}
+
+/* --- Card: filete dorado sutil en el borde superior --- */
+.card {
+  position: relative;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--pink) 0%, var(--gold) 50%, var(--pink) 100%);
+  opacity: .55;
+  border-radius: 16px 16px 0 0;
+}
+
+/* --- Encabezado de tarjeta: jerarquía editorial más marcada --- */
+.card__head h2 {
+  font-size: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+/* --- Legend: tipografía display con tracking más cuidado --- */
+legend {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+/* --- Num: anillo dorado fino alrededor del círculo numerado --- */
+.num {
+  box-shadow:
+    0 2px 6px rgba(26,26,46,.25),
+    0 0 0 2px rgba(201,160,74,.25);
+}
+.num--pink {
+  box-shadow:
+    0 2px 8px rgba(255,0,170,.35),
+    0 0 0 2px rgba(201,160,74,.3);
+}
+
+/* --- Nro. de Hoja: tratamiento de "sello" editorial --- */
+.info--pink {
+  position: relative;
+  overflow: hidden;
+}
+.num-hoja {
+  font-size: 30px;
+  font-weight: 800;
+}
+
+/* --- Botón primario: gradiente sutil en vez de color plano --- */
+.btn--pri {
+  background: linear-gradient(135deg, var(--pink) 0%, var(--pink-hover) 100%);
+  position: relative;
+}
+.btn--pri:hover {
+  background: linear-gradient(135deg, #ff2bb8 0%, var(--pink-hover) 100%);
+}
+
+/* --- Modal de éxito: borde dorado fino + sombra más profunda y suave --- */
+.modal {
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.25),
+    0 0 0 1px var(--gold-soft);
+}
+.modal h2 {
+  font-size: 22px;
+}
+.modal__num {
+  background: linear-gradient(135deg, #fff7fc 0%, var(--gray-light) 100%);
+}
+
+/* --- Tarjetas del aside: tipografía display en los títulos --- */
+.info h3 {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: .1px;
+}
+
+/* --- Estrellas activas: leve resplandor dorado --- */
+.star.active {
+  filter: drop-shadow(0 0 3px rgba(245,158,11,.4));
+}
+
+/* --- Inputs: sombra interior muy sutil para sensación de profundidad --- */
+.field input,
+.field select,
+.field textarea {
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.02);
+}
+
+/* --- Modo oscuro: ajustes del acabado premium --- */
+body.dark .hero {
+  border-bottom-color: rgba(201,160,74,.25);
+}
+body.dark .card::before {
+  opacity: .4;
+}
+body.dark .num {
+  box-shadow:
+    0 2px 6px rgba(0,0,0,.4),
+    0 0 0 2px rgba(201,160,74,.2);
+}
+body.dark .modal {
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.5),
+    0 0 0 1px rgba(201,160,74,.18);
+}
+body.dark .modal__num {
+  background: linear-gradient(135deg, #1e293b 0%, #151f32 100%) !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   MEJORAS 4 — jerarquía y presencia (salto premium real)
+   Separación clara entre secciones, tratamiento de
+   íconos en legend, botón de envío con más peso visual.
+   Se suma a todo lo anterior sin reemplazar nada.
+   ══════════════════════════════════════════════════════ */
+
+/* --- Separación fuerte entre fieldsets: cada sección respira --- */
+fieldset.section {
+  padding-bottom: 4px;
+}
+fieldset.section + fieldset.section {
+  margin-top: 8px;
+}
+
+/* --- Legend: emoji/ícono dentro de un contenedor con identidad propia --- */
+legend {
+  gap: 12px;
+  padding: 6px 0 14px;
+  margin-bottom: 22px;
+  border-bottom: 1.5px solid var(--border);
+}
+legend::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1.5px;
+  width: 48px;
+  height: 1.5px;
+  background: linear-gradient(90deg, var(--pink), var(--gold));
+}
+
+/* Si el legend trae un emoji como primer carácter de texto suelto
+   (ej. "📋 Datos del Consumidor"), lo envolvemos visualmente dándole
+   tamaño propio sin tocar el HTML: */
+legend {
+  font-size: 16px;
+}
+
+/* --- El número circular se separa más claramente del título --- */
+.num {
+  margin-right: 2px;
+}
+
+/* --- Campos: más aire vertical entre filas para sensación premium --- */
+.grid {
+  gap: 18px 16px;
+}
+.field {
+  gap: 7px;
+}
+
+/* --- Inputs: altura ligeramente mayor, tacto más cómodo --- */
+.field input,
+.field select,
+.field textarea {
+  padding: 11px 14px;
+  font-size: 13.5px;
+}
+
+/* --- Botón de envío: el protagonista real del formulario --- */
+.actions {
+  margin-top: 8px;
+  padding-top: 18px;
+}
+.btn--pri {
+  padding: 13px 32px;
+  font-size: 14px;
+  letter-spacing: .2px;
+  box-shadow: 0 6px 20px rgba(255,0,170,.35);
+}
+.btn--pri:hover {
+  box-shadow: 0 8px 26px rgba(255,0,170,.45);
+  transform: translateY(-2px);
+}
+
+/* --- Card head: separación más clara antes del selector tipo --- */
+.card__head {
+  padding: 28px 28px 14px;
+}
+#libroForm {
+  padding: 0 28px 28px;
+}
+
+/* --- Tipo selector: altura y presencia mayor --- */
+.tipo__card {
+  min-height: 80px;
+  padding: 16px 22px;
+}
+.tipo__emoji {
+  font-size: 26px;
+}
+
+/* --- Banner de tipo: tipografía más definida --- */
+.tipo-banner strong {
+  font-size: 14px;
+  font-family: var(--font-display);
+}
+
+/* --- Aside: títulos con más jerarquía, números/datos más grandes --- */
+.info {
+  padding: 18px 16px;
+}
+.info h3 {
+  font-size: 13.5px;
+  margin-bottom: 10px;
+}
+
+/* --- Modo oscuro: ajustes de esta capa de jerarquía --- */
+body.dark legend {
+  border-bottom-color: rgba(255,255,255,.1);
+}
+
+/* ══════════════════════════════════════════════════════
+   MEJORAS 5 — ejecución premium definitiva
+   Mismo magenta de marca, pero con tipografía protagonista,
+   espaciado generoso deliberado y un sello de documento
+   oficial para el número de hoja. Se monta sobre todo lo
+   anterior sin reemplazar ni eliminar nada.
+   ══════════════════════════════════════════════════════ */
+
+:root {
+  --ink: #2b1220;
+  --paper: #faf8f9;
+}
+
+body {
+  background: var(--paper);
+}
+
+/* --- HERO: tipografía mucho más protagonista --- */
+.hero {
+  padding: 56px 32px 50px;
+}
+.hero__inner {
+  gap: 24px;
+}
+.hero__icon {
+  font-size: 56px;
+}
+.hero h1 {
+  font-size: clamp(2.3rem, 5.5vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: -.3px;
+}
+.hero p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 15.5px;
+  margin-top: 10px;
+  opacity: .95;
+}
+
+/* --- MAIN: más aire general, composición menos apretada --- */
+.main {
+  margin: 40px auto 80px;
+}
+.layout {
+  gap: 28px;
+}
+
+/* --- CARD: respiro generoso --- */
+.card__head {
+  padding: 34px 34px 16px;
+}
+.card__head h2 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -.2px;
+}
+.card__head p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 13.5px;
+  margin-top: 6px;
+}
+#libroForm {
+  padding: 0 34px 34px;
+}
+
+/* --- Legend: tamaño y tracking editorial reales --- */
+legend {
+  font-size: 18px;
+  letter-spacing: .1px;
+  padding: 8px 0 16px;
+  margin-bottom: 26px;
+}
+fieldset.section {
+  margin-bottom: 32px;
+}
+
+/* --- Labels: tracking tipo formulario legal fino --- */
+.field label {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: .75;
+}
+.check-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  opacity: .85;
+}
+
+/* --- Grid: más espacio entre campos --- */
+.grid {
+  gap: 22px 20px;
+}
+
+/* --- Tipo selector: mayor presencia y peso --- */
+.tipo__card {
+  min-height: 88px;
+  padding: 18px 24px;
+}
+.tipo__card strong {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+}
+.tipo__card small {
+  font-size: 11.5px;
+}
+
+/* --- Banner de tipo: más presencia, tipografía coherente --- */
+.tipo-banner {
+  padding: 16px 22px;
+  margin: 20px 34px;
+}
+.tipo-banner strong {
+  font-size: 15px;
+}
+.tipo-banner p {
+  font-size: 12.5px;
+  margin-top: 2px;
+}
+
+/* --- ASIDE: títulos editoriales, datos con mono para look "expediente" --- */
+.info {
+  padding: 22px 20px;
+}
+.info h3 {
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: .1px;
+}
+.info p {
+  font-size: 12.5px;
+  line-height: 1.7;
+}
+
+/* --- SELLO DE DOCUMENTO: número de hoja como timbre oficial --- */
+.info--pink {
+  text-align: center;
+  padding: 24px 16px;
+}
+.info--pink h3 {
+  text-align: left;
+}
+.num-hoja {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--ink);
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 110px;
+  padding: 14px 18px;
+  margin-top: 10px;
+  border: 2.5px solid var(--pink);
+  border-radius: 50%;
+  transform: rotate(-3deg);
+  box-shadow:
+    0 0 0 3px rgba(255,0,170,.08),
+    0 8px 18px rgba(255,0,170,.18);
+  position: relative;
+}
+.num-hoja::before {
+  content: "Nº";
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+  color: #fff;
+  font-family: var(--font);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .5px;
+  padding: 2px 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.2);
+}
+
+/* --- Botón primario: mayor presencia tipográfica --- */
+.btn--pri {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 36px;
+}
+
+/* --- Modal: tipografía con más peso editorial --- */
+.modal {
+  padding: 44px 38px;
+}
+.modal h2 {
+  font-size: 25px;
+  font-weight: 800;
+}
+.modal p {
+  font-family: var(--font-display);
+  font-style: italic;
+}
+
+/* --- Modo oscuro: ajustes del sello y tipografía premium --- */
+body.dark {
+  background-color: #0f172a;
+}
+body.dark .field label,
+body.dark .check-label {
+  color: #e2e8f0 !important;
+  opacity: .8;
+}
+body.dark .num-hoja {
+  background: #151f32;
+  color: #f8fafc;
+  border-color: var(--pink);
+  box-shadow:
+    0 0 0 3px rgba(255,0,170,.12),
+    0 8px 18px rgba(0,0,0,.4);
+}
+
+@media (max-width: 560px) {
+  .hero {
+    padding: 40px 22px 36px;
+  }
+  .card__head,
+  #libroForm {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+  .tipo-banner {
+    margin-left: 22px;
+    margin-right: 22px;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   MEJORAS 6 — rediseño estructural (solo CSS, sin tocar HTML)
+   Cada sección se convierte en un panel propio tipo "página
+   de expediente" con número en marca de agua. Cambia la
+   sensación de layout sin reordenar el markup. Se monta
+   sobre todo lo anterior sin reemplazar ni eliminar nada.
+   ══════════════════════════════════════════════════════ */
+
+/* --- Fondo general más cálido y neutro detrás de la card --- */
+.main {
+  background: transparent;
+}
+
+/* --- Cada fieldset.section se convierte en un panel propio --- */
+fieldset.section {
+  position: relative;
+  background: #fcfafb;
+  border: 1px solid rgba(0,0,0,.05);
+  border-radius: 14px;
+  padding: 28px 26px 26px;
+  margin-bottom: 26px;
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgba(0,0,0,.02);
+}
+
+/* --- Marca de agua: el número de sección a tamaño gigante de fondo --- */
+fieldset.section legend .num {
+  position: relative;
+  z-index: 2;
+}
+fieldset.section::after {
+  position: absolute;
+  top: -28px;
+  right: -6px;
+  font-family: var(--font-display);
+  font-size: 110px;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--pink);
+  opacity: .045;
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+}
+/* Asignamos el contenido de la marca de agua por orden de aparición,
+   sin necesidad de tocar el HTML: */
+fieldset.section:nth-of-type(1)::after { content: "01"; }
+fieldset.section:nth-of-type(2)::after { content: "02"; }
+fieldset.section:nth-of-type(3)::after { content: "Q"; font-size: 140px; top: -38px; }
+fieldset.section:nth-of-type(4)::after { content: "03"; }
+fieldset.section:nth-of-type(5)::after { content: "04"; }
+
+/* --- Legend dentro del panel: ya no necesita línea inferior propia,
+       el panel mismo hace de separador --- */
+legend {
+  border-bottom: none;
+  margin-bottom: 20px;
+  padding: 0 0 4px;
+  position: relative;
+  z-index: 2;
+}
+legend::after {
+  display: none;
+}
+
+/* --- Contenido del panel por encima de la marca de agua --- */
+fieldset.section .grid,
+fieldset.section .check-wrap,
+fieldset.section .fecha-reg {
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Sección de Queja: panel con tinte propio para diferenciarla --- */
+.queja-section.section {
+  background: #fffaf9;
+  border: 1.5px solid rgba(255,0,170,.18);
+  box-shadow: 0 4px 16px rgba(255,0,170,.06);
+}
+
+/* --- Selector Reclamación/Queja: más contraste activo/inactivo --- */
+.tipo {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.06);
+  margin-bottom: 4px;
+}
+.tipo__card {
+  background: #f7f5f6;
+}
+.tipo__opt input:checked + .tipo__card {
+  background: #fff;
+  box-shadow: inset 0 -4px 0 var(--pink);
+  position: relative;
+}
+.tipo__opt input:checked + .tipo__card::after {
+  content: "✓";
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  width: 20px;
+  height: 20px;
+  background: var(--pink);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* --- Inputs: blanco puro + borde definido, ya no grises planos --- */
+.field input,
+.field select,
+.field textarea {
+  background: #ffffff;
+  border: 1.5px solid #e2dfe2;
+}
+.field input:hover:not(:focus),
+.field select:hover:not(:focus),
+.field textarea:hover:not(:focus) {
+  border-color: #c9c5c9;
+}
+
+/* --- Corrige el color dorado/extraño del <select> placeholder --- */
+.field select {
+  color: #222;
+}
+.field select:invalid,
+.field select option[value=""] {
+  color: #8a8a8a;
+}
+
+/* --- Card head y form ya no necesitan tanto padding extra, porque
+       ahora los paneles internos aportan su propia separación --- */
+#libroForm {
+  padding-top: 6px;
+}
+
+/* --- Modo oscuro: paneles, marca de agua y selector --- */
+body.dark fieldset.section {
+  background: #19233a;
+  border-color: rgba(255,255,255,.06);
+}
+body.dark fieldset.section::after {
+  color: var(--pink);
+  opacity: .07;
+}
+body.dark .queja-section.section {
+  background: #1f1830;
+  border-color: rgba(255,0,170,.25);
+}
+body.dark .tipo__card {
+  background: #151f32;
+}
+body.dark .tipo__opt input:checked + .tipo__card {
+  background: #1e293b;
+}
+body.dark .field input,
+body.dark .field select,
+body.dark .field textarea {
+  background-color: #151f32 !important;
+  border-color: rgba(255,255,255,.12) !important;
+}
+body.dark .field select {
+  color: #fff;
+}
+
+/* ══════════════════════════════════════════════════════
+   FIX FINAL — Modal de confirmación "Enviado"
+   Se agrega al final para tener prioridad sobre todas las
+   capas anteriores y garantizar que el modal se vea bien
+   (overlay + tarjeta blanca + texto + botones visibles).
+   No se elimina ni reemplaza ninguna regla anterior.
+   ══════════════════════════════════════════════════════ */
+
+.modal-bg.open,
+.modal-bg.show {
+  display: flex !important;
+  visibility: visible !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483647 !important;
+  background: rgba(15, 10, 20, 0.65) !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 16px !important;
+  isolation: isolate !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+.modal-bg.open .modal,
+.modal-bg.show .modal {
+  position: relative !important;
+  z-index: 2147483647 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: #ffffff !important;
+  border-radius: 20px !important;
+  padding: 40px 32px !important;
+  max-width: 400px !important;
+  width: 100% !important;
+  text-align: center !important;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35) !important;
+  border: 1px solid rgba(255, 0, 170, 0.15) !important;
+}
+
+.modal-bg.open .modal__icon,
+.modal-bg.show .modal__icon {
+  font-size: 56px !important;
+  margin-bottom: 14px !important;
+  line-height: 1 !important;
+}
+
+.modal-bg.open .modal h2,
+.modal-bg.show .modal h2 {
+  color: #1a1a1a !important;
+  font-size: 24px !important;
+  font-weight: 800 !important;
+  margin-bottom: 10px !important;
+}
+
+.modal-bg.open .modal p,
+.modal-bg.show .modal p {
+  color: #6b7280 !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+}
+
+.modal-bg.open .modal__num,
+.modal-bg.show .modal__num {
+  background: #fdf2f9 !important;
+  border: 1px solid rgba(255, 0, 170, 0.18) !important;
+  color: #333 !important;
+  border-radius: 10px !important;
+  padding: 12px 16px !important;
+  margin: 18px 0 10px !important;
+  font-size: 15px !important;
+}
+
+.modal-bg.open .modal__num strong,
+.modal-bg.show .modal__num strong {
+  color: #ff00aa !important;
+  font-size: 20px !important;
+}
+
+.modal-bg.open .modal__nota,
+.modal-bg.show .modal__nota {
+  color: #6b7280 !important;
+  font-size: 12.5px !important;
+  margin-bottom: 24px !important;
+}
+
+.modal-bg.open .modal__btns,
+.modal-bg.show .modal__btns {
+  display: flex !important;
+  gap: 10px !important;
+  justify-content: center !important;
+}
+
+.modal-bg.open .modal__btns .btn,
+.modal-bg.show .modal__btns .btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 12px 26px !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  font-size: 13.5px !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.modal-bg.open .modal__btns .btn--sec,
+.modal-bg.show .modal__btns .btn--sec {
+  background: #f3f4f6 !important;
+  color: #333 !important;
+}
+
+.modal-bg.open .modal__btns .btn--pri,
+.modal-bg.show .modal__btns .btn--pri {
+  background: linear-gradient(135deg, #ff00aa 0%, #cc0088 100%) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 18px rgba(255, 0, 170, 0.35) !important;
+}
+
+body.dark .modal-bg.open .modal,
+body.dark .modal-bg.show .modal {
+  background: #1e293b !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+body.dark .modal-bg.open .modal h2,
+body.dark .modal-bg.show .modal h2 {
+  color: #ffffff !important;
+}
+
+body.dark .modal-bg.open .modal__num,
+body.dark .modal-bg.show .modal__num {
+  background: #151f32 !important;
+  border-color: rgba(255, 0, 170, 0.25) !important;
+}
+
+body.dark .modal-bg.open .modal__btns .btn--sec,
+body.dark .modal-bg.show .modal__btns .btn--sec {
+  background: #334155 !important;
+  color: #f8fafc !important;
+}

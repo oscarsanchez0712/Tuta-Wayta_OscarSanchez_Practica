@@ -1,0 +1,914 @@
+{% extends "base.html" %}
+
+{% block title %}Blog - Tuta Wayta{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/Blog.css') }}?v=1.1">
+{% endblock %}
+
+{% block content %}
+<main>
+  <section class="blog-hero">
+    <h1 class="blog-title" data-i18n="blog_hero_title">Nuestro <span>Blog</span></h1>
+    <p class="blog-desc" data-i18n="blog_hero_p">
+      Descubre recetas, benefits y noticias sobre el fascinante mundo de la pitahaya orgánica.
+    </p>
+  </section>
+
+  <section class="blog-nutrition-container">
+    <span class="blog-top-badge" data-i18n="blog_main_badge">Blog de Nutrición</span>
+    
+    <h1 class="blog-main-heading" data-i18n="blog_main_title">
+      Nutrición, ciencia y <span class="italic-pink">sabor</span>
+    </h1>
+    
+    <p class="blog-main-subtext" data-i18n="blog_main_p">
+      Descubre cómo la pitahaya y una alimentación consciente pueden transformar tu salud. 
+      Artículos escritos por nutricionistas, investigadores y chefs especializados.
+    </p>
+
+    <div class="blog-search-bar-wrapper">
+      <span class="search-glass-icon">🔍</span>
+      <input type="text" placeholder="Buscar artículos, temas, ingredientes..." data-i18n-placeholder="blog_search_placeholder">
+    </div>
+
+    <div class="blog-filter-buttons">
+    <button class="filter-btn active" data-filter="all" data-i18n="blog_f_all">Todas</button>
+    <button class="filter-btn" data-filter="nutricion" data-i18n="blog_f_nutrition">Nutrición</button>
+    <button class="filter-btn" data-filter="beneficios" data-i18n="blog_f_benefits">Beneficios</button>
+    <button class="filter-btn" data-filter="recetas" data-i18n="blog_f_recipes">Recetas</button>
+    <button class="filter-btn" data-filter="ciencia" data-i18n="blog_f_science">Ciencia</button>
+    <button class="filter-btn" data-filter="estilo-vida" data-i18n="blog_f_lifestyle">Estilo de Vida</button>
+    </div>
+
+  <div class="blog-articles-grid">
+    
+    <!-- ===================== CIENCIA ===================== -->
+
+    <a href="{{ url_for('articulo') }}?id=1" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="ciencia" data-id="1">
+      <div class="card-image-wrapper">
+        <img src="https://readdy.ai/api/search-image?query=scientific-research-laboratory-dragon-fruit-pitahaya-extract-petri-dishes-microscope-modern-lab-setting-clean-professional-science-photography&width=1200&height=630&seq=blog2-2026&orientation=landscape" alt="Ciencia y pitahaya">
+        <span class="category-tag ciencia" data-i18n="blog_f_science">CIENCIA</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a1_date">2 DE JUNIO, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a1_readtime">10 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a1_title">Lo que dice la ciencia: 7 beneficios de la pitahaya respaldados por estudios</h3>
+        <p data-i18n="blog_a1_p">La investigación científica moderna confirma lo que las culturas ancestrales ya sabían: la pitahaya es un...</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://readdy.ai/api/search-image?query=professional-latino-male-scientist-researcher-smiling-portrait-headshot-warm-lighting-clean-background-professional-photography&width=200&height=200&seq=author2&orientation=squarish" alt="Dr. Carlos Mendoza">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a1_author_name">Dr. Carlos Mendoza</span>
+            <span class="role" data-i18n="blog_a1_author_role">Investigador en Nutrición</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>
+    
+    <a href="{{ url_for('articulo') }}?id=18" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="ciencia" data-id="18">
+      <div class="card-image-wrapper">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwisegDM9lB8jXUnYC0VLlf-n6T7vhTji--g&s" alt="Conexión intestino-cerebro">
+        <span class="category-tag ciencia" data-i18n="blog_f_science">CIENCIA</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a18_date">1 DE MAYO, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a18_readtime">9 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a18_title">La conexión intestino-cerebro: ¿Puede la pitahaya ayudar a reducir el estrés y la...</h3>
+        <p data-i18n="blog_a18_p">La ciencia del eje intestino-cerebro revela vínculos sorprendentes entre nuestra alimentación y la salud...</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://readdy.ai/api/search-image?query=professional-latino-male-scientist-researcher-smiling-portrait-headshot-warm-lighting-clean-background-professional-photography&width=200&height=200&seq=author2&orientation=squarish" alt="Dr. Carlos Mendoza">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a1_author_name">Dr. Carlos Mendoza</span>
+            <span class="role" data-i18n="blog_a1_author_role">Investigador en Nutrición</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>
+
+    <!-- ===================== NUTRICIÓN ===================== -->
+    <a href="{{ url_for('articulo') }}?id=2" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="nutricion" data-id="2">
+      <div class="card-image-wrapper">
+        <img src="https://readdy.ai/api/search-image?query=dragon-fruit-pitahaya-anatomy-cross-section-vitamins-minerals-labeled-diagram-nutritional-education-visual-scientific-illustration-style-clean-white-background&width=1200&height=630&seq=blog3-2026&orientation=landscape" alt="Vitaminas de la pitahaya">
+        <span class="category-tag nutricion" data-i18n="blog_f_nutrition">NUTRICIÓN</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a2_date">28 DE MAYO, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a2_readtime">7 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a2_title">Guía completa de vitaminas y minerales de la pitahaya: Todo lo que necesitas saber</h3>
+        <p data-i18n="blog_a2_p">Desglosamos cada vitamina, mineral y compuesto bioactivo presente en la pitahaya. Una guía detallad...</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://readdy.ai/api/search-image?query=professional-latina-woman-dietitian-nutritionist-smiling-portrait-headshot-warm-lighting-clean-background-professional-photography&width=200&height=200&seq=author3&orientation=squarish" alt="Lic. Ana Lucía Torres">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a2_author_name">Lic. Ana Lucía Torres</span>
+            <span class="role" data-i18n="blog_a2_author_role">Especialista en Nutrición Funcional</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>
+    
+    <a href="{{ url_for('articulo') }}?id=24" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="nutricion" data-id="3">
+      <div class="card-image-wrapper">
+        <img src="https://readdy.ai/api/search-image?query=dragon-fruit-pitahaya-beside-banana-apple-orange-blueberries-comparison-on-white-surface-flat-lay-natural-light-professional-food-photography-nutritional-comparison&width=1200&height=630&seq=blog4-2026&orientation=landscape" alt="Comparativa de frutas">
+        <span class="category-tag nutricion" data-i18n="blog_f_nutrition">NUTRICIÓN</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a3_date">20 DE MAYO, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a3_readtime">6 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a3_title">Pitahaya vs. Otras frutas: Una comparativa nutricional que te sorprenderá</h3>
+        <p data-i18n="blog_a3_p">Comparamos la pitahaya con otras frutas populares como el plátano, la manzana, la naranja y los...</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://readdy.ai/api/search-image?query=professional-hispanic-woman-nutritionist-smiling-portrait-headshot-warm-lighting-clean-background-professional-photography&width=200&height=200&seq=author1&orientation=squarish" alt="Dra. María Fernández">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a3_author_name">Dra. María Fernández</span>
+            <span class="role" data-i18n="blog_a3_author_role">Nutricionista Clínica</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>    
+
+    <!-- ===================== RECETAS ===================== -->
+    
+    <a href="{{ url_for('articulo') }}?id=4" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="recetas" data-id="4">
+      <div class="card-image-wrapper">
+        <img src="https://readdy.ai/api/search-image?query=healthy-dragon-fruit-pitahaya-recipes-bowl-smoothie-salad-toast-variety-overhead-view-bright-natural-light-food-styling-vibrant-colors-professional-photography&width=1200&height=630&seq=blog5-2026&orientation=landscape" alt="Recetas con pitahaya">
+        <span class="category-tag recetas" data-i18n="blog_f_recipes">RECETAS</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a4_date">15 DE MAYO, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a4_readtime">9 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a4_title">5 recetas saludables con pitahaya listas en menos de 30 minutos</h3>
+        <p data-i18n="blog_a4_p">Transforma tu cocina con estas recetas rápidas, nutritivas y deliciosas que tienen a la pitahaya como...</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://readdy.ai/api/search-image?query=professional-latina-chef-woman-smiling-in-kitchen-warm-lighting-portrait-headshot-professional-photography&width=200&height=200&seq=author4&orientation=squarish" alt="Chef Daniela Ramírez">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a4_author_name">Chef Daniela Ramírez</span>
+            <span class="role" data-i18n="blog_a4_author_role">Chef Saludable & Food Stylist</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>
+    
+    <a href="{{ url_for('articulo') }}?id=29" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="recetas" data-id="5">
+      <div class="card-image-wrapper">
+        <img src="https://thfvnext.bing.com/th/id/OIP.o8vEI3u-5R-JGzx4Zk6_PAHaNM?w=115&h=180&c=7&r=0&o=7&cb=thfvnextfalcon2&dpr=1.5&pid=1.7&rm=3" alt="Tacos de pescado con salsa de pitahaya">
+        <span class="category-tag recetas" data-i18n="blog_f_recipes">RECETAS</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a5_date">12 DE ABRIL, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a5_readtime">8 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a5_title">Tacos de Pescado con Salsa de Pitahaya</h3>
+        <p data-i18n="blog_a5_p">Una explosión de sabor tropical. Tacos de pescado fresco con una vibrante y picante salsa de pitahaya.</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://i.pravatar.cc/150?u=gabrielareyes" alt="Chef Gabriela Reyes">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a5_author_name">Chef Gabriela Reyes</span>
+            <span class="role" data-i18n="blog_a5_author_role">Cocina Fusión</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>
+    
+    <!-- ===================== BENEFICIOS ===================== -->
+
+    <a href="{{ url_for('articulo') }}?id=17" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="recetas" data-id="6">
+      <div class="card-image-wrapper">
+        <img src="https://thfvnext.bing.com/th/id/OIP.KhXGh3In0cdStOrgABWDBAHaFB?w=276&h=187&c=7&r=0&o=7&cb=thfvnextfalcon2&dpr=1.5&pid=1.7&rm=3" alt="Cóctel de pitahaya y pisco">
+        <span class="category-tag recetas" data-i18n="blog_f_recipes">RECETAS</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a6_date">5 DE ABRIL, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a6_readtime">5 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a6_title">Cóctel "Fuego de Dragón" con Pitahaya y Pisco</h3>
+        <p data-i18n="blog_a6_p">Sorprende a tus invitados con este exótico y refrescante cóctel que combina la dulzura de la pitahaya con el pisco.</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://i.pravatar.cc/150?u=javiersolis" alt="Javier Solís">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a6_author_name">Javier Solís</span>
+            <span class="role" data-i18n="blog_a6_author_role">Mixólogo</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>
+  <a href="{{ url_for('articulo') }}?id=7" class="blog-card-link">
+
+  <article class="blog-card style-portrait" data-category="recetas" data-id="7">
+
+    <div class="card-image-wrapper">
+      <img src="https://thfvnext.bing.com/th/id/OIP.wYIxk86tXDSm-IEoFKHvuQHaLH" alt="Agua infusionada de pitahaya">
+      <span class="category-tag recetas" data-i18n="blog_f_recipes">RECETAS</span>
+    </div>
+
+    <div class="card-body">
+
+      <div class="card-top-meta">
+        <span class="date" data-i18n="blog_a7_date">28 DE MARZO, 2026</span>
+        <span class="divider">•</span>
+        <span class="time" data-i18n="blog_a7_readtime">3 min de lectura</span>
+      </div>
+
+      <h3 data-i18n="blog_a7_title">Agua Infusionada de Pitahaya y Menta</h3>
+
+      <p data-i18n="blog_a7_p">
+        Una forma elegante y saludable de mantenerte hidratado.
+      </p>
+
+      <div class="author-block">
+        <img class="author-avatar"
+          src="https://i.pravatar.cc/150?u=lauravega"
+          alt="Laura Vega">
+
+        <div class="author-text">
+          <span class="name" data-i18n="blog_a7_author_name">Laura Vega</span>
+          <span class="role" data-i18n="blog_a7_author_role">Health Coach</span>
+        </div>
+      </div>
+
+    </div>
+
+  </article>
+
+</a>
+    
+    <!-- ===================== ESTILO DE VIDA ===================== -->
+
+    <a href="{{ url_for('articulo') }}?id=16" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="recetas" data-id="8">
+      <div class="card-image-wrapper">
+        <img src="https://thfvnext.bing.com/th/id/OIP.G4NyV-xl8GeRFZf2TWTkPQHaHa?w=171&h=180&c=7&r=0&o=7&cb=thfvnextfalcon2&dpr=1.5&pid=1.7&rm=3" alt="Ceviche con pitahaya">
+        <span class="category-tag recetas" data-i18n="blog_f_recipes">RECETAS</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a8_date">20 DE MARZO, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a8_readtime">12 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a8_title">Ceviche Nikkei con Leche de Tigre de Pitahaya</h3>
+        <p data-i18n="blog_a8_p">Una versión innovadora del clásico ceviche, donde la leche de tigre se tiñe y endulza sutilmente con pitahaya.</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://i.pravatar.cc/150?u=kenjitanaka" alt="Chef Kenji Tanaka">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a8_author_name">Chef Kenji Tanaka</span>
+            <span class="role" data-i18n="blog_a8_author_role">Cocina Nikkei</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>
+    
+    <a href="{{ url_for('articulo') }}?id=11" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="beneficios" data-id="9">
+      <div class="card-image-wrapper">
+        <img src="https://thfvnext.bing.com/th/id/OIP.62LLfBK_FIcdnxhUYeOebwHaE8?w=239&h=180&c=7&r=0&o=7&cb=thfvnextfalcon2&dpr=1.5&pid=1.7&rm=3" alt="Huesos y dientes fuertes">
+        <span class="category-tag beneficios" data-i18n="blog_f_benefits">BENEFICIOS</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a9_date">15 DE MARZO, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a9_readtime">6 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a9_title">Fortalece tus Huesos: El Calcio y Fósforo en la Pitahaya</h3>
+        <p data-i18n="blog_a9_p">Descubre cómo el consumo regular de pitahaya, rico en minerales esenciales, contribuye a la salud ósea y dental a largo plazo...</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://i.pravatar.cc/150?u=dralauraortiz" alt="Dra. Laura Ortiz">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a9_author_name">Dra. Laura Ortiz</span>
+            <span class="role" data-i18n="blog_a9_author_role">Médico Internista</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>
+    
+    <a href="{{ url_for('articulo') }}?id=12" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="beneficios" data-id="10">
+      <div class="card-image-wrapper">
+        <img src="https://tse2.mm.bing.net/th/id/OIP.a3PiCDIfSa0sRCbf2tr-dwHaHa?r=0&cb=thfvnextfalcon2&pid=ImgDet&w=178&h=178&c=7&dpr=1,5&o=7&rm=3" alt="Pitahaya como fuente de energía natural">
+        <span class="category-tag beneficios" data-i18n="blog_f_benefits">BENEFICIOS</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a10_date">8 DE MARZO, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a10_readtime">5 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a10_title">Combate la Fatiga: La Pitahaya como Fuente de Energía Natural</h3>
+        <p data-i18n="blog_a10_p">Gracias a su contenido de hierro y carbohidratos saludables, la pitahaya es tu aliada para mantener la vitalidad durante el día...</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://i.pravatar.cc/150?u=draanamorales" alt="Dra. Ana Morales">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a10_author_name">Dra. Ana Morales</span>
+            <span class="role" data-i18n="blog_a10_author_role">Médico General</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>
+    
+    <a href="{{ url_for('articulo') }}?id=13" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="estilo-vida" data-id="11">
+      <div class="card-image-wrapper">
+        <img src="https://thfvnext.bing.com/th/id/OIP.q0vjXkhHVbmix0Hqn1hYSQHaE8?w=305&h=204&c=7&r=0&o=7&cb=thfvnextfalcon2&dpr=1.5&pid=1.7&rm=3" alt="Familia preparando desayunos saludables con pitahaya">
+        <span class="category-tag estilo-vida" data-i18n="blog_f_lifestyle">ESTILO DE VIDA</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a11_date">20 DE MAYO, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a11_readtime">6 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a11_title">Desayunos Saludables en Familia con Pitahaya</h3>
+        <p data-i18n="blog_a11_p">Ideas creativas y nutritivas para que toda la familia comience el día con energía, incluyendo a los más pequeños...</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://i.pravatar.cc/150?u=elenariosf" alt="Elena Ríos">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a11_author_name">Elena Ríos</span>
+            <span class="role" data-i18n="blog_a11_author_role">Health Blogger</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>
+    
+    <a href="{{ url_for('articulo') }}?id=14" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="estilo-vida" data-id="12">
+      <div class="card-image-wrapper">
+        <img src="https://tse4.mm.bing.net/th/id/OIP.JJ0fGOGqhvedEyhrJcHqLQHaEK?r=0&cb=thfvnextfalcon2&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Mindful eating con pitahaya">
+        <span class="category-tag estilo-vida" data-i18n="blog_f_lifestyle">ESTILO DE VIDA</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a12_date">10 DE MAYO, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a12_readtime">9 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a12_title">Mindful Eating: Redescubre el Placer de Comer con la Pitahaya</h3>
+        <p data-i18n="blog_a12_p">Aprende a conectar con tus sentidos y a disfrutar cada bocado de esta fruta exótica como una forma de meditación y autocuidado...</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://i.pravatar.cc/150?u=sofiacastrof2" alt="Lic. Sofía Castro">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a12_author_name">Lic. Sofía Castro</span>
+            <span class="role" data-i18n="blog_a12_author_role">Wellness & Health Coach</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>
+    
+    <a href="{{ url_for('articulo') }}?id=15" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="estilo-vida" data-id="13">
+      <div class="card-image-wrapper">
+        <img src="https://thfvnext.bing.com/th/id/OIP.OFKSPwycru0qJLVfOKOVJgHaEC?w=313&h=180&c=7&r=0&o=7&cb=thfvnextfalcon2&dpr=1.5&pid=1.7&rm=3" alt="Guía para cultivar pitahaya en casa">
+        <span class="category-tag estilo-vida" data-i18n="blog_f_lifestyle">ESTILO DE VIDA</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a13_date">1 DE MAYO, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a13_readtime">10 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a13_title">Guía para Cultivar Pitahaya en tu Propio Jardín</h3>
+        <p data-i18n="blog_a13_p">Conecta con la naturaleza y disfruta de tus propias pitahayas orgánicas. Te guiamos paso a paso en el proceso...</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://i.pravatar.cc/150?u=ricardofloresm" alt="Ricardo Flores">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a13_author_name">Ricardo Flores</span>
+            <span class="role" data-i18n="blog_a13_author_role">Jardinero Urbano</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>
+    
+    <a href="{{ url_for('articulo') }}?id=19" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="estilo-vida" data-id="14">
+      <div class="card-image-wrapper">
+        <img src="https://thfvnext.bing.com/th/id/OIP.fv3V8_pUfMScMgpOixTV-wHaE7?w=231&h=180&c=7&r=0&o=7&cb=thfvnextfalcon2&dpr=1.5&pid=1.7&rm=3" alt="Impacto positivo de elegir pitahaya peruana">
+        <span class="category-tag estilo-vida" data-i18n="blog_f_lifestyle">ESTILO DE VIDA</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a14_date">20 DE ABRIL, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a14_readtime">7 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a14_title">Consumo Local: El Impacto Positivo de Elegir Pitahaya Peruana</h3>
+        <p data-i18n="blog_a14_p">Apoyar a los agricultores locales no solo garantiza un producto más fresco, sino que también fortalece la economía y reduce la huella de carbono...</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://i.pravatar.cc/150?u=sofiamendozaf" alt="Sofía Mendoza">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a14_author_name">Sofía Mendoza</span>
+            <span class="role" data-i18n="blog_a14_author_role">Activista Sostenible</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>
+    
+    <a href="{{ url_for('articulo') }}?id=35" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="estilo-vida" data-id="35">
+      <div class="card-image-wrapper">
+        <img src="https://thfvnext.bing.com/th/id/OIP.3EHwv4_tqR4TCskpfhQz1AHaHa?w=191&h=191&c=7&r=0&o=7&cb=thfvnextfalcon2&dpr=1.5&pid=1.7&rm=3" alt="Ideas creativas para decorar con pitahaya">
+        <span class="category-tag estilo-vida" data-i18n="blog_f_lifestyle">ESTILO DE VIDA</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a15_date">10 DE ABRIL, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a15_readtime">6 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a15_title">Decora tu Mesa: Ideas Creativas con Pitahaya para Eventos</h3>
+        <p data-i18n="blog_a15_p">Desde centros de mesa hasta detalles en los platos, aprende a usar la belleza natural de la pitahaya para sorprender en tus reuniones...</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://i.pravatar.cc/150?u=valeriamontesf" alt="Valeria Montes">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a15_author_name">Valeria Montes</span>
+            <span class="role" data-i18n="blog_a15_author_role">Diseñadora de Eventos</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>
+    
+    <a href="{{ url_for('articulo') }}?id=21" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="estilo-vida" data-id="16">
+      <div class="card-image-wrapper">
+        <img src="https://readdy.ai/api/search-image?query=athletic-woman-drinking-dragon-fruit-pitahaya-smoothie-after-workout-gym-setting-fitness-activewear-healthy-lifestyle-natural-light-professional-sports-photography&width=1200&height=630&seq=blog6-2026&orientation=landscape" alt="Nutrición deportiva">
+        <span class="category-tag estilo-vida" data-i18n="blog_f_lifestyle">ESTILO DE VIDA</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a16_date">10 DE MAYO, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a16_readtime">8 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a16_title">Nutrición deportiva: Por qué los atletas están incorporando pitahaya en su dieta</h3>
+        <p data-i18n="blog_a16_p">Desde corredores de maratón hasta practicantes de crossfit, los deportistas están descubriendo las...</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://readdy.ai/api/search-image?query=professional-latina-woman-dietitian-nutritionist-smiling-portrait-headshot-warm-lighting-clean-background-professional-photography&width=200&height=200&seq=author3&orientation=squarish" alt="Lic. Ana Lucía Torres">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a2_author_name">Lic. Ana Lucía Torres</span>
+            <span class="role" data-i18n="blog_a2_author_role">Especialista en Nutrición Funcional</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>
+    
+    <a href="{{ url_for('articulo') }}?id=22" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="beneficios" data-id="17">
+      <div class="card-image-wrapper">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_xHnWWikNeoUXrLf_pUqBkS8gx8xUtw_lOU7b_jhC5A&s=10" alt="Pitahaya en el embarazo">
+        <span class="category-tag beneficios" data-i18n="blog_f_benefits">BENEFICIOS</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a17_date">5 DE MAYO, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a17_readtime">7 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a17_title">Pitahaya durante el embarazo y la lactancia: Beneficios respaldados por...</h3>
+        <p data-i18n="blog_a17_p">Ginecólogos y nutricionistas coinciden: la pitahaya puede ser una de las mejores frutas para incluir...</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://readdy.ai/api/search-image?query=professional-hispanic-woman-nutritionist-smiling-portrait-headshot-warm-lighting-clean-background-professional-photography&width=200&height=200&seq=author1&orientation=squarish" alt="Dra. María Fernández">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a3_author_name">Dra. María Fernández</span>
+            <span class="role" data-i18n="blog_a3_author_role">Nutricionista Clínica</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>
+ 
+    
+    <a href="{{ url_for('articulo') }}?id=26" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="ciencia" data-id="19">
+      <div class="card-image-wrapper">
+        <img src="https://thfvnext.bing.com/th/id/OIP.Ik8bMVWsklt0QGws4rvdDQHaHa?w=202&h=203&c=7&r=0&o=7&cb=thfvnextfalcon2&dpr=1.5&pid=1.7&rm=3" alt="Cultivo orgánico de pitahaya">
+        <span class="category-tag ciencia" data-i18n="blog_f_science">CIENCIA</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a19_date">25 DE FEBRERO, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a19_readtime">11 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a19_title">El Impacto del Cultivo Orgánico en el Perfil Nutricional</h3>
+        <p data-i18n="blog_a19_p">Un análisis comparativo que demuestra cómo las prácticas agrícolas sostenibles potencian los beneficios de la fruta...</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://i.pravatar.cc/150?u=lauracampos" alt="Ing. Laura Campos">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a19_author_name">Ing. Laura Campos</span>
+            <span class="role" data-i18n="blog_a19_author_role">Ingeniera Agrónoma</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>
+    
+    <a href="{{ url_for('articulo') }}?id=20" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="ciencia" data-id="20">
+
+        <div class="card-image-wrapper">
+            <img src="https://thfvnext.bing.com/th/id/OIP.K-jpX3FgTMrEReP37drxsgHaEC?w=261&h=180&c=7&r=0&o=7&cb=thfvnextfalcon2&dpr=1.5&pid=1.7&rm=3"
+                 alt="Compuestos de la pitahaya">
+
+            <span class="category-tag ciencia" data-i18n="blog_f_science">CIENCIA</span>
+        </div>
+
+        <div class="card-body">
+
+            <div class="card-top-meta">
+                <span class="date" data-i18n="blog_a20_date">18 DE FEBRERO, 2026</span>
+                <span class="divider">•</span>
+                <span class="time" data-i18n="blog_a20_readtime">12 min de lectura</span>
+            </div>
+
+            <h3 data-i18n="blog_a20_title">Betalaínas: El Pigmento Antioxidante de la Pitahaya Roja</h3>
+
+            <p data-i18n="blog_a20_p">
+                Un análisis profundo sobre los compuestos que le dan su color
+                característico y sus potentes efectos en la salud celular...
+            </p>
+
+            <div class="author-block">
+                <img class="author-avatar"
+                     src="https://i.pravatar.cc/150?u=elenaacosta"
+                     alt="Dra. Elena Acosta">
+
+                <div class="author-text">
+                    <span class="name" data-i18n="blog_a20_author_name">Dra. Elena Acosta</span>
+                    <span class="role" data-i18n="blog_a20_author_role">Bioquímica</span>
+                </div>
+            </div>
+
+        </div>
+
+    </article>
+</a>
+    
+   <a href="{{ url_for('articulo') }}?id=34" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="ciencia" data-id="34">
+
+        <div class="card-image-wrapper">
+            <img src="https://thfvnext.bing.com/th/id/OIP.Dv0RZ5q_9V-YrEscuOe7mQHaEy?w=309&h=201&c=7&r=0&o=7&cb=thfvnextfalcon2&dpr=1.5&pid=1.7&rm=3"
+                 alt="Tecnología en agricultura">
+            <span class="category-tag ciencia" data-i18n="blog_f_science">CIENCIA</span>
+        </div>
+
+        <div class="card-body">
+
+            <div class="card-top-meta">
+                <span class="date" data-i18n="blog_a21_date">10 DE FEBRERO, 2026</span>
+                <span class="divider">•</span>
+                <span class="time" data-i18n="blog_a21_readtime">10 min de lectura</span>
+            </div>
+
+            <h3 data-i18n="blog_a21_title">Agricultura de Precisión en el Cultivo de Pitahaya</h3>
+
+            <p data-i18n="blog_a21_p">
+                Cómo la tecnología, desde drones hasta sensores de humedad,
+                está revolucionando la forma en que cultivamos para maximizar
+                la calidad y productividad de la pitahaya.
+            </p>
+
+            <div class="author-block">
+                <img class="author-avatar"
+                     src="https://i.pravatar.cc/150?u=jorgevega"
+                     alt="Ing. Jorge Vega">
+
+                <div class="author-text">
+                    <span class="name" data-i18n="blog_a21_author_name">Ing. Jorge Vega</span>
+                    <span class="role" data-i18n="blog_a21_author_role">Ingeniero Agrónomo</span>
+                </div>
+            </div>
+
+        </div>
+
+    </article>
+</a>
+    
+    <a href="{{ url_for('articulo') }}?id=30" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="ciencia" data-id="22">
+      <div class="card-image-wrapper">
+        <img src="https://thfvnext.bing.com/th/id/OIP.Nmb39U4pHeU8qb8jgjkjZgHaE8?w=220&h=180&c=7&r=0&o=7&cb=thfvnextfalcon2&dpr=1.5&pid=1.7&rm=3" alt="Genética de la pitahaya">
+        <span class="category-tag ciencia" data-i18n="blog_f_science">CIENCIA</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a22_date">2 DE FEBRERO, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a22_readtime">13 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a22_title">Genética de la Pitahaya: ¿Qué determina su color y sabor?</h3>
+        <p data-i18n="blog_a22_p">Un viaje al ADN de la fruta para entender por qué algunas son rojas, amarillas o blancas y cómo influye en su perfil nutricional...</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://i.pravatar.cc/150?u=mateovargas" alt="Dr. Mateo Vargas">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a22_author_name">Dr. Mateo Vargas</span>
+            <span class="role" data-i18n="blog_a22_author_role">Genetista Botánico</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>
+    
+    <a href="{{ url_for('articulo') }}?id=23" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="beneficios" data-id="23">
+      <div class="card-image-wrapper">
+        <img src="https://readdy.ai/api/search-image?query=fresh-dragon-fruit-cut-open-revealing-white-flesh-black-seeds-on-wooden-board-with-herbs-stylized-food-photography-warm-natural-light-soft-shadows-gourmet-healthy-lifestyle&width=800&height=600&seq=90&orientation=landscape" alt="Salud digestiva">
+        <span class="category-tag digestion" data-i18n="blog_f_digestion">DIGESTIÓN</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a23_date">15 DE MAYO, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a23_readtime">7 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a23_title">Los 5 Beneficios de la Pitahaya que Transformarán tu Salud Digestiva</h3>
+        <p data-i18n="blog_a23_p">Descubre cómo la fibra soluble e insoluble de la pitahaya regula el tránsito intestinal, previene el estreñimiento y...</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://readdy.ai/api/search-image?query=professional-hispanic-woman-nutritionist-smiling-portrait-headshot-warm-lighting-clean-background-professional-photography&width=200&height=200&seq=author1&orientation=squarish" alt="Dra. María Elena Ríos">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a3_author_name">Dra. María Elena Ríos</span>
+            <span class="role" data-i18n="blog_a3_author_role">Nutricionista Clínica</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>
+    
+    <a href="{{ url_for('articulo') }}?id=25" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="beneficios" data-id="">
+      <div class="card-image-wrapper">
+        <img src="https://readdy.ai/api/search-image?query=dragon-fruit-with-glucose-meter-and-healthy-food-arrangement-medical-nutrition-concept-clean-clinical-photography-warm-lighting-professional-composition&width=800&height=600&seq=91&orientation=landscape" alt="Pitahaya y Diabetes">
+        <span class="category-tag diabetes" data-i18n="blog_f_diabetes">DIABETES</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a24_date">8 DE MAYO, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a24_readtime">9 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a24_title">Pitahaya y Diabetes: Lo que Dice la Ciencia sobre el Índice Glucémico</h3>
+        <p data-i18n="blog_a24_p">Con un índice glucémico de solo 48, la pitahaya es una de las frutas más seguras para personas con diabetes tipo ...</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://readdy.ai/api/search-image?query=professional-latino-male-scientist-researcher-smiling-portrait-headshot-warm-lighting-clean-background-professional-photography&width=200&height=200&seq=author2&orientation=squarish" alt="Dr. Carlos Mendoza">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a1_author_name">Dr. Carlos Mendoza</span>
+            <span class="role" data-i18n="blog_a1_author_role">Médico Internista</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>
+    
+<a href="{{ url_for('articulo') }}?id=36" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="nutricion" data-id="36">
+
+        <div class="card-image-wrapper">
+            <img src="https://readdy.ai/api/search-image?query=four-different-dragon-fruit-varieties-displayed-side-by-side-on-marble-surface-vibrant-colors-comparative-food-photography-professional-studio-lighting&width=800&height=600&seq=92&orientation=landscape"
+                 alt="Comparativa Nutricional">
+
+            <span class="category-tag nutricion" data-i18n="blog_f_nutrition">NUTRICIÓN</span>
+        </div>
+
+        <div class="card-body">
+
+            <div class="card-top-meta">
+                <span class="date" data-i18n="blog_a36_date">2 DE MAYO, 2026</span>
+                <span class="divider">•</span>
+                <span class="time" data-i18n="blog_a36_readtime">11 min de lectura</span>
+            </div>
+
+            <h3 data-i18n="blog_a36_title">Comparativa Nutricional: ¿Qué Variedad de Pitahaya es Mejor para Ti?</h3>
+
+            <p data-i18n="blog_a36_p">
+                American Beauty, Híbrida, Interior Blanco y Amarilla:
+                cada una tiene un perfil nutricional único.
+                Te ayudamos a elegir la mejor para ti.
+            </p>
+
+            <div class="author-block">
+                <img class="author-avatar"
+                     src="https://readdy.ai/api/search-image?query=professional-latina-woman-dietitian-nutritionist-smiling-portrait-headshot-warm-lighting-clean-background-professional-photography&width=200&height=200&seq=author3&orientation=squarish"
+                     alt="Ing. Rosa Huamán">
+
+                <div class="author-text">
+                    <span class="name" data-i18n="blog_a36_author_name">Ing. Rosa Huamán</span>
+                    <span class="role" data-i18n="blog_a36_author_role">Ingeniera Agrónoma</span>
+                </div>
+            </div>
+
+        </div>
+
+    </article>
+</a>
+    
+    <a href="{{ url_for('articulo') }}?id=38" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="nutricion" data-id="38">
+      <div class="card-image-wrapper">
+        <img src="https://readdy.ai/api/search-image?query=dragon-fruit-beauty-skincare-concept-with-natural-ingredients-spa-aesthetic-photography-soft-pink-tones-elegant-composition-wellness-lifestyle&width=800&height=600&seq=93&orientation=landscape" alt="Antioxidantes Naturales">
+        <span class="category-tag nutricion" data-i18n="blog_f_nutrition">NUTRICIÓN</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta">
+          <span class="date" data-i18n="blog_a38_date">28 DE ABRIL, 2026</span>
+          <span class="divider">•</span>
+          <span class="time" data-i18n="blog_a38_readtime">6 min de lectura</span>
+        </div>
+        <h3 data-i18n="blog_a38_title">Antioxidantes Naturales: El Poder Anti-Envejecimiento de la Pitahaya</h3>
+        <p data-i18n="blog_a38_p">Los betacarotenos, licopeno y vitamina C de la pitahaya combaten los radicales libres. Conoce cómo esta fruta...</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://readdy.ai/api/search-image?query=professional-hispanic-woman-nutritionist-smiling-portrait-headshot-warm-lighting-clean-background-professional-photography&width=200&height=200&seq=author1&orientation=squarish" alt="Dra. María Elena Ríos">
+          <div class="author-text">
+            <span class="name" data-i18n="blog_a3_author_name">Dra. María Elena Ríos</span>
+            <span class="role" data-i18n="blog_a3_author_role">Nutricionista Clínica</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    </a>
+    
+ <a href="{{ url_for('articulo') }}?id=27" class="blog-card-link">
+ <article class="blog-card style-portrait" data-category="beneficios" data-id="27">
+      <div class="card-image-wrapper">
+        <img src="https://readdy.ai/api/search-image?query=dragon-fruit-with-digestive-health-symbols-fiber-rich-foods-arrangement-gut-health-concept-clean-professional-photography-natural-light&width=800&height=600&seq=96&orientation=landscape" alt="Fibra">
+        <span class="category-tag digestion" data-i18n="blog_f_digestion">DIGESTIÓN</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta"><span class="date" data-i18n="blog_a25_date">5 DE ABRIL, 2026</span><span class="divider">•</span><span class="time" data-i18n="blog_a25_readtime">6 min</span></div>
+        <h3 data-i18n="blog_a25_title">La Fibra de la Pitahaya: Tu Mejor Aliada para una Digestión Saludable</h3>
+        <p data-i18n="blog_a25_p">Con hasta 3.5g de fibra por cada 100g, supera los estándares habituales...</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://readdy.ai/api/search-image?query=professional-hispanic-woman-nutritionist-smiling-portrait-headshot-warm-lighting-clean-background-professional-photography&width=200&height=200&seq=author1&orientation=squarish" alt="Dra. Ríos">
+          <div class="author-text"><span class="name">Dra. María Elena Ríos</span><span class="role">Nutricionista Clínica</span></div>
+        </div>
+      </div>
+    </article>
+    </a>
+    
+    <a href="{{ url_for('articulo') }}?id=28" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="nutricion" data-id="28">
+      <div class="card-image-wrapper">
+        <img src="https://readdy.ai/api/search-image?query=dragon-fruit-with-vitamin-supplements-and-nutritional-chart-scientific-health-concept-clean-laboratory-style-photography-soft-lighting&width=800&height=600&seq=97&orientation=landscape alt="Perfil completo">
+        <span class="category-tag nutricion" data-i18n="blog_f_nutrition">NUTRICIÓN</span>
+      </div>
+      <div class="card-body">
+        <div class="card-top-meta"><span class="date" data-i18n="blog_a26_date">28 DE MARZO, 2026</span><span class="divider">•</span><span class="time" data-i18n="blog_a26_readtime">10 min</span></div>
+        <h3 data-i18n="blog_a26_title">Vitaminas y Minerales: El Perfil Nutricional Completo de la Pitahaya</h3>
+        <p data-i18n="blog_a26_p">Hierro, calcio, magnesio y fósforo actúan como un potente suplemento natural...</p>
+        <div class="author-block">
+          <img class="author-avatar" src="https://readdy.ai/api/search-image?query=professional-latino-male-scientist-researcher-smiling-portrait-headshot-warm-lighting-clean-background-professional-photography&width=200&height=200&seq=author2&orientation=squarish" alt="Carlos">
+          <div class="author-text"><span class="name">Dr. Carlos Mendoza</span><span class="role">Médico Internista</span></div>
+        </div>
+      </div>
+    </article>
+    </a>
+    
+    <a href="{{ url_for('articulo') }}?id=32" class="blog-card-link">
+  <article class="blog-card style-portrait" data-category="recetas" data-id="32">
+
+    <div class="card-image-wrapper">
+      <img src="https://readdy.ai/api/search-image?query=beautiful-dragon-fruit-smoothie-bowl-with-granola-and-fresh-fruit-toppings-wooden-table-brunch-aesthetic-photography-bright-natural-light&width=800&height=600&seq=94&orientation=landscape" alt="Recetas detox pitahaya">
+            <span class="category-tag recetas" data-i18n="blog_f_recipes">RECETAS</span>
+    </div>
+
+    <div class="card-body">
+      <div class="card-top-meta">
+                <span class="date" data-i18n="blog_a27_date">20 DE ABRIL, 2026</span>
+        <span class="divider">•</span>
+                <span class="time" data-i18n="blog_a27_readtime">5 min de lectura</span>
+      </div>
+
+            <h3 data-i18n="blog_a27_title">3 Recetas Detox con Pitahaya para Empezar el Día con Energía</h3>
+
+            <p data-i18n="blog_a27_p">
+        Smoothie bowl, jugo verde tropical y overnight oats con pitahaya.
+        Tres recetas fáciles, deliciosas y llenas de energía.
+      </p>
+
+      <div class="author-block">
+        <img class="author-avatar"
+          src="https://readdy.ai/api/search-image?query=professional-latina-chef-woman-smiling-in-kitchen-warm-lighting-portrait-headshot-professional-photography"
+          alt="Chef Andrea Castillo">
+
+        <div class="author-text">
+                    <span class="name" data-i18n="blog_a27_author_name">Chef Andrea Castillo</span>
+                    <span class="role" data-i18n="blog_a27_author_role">Chef de Cocina Saludable</span>
+        </div>
+      </div>
+    </div>
+
+  </article>
+</a>
+    
+   <a href="{{ url_for('articulo') }}?id=37" class="blog-card-link">
+    <article class="blog-card style-portrait" data-category="nutricion" data-id="37">
+
+        <div class="card-image-wrapper">
+            <img src="https://readdy.ai/api/search-image?query=pregnant-woman-hands-holding-dragon-fruit-gentle-maternal-nutrition-concept-warm-soft-photography-natural-light-loving-atmosphere&width=800&height=600&seq=98&orientation=landscape"
+                 alt="Embarazo beneficios">
+
+            <span class="category-tag nutricion" data-i18n="blog_f_nutrition">NUTRICIÓN</span>
+        </div>
+        <div class="card-body">
+
+            <div class="card-top-meta">
+                <span class="date" data-i18n="blog_a28_date">18 DE MARZO, 2026</span>
+                <span class="divider">•</span>
+                <span class="time" data-i18n="blog_a28_readtime">7 min de lectura</span>
+            </div>
+            <h3 data-i18n="blog_a28_title">Pitahaya en el Embarazo: Beneficios y Recomendaciones de Consumo</h3>
+            <p data-i18n="blog_a28_p">
+                El ácido fólico natural, la hidratación y el aporte de hierro
+                hacen de la pitahaya una fruta ideal durante la gestación.
+            </p>
+            <div class="author-block">
+                <img class="author-avatar"
+                     src="https://i.pravatar.cc/150?u=carmensalas"
+                     alt="Dra. Carmen Salas">
+
+                <div class="author-text">
+                    <span class="name" data-i18n="blog_a28_author_name">Dra. Carmen Salas</span>
+                    <span class="role" data-i18n="blog_a28_author_role">Gineco-obstetra</span>
+                </div>
+            </div>
+        </div>
+    </article>
+</a>
+</main>
+<section class="final-cta-section reveal">
+    <div class="cta-container">
+
+    <!-- Añadido data-i18n="blog_cta_badge" -->
+    <span class="cta-badge" data-i18n="blog_cta_badge">🌱 Apoya al campo peruano</span>
+
+    <!-- Añadido data-i18n="blog_cta_title" (Recuerda que quitamos el span interno para limpiar el JSON) -->
+    <h2 class="cta-main-title" data-i18n="blog_cta_title">
+        La historia continúa contigo
+    </h2>
+
+    <!-- Añadido data-i18n="blog_cta_description" -->
+    <p class="cta-description" data-i18n="blog_cta_description">
+        Cada pitahaya que compras apoya a más de 30 familias productoras.
+        Cada pedido fortalece una comunidad rural que apostó por la formalidad,
+        la calidad y el desarrollo sostenible del valle de Cañete.
+    </p>
+    
+    <div class="cta-button-group">
+        <a href="{{ url_for('productos') }}" class="btn-primary-pink">
+            <i class="fas fa-shopping-basket"></i>
+            <!-- Envolvemos el texto en un span con data-i18n para no borrar el icono de font-awesome -->
+            <span data-i18n="blog_cta_btn_products">Ver Productos</span>
+        </a>
+
+        <a href="{{ url_for('contacto') }}" class="btn-secondary-white">
+            <i class="far fa-envelope"></i>
+            <!-- Envolvemos el texto en un span con data-i18n para no borrar el icono de font-awesome -->
+            <span data-i18n="blog_cta_btn_contact">Contáctanos</span>
+        </a>
+    </div>
+
+</div>
+
+</section>
+
+<script src="{{ url_for('static', filename='js/Blog.js') }}?v=20260419"></script>
+{% endblock %}

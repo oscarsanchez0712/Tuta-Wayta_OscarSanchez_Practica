@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="admin_page_title">Dashboard administrador - Tuta Wayta</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_dashboard.css') }}?v=20260620-2">
+</head>
+<body>
+  <aside class="admin-sidebar">
+    <a class="admin-brand" href="{{ url_for('index') }}">
+      <img src="{{ url_for('static', filename='img/logo oficiaial.png') }}" alt="Tuta Wayta">
+      <span>
+        <strong>Tuta Wayta</strong>
+        <small data-i18n="admin_role">Admin</small>
+      </span>
+    </a>
+
+    <nav class="admin-nav" aria-label="Panel administrador">
+      <a class="active" href="#resumen" data-admin-view="resumen">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span data-i18n="admin_nav_general">Panel general</span>
+      </a>
+      <a href="#vistas" data-admin-view="vistas">
+        <span class="material-symbols-outlined">visibility</span>
+        <span data-i18n="admin_nav_views">Vistas de pagina</span>
+      </a>
+      <a href="#productos" data-admin-view="productos">
+        <span class="material-symbols-outlined">inventory_2</span>
+        <span data-i18n="admin_nav_products">Productos</span>
+      </a>
+      <a href="#contactos" data-admin-view="contactos">
+        <span class="material-symbols-outlined">mail</span>
+        <span data-i18n="admin_nav_messages">Mensajes</span>
+      </a>
+      <a href="#libro" data-admin-view="libro">
+        <span class="material-symbols-outlined">menu_book</span>
+        <span>Libro de Reclamaciones</span>
+      </a>
+      <a href="#usuarios" data-admin-view="usuarios">
+        <span class="material-symbols-outlined">groups</span>
+        <span data-i18n="admin_nav_users">Usuarios</span>
+      </a>
+      <a href="#actividad" data-admin-view="actividad">
+        <span class="material-symbols-outlined">monitoring</span>
+        <span data-i18n="admin_nav_activity">Actividad</span>
+      </a>
+      <button type="button" class="admin-nav-logout" id="adminLogout">
+        <span class="material-symbols-outlined">logout</span>
+        <span data-i18n="admin_nav_logout">Cerrar sesion</span>
+      </button>
+    </nav>
+
+    <div class="admin-user">
+      <div id="adminAvatar">A</div>
+      <span>
+        <strong id="adminName" data-i18n="admin_user_default">Administrador</strong>
+        <small id="adminEmail">admin@tutawayta.com</small>
+      </span>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-topbar">
+      <div>
+        <p data-i18n="admin_top_kicker">Panel administrador</p>
+        <h1 id="adminViewTitle" data-i18n="admin_top_title">Estadisticas</h1>
+        <span id="adminViewDescription" data-i18n="admin_top_desc">Visualiza visitas, usuarios, productos y accesos de la pagina.</span>
+      </div>
+      <div class="admin-actions">
+        <span id="todayText" data-i18n="admin_btn_today">Hoy</span>
+        <button type="button" id="refreshDashboard">
+          <span class="material-symbols-outlined">refresh</span>
+          <span data-i18n="admin_btn_refresh">Actualizar</span>
+        </button>
+      </div>
+    </header>
+
+    <section class="metric-grid admin-section active" id="resumen" data-admin-section="resumen" aria-label="Resumen de estadisticas">
+      <article class="metric-card">
+        <span class="material-symbols-outlined metric-icon green">trending_up</span>
+        <small data-i18n="admin_m1_title">Visitas totales</small>
+        <strong id="metricVisits">0</strong>
+        <p data-i18n="admin_m1_desc">Cargas reales de secciones publicas</p>
+      </article>
+      <article class="metric-card">
+        <span class="material-symbols-outlined metric-icon violet">person</span>
+        <small data-i18n="admin_m2_title">Visitantes unicos</small>
+        <strong id="metricUsers">0</strong>
+        <p data-i18n="admin_m2_desc">Personas que vieron la pagina</p>
+      </article>
+      <article class="metric-card">
+        <span class="material-symbols-outlined metric-icon blue">storefront</span>
+        <small data-i18n="admin_m3_title">Visitas a productos</small>
+        <strong id="metricCart">0</strong>
+        <p data-i18n="admin_m3_desc">Entradas al catalogo y detalle</p>
+      </article>
+      <article class="metric-card">
+        <span class="material-symbols-outlined metric-icon amber">report</span>
+        <small data-i18n="admin_m4_title">Reclamos/quejas</small>
+        <strong id="metricClaims">0</strong>
+        <p data-i18n="admin_m4_desc">Registros guardados en el libro</p>
+      </article>
+    </section>
+
+    <section class="dashboard-layout admin-section" id="actividad" data-admin-section="actividad">
+      <article class="panel chart-panel">
+        <div class="panel-head">
+          <div>
+            <h2 data-i18n="admin_c1_title">Visitas por dia</h2>
+            <p data-i18n="admin_c1_desc">Movimiento estimado de la ultima semana</p>
+          </div>
+          <span class="material-symbols-outlined">bar_chart</span>
+        </div>
+        <div class="bar-chart" id="visitsChart" aria-label="Grafico de visitas"></div>
+      </article>
+
+      <article class="panel donut-panel">
+        <div class="panel-head">
+          <div>
+            <h2 data-i18n="admin_c2_title">Interacciones</h2>
+            <p data-i18n="admin_c2_desc">Resumen de actividad del usuario</p>
+          </div>
+          <span class="material-symbols-outlined">donut_large</span>
+        </div>
+        <div class="donut-wrap">
+          <div class="donut" id="interactionDonut"><strong id="metricInteractions">0</strong><span data-i18n="admin_c2_total">Total</span></div>
+          <ul class="donut-legend">
+            <li><i class="pink"></i> <span data-i18n="admin_leg_cart">Carrito</span></li>
+            <li><i class="green"></i> <span data-i18n="admin_leg_users">Usuarios</span></li>
+            <li><i class="blue"></i> <span data-i18n="admin_leg_products">Productos</span></li>
+            <li><i class="amber"></i> <span data-i18n="admin_leg_book">Libro</span></li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel admin-section" id="vistas" data-admin-section="vistas">
+      <div class="panel-head">
+        <div>
+          <h2 data-i18n="admin_v_title">Vistas de la pagina</h2>
+          <p data-i18n="admin_v_desc">Accesos rapidos para revisar cada seccion publica.</p>
+        </div>
+        <a class="panel-link" href="{{ url_for('index') }}" target="_blank" rel="noopener" data-i18n="admin_v_link">Abrir web</a>
+      </div>
+
+      <div class="view-grid">
+        <a href="{{ url_for('index') }}" target="_blank" rel="noopener"><span class="material-symbols-outlined">home</span><span data-i18n="admin_link_home">Inicio</span></a>
+        <a href="{{ url_for('productos') }}" target="_blank" rel="noopener"><span class="material-symbols-outlined">storefront</span><span data-i18n="admin_link_products">Productos</span></a>
+        <a href="{{ url_for('servicios') }}" target="_blank" rel="noopener"><span class="material-symbols-outlined">handshake</span><span data-i18n="admin_link_services">Servicios</span></a>
+        <a href="{{ url_for('beneficios') }}" target="_blank" rel="noopener"><span class="material-symbols-outlined">eco</span><span data-i18n="admin_link_benefits">Beneficios</span></a>
+        <a href="{{ url_for('nosotros') }}" target="_blank" rel="noopener"><span class="material-symbols-outlined">diversity_3</span><span data-i18n="admin_link_about">Nosotros</span></a>
+        <a href="{{ url_for('equipo') }}" target="_blank" rel="noopener"><span class="material-symbols-outlined">badge</span><span data-i18n="admin_link_team">Equipo</span></a>
+        <a href="{{ url_for('historia') }}" target="_blank" rel="noopener"><span class="material-symbols-outlined">history_edu</span><span data-i18n="admin_link_history">Historia</span></a>
+        <a href="{{ url_for('galeria') }}" target="_blank" rel="noopener"><span class="material-symbols-outlined">photo_library</span><span data-i18n="admin_link_gallery">Galeria</span></a>
+        <a href="{{ url_for('blog') }}" target="_blank" rel="noopener"><span class="material-symbols-outlined">article</span><span data-i18n="admin_link_blog">Blog</span></a>
+        <a href="{{ url_for('contacto') }}" target="_blank" rel="noopener"><span class="material-symbols-outlined">mail</span><span data-i18n="admin_link_contact">Contacto</span></a>
+        <a href="{{ url_for('carrito') }}" target="_blank" rel="noopener"><span class="material-symbols-outlined">shopping_bag</span><span data-i18n="admin_link_cart">Carrito</span></a>
+      </div>
+    </section>
+
+    <section class="dashboard-layout admin-section" id="productos" data-admin-section="productos">
+      <article class="panel" id="productos-precios">
+        <div class="panel-head">
+          <div>
+            <h2 data-i18n="admin_p1_title">Precios de productos</h2>
+            <p data-i18n="admin_p1_desc">Cambia los precios del catalogo desde el dashboard.</p>
+          </div>
+          <a class="panel-link" href="{{ url_for('productos') }}" target="_blank" rel="noopener" data-i18n="admin_p1_link">Ver catalogo</a>
+        </div>
+        <div class="price-editor-list" id="adminPriceEditor"></div>
+        <div class="dashboard-message" id="priceEditorMessage" role="status" aria-live="polite"></div>
+      </article>
+
+      <article class="panel" id="productos-agregados">
+        <div class="panel-head">
+          <div>
+            <h2 data-i18n="admin_p2_title">Productos agregados</h2>
+            <p data-i18n="admin_p2_desc">Nuevos productos creados por el administrador.</p>
+          </div>
+          <a class="panel-link" href="{{ url_for('productos') }}" data-i18n="admin_p2_link">Ver Productos</a>
+        </div>
+        
+        <div class="product-form-wrapper">
+          <form id="formAgregarProducto" class="product-form">
+            <h3 id="formProductTitle">Agregar Nuevo Producto</h3>
+            <input type="hidden" id="productId">
+            
+            <div class="form-grid">
+              <div class="form-group span-2">
+                <label for="productName">Nombre del Producto</label>
+                <input type="text" id="productName" required placeholder="Ej: Pitahaya Fresca 1kg">
+              </div>
+              <div class="form-group" id="price-form-group">
+                <label for="productPrice">Precio (S/)</label>
+                <input type="number" id="productPrice" step="0.01" min="0" placeholder="25.00">
+              </div>
+              <div class="form-group">
+                <label for="productCategory">Categoría</label>
+                <div class="category-choices" id="productCategoryContainer">
+                  <label><input type="radio" name="productCategory" value="Fruta" checked><span>Fruta</span></label>
+                  <label><input type="radio" name="productCategory" value="Derivados"><span>Derivados</span></label>
+                  <label><input type="radio" name="productCategory" value="Orgánicos"><span>Orgánicos</span></label>
+                </div>
+                <!-- Este input oculto es para mantener compatibilidad si el JS lo busca por ID -->
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="productDescription">Descripción del Producto</label>
+              <textarea id="productDescription" rows="3" placeholder="Describe brevemente el producto, sus características o ingredientes principales."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Fuente de la Imagen</label>
+              <div class="tab-container">
+                <div class="tab-buttons">
+                  <button type="button" class="tab-btn active" data-tab="url">URL</button>
+                  <button type="button" class="tab-btn" data-tab="upload">Subir Archivo</button>
+                </div>
+                <div class="tab-content active" id="tab-url">
+                  <input type="url" id="productImageUrl" placeholder="https://ejemplo.com/imagen.png">
+                </div>
+                <div class="tab-content" id="tab-upload">
+                  <label for="productImageFile" class="file-upload-label">Seleccionar archivo...</label>
+                  <input type="file" id="productImageFile" accept="image/*">
+                </div>
+                <div class="tab-content" id="tab-gallery">
+                  <div class="gallery-picker" id="imageGalleryContainer">
+                    <!-- Las imágenes de la galería se cargarán aquí -->
+                  </div>
+                </div>
+                <input type="hidden" id="productImage">
+              </div>
+            </div>
+
+            <div class="form-footer">
+              <button type="submit" class="btn-submit">
+                <span class="material-symbols-outlined">add_circle</span>
+                <span id="formSubmitText">Agregar Producto</span>
+              </button>
+              <button type="button" id="cancelEditBtn" class="btn-cancel hidden">
+                <span class="material-symbols-outlined">close</span> Cancelar Edición
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="product-list-header">
+          <h3>Listado de Productos Agregados</h3>
+        </div>
+        <div class="product-list-container" id="adminProductSummary"></div>
+      </article>
+    </section>
+
+    <section class="panel admin-section" id="contactos" data-admin-section="contactos">
+      <div class="panel-head">
+        <div>
+          <h2 data-i18n="admin_m_title">Mensajes del Formulario de Contacto</h2>
+          <p data-i18n="admin_m_desc">Consultas y registros reales almacenados de forma segura en tu ecosistema.</p>
+        </div>
+        <span class="material-symbols-outlined">inbox</span>
+      </div>
+      <div class="user-list" id="contactSummaryList" style="margin-top: 20px; display: flex; flex-direction: column; gap: 18px;">
+      </div>
+    </section>
+
+    <section class="panel admin-section" id="libro" data-admin-section="libro">
+      <div class="user-list" id="reclamacionesSummaryList" style="margin-top: 20px; display: flex; flex-direction: column; gap: 18px;">
+        <!-- El contenido del libro de reclamaciones se generará aquí por JavaScript -->
+      </div>
+    </section>
+
+    <section class="panel admin-section" id="usuarios" data-admin-section="usuarios">
+      <div class="panel-head">
+        <div>
+          <h2 data-i18n="admin_u_title">Usuarios</h2>
+          <p data-i18n="admin_u_desc">Cuentas guardadas localmente en el navegador.</p>
+        </div>
+        <span class="material-symbols-outlined">manage_accounts</span>
+      </div>
+      <div class="user-list" id="userSummary" style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;"></div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/admin_dashboard.js') }}?v={{ range(1, 99999) | random }}"></script>
+</body>
+</html>

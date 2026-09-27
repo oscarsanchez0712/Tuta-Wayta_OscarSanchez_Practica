@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+{% block title %}Tuta Wayta – Nuestro Equipo{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Equipo.css') }}?v=20260419"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/equipo_modal.css') }}?v=20260625"/>
+
+<section class="equipo-hero">
+    <img src="{{ url_for('static', filename='img/IMG_20260705_133439.jpg.webp') }}" class="hero-bg">
+    <div class="hero-container">
+        <p class="hero-eyebrow" data-i18n="team_page_eyebrow">Quiénes somos</p>
+        <h1 class="hero-title"><span data-i18n="team_page_title1">Nuestro</span> <i><span data-i18n="team_page_title2">Equipo</span></i></h1>
+        <p class="hero-description" data-i18n="team_page_p">
+            Más de 30 socios productores conforman la familia Tuta Wayta. Conoce a quienes lideran nuestra asociación.
+        </p>
+    </div>
+</section>
+
+<section class="equipo-grid-section">
+    <div class="equipo-grid">
+        <!-- Tarjeta de Equipo Rediseñada -->
+        <div class="team-card reveal">
+            <div class="team-img-wrapper">
+                <img src="{{ url_for('static', filename='img/presidenta.png') }}" alt="Kelly Carvajal" class="team-img">
+            </div>
+            <div class="team-info">
+                <h3 data-i18n="team_m1_name">Kelly Carvajal</h3>
+                <p class="team-role" data-i18n="team_m1_role">🌱 Presidenta de la Asociación</p>
+                <p class="team-bio" data-i18n="team_m1_bio">Líder visionaria que ha guiado a Tuta Wayta desde sus inicios informales hacia la formalización como asociación.</p>
+                <button class="team-tag" data-i18n="team_m1_specialty" onclick="openMemberModal('presidenta')">GESTIÓN Y LIDERAZGO</button>
+            </div>
+        </div>
+
+        <!-- Tarjeta de Equipo Rediseñada -->
+        <div class="team-card reveal">
+            <div class="team-img-wrapper">
+                <img src="{{ url_for('static', filename='img/vicepresidenta.png') }}" alt="Talia Rodriguez Rojas" class="team-img">
+            </div>
+            <div class="team-info">
+                <h3 data-i18n="team_m2_name">Talia Rodriguez Rojas</h3>
+                <p class="team-role" data-i18n="team_m2_role">🌱 Vicepresidenta</p>
+                <p class="team-bio" data-i18n="team_m2_bio">Productora de pitahaya desde hace más de seis años, combina su experiencia en campo con visión comercial.</p>
+                <button class="team-tag" data-i18n="team_m2_specialty" onclick="openMemberModal('vicepresidenta')">PRODUCCIÓN Y COMERCIALIZACIÓN</button>
+            </div>
+        </div>
+
+        <!-- Tarjeta de Equipo Rediseñada -->
+        <div class="team-card reveal">
+            <div class="team-img-wrapper">
+                <img src="{{ url_for('static', filename='img/TESORERO.png') }}" alt="Kelly Maynard" class="team-img">
+            </div>
+            <div class="team-info">
+                <h3 data-i18n="team_m3_name">Kelly Maynard</h3>
+                <p class="team-role" data-i18n="team_m3_role">🌱 Tesorero</p>
+                <p class="team-bio" data-i18n="team_m3_bio">Agricultor experimentado que aporta su conocimiento práctico y su visión crítica para mejorar procesos.</p>
+                <button class="team-tag" data-i18n="team_m3_specialty" onclick="openMemberModal('tesorero')">FINANZAS Y CALIDAD</button>
+            </div>
+        </div>
+
+        <!-- Tarjeta de Equipo Rediseñada -->
+        <div class="team-card reveal">
+            <div class="team-img-wrapper">
+                <img src="https://i.ibb.co/Xktgp8BW/IMG-8370.avif" class="team-img">
+            </div>
+            <div class="team-info">
+                <h3 data-i18n="team_m4_name">Henry Perez</h3>
+                <p class="team-role" data-i18n="team_m4_role">🌱 Coordinador de Producción</p>
+                <p class="team-bio" data-i18n="team_m4_bio">Con profundo conocimiento del ciclo productivo, Henry coordina la planificación de cosechas.</p>
+                <button class="team-tag" data-i18n="team_m4_specialty" onclick="openMemberModal('produccion')">COORDINACIÓN AGRÍCOLA</button>
+            </div>
+        </div>
+        
+        <!-- Tarjeta de Equipo Rediseñada -->
+        <div class="team-card reveal">
+            <div class="team-img-wrapper">
+                <img src="{{ url_for('static', filename='img/Astrid Guardia.png') }}" class="team-img">
+            </div>
+            <div class="team-info">
+                <h3 data-i18n="team_m5_name">Astrid Guardia</h3>
+                <p class="team-role" data-i18n="team_m5_role">🌱 Relaciones Comunitarias</p>
+                <p class="team-bio" data-i18n="team_m5_bio">Encargada de fortalecer los vínculos entre los socios y la comunidad de Cañete.</p>
+                <button class="team-tag" data-i18n="team_m5_specialty" onclick="openMemberModal('comunidad')">COMUNIDAD Y ASOCIATIVIDAD</button>
+            </div>
+        </div>
+        
+        <!-- Tarjeta de Equipo Rediseñada -->
+        <div class="team-card reveal">
+            <div class="team-img-wrapper">
+                <img src="{{ url_for('static', filename='img/Ricardo Zúñiga.png') }}" class="team-img">
+            </div>
+            <div class="team-info">
+                <h3 data-i18n="team_m6_name">Ricardo Zúñiga</h3>
+                <p class="team-role" data-i18n="team_m6_role">🌱 Promotor de Innovación</p>
+                <p class="team-bio" data-i18n="team_m6_bio">Buscando nuevas oportunidades de crecimiento para la asociación y mercados internacionales.</p>
+                <button class="team-tag" data-i18n="team_m6_specialty" onclick="openMemberModal('innovacion')">INNOVACIÓN Y MERCADOS</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="seccion-equipo-completo">
+    
+    <div class="encabezado-equipo">
+        <span class="tag-quienes" data-i18n="team_assoc_tag">Quiénes somos</span>
+        <h2 data-i18n="team_assoc_title">Conoce la Asociación</h2>
+        <p class="frase-inspiradora" data-i18n="team_assoc_p">
+            Cada imagen cuenta la historia de la naturaleza en su forma más pura. Nuestras pitahayas crecen con dedicación, sol y pasión para llegar frescas hasta ti.
+        </p>
+    </div>
+
+    <div class="contenedor-carrusel">
+        <button class="btn-carrusel btn-prev" onclick="moverIzquierda()">←</button>
+        <button class="btn-carrusel btn-next" onclick="moverDerecha()">→</button>
+
+        <div class="badge-titulo-flotante">
+          <span data-i18n="team_assoc_badge_span">Familia Tuta Wayta</span>
+          <h1 data-i18n="team_assoc_badge_h1">NUESTRO EQUIPO</h1>
+        </div>
+
+        <div class="carrusel-slides" id="carruselImat">
+            <div class="slide">
+                <img src="{{ url_for('static', filename='img/IMG_20260705_134543.jpg.jpeg') }}" alt="Plantaciones Tuta Wayta">
+            </div>
+         <div class="slide">
+                <img src="{{ url_for('static', filename='img/IMG_8365.webp') }}" alt="Empaque de Pitahayas en Cañete">
+            </div>
+            <div class="slide">
+                <img src="https://i.ibb.co/JjRVjWQ3/FLOR.jpg" alt="Cosecha Selecta de Campo">
+            </div>
+            <div class="slide">
+                <img src="{{ url_for('static', filename='img/Cosecha selectiva.jpg.jpeg') }}" alt="Calidad Pitahaya Perú">
+            </div>
+            <div class="slide">
+                <img src="{{ url_for('static', filename='img/Control de calidad.jpg.jpeg') }}" alt="Calidad Pitahaya Perú">
+            </div>
+        </div>
+    </div>
+
+    <div class="seccion-socios-extras">
+      <div class="texto-socios">
+        <p data-i18n="team_assoc_extra_p">Más de 30 socios productores del valle trabajan coordinadamente bajo la directiva central, garantizando un manejo técnico óptimo y la mejor calidad de exportación de nuestras pitahayas hacia tu mesa.</p>
+      </div>
+      <div class="badges-socios">
+        <div class="badge-item">
+          <span>👥</span>
+          <span data-i18n="team_assoc_b1">30+ Socios Activos</span>
+        </div>
+        <div class="badge-item">
+          <span>🌱</span>
+          <span data-i18n="team_assoc_b2">Directiva Líder</span>
+        </div>
+      </div>
+    </div>
+
+</div>
+<section class="socios-section">
+    <div class="socios-container">
+        <div class="socios-content">
+            <h2 class="socios-title"><span data-i18n="team_more_title1">Y detrás de ellos,</span> <br><i><span data-i18n="team_more_title2">30 socios más</span></i></h2>
+            <p class="socios-description" data-i18n="team_more_p">
+                La fuerza de Tuta Wayta no está solo en su directiva, sino en cada uno de los agricultores que día a día cuidan las plantas, cosechan la fruta y hacen posible que esta asociación crezca.
+            </p>
+            <div class="socios-pills">
+                <span class="pill-badge" data-i18n="team_more_pill1">👤 30+ Integrantes</span>
+                <span class="pill-badge" data-i18n="team_more_pill2">📍 Cañete, Perú</span>
+                <span class="pill-badge" data-i18n="team_more_pill3">🍃 100% Orgánico</span>
+            </div>
+        </div>
+        <div class="socios-visual">
+            <img src="https://i.ibb.co/C3GCYf9R/IMG-8446.avif" class="socios-img-main">
+        </div>
+    </div>
+</section>
+
+<section class="cta-unete">
+    <div class="cta-container">
+        <h2 class="cta-title" data-i18n="team_cta_title">¿Quieres ser parte de Tuta Wayta?</h2>
+        <p class="cta-description" data-i18n="team_cta_p">
+            Buscamos constantemente nuevos talentos y socios productores comprometidos con la agricultura orgánica y el desarrollo sostenible. Si compartes nuestra visión, nos encantaría conocerte.
+        </p>
+        <a href="{{ url_for('contacto') }}" class="cta-btn" data-i18n="team_cta_btn">
+            Contáctanos
+        </a>
+    </div>
+    
+</section>
+
+<!-- Estructura del Modal (inicialmente oculto) -->
+<div id="memberModal" class="member-modal">
+  <div class="modal-backdrop" onclick="closeMemberModal()"></div>
+  <div class="modal-card">
+    <div class="modal-profile-pic-wrapper">
+      <img id="modal-profile-pic" src="" alt="Foto de perfil" class="modal-profile-pic">
+    </div>
+    <button class="modal-close" onclick="closeMemberModal()" aria-label="Cerrar">&times;</button>
+    <div class="modal-header">
+      <div id="modal-icon" class="modal-icon"></div>
+      <h2 id="modal-title"></h2>
+    </div>
+    <div id="modal-description" class="modal-description"></div>
+    <ul id="modal-points" class="modal-points"></ul>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/equipo_modal.js') }}?v=20260625"></script>
+
+{% endblock %}

@@ -1,0 +1,1268 @@
+/* ===================================================
+   1. MODO OSCURO GENERAL (ESTILOS GLOBALES)
+   =================================================== */
+body.dark {
+  background: #0b1020; /* Color de fondo azul noche para el sitio */
+  color: #e5e7eb;      /* Color de texto gris claro para lectura */
+  transition: background-color 0.28s ease, color 0.28s ease; /* Transición suave al cambiar de tema */
+}
+
+body.dark,
+body.dark html,
+html.dark {
+  background-color: #0b1020; /* Asegura el fondo oscuro en toda la ventana del navegador */
+}
+
+/* Barra de navegación superior en Modo Oscuro */
+body.dark nav {
+  background: linear-gradient(90deg, #7a0040 0%, #aa0056 55%, #5c0f3a 100%) !important; /* Gradiente magenta oscuro */
+  color: #f8fafc !important; /* Texto blanco en el menú */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28); /* Sombra elegante inferior */
+}
+/* ===================================================
+   CORRECCIÓN PARA EL BANNER DE MÉTRICAS (IGUAL A LA IMAGEN)
+   =================================================== */
+
+/* 1. Forza el color de fondo gris oscuro plano en toda la sección exterior */
+body.dark .counter-section,
+body.dark .stats-section,
+body.dark .pilares,
+body.dark main > section:has(.counter-box) {
+  background-color: #1a1a1a !important; /* El color gris oscuro de tu imagen */
+  background: #1a1a1a !important;
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+}
+
+
+
+/* 2. Quita el fondo azul marino y los bordes del contenedor interno para que se fusione */
+body.dark .counter-container,
+body.dark .stats-container,
+body.dark .counter-section > div,
+body.dark [class*="stats-grid"],
+body.dark .counter-box,
+body.dark .stat-item {
+  background-color: transparent !important; /* Se vuelve transparente para no hacer parches */
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  display: flex !important;
+  justify-content: space-around !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+}
+
+/* 3. Asegura los números grandes en blanco brillante impecable */
+body.dark .counter-box h2,
+body.dark .stat-item .number,
+body.dark .counter-section h2,
+body.dark .counter-section span {
+  color: #ffffff !important;
+  font-family: inherit;
+}
+
+/* 4. Asegura los textos de abajo en el gris claro limpio que se lee perfecto */
+body.dark .counter-box p,
+body.dark .stat-item p,
+body.dark .counter-section p,
+body.dark .counter-section span.text {
+  color: #94a3b8 !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+/* ===================================================
+   UNIFICAR COLOR ORIGINAL PARA LA SECCIÓN DE MÉTRICAS
+   =================================================== */
+
+/* 1. Forza a que la sección completa use el fondo gris oscuro unificado de tu imagen */
+body.dark .counter-section,
+body.dark .stats-section,
+body.dark .pilares,
+body.dark main > section:has(.counter-box) {
+  background-color: #1a1a1a !important; /* El color gris oscuro plano original */
+  background: #1a1a1a !important;
+}
+
+/* 2. Remueve el color azul marino o cualquier borde de la barra interna para que se fusione perfectamente */
+body.dark .counter-container,
+body.dark .stats-container,
+body.dark .counter-section > div,
+body.dark [class*="stats-grid"],
+body.dark .counter-box {
+  background-color: transparent !important; /* Se vuelve transparente para adoptar el gris de fondo */
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 3. Mantiene los números grandes en color blanco puro impecable */
+body.dark .counter-box h2,
+body.dark .stat-item .number,
+body.dark .counter-section h2,
+body.dark .counter-section span {
+  color: #ffffff !important;
+}
+
+/* 4. Mantiene los textos inferiores en el color gris claro original de la imagen */
+body.dark .counter-box p,
+body.dark .stat-item p,
+body.dark .counter-section p,
+body.dark .counter-section span.text {
+  color: #94a3b8 !important;
+}
+
+
+
+
+
+
+/* Colores de enlaces y botones del menú en Modo Oscuro */
+body.dark .nav-logo,
+body.dark .nav-links a,
+body.dark .menu-btn,
+body.dark .nav-btn {
+  color: #f8fafc !important;
+}
+
+/* Limpieza de contornos molestos al hacer clic en los botones */
+body.dark .nav-btn:focus,
+body.dark .nav-btn:focus-visible,
+body.dark .nav-btn:active,
+body.dark #themeToggle:focus,
+body.dark #themeToggle:focus-visible,
+body.dark #themeToggle:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* ===================================================
+   2. CONTENEDOR DE BOTONES DE ACCIÓN (NAV-ACTIONS)
+   =================================================== */
+.nav-actions {
+  display: flex;         /* Alinea los botones uno al lado del otro */
+  align-items: center;     /* Los centra de forma vertical */
+  gap: 16px;               /* Añade separación constante entre el botón y el switch */
+}
+
+/* ===================================================
+   3. BOTÓN INTERACTIVO CONTENEDOR (#themeToggle)
+   =================================================== */
+#themeToggle {
+  background: transparent !important; /* Elimina fondos nativos del botón HTML */
+  border: none !important;             /* Elimina bordes por defecto del botón */
+  box-shadow: none !important;         /* Elimina sombras residuales del contenedor */
+  padding: 0 !important;               /* Quita espaciados internos */
+  width: 44px !important;              /* Define el ancho exacto del área interactiva */
+  height: 44px !important;             /* Define el alto exacto del área interactiva */
+  min-width: auto !important;          /* Sobrescribe anchos mínimos de otros botones */
+  cursor: pointer;                     /* Cambia el cursor a indicador de clic */
+  display: inline-flex;                /* Alineación flexible interna */
+  align-items: center;                 /* Centra el círculo de forma vertical */
+  justify-content: center;             /* Centra el círculo de forma horizontal */
+  vertical-align: middle;
+}
+
+/* ===================================================
+   4. CÍRCULO VISIBLE DEL CONMUTADOR (#themeLabel)
+   =================================================== */
+#themeLabel {
+  position: relative;                  /* Clave para posicionar el Sol/Luna adentro de manera absoluta */
+  width: 44px;                         /* Dimensiones del círculo blanco/azul */
+  height: 44px;
+  border-radius: 50%;                  /* Lo vuelve un círculo perfecto */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0px !important;           /* Oculta textos inyectados por JavaScript */
+  color: transparent !important;       /* Hace el texto residual invisible */
+  overflow: hidden;                    /* Previene que los gráficos se salgan del contorno */
+  transition: all 0.3s ease;           /* Suaviza las transiciones de color y tamaño */
+  
+  /* --- CONFIGURACIÓN BASE: MODO CLARO --- */
+  background: #ffffff !important;      /* Fondo del círculo en color blanco */
+  border: 2px solid #e2e8f0 !important;/* Borde gris minimalista */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Sombra de elevación sutil */
+}
+
+/* ===================================================
+   5. DIBUJO GEOMÉTRICO DEL SOL (MODO CLARO)
+   =================================================== */
+#themeLabel::before {
+  content: "";                         /* Activa el pseudo-elemento en el navegador */
+  position: absolute;                  /* Posicionamiento flotante en el centro exacto */
+  width: 14px;                         /* Diámetro de la esfera central del Sol */
+  height: 14px;
+  border-radius: 50%;                  /* Esfera central redonda */
+  background: #facc15;                 /* COLOR DEL SOL: Amarillo brillante */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Curva de animación fluida y profesional */
+  opacity: 1;                          /* Visible por defecto */
+  transform: scale(1);                 /* Escala normal */
+  
+  /* RAYOS DEL SOL: Dibujados de manera exacta con sombras múltiples */
+  box-shadow: 
+    0 -9px 0 -1px #facc15,   /* Rayo arriba */
+    0 9px 0 -1px #facc15,    /* Rayo abajo */
+    -9px 0 0 -1px #facc15,   /* Rayo izquierda */
+    9px 0 0 -1px #facc15,    /* Rayo derecha */
+    -6px -6px 0 -1px #facc15,/* Diagonal arriba-izquierda */
+    6px 6px 0 -1px #facc15,  /* Diagonal abajo-derecha */
+    -6px 6px 0 -1px #facc15, /* Diagonal abajo-izquierda */
+    6px -6px 0 -1px #facc15; /* Diagonal arriba-derecha */
+}
+
+/* ===================================================
+   6. TRANSFORMACIÓN AUTOMÁTICA AL MODO OSCURO
+   =================================================== */
+   
+/* Modificación del círculo contenedor al entrar el Modo Oscuro */
+body.dark #themeLabel {
+  background: #1e293b !important;      /* Cambia el fondo del círculo a azul oscuro pizarra */
+  border: 2px solid rgba(255, 255, 255, 0.2) !important; /* Borde iluminado translúcido */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35); /* Sombra nocturna reforzada */
+}
+
+/* Transformación de los rayos del sol en la LUNA CRECIENTE */
+body.dark #themeLabel::before {
+  background: transparent;             /* Vacía el centro para dar el efecto cóncavo de la luna */
+  width: 18px;                         /* Modifica las dimensiones para dar la curva perfecta */
+  height: 18px;
+  
+  /* LUNA CRECIENTE: Se logra proyectando una única sombra hacia el borde inferior izquierdo */
+  box-shadow: -6px 6px 0 0 #fbbf24;    /* COLOR DE LA LUNA: Oro / Dorado cálido */
+  
+  /* Aplica rotación y desplazamiento para inclinar la luna estéticamente */
+  transform: rotate(-15deg) translate(2px, -2px); 
+}
+
+/* ===================================================
+   7. EFECTOS DINÁMICOS AL INTERACTUAR (HOVER Y CLICK)
+   =================================================== */
+#themeToggle:hover #themeLabel {
+  transform: scale(1.06);              /* Aumenta un 6% el tamaño al posar el mouse (Hover) */
+}
+
+#themeToggle:active #themeLabel {
+  transform: scale(0.96);              /* Efecto de hundimiento táctil al hacer clic */
+}
+
+/* ===================================================
+   8. RESET DE BOTONES EXTRA (PARA COMPATIBILIDAD)
+   =================================================== */
+body.dark .nav-theme-btn,
+body.dark .nav-actions .nav-btn,
+body.dark .nav-actions .desktop-btn,
+body.dark #themeToggle {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  min-width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+}
+
+/* Mantiene el tamaño original únicamente del botón "Escríbenos" u otros paralelos */
+.nav-actions .nav-btn:not(#themeToggle) {
+  min-width: 120px;
+  height: 40px;
+  padding: 4px 12px;
+}
+
+/* ===================================================
+   9. FOOTER - DISEÑO EN MODO OSCURO
+   =================================================== */
+body.dark footer {
+  background: #000 !important;
+  color: #fff !important;
+  box-shadow: 0 0 48px 0 rgba(0,0,0,0.65);
+}
+
+body.dark .footer-grid {
+  background: transparent !important;
+  border-bottom: 2px solid #222a3a !important;
+}
+
+body.dark .footer-brand h3,
+body.dark .footer-col h4 {
+  color: #ff5ca7 !important; /* Resalta títulos en rosa en modo oscuro */
+}
+
+body.dark .footer-brand p,
+body.dark .footer-col ul li a,
+body.dark .footer-bottom {
+  color: #fff !important;
+}
+
+body.dark .footer-col ul li a:hover {
+  color: #ff5ca7 !important;
+  text-decoration: underline;
+}
+
+body.dark .contacto-titulo-form,
+body.dark .contacto-form h2 {
+  color: #111 !important;
+  text-shadow: 0 4px 32px rgba(255,255,255,0.45), 0 2px 0 #fff;
+}
+
+/* ===================================================
+   10. DROPDOWNS Y MENÚS DESPLEGABLES
+   =================================================== */
+body.dark .dropdown-menu {
+  background: #0f172a;
+  border: 1px solid #233047;
+  color: #e5e7eb;
+}
+
+body.dark .dropdown-menu a:hover {
+  background: #222222 !important;
+  color: #ff5ca7;
+}
+
+/* ===================================================
+   11. SECCIONES Y CONTENIDOS DE LA PÁGINA
+   =================================================== */
+body.dark .hero,
+body.dark .productos-hero,
+body.dark .pilares,
+body.dark .valores,
+body.dark .equipo,
+body.dark .productos-grid {
+  background-color: #0b1020 !important;
+  color: #e5e7eb !important;
+}
+
+/* Fuerza el cambio de fondos claros inline introducidos por variables */
+body.dark section[style*="background:#fff"],
+body.dark section[style*="background: #fff"],
+body.dark section[style*="background:var(--light-bg)"],
+body.dark section[style*="background: var(--light-bg)"],
+body.dark [style*="background:#fff"],
+body.dark [style*="background: #fff"] {
+  background: #0f172a !important;
+  color: #e5e7eb !important;
+}
+
+/* Títulos y textos principales */
+body.dark .section-title,
+body.dark .section-eyebrow,
+body.dark .productos-title,
+body.dark .productos-eyebrow,
+body.dark .productos-desc,
+body.dark .pilar-card h3,
+body.dark .product-info h3,
+body.dark .miembro h4 {
+  color: #f8fafc !important;
+}
+
+body.dark .section-eyebrow,
+body.dark .productos-eyebrow,
+body.dark .miembro p,
+body.dark .product-info p,
+body.dark .hero p {
+  color: #cbd5e1 !important;
+}
+
+body.dark .productos-title span,
+body.dark .miembro .role,
+body.dark a:hover {
+  color: #ff5ca7 !important;
+}
+
+/* Tarjetas y contenedores de información */
+body.dark .pilar-card.white,
+body.dark .product-card,
+body.dark .team-card,
+body.dark .detalle-card,
+body.dark .contacto-form,
+body.dark .contacto-info,
+body.dark .valor-tag,
+body.dark .product-info,
+body.dark .miembro-bg,
+body.dark .miembro-counter {
+  background: #111827 !important;
+  color: #e5e7eb !important;
+  border-color: #243042 !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28) !important;
+}
+
+body.dark .product-card:hover,
+body.dark .pilar-card:hover {
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.38) !important;
+}
+
+/* Botones y filtros */
+body.dark .product-btn,
+body.dark .productos-filtros .filtro-btn.active {
+  background: linear-gradient(135deg, #e0006e 0%, #ff4d8d 100%) !important;
+  color: #fff !important;
+}
+
+body.dark .productos-filtros .filtro-btn {
+  background: #182133 !important;
+  color: #e5e7eb !important;
+  border: 1px solid #273247 !important;
+}
+
+body.dark .productos-filtros .filtro-btn:hover {
+  background: #202a3d !important;
+}
+
+/* Entradas de formulario */
+body.dark input,
+body.dark textarea,
+body.dark select {
+  background: #0f172a !important;
+  color: #e5e7eb !important;
+  border-color: #2a364a !important;
+}
+
+/* ===================================================
+   12. PÁGINA DE DETALLE ESPECÍFICA
+   =================================================== */
+body.dark .detalle-page {
+  color: #e5e7eb !important;
+  background: radial-gradient(circle at 20% 0%, #111b36 0%, #0b1020 55%, #080d1a 100%) !important;
+}
+
+body.dark .detalle-page .desc,
+body.dark .detalle-page .related-item p {
+  color: #cbd5e1 !important;
+}
+
+body.dark .detalle-page .eyebrow {
+  color: #ff5ca7 !important;
+  text-shadow: 0 0 12px rgba(255, 92, 167, 0.28);
+}
+
+body.dark .detalle-page h1,
+body.dark .detalle-page .related h2,
+body.dark .detalle-page .related-item h3 {
+  color: #f8fafc !important;
+}
+
+body.dark .detalle-page .k {
+  color: #94a3b8 !important;
+}
+
+body.dark .detalle-page .v {
+  color: #f8fafc !important;
+}
+
+body.dark .detalle-page .card,
+body.dark .detalle-page .related,
+body.dark .detalle-page .related-item,
+body.dark .detalle-page .img-box {
+  background: #111827 !important;
+  color: #e5e7eb !important;
+  border: 1px solid #243042 !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28) !important;
+}
+
+body.dark .detalle-page .card {
+  background: linear-gradient(180deg, #111b33 0%, #0f1a30 100%) !important;
+}
+
+body.dark .detalle-page .img-box {
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.42), 0 0 0 1px rgba(255, 92, 167, 0.2) !important;
+}
+
+body.dark .detalle-page .btn-primary {
+  background: linear-gradient(135deg, #e0006e 0%, #ff4d8d 100%) !important;
+  box-shadow: 0 10px 24px rgba(224, 0, 110, 0.35) !important;
+}
+
+body.dark .detalle-page .btn-primary:hover {
+  filter: brightness(1.06);
+}
+
+body.dark .detalle-page .btn-secondary {
+  background: rgba(255, 92, 167, 0.08) !important;
+  color: #ff5ca7 !important;
+  border-color: #ff5ca7 !important;
+}
+
+body.dark .detalle-page .btn-secondary:hover {
+  background: rgba(255, 92, 167, 0.16) !important;
+}
+
+
+/* ===================================================
+   ADAPTACIÓN DE LA PÁGINA DEL CARRITO (MODO OSCURO)
+   =================================================== */
+
+/* Fondo general de la sección del carrito */
+body.dark .carrito-page, 
+body.dark .cart-container {
+  background-color: #0b1020 !important; /* Fondo azul noche */
+  color: #e5e7eb !important;            /* Texto claro legible */
+}
+
+/* Título principal: "Tu Carrito de Pitahayas" */
+body.dark .cart-title,
+body.dark .carrito-page h1 {
+  color: #f8fafc !important;             /* Blanco brillante */
+}
+
+/* Botón: "Vaciar Carrito" (Texto e Icono) */
+body.dark .btn-vaciar,
+body.dark .delete-sweep-btn {
+  color: #cbd5e1 !important;             /* Gris claro por defecto */
+  background: transparent !important;
+  border: 1px solid #2e3b52 !important;  /* Borde oscuro sutil */
+}
+
+body.dark .btn-vaciar:hover {
+  color: #ff5ca7 !important;             /* Cambia a rosa neón en hover */
+  border-color: #ff5ca7 !important;
+  background: rgba(255, 92, 167, 0.05) !important;
+}
+
+/* Estado: "Tu carrito está vacío" */
+body.dark .cart-empty-title,
+body.dark .carrito-vacio h2 {
+  color: #f8fafc !important;             /* Blanco brillante */
+}
+
+/* Texto secundario: "Agrega productos para comenzar tu compra" */
+body.dark .cart-empty-text,
+body.dark .carrito-vacio p {
+  color: #94a3b8 !important;             /* Gris apagado */
+}
+
+/* Tarjeta / Contenedor: "Resumen del Pedido" */
+body.dark .cart-summary,
+body.dark .resumen-pedido {
+  background: #111827 !important;        /* Fondo gris/azul muy oscuro */
+  border: 1px solid #243042 !important;  /* Borde definido */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35) !important; /* Sombra profunda */
+}
+
+/* Título del resumen */
+body.dark .cart-summary h3,
+body.dark .resumen-pedido h2 {
+  color: #f8fafc !important;
+  border-bottom: 1px solid #243042 !important; /* Línea divisoria oscura */
+  padding-bottom: 12px;
+}
+
+/* Líneas de desglose (Subtotal, Envío y etiquetas) */
+body.dark .summary-row,
+body.dark .resumen-linea {
+  color: #cbd5e1 !important;             /* Gris claro para los textos */
+}
+
+/* Precios individuales (S/ 0.00) */
+body.dark .summary-value,
+body.dark .resumen-linea span {
+  color: #f8fafc !important;             /* Valores numéricos en blanco */
+}
+
+/* Fila destructiva del Total (Texto y Monto total) */
+body.dark .summary-total,
+body.dark .resumen-total {
+  border-top: 1px solid #243042 !important; /* Línea divisoria antes del total */
+  padding-top: 16px;
+  color: #f8fafc !important;             /* Blanco destacado */
+  font-weight: bold;
+}
+
+/* Precio total destacado */
+body.dark .summary-total-value,
+body.dark .resumen-total .total-price {
+  color: #ff5ca7 !important;             /* El total resalta en tu rosa característico */
+}
+
+/* Botón de acción: "Finalizar Compra" */
+body.dark .btn-finalizar-compra,
+body.dark .checkout-btn {
+  background: linear-gradient(135deg, #e0006e 0%, #ff4d8d 100%) !important; /* Gradiente rosa de tu marca */
+  color: #ffffff !important;             /* Texto blanco */
+  border: none !important;
+  box-shadow: 0 8px 20px rgba(224, 0, 110, 0.3) !important; /* Brillo rosa inferior */
+  transition: transform 0.2s ease, filter 0.2s ease !important;
+}
+
+body.dark .btn-finalizar-compra:hover,
+body.dark .checkout-btn:hover {
+  filter: brightness(1.1) !important;    /* Se ilumina sutilmente al pasar el mouse */
+  transform: translateY(-2px) !important;/* Pequeño salto interactivo */
+}
+
+body.dark .btn-finalizar-compra:active,
+body.dark .checkout-btn:active {
+  transform: translateY(0) !important;   /* Regresa a su posición al pulsar */
+}
+
+
+/* ===================================================
+   6. ADAPTACIÓN DEL CATÁLOGO DE PRODUCTOS (CORREGIDO)
+   =================================================== */
+
+/* Texto decorativo "Catálogo Orgánico" */
+body.dark .productos-eyebrow,
+body.dark .catalog-subtitle,
+body.dark span[style*="color:#e0006e"] {
+  color: #ff5ca7 !important;
+}
+
+/* Título de la sección "Nuestros PRODUCTOS" */
+body.dark .productos-title,
+body.dark .catalog-title,
+body.dark h1.title {
+  color: #ffffff !important;
+}
+
+/* Descripción del catálogo */
+body.dark .productos-desc,
+body.dark .catalog-description {
+  color: #cbd5e1 !important;
+}
+
+/* --- BOTONES DE FILTROS --- */
+body.dark .filtro-btn,
+body.dark .filter-button {
+  background-color: #111827 !important;
+  color: #cbd5e1 !important;
+  border: 1px solid #243042 !important;
+}
+
+body.dark .filtro-btn:hover,
+body.dark .filter-button:hover {
+  border-color: #ff5ca7 !important;
+  color: #ffffff !important;
+}
+
+body.dark .filtro-btn.active,
+body.dark .filter-button.active {
+  background: linear-gradient(135deg, #e0006e 0%, #ff4d8d 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(224, 0, 110, 0.4) !important;
+}
+
+/* --- TARJETAS DE PRODUCTOS (PITAHAYAS) --- */
+body.dark .product-card,
+body.dark .producto-item {
+  background: #111827 !important;
+  border: 1px solid #243042 !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3) !important;
+}
+
+body.dark .product-card:hover {
+  border-color: rgba(255, 92, 167, 0.3) !important;
+}
+
+body.dark .product-card h3,
+body.dark .product-title {
+  color: #ffffff !important;
+}
+
+body.dark .product-card p,
+body.dark .product-description {
+  color: #94a3b8 !important;
+}
+
+body.dark .product-price,
+body.dark .price-tag {
+  color: #ff4d8d !important;
+}
+
+/* Botones de acción de las tarjetas */
+body.dark .btn-agregar-carrito,
+body.dark .add-to-cart-btn {
+  background: linear-gradient(135deg, #e0006e 0%, #ff4d8d 100%) !important;
+  color: #ffffff !important;
+}
+
+body.dark .btn-ver-detalles,
+body.dark .view-details-btn {
+  background: transparent !important;
+  color: #ff5ca7 !important;
+  border: 1px solid #ff5ca7 !important;
+}
+
+body.dark .btn-ver-detalles:hover {
+  background: rgba(255, 92, 167, 0.08) !important;
+  color: #ffffff !important;
+}
+
+/* ===================================================
+   7. FOOTER - DISEÑO EN MODO OSCURO
+   =================================================== */
+body.dark footer {
+  background: #000000 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 48px 0 rgba(0,0,0,0.65);
+}
+
+body.dark .footer-grid {
+  border-bottom: 2px solid #222a3a !important;
+}
+
+body.dark .footer-brand h3,
+body.dark .footer-col h4 {
+  color: #ff5ca7 !important;
+}
+
+body.dark .footer-brand p,
+body.dark .footer-col ul li a,
+body.dark .footer-bottom {
+  color: #ffffff !important;
+}
+
+body.dark .footer-col ul li a:hover {
+  color: #ff5ca7 !important;
+}
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+/* ══════════════════════════════════════════════════════════════════════
+   1. CONFIGURACIÓN BASE Y VARIABLES DE DISEÑO
+   ══════════════════════════════════════════════════════════════════════ */
+:root {
+  --primary-blue: #0f2d4a;
+  --secondary-blue: #1e3a5f;
+  --text-dark: #334155;
+  --text-light: #64748b;
+  --mint-bg: #e6fcf5;
+  --mint-accent: #0ca678;
+  --mint-dark: #099268;
+  --cb-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.proyectos-section {
+  font-family: 'Poppins', sans-serif;
+  padding: 60px 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.proyectos-container {
+  display: flex;
+  flex-direction: column;
+  gap: 100px; /* Separación elegante entre los bloques libres */
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   2. ARQUITECTURA DE FILAS EN ZIG-ZAG (SÍN TARJETA BLANCA DE FONDO)
+   ══════════════════════════════════════════════════════════════════════ */
+.proyecto-row {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.proyecto-row.reverse {
+  grid-template-columns: 0.9fr 1.1fr;
+}
+
+.proyecto-text-block {
+  padding: 0px; /* Sin padding interno extra para que fluya libre */
+}
+
+.proyecto-badge {
+  display: inline-block;
+  background-color: var(--mint-bg);
+  color: var(--mint-accent);
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 20px;
+}
+
+/* Modo Oscuro - Badge de Proyecto */
+body.dark .proyecto-badge {
+  background-color: rgba(12, 166, 120, 0.15);
+  color: #34d399;
+}
+
+.proyecto-text-block h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: var(--primary-blue);
+  margin: 0 0 24px 0;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+/* Modo Oscuro - Títulos Principales */
+body.dark .proyecto-text-block h3 {
+  color: #f8fafc;
+}
+
+.proyecto-text-block p {
+  font-size: 1.05rem;
+  color: var(--text-dark);
+  line-height: 1.7;
+  margin: 0 0 24px 0;
+}
+
+/* Modo Oscuro - Párrafos de las filas */
+body.dark .proyecto-text-block p {
+  color: #cbd5e1;
+}
+
+/* Cuadritos de Información Destacada */
+.info-extra-box {
+  background-color: #f8fafc;
+  border-left: 4px solid var(--secondary-blue);
+  border-radius: 4px 16px 16px 4px;
+  padding: 24px;
+  margin-bottom: 32px;
+  transition: background-color 0.3s;
+}
+
+.info-extra-box:hover {
+  background-color: #f1f5f9;
+}
+
+/* Modo Oscuro - Cuadritos de Información Destacada */
+body.dark .info-extra-box {
+  background-color: #1e293b; /* gray-800 */
+  border-left-color: #3b82f6;
+}
+body.dark .info-extra-box:hover {
+  background-color: #334155; /* gray-700 */
+}
+
+.info-extra-box h4 {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  color: var(--secondary-blue);
+  font-weight: 600;
+}
+
+/* Modo Oscuro - Título del Cuadrito */
+body.dark .info-extra-box h4 {
+  color: #e2e8f0;
+}
+
+.info-extra-box p {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Modo Oscuro - Texto del Cuadrito */
+body.dark .info-extra-box p {
+  color: #94a3b8;
+}
+
+/* Contenedores de Imagen */
+.proyecto-image-wrapper {
+  width: 100%;
+  height: 520px;
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+/* Modo Oscuro - Borde fino en imágenes para ganar definición */
+body.dark .proyecto-image-wrapper {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.proyecto-image-block {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s var(--cb-smooth);
+}
+
+.proyecto-row:hover .proyecto-image-block {
+  transform: scale(1.04);
+}
+
+/* Botón Premium "Ver Invernaderos" */
+.btn-ver-invernaderos {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: var(--mint-bg);
+  color: var(--mint-dark);
+  text-decoration: none;
+  padding: 16px 36px;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s var(--cb-smooth);
+  box-shadow: 0 4px 12px rgba(12, 166, 120, 0.1);
+}
+
+.btn-ver-invernaderos span {
+  transition: transform 0.3s ease;
+}
+
+.btn-ver-invernaderos:hover {
+  background-color: var(--mint-accent);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(12, 166, 120, 0.25);
+}
+
+.btn-ver-invernaderos:hover span {
+  transform: translateX(4px);
+}
+
+/* Modo Oscuro - Botón Principal de la Sección */
+body.dark .btn-ver-invernaderos {
+  background-color: rgba(12, 166, 120, 0.15);
+  color: #34d399;
+}
+body.dark .btn-ver-invernaderos:hover {
+  background-color: var(--mint-accent);
+  color: #ffffff;
+  box-shadow: 0 10px 25px rgba(12, 166, 120, 0.4);
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   3. CONTROL DEL MODAL (FIJO EN PANTALLA, CENTRADO ABSOLUTO)
+   ══════════════════════════════════════════════════════════════════════ */
+.modal-invernadero {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s var(--cb-smooth);
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+/* Modo Oscuro - Fondo de superposición del modal */
+body.dark .modal-invernadero {
+  background-color: rgba(8, 13, 24, 0.65);
+}
+
+.modal-invernadero:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-inv-wrapper {
+  background: #ffffff;
+  width: 100%;
+  max-width: 1100px;
+  max-height: 90vh;
+  border-radius: 32px;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 40px 100px rgba(15, 23, 42, 0.25);
+  transform: scale(0.95);
+  transition: transform 0.4s var(--cb-smooth);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Modo Oscuro - Envoltura del Modal */
+body.dark .modal-inv-wrapper {
+  background: #111827; /* gray-900 */
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.modal-invernadero:target .modal-inv-wrapper {
+  transform: scale(1);
+}
+
+/* Botón cerrar modal */
+.modal-inv-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--primary-blue);
+  font-size: 18px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  z-index: 100;
+  transition: transform 0.4s ease, background-color 0.3s;
+}
+
+.modal-inv-close:hover {
+  transform: rotate(90deg);
+  background-color: #f1f5f9;
+}
+
+/* Modo Oscuro - Botón cerrar modal */
+body.dark .modal-inv-close {
+  background: #1f2937; /* gray-800 */
+  color: #f8fafc;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+body.dark .modal-inv-close:hover {
+  background-color: #374151; /* gray-700 */
+}
+
+/* Cabecera del Modal (Hero) */
+.modal-inv-hero {
+  height: 280px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  padding: 48px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.modal-inv-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.2) 100%);
+}
+
+/* Modo Oscuro - Gradiente de la cabecera del modal */
+body.dark .modal-inv-hero::before {
+  background: linear-gradient(to top, #111827 0%, rgba(17, 24, 39, 0.3) 70%, rgba(17, 24, 39, 0) 100%);
+}
+
+.modal-inv-hero-content {
+  position: relative;
+  z-index: 2;
+  color: #ffffff;
+}
+
+.modal-inv-hero-content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+/* Cabecera de Referencia */
+.modal-hero {
+  height: 340px; 
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 40px 50px;
+  background-size: cover;
+  background-position: center 35%; 
+  background-repeat: no-repeat;
+}
+
+.modal-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.68) 0%, rgba(0, 0, 0, 0.08) 60%, transparent 100%);
+  z-index: 1;
+}
+
+/* Modo Oscuro - Gradiente de Cabecera Alternativa */
+body.dark .modal-hero::before {
+  background: linear-gradient(to top, #111827 0%, rgba(17, 24, 39, 0.1) 70%, transparent 100%);
+}
+
+/* Cuerpo del Modal */
+.modal-inv-body {
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 1.6fr 1.1fr;
+  gap: 48px;
+  background: #ffffff;
+}
+
+body.dark .modal-inv-body {
+  background: #111827;
+}
+
+/* Listado de Especificaciones Técnicas */
+.tech-specs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.spec-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.spec-icon {
+  background-color: #f0fdf4;
+  color: var(--mint-accent);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Modo Oscuro - Ícono de Especificación */
+body.dark .spec-icon {
+  background-color: rgba(12, 166, 120, 0.15);
+  color: #34d399;
+}
+
+.spec-info h4 {
+  margin: 0 0 6px 0;
+  font-size: 1.2rem;
+  color: var(--primary-blue);
+  font-weight: 600;
+}
+
+/* Modo Oscuro - Títulos de Especificación */
+body.dark .spec-info h4 {
+  color: #f8fafc;
+}
+
+.spec-info p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/* Modo Oscuro - Descripción de Especificación */
+body.dark .spec-info p {
+  color: #94a3b8;
+}
+
+/* Barra Lateral del Modal (Sidebar) */
+.modal-inv-sidebar {
+  background-color: #f8fafc;
+  border-radius: 24px;
+  padding: 36px;
+  border: 1px solid #e2e8f0;
+  align-self: flex-start;
+}
+
+/* Modo Oscuro - Barra Lateral */
+body.dark .modal-inv-sidebar {
+  background-color: #1e293b; /* gray-800 */
+  border-color: #334155; /* gray-700 */
+}
+
+.modal-inv-sidebar h4 {
+  margin: 0 0 20px 0;
+  font-size: 0.9rem;
+  color: var(--primary-blue);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+
+/* Modo Oscuro - Título de Barra Lateral */
+body.dark .modal-inv-sidebar h4 {
+  color: #cbd5e1;
+}
+
+.inv-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+}
+
+.inv-features li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 16px;
+  font-size: 1rem;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+/* Modo Oscuro - Elementos de Características */
+body.dark .inv-features li {
+  color: #e2e8f0;
+}
+
+.inv-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--mint-accent);
+  font-weight: 700;
+}
+
+/* Modo Oscuro - Check de Características */
+body.dark .inv-features li::before {
+  color: #34d399;
+}
+
+/* Botón de Contacto Interno */
+.btn-escribenos {
+  display: block;
+  text-align: center;
+  background-color: var(--secondary-blue);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 16px;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-escribenos:hover {
+  background-color: var(--primary-blue);
+  transform: translateY(-2px);
+}
+
+/* Modo Oscuro - Botón Escríbenos */
+body.dark .btn-escribenos {
+  background-color: #3b82f6; /* Azul brillante equilibrado */
+}
+body.dark .btn-escribenos:hover {
+  background-color: #2563eb;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   4. RESPONSIVO ADAPTATIVO
+   ══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .proyecto-row, .proyecto-row.reverse {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .proyecto-image-wrapper {
+    height: 340px;
+  }
+  .proyecto-text-block h3 {
+    font-size: 2rem;
+  }
+  .modal-inv-body {
+    grid-template-columns: 1fr;
+    padding: 32px 24px;
+    gap: 40px;
+  }
+}

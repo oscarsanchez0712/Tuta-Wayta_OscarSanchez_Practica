@@ -1,0 +1,41 @@
+[
+  {
+    "id": "demo-r-1",
+    "numero_hoja": "R-DEMO-001",
+    "tipo": "reclamacion",
+    "nombres": "Ana",
+    "apellidos": "García",
+    "email": "ana.garcia@example.com",
+    "telefono": "987654321",
+    "detalle": "El producto llegó en mal estado. La caja estaba abollada y la fruta magullada.",
+    "pedido": "Solicito el cambio del producto o la devolución de mi dinero.",
+    "doc_tipo": "DNI",
+    "doc_num": "45678901",
+    "direccion": "Av. Principal 123, Miraflores",
+    "monto": 45.50,
+    "bien": "Pitahaya American Beauty (2kg)",
+    "creado_at": "2026-07-05 10:30:00",
+    "fecha_compra": "2026-07-03"
+  },
+  {
+    "id": "demo-q-1",
+    "numero_hoja": "Q-DEMO-001",
+    "tipo": "queja",
+    "nombres": "Carlos",
+    "apellidos": "Martinez",
+    "email": "carlos.m@example.com",
+    "telefono": "912345678",
+    "detalle": "El personal de atención por teléfono fue poco amable y no supo resolver mi consulta sobre los tiempos de envío.",
+    "pedido": "Pido una mejor capacitación para el personal de atención al cliente.",
+    "doc_tipo": "DNI",
+    "doc_num": "10987654",
+    "direccion": "Calle Secundaria 456, Surco",
+    "monto": null,
+    "bien": "Consulta sobre servicio de delivery",
+    "tipo_atencion": "Telefónica",
+    "fecha_incidente": "2026-07-04",
+    "hora_incidente": "15:00:00",
+    "creado_at": "2026-07-05 11:00:00",
+    "fecha_compra": "2026-07-04"
+  }
+]

@@ -1,0 +1,511 @@
+.detalle-page {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--text);
+}
+
+.detalle-page * {
+  box-sizing: border-box;
+}
+
+.detalle-page .wrap {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.detalle-page .img-box {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.detalle-page .img-box img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+.detalle-page .eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--magenta);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.detalle-page h1 {
+  font-size: 2.2rem;
+  margin: 0 0 16px;
+  line-height: 1.2;
+}
+
+.detalle-page .desc {
+  color: #666;
+  line-height: 1.75;
+  font-size: 0.95rem;
+  margin-bottom: 28px;
+}
+
+.detalle-page .info-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.detalle-page .titulo {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--magenta);
+  margin: 0 0 4px;
+  font-weight: 500;
+}
+
+.detalle-page .nombre {
+  margin-top: 0;
+}
+
+.detalle-page .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.detalle-page .card {
+  background: var(--light-bg);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.detalle-page .k {
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.detalle-page .v {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin: 4px 0 0;
+}
+
+.detalle-page .actions {
+  display: flex;
+  gap: 12px;
+}
+
+.detalle-page .btn {
+  flex: 1;
+  padding: 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+}
+
+.detalle-page .btn-primary {
+  background: var(--magenta);
+  color: #fff;
+}
+
+.detalle-page .btn-secondary {
+  border: 2px solid var(--magenta);
+  color: var(--magenta);
+  background: transparent;
+}
+
+.detalle-page .btn-primary .arrow {
+  display: inline-block;
+  margin-left: 6px;
+  transition: transform 0.3s ease;
+}
+
+.detalle-page .btn-primary:hover .arrow {
+  transform: translateX(4px);
+}
+
+.detalle-page .bondades-section {
+  background: linear-gradient(135deg, #fdf8f9 0%, #fff5f6 100%);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(224, 0, 110, 0.1);
+}
+
+.detalle-page .bondades-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--magenta);
+  margin: 0 0 14px;
+  font-weight: 700;
+}
+
+.detalle-page .bondades-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.detalle-page .bondades-list li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 0.85rem;
+  color: #444;
+  line-height: 1.4;
+}
+
+.detalle-page .bondades-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--magenta);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.detalle-page .related {
+  background: var(--light-bg);
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.detalle-page .related h2 {
+  margin: 0 0 24px;
+}
+
+.detalle-page .related-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.detalle-page .related-item {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: left;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.detalle-page .related-item img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.detalle-page .related-item .body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.detalle-page .related-item h3 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+}
+
+.detalle-page .related-item p {
+  margin: 0 0 12px;
+  color: #666;
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+.detalle-page .related-item a {
+  display: inline-block;
+  background: var(--magenta);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+@media (max-width: 900px) {
+  .detalle-page .wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .detalle-page .related-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* =======================================================
+   ANIMACIONES DE CARGA (ENTRADA)
+   ======================================================= */
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shineEffect {
+  from { left: -100%; }
+  to { left: 150%; }
+}
+
+/* Aplicación de entrada escalonada */
+.detalle-page .img-box {
+  animation: scaleIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.detalle-page .info-box > * {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Delays para efecto cascada */
+.detalle-page .eyebrow { animation-delay: 0.1s; }
+.detalle-page h1      { animation-delay: 0.2s; }
+.detalle-page .desc    { animation-delay: 0.3s; }
+.detalle-page .grid    { animation-delay: 0.4s; }
+.detalle-page .actions { animation-delay: 0.5s; }
+
+
+/* =======================================================
+   CONTENEDOR DE IMAGEN (ZOOM + BRILLO)
+   ======================================================= */
+
+.detalle-page .img-box {
+  position: relative;
+  border-radius: var(--radius-lg, 16px);
+  overflow: hidden;
+  background-color: #000;
+  cursor: zoom-in;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* La Imagen con Zoom Cinematográfico */
+.detalle-page .img-box img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+  /* El secreto: duración larga para que sea elegante */
+  transition: transform 1.2s cubic-bezier(0.15, 0.75, 0.5, 1);
+  will-change: transform;
+}
+
+/* Overlay sutil que se activa en Hover */
+.detalle-page .img-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.6s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Rayo de Brillo (Shine) */
+.detalle-page .img-box::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  transform: skewX(-25deg);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ACTIVACIÓN SIMULTÁNEA (HOVER) */
+.detalle-page .img-box:hover img {
+  transform: scale(1.15); /* Zoom in */
+}
+
+.detalle-page .img-box:hover::before {
+  background: rgba(0, 0, 0, 0.15); /* Oscurece para dar contraste */
+}
+
+.detalle-page .img-box:hover::after {
+  animation: shineEffect 0.8s ease-in-out; /* Dispara el brillo una vez */
+}
+
+
+/* =======================================================
+   BOTONES Y OTROS ELEMENTOS
+   ======================================================= */
+
+.detalle-page .btn {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.detalle-page .btn:active {
+  transform: scale(0.95);
+}
+
+.detalle-page .related-item {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+}
+
+.detalle-page .related-item:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* --- Bloque de Calificación (Estrellas) --- */
+.rating-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  margin-bottom: 18px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #8c8c8c; /* Gris suave de la imagen */
+}
+
+.rating-box .stars {
+  color: #ffb800; /* Dorado perfecto para las estrellas */
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+
+#resenas {
+  font-weight: 400;
+}
+
+/* --- Bloque de Precio --- */
+.detail-price-action-box {
+  margin-bottom: 25px;
+}
+
+.price-display {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Ocultamos sutilmente el texto secundario si la imagen original no lo lleva, 
+   o lo dejamos con un estilo limpio si deseas mantenerlo */
+.price-label {
+  display: none; /* En la imagen original solo aparece el "S/ 8.00" */
+}
+
+#precio.price-amount {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 32px; /* Tamaño destacado y grande */
+  font-weight: 700; /* Negrita fuerte */
+  color: #b83267; /* El color fucsia exacto del diseño */
+}
+
+/* --- Tu grilla original para que no se mueva --- */
+.grid {
+  display: grid;
+  /* Aquí continúan los estilos que ya tenías para tu grid */
+}
+
+
+/* Notificación de éxito */
+
+.toast-success {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+
+    background: #16a34a;
+    color: white;
+
+    padding: 18px 32px;
+
+    border-radius: 14px;
+
+    font-size: 1.1rem;
+    font-weight: 700;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+
+    z-index: 9999;
+
+    opacity: 0;
+    transform: translateY(-20px);
+
+    transition: all 0.3s ease;
+}
+
+.toast-success.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ===== TOAST CARRITO ===== */
+
+.toast-success {
+
+    position: fixed;
+
+    top: 25px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: #16a34a;
+
+    color: #fff;
+
+    min-width: 360px;
+
+    text-align: center;
+
+    padding: 20px 40px;
+
+    border-radius: 14px;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+
+    z-index: 99999;
+
+    opacity: 0;
+
+    transition: all .3s ease;
+}
+
+.toast-success.show {
+
+    opacity: 1;
+
+    transform: translateX(-50%) translateY(0);
+}
+

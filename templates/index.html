@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+{% block title %}Tuta Wayta – Inicio{% endblock %}
+
+{% block content %}
+
+<section class="hero-carousel">
+  <div class="casrousel-container">
+
+    <div class="carousel-slide active">
+      <img src="{{ url_for('static', filename='img/pexels-anderson-martinsz-30741628.jpg') }}">
+    </div>
+
+    <div class="carousel-slide">
+      <img src="{{ url_for('static', filename='img/pexels-anderson-martinsz-30741632.jpg') }}">
+    </div>
+
+    <div class="carousel-slide">
+      <img src="{{ url_for('static', filename='img/pexels-andromeda99-8813523.jpg') }}">
+    </div>
+
+    <div class="carousel-slide">
+      <img src="{{ url_for('static', filename='img/pexels-luana-ribeiro-44057245-30850863.jpg') }}">
+    </div>
+
+    <div class="carousel-slide">
+      <img src="{{ url_for('static', filename='img/carrusel5.jpg') }}">
+    </div>
+
+    <button class="carousel-btn-nav prev">❮</button>
+    <button class="carousel-btn-nav next">❯</button>
+
+    <div class="carousel-overlay">
+      <div class="hero-content">
+        <h1 data-i18n="index_hero_title">PITAHAYA ORGÁNICA<br>DEL PERÚ</h1>
+        <p data-i18n="index_hero_sub">Sabor auténtico, origen certificado, bienestar natural.</p>
+        <a href="{{ url_for('productos') }}" class="carousel-btn" data-i18n="index_hero_btn">Ver Productos</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="marquee-wrapper">
+    <div class="marquee-content">
+        <span data-i18n="mq_socios">30+ SOCIOS PRODUCTORES</span>
+        <span data-i18n="mq_origen">CAÑETE, LIMA — PERÚ</span>
+        <span data-i18n="mq_variety">AMERICAN BEAUTY PREMIUM</span>
+        <span data-i18n="mq_no_chem">SIN QUÍMICOS SINTÉTICOS</span>
+        <span data-i18n="mq_artisan">COSECHA ARTESANAL</span>
+        <span data-i18n="mq_shipping">ENVÍOS A LIMA METROPOLITANA</span>
+        <span data-i18n="mq_organic">100% ORGÁNICO</span>
+        <span data-i18n="mq_senasa">CERTIFICADO POR SENASA</span>
+        <span data-i18n="mq_socios">30+ SOCIOS PRODUCTORES</span>
+        <span data-i18n="mq_origen">CAÑETE, LIMA — PERÚ</span>
+        <span data-i18n="mq_variety">AMERICAN BEAUTY PREMIUM</span>
+        <span data-i18n="mq_no_chem">SIN QUÍMICOS SINTÉTICOS</span>
+        <span data-i18n="mq_artisan">COSECHA ARTESANAL</span>
+        <span data-i18n="mq_shipping">ENVÍOS A LIMA METROPOLITANA</span>
+        <span data-i18n="mq_organic">100% ORGÁNICO</span>
+        <span data-i18n="mq_senasa">CERTIFICADO POR SENASA</span>
+    </div>
+</div>
+
+<section style="padding:70px 40px;text-align:center;" class="intro-section-dark">
+  <p class="section-eyebrow" style="color: #a21942; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;" data-i18n="index_about_eyebrow">¿Quiénes somos?</p>
+  <h2 class="section-title reveal">
+    <span data-i18n="index_about_title_1">La mejor pitahaya orgánica,</span><br>
+    <span data-i18n="index_about_title_2">directo del campo al mundo</span>
+  </h2>
+  <p style="max-width:600px;margin:0 auto;line-height:1.8;font-size:0.95rem;" class="reveal section-text-dark" data-i18n="index_about_text">
+    Tuta Wayta nace de la pasión por el agro peruano. Producimos y comercializamos pitahaya orgánica con los más altos estándares de calidad, apoyando a comunidades locales y cuidando el medio ambiente.
+  </p>
+</section>
+
+<section class="seccion-variedades">
+    <div class="contenedor-variedades">
+        
+        <div class="variedades-header">
+            <span class="badge-rosa" data-i18n="var_badge">NUESTRAS VARIEDADES</span>
+            <h2 class="titulo-variedades" data-i18n="var_title"> Tesoros Naturales</h2>
+            <p class="subtitulo-variedades" data-i18n="var_sub">Cada variedad tiene características únicas de sabor, color y beneficios nutricionales.</p>
+        </div>
+
+        <div class="grid-variedades">
+            
+            <article class="card-variedad">
+                <div class="imagen-variedad">
+                    <img src="https://readdy.ai/api/search-image?query=close-up-cross-section-of-fresh-pink-dragon-fruit-fruit-delicate-vibrant-pink-flesh-with-black-seeds-on-natural-wooden-table-warm-sunlight-soft-focus-background-organic-fresh-food-photography&width=600&height=750&seq=1&orientation=portrait" alt="Pitahaya American Beauty">
+                </div>
+                <div class="contenido-variedad">
+                    <h3 data-i18n="var_name_ab">American Beauty</h3>
+                    <p data-i18n="var_desc_ab">Rica en fibra y antioxidantes, ayuda a mejorar la digestión y fortalecer el sistema inmunológico.</p>
+                </div>
+            </article>
+
+            <article class="card-variedad">
+                <div class="imagen-variedad">
+                    <img src="https://readdy.ai/api/search-image?query=close-up-cross-section-of-fresh-hybrid-dragon-fruit-pink-and-white-vibrant-flesh-with-black-seeds-natural-wooden-surface-warm-sunlight-organic-fresh-food-photography-soft-bokeh-background&width=600&height=750&seq=2&orientation=portrait" alt="Pitahaya Híbrida">
+                </div>
+                <div class="contenido-variedad">
+                    <h3 data-i18n="var_name_hib">Híbrida</h3>
+                    <p data-i18n="var_desc_hib">Aporta vitaminas como la vitamina C y minerales; contribuye a la hidratación y al buen funcionamiento del organismo.</p>
+                </div>
+            </article>
+
+            <article class="card-variedad">
+                <div class="imagen-variedad">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4n-WswzZlIP-x8Wz-C1fbIS0pGk9sMU8nRg&s" alt="Pitahaya Amarilla">
+                </div>
+                <div class="contenido-variedad">
+                    <h3 data-i18n="var_name_yel">Pitahaya Amarilla</h3>
+                    <p data-i18n="var_desc_yel">Destaca por su efecto digestivo natural, ayudando a prevenir el estreñimiento y mejorar la salud intestinal.</p>
+                </div>
+            </article>
+
+            <article class="card-variedad">
+                <div class="imagen-variedad">
+                    <img src="https://readdy.ai/api/search-image?query=close-up-cross-section-of-fresh-white-flesh-dragon-fruit-pure-white-flesh-with-black-seeds-natural-wooden-table-warm-natural-light-organic-fresh-food-photography-clean-minimal-style&width=600&height=750&seq=3&orientation=portrait" alt="Pitahaya Interior Blanco">
+                </div>
+                <div class="contenido-variedad">
+                    <h3 data-i18n="var_name_wb">Interior Blanco</h3>
+                    <p data-i18n="var_desc_wb">Baja en calorías y con alto contenido de agua, favorece la digestión y es ideal para dietas saludables.</p>
+                </div>
+            </article>
+
+        </div>
+    </div>
+   <div style="text-align:center; margin-top:40px;" class="reveal">
+  <a href="{{ url_for('beneficios') }}"
+     style="display:inline-block; border:2px solid var(--magenta);
+     color:var(--magenta); padding:12px 30px; border-radius:8px; font-weight:600; text-decoration:none; transition:all 0.2s;"
+     data-i18n="index_view_benefits">
+    Ver beneficios →
+  </a>
+</div>
+</section>
+
+
+
+<section class="proceso-pitahaya">
+  <div class="proceso-header">
+    <span class="badge-superior" data-i18n="proc_badge">DE LA TIERRA A TU MESA</span>
+    <h2 class="titulo-principal">
+      <span data-i18n="proc_title">Nuestro proceso</span>
+      <span class="script-text" data-i18n="proc_title_script">paso a paso</span>
+    </h2>
+    <p class="descripcion-principal" data-i18n="proc_sub">
+      Cada fruta de pitahaya pasa por un proceso cuidadoso para asegurar la máxima calidad y frescura.
+    </p>
+  </div>
+
+  <div class="timeline-wrapper">
+    <div class="timeline-linea-rosa"></div>
+
+    <div class="timeline-grid">
+
+      <!-- Paso 1 -->
+      <div class="timeline-item active">
+        <div class="icon-container">
+          <div class="icon-box">
+            <img src="{{ url_for('static', filename='img/FOTO 1.jpeg') }}" alt="Siembra orgánica">
+          </div>
+          <span class="dot-decorativo"></span>
+        </div>
+        <h3 data-i18n="proc_step1_title">Siembra orgánica</h3>
+        <p data-i18n="proc_step1_desc">
+          Plantamos en suelos fértiles de Cañete sin químicos, usando compost natural.
+        </p>
+      </div>
+
+      <!-- Paso 2 -->
+      <div class="timeline-item">
+        <div class="icon-container">
+          <div class="icon-box">
+            <img src="{{ url_for('static', filename='img/FRUTE.jpeg') }}" alt="Cultivo natural">
+          </div>
+          <span class="dot-decorativo"></span>
+        </div>
+        <h3 data-i18n="proc_step2_title">Cultivo natural</h3>
+        <p data-i18n="proc_step2_desc">
+          Las plantas crecen bajo el sol costeño con riego controlado y técnico.
+        </p>
+      </div>
+
+      <!-- Paso 3 -->
+      <div class="timeline-item">
+        <div class="icon-container">
+          <div class="icon-box">
+            <img src="{{ url_for('static', filename='img/Cosecha selectiva.jpg.jpeg') }}" alt="Cosecha selectiva">
+          </div>
+          <span class="dot-decorativo"></span>
+        </div>
+        <h3 data-i18n="proc_step3_title">Cosecha selectiva</h3>
+        <p data-i18n="proc_step3_desc">
+          Cada fruta se recolecta a mano en su punto óptimo de maduración.
+        </p>
+      </div>
+
+   <!-- Paso 4 -->
+<div class="timeline-item">
+  <div class="icon-container">
+    <div class="icon-box">
+      <img src="{{ url_for('static', filename='img/Control de calidad.jpg.jpeg') }}" alt="Control de calidad">
+    </div>
+    <span class="dot-decorativo"></span>
+  </div>
+  <h3 data-i18n="proc_step4_title">Control de calidad</h3>
+  <p data-i18n="proc_step4_desc">
+    Inspección visual, peso y frescura. Solo la excelencia llega a tu mesa.
+  </p>
+</div>
+
+    </div>
+  </div>
+</section>
+
+ <section class="servicios-cta">
+        <h2 data-i18n="services_title">¿Interesado en nuestros servicios?</h2>
+        <p data-i18n="services_desc">Nos encantaría colaborar contigo. Contáctanos para obtener más información y cotizaciones personalizadas.</p>
+        <a href="{{ url_for('contacto') }}" class="btn-servicios-contacto" data-i18n="services_btn">Contactar ahora</a>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block title %}Mi perfil - Tuta Wayta{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}?v=20260521">
+{% endblock %}
+
+{% block content %}
+<main class="profile-page">
+  <div class="profile-shell">
+    <a href="{{ url_for('index') }}" class="profile-back" data-i18n="profile_back">‹ Mi cuenta</a>
+    <h1 class="profile-title" data-i18n="profile_title">Mi perfil</h1>
+
+    <div class="profile-layout">
+      <aside class="profile-sidebar" id="profileSidebar" aria-label="Opciones de cuenta">
+        <button class="profile-menu-item active" type="button" data-account-section="personal">
+          <span class="material-symbols-outlined">account_circle</span>
+          <span data-i18n="profile_menu_personal">Datos personales</span>
+          <strong>›</strong>
+        </button>
+        <button class="profile-menu-item" type="button" data-account-section="addresses">
+          <span class="material-symbols-outlined">home_pin</span>
+          <span data-i18n="profile_menu_addresses">Direcciones</span>
+          <strong>›</strong>
+        </button>
+        <button class="profile-menu-item hidden" type="button" data-account-section="adminPrice" id="adminPriceMenuItem">
+          <span class="material-symbols-outlined">sell</span>
+          <span data-i18n="profile_menu_prices">Precios de productos</span>
+          <strong>›</strong>
+        </button>
+        <button class="profile-menu-item" type="button" id="logoutBtn">
+          <span class="material-symbols-outlined">power_settings_new</span>
+          <span data-i18n="profile_menu_logout">Cerrar sesión</span>
+          <strong>›</strong>
+        </button>
+      </aside>
+
+      <section class="profile-content">
+        <div class="account-view hidden" id="accountView">
+          <div class="profile-section active" id="personalSection">
+            <h2 data-i18n="profile_sec_personal">Datos personales</h2>
+
+            <div class="profile-card">
+              <div class="profile-row">
+                <div>
+                  <span data-i18n="profile_lbl_name">Nombre y apellidos</span>
+                  <p id="profileName" data-i18n="profile_val_name">Cliente Tuta Wayta</p>
+                </div>
+                <button type="button" data-profile-edit="name" data-i18n="profile_btn_edit">Editar</button>
+              </div>
+
+              <div class="profile-row">
+                <div>
+                  <span data-i18n="profile_lbl_doc">Tipo de documento</span>
+                  <p id="profileDocument" data-i18n="profile_val_doc">DNI no registrado</p>
+                </div>
+                <button type="button" data-profile-edit="document" data-i18n="profile_btn_edit">Editar</button>
+              </div>
+
+              <div class="profile-row">
+                <div>
+                  <span data-i18n="profile_lbl_phone">Celular</span>
+                  <p id="profilePhone" data-i18n="profile_val_phone">No registrado</p>
+                </div>
+                <button type="button" data-profile-edit="phone" data-i18n="profile_btn_edit">Editar</button>
+              </div>
+
+              <div class="profile-row">
+                <div>
+                  <span data-i18n="profile_lbl_email">Correo</span>
+                  <p id="profileEmail">correo@dominio.com</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-section" id="addressesSection">
+            <h2 data-i18n="profile_sec_addresses">Direcciones</h2>
+
+            <div class="profile-card">
+              <form id="addressForm" class="address-form" novalidate>
+                <div class="login-field">
+                  <label for="addressLine" data-i18n="profile_lbl_main_addr">Dirección principal</label>
+                  <input id="addressLine" type="text" placeholder="Calle, número, referencia" data-i18n-placeholder="profile_ph_addr_line" required>
+                </div>
+
+                <div class="address-grid">
+                  <div class="login-field">
+                    <label for="addressDistrict" data-i18n="profile_lbl_district">Distrito</label>
+                    <input id="addressDistrict" type="text" placeholder="San Vicente de Cañete" data-i18n-placeholder="profile_ph_district" required>
+                  </div>
+
+                  <div class="login-field">
+                    <label for="addressPhone" data-i18n="profile_lbl_deliv_phone">Teléfono de entrega</label>
+                    <input id="addressPhone" type="tel" inputmode="numeric" maxlength="9" placeholder="987654321" data-i18n-placeholder="profile_ph_deliv_phone" required>
+                  </div>
+                </div>
+
+                <button class="login-submit" type="submit" data-i18n="profile_btn_save_addr">Guardar dirección</button>
+                <div id="addressMessage" class="login-message" role="status" aria-live="polite"></div>
+              </form>
+
+              <div class="saved-address" id="savedAddress">
+                <span data-i18n="profile_lbl_saved_addr">Dirección guardada</span>
+                <p id="savedAddressText" data-i18n="profile_val_empty_addr">Aún no registraste una dirección.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-section" id="adminPriceSection">
+            <h2 data-i18n="profile_sec_prices">Precios de productos</h2>
+
+            <div class="profile-card admin-price-card">
+              <p class="admin-price-help" data-i18n="profile_prices_help">Actualiza el precio del catálogo. El cambio se verá en productos y al agregar al carrito.</p>
+              <div class="admin-price-list" id="adminPriceList"></div>
+              <div id="adminPriceMessage" class="login-message" role="status" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="account-view" id="authView">
+          <h2 data-i18n="profile_sec_personal">Datos personales</h2>
+          <div class="profile-card">
+            <div class="profile-empty">
+              <strong data-i18n="profile_empty_title">No has iniciado sesión</strong>
+              <p data-i18n="profile_empty_desc">Inicia sesión o regístrate para ver los detalles de tu cuenta.</p>
+              <div class="account-actions">
+                <a href="{{ url_for('login') }}" class="account-link" data-i18n="profile_link_login">Iniciar sesión</a>
+                <a href="{{ url_for('registro') }}" class="logout-btn" data-i18n="profile_link_register">Registrarme</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/login.js') }}?v=20260521"></script>
+{% endblock %}

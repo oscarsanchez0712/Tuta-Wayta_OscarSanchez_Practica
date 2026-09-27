@@ -1,0 +1,95 @@
+<!-- ══════════════════════════════════════
+     CHATBOT WIDGET - pegar antes del </body>
+══════════════════════════════════════ -->
+
+<!-- Botón flotante -->
+<button id="chat-toggle" title="Hablar con asistente" data-i18n-title="chat_toggle_title">
+  <svg class="icon-chat" viewBox="0 0 24 24"><path d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2zm-2 10H6V10h12v2zm0-4H6V6h12v2z"/></svg>
+  <svg class="icon-close" viewBox="0 0 24 24"><path d="M19 6.4L17.6 5 12 10.6 6.4 5 5 6.4l5.6 5.6L5 17.6 6.4 19l5.6-5.6 5.6 5.6 1.4-1.4-5.6-5.6z"/></svg>
+</button>
+
+<!-- Ventana del chat -->
+<div id="chat-window">
+  <div class="chat-header">
+    <div class="chat-avatar">🌺</div>
+    <div class="chat-info">
+      <h3 data-i18n="chat_header_title">Asistente Tuta Wayta</h3>
+      <p><span class="online-dot"></span> <span data-i18n="chat_header_status">En línea</span></p>
+    </div>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+
+    <!-- Flores decorativas con efecto latido -->
+    <div class="chat-flower chat-flower-1">
+      <svg width="54" height="54" viewBox="0 0 54 54">
+        <circle cx="27" cy="27" r="10" fill="#e0006e"/>
+        <circle cx="27" cy="10" r="8" fill="#e0006e"/>
+        <circle cx="27" cy="44" r="8" fill="#e0006e"/>
+        <circle cx="10" cy="27" r="8" fill="#e0006e"/>
+        <circle cx="44" cy="27" r="8" fill="#e0006e"/>
+        <circle cx="14" cy="14" r="7" fill="#e0006e"/>
+        <circle cx="40" cy="14" r="7" fill="#e0006e"/>
+        <circle cx="14" cy="40" r="7" fill="#e0006e"/>
+        <circle cx="40" cy="40" r="7" fill="#e0006e"/>
+        <circle cx="27" cy="27" r="6" fill="#ff4da6"/>
+      </svg>
+    </div>
+    <div class="chat-flower chat-flower-2">
+      <svg width="48" height="48" viewBox="0 0 48 48">
+        <circle cx="24" cy="24" r="9" fill="#e0006e"/>
+        <circle cx="24" cy="9"  r="7" fill="#e0006e"/>
+        <circle cx="24" cy="39" r="7" fill="#e0006e"/>
+        <circle cx="9"  cy="24" r="7" fill="#e0006e"/>
+        <circle cx="39" cy="24" r="7" fill="#e0006e"/>
+        <circle cx="13" cy="13" r="6" fill="#e0006e"/>
+        <circle cx="35" cy="13" r="6" fill="#e0006e"/>
+        <circle cx="13" cy="35" r="6" fill="#e0006e"/>
+        <circle cx="35" cy="35" r="6" fill="#e0006e"/>
+        <circle cx="24" cy="24" r="5" fill="#ff4da6"/>
+      </svg>
+    </div>
+    <div class="chat-flower chat-flower-3">
+      <svg width="38" height="38" viewBox="0 0 38 38">
+        <circle cx="19" cy="19" r="7" fill="#e0006e"/>
+        <circle cx="19" cy="7"  r="6" fill="#e0006e"/>
+        <circle cx="19" cy="31" r="6" fill="#e0006e"/>
+        <circle cx="7"  cy="19" r="6" fill="#e0006e"/>
+        <circle cx="31" cy="19" r="6" fill="#e0006e"/>
+        <circle cx="10" cy="10" r="5" fill="#e0006e"/>
+        <circle cx="28" cy="10" r="5" fill="#e0006e"/>
+        <circle cx="10" cy="28" r="5" fill="#e0006e"/>
+        <circle cx="28" cy="28" r="5" fill="#e0006e"/>
+        <circle cx="19" cy="19" r="4" fill="#ff4da6"/>
+      </svg>
+    </div>
+    <div class="chat-flower chat-flower-4">
+      <svg width="28" height="28" viewBox="0 0 28 28">
+        <circle cx="14" cy="14" r="5" fill="#e0006e"/>
+        <circle cx="14" cy="5"  r="4" fill="#e0006e"/>
+        <circle cx="14" cy="23" r="4" fill="#e0006e"/>
+        <circle cx="5"  cy="14" r="4" fill="#e0006e"/>
+        <circle cx="23" cy="14" r="4" fill="#e0006e"/>
+        <circle cx="7"  cy="7"  r="3.5" fill="#e0006e"/>
+        <circle cx="21" cy="7"  r="3.5" fill="#e0006e"/>
+        <circle cx="7"  cy="21" r="3.5" fill="#e0006e"/>
+        <circle cx="21" cy="21" r="3.5" fill="#e0006e"/>
+        <circle cx="14" cy="14" r="3" fill="#ff4da6"/>
+      </svg>
+    </div>
+
+  </div>
+  <div class="quick-replies" id="quick-replies">
+    <button class="quick-btn" onclick="sendQuick('order')" data-i18n="chat_quick_order">Hacer pedido</button>
+    <button class="quick-btn" onclick="sendQuick('hours')" data-i18n="chat_quick_hours">Horario</button>
+    <button class="quick-btn" onclick="sendQuick('location')" data-i18n="chat_quick_location">Ubicación</button>
+    <button class="quick-btn" onclick="sendQuick('contact')" data-i18n="chat_quick_contact">Contacto</button>
+    <button class="quick-btn" onclick="sendQuick('products')" data-i18n="chat_quick_products">Productos</button>
+    <button class="quick-btn" onclick="sendQuick('shipping')" data-i18n="chat_quick_shipping">Envíos</button>
+  </div>
+  <div class="chat-input-area">
+    <textarea id="chat-input" rows="1" placeholder="Escribe tu pregunta…" data-i18n-placeholder="chat_input_ph"></textarea>
+    <button id="send-btn" title="Enviar" data-i18n-title="chat_btn_send_title">
+      <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+    </button>
+  </div>
+</div>

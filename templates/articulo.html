@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}
+  <span data-i18n="blog_article_tab_title">Artículo del Blog</span> - Tuta Wayta
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/articulo.css') }}?v=1.0">
+{% endblock %}
+
+{% block content %}
+<main class="article-page">
+  <article class="article-content">
+    <header class="article-header">
+      <div class="header-content">
+        <div class="meta-info">
+          <span id="articulo-categoria" class="category-tag"></span>
+          <span id="articulo-fecha" class="date"></span>
+        </div>
+        <h1 id="articulo-titulo"></h1>
+        <div class="author-info-header">
+          <img id="articulo-autor-imagen" src="" alt="" class="author-avatar">
+          <div>
+            <span id="articulo-autor-nombre" class="author-name"></span>
+            <span id="articulo-autor-rol" class="author-role"></span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image-container">
+        <img id="articulo-imagen" src="" alt="">
+      </div>
+    </header>
+
+    <section id="articulo-cuerpo" class="article-body prose">
+      </section>
+
+  </article>
+
+  <div class="back-button-container">
+    <a href="{{ url_for('blog') }}" class="back-to-blog-btn" data-i18n="blog_back_btn">
+      &larr; Volver al Blog
+    </a>
+  </div>
+
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/articulos_db.js') }}?v=1.0"></script>
+<script src="{{ url_for('static', filename='js/articulo.js') }}?v=1.0"></script>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Iniciar sesión - Tuta Wayta{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}?v=20260521">
+{% endblock %}
+
+{% block content %}
+<main class="login-page">
+  <section class="login-panel" aria-labelledby="loginTitle">
+    <div class="login-brand">
+      <div class="login-mark" aria-hidden="true">
+        <svg viewBox="0 0 100 100">
+          <ellipse cx="35" cy="35" rx="14" ry="22" transform="rotate(-45 35 35)"/>
+          <ellipse cx="65" cy="35" rx="14" ry="22" transform="rotate(45 65 35)"/>
+          <ellipse cx="35" cy="65" rx="14" ry="22" transform="rotate(45 35 65)"/>
+          <ellipse cx="65" cy="65" rx="14" ry="22" transform="rotate(-45 65 65)"/>
+          <circle cx="50" cy="50" r="13"/>
+        </svg>
+      </div>
+      <p class="login-kicker" data-i18n="login_kicker">Cuenta Tuta Wayta</p>
+      <h1 id="loginTitle" data-i18n="login_title">Iniciar sesión</h1>
+      <p class="login-copy" data-i18n="login_copy">Accede para administrar o comprar según tu tipo de cuenta.</p>
+    </div>
+
+    <form id="loginForm" class="login-form active" novalidate>
+      <div class="login-field">
+        <label for="loginEmail" data-i18n="login_label_email">Correo electrónico</label>
+        <input id="loginEmail" name="email" type="email" autocomplete="email" placeholder="correo@dominio.com" data-i18n-placeholder="login_ph_email" required>
+        <span class="login-error" id="loginEmailError"></span>
+      </div>
+
+      <div class="login-field">
+        <label for="loginPassword" data-i18n="login_label_password">Contraseña</label>
+        <div class="password-row">
+          <input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="Tu contraseña" data-i18n-placeholder="login_ph_password" required minlength="6">
+          <button type="button" class="password-toggle" data-target="loginPassword" aria-label="Mostrar contraseña">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 5c5.05 0 8.55 4.08 9.73 5.7.56.77.56 1.83 0 2.6C20.55 14.92 17.05 19 12 19s-8.55-4.08-9.73-5.7a2.2 2.2 0 0 1 0-2.6C3.45 9.08 6.95 5 12 5Zm0 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0-2.2a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6Z"/>
+            </svg>
+          </button>
+        </div>
+        <span class="login-error" id="loginPasswordError"></span>
+      </div>
+
+      <div class="login-options">
+        <label class="remember-check">
+          <input id="rememberUser" type="checkbox" checked>
+          <span data-i18n="login_remember">Recordarme</span>
+        </label>
+        <a href="{{ url_for('registro') }}" data-i18n="login_link_register">Crear cuenta</a>
+      </div>
+
+      <button class="login-submit" type="submit" data-i18n="login_btn_submit">Ingresar</button>
+      <div id="loginMessage" class="login-message" role="status" aria-live="polite"></div>
+    </form>
+
+    <div class="demo-users">
+      <p data-i18n="login_demo_title">Cuentas de prueba</p>
+      <button type="button" data-demo="administrador" data-i18n="login_demo_admin">Administrador</button>
+      <button type="button" data-demo="comprador" data-i18n="login_demo_buyer">Comprador</button>
+    </div>
+  </section>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/login.js') }}?v=20260521"></script>
+{% endblock %}

@@ -1,0 +1,390 @@
+{% extends "base.html" %}
+{% block title %}Tuta Wayta – Galería{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/galeria.css') }}?v=20260421"/>
+{% endblock %}
+
+{% block content %}
+<section class="hero-carousel" aria-label="Carrusel principal de galería">
+  <div class="carousel-container">
+    <div class="carousel-slide active">
+      <img src="{{ url_for('static', filename='img/carrusel1.jpeg') }}" alt="Atardecer en plantación" loading="eager">
+      <div class="slide-caption"><span class="caption-tag" data-i18n="gallery_slide1_tag">Cultivo</span><p data-i18n="gallery_slide1_p">Atardecer en nuestras tierras de Cañete</p></div>
+    </div>
+    <div class="carousel-slide">
+      <img src="{{ url_for('static', filename='img/carrusel2.jpg') }}" alt="Pitahaya rosada" loading="lazy">
+      <div class="slide-caption"><span class="caption-tag" data-i18n="gallery_slide2_tag">Producto</span><p data-i18n="gallery_slide2_p">La frescura de nuestra pitahaya orgánica</p></div>
+    </div>
+    <div class="carousel-slide">
+      <img src="{{ url_for('static', filename='img/carrusel3.webp') }}" alt="Cultivo orgánico" loading="lazy">
+      <div class="slide-caption"><span class="caption-tag" data-i18n="gallery_slide3_tag">Proceso</span><p data-i18n="gallery_slide3_p">Agricultura sostenible en el Valle de Cañete</p></div>
+    </div>
+    <div class="carousel-slide">
+      <img src="{{ url_for('static', filename='img/carrusel4.jpg') }}" alt="Cosecha" loading="lazy">
+      <div class="slide-caption"><span class="caption-tag" data-i18n="gallery_slide4_tag">Cosecha</span><p data-i18n="gallery_slide4_p">Manos que cultivan con dedicación</p></div>
+    </div>
+    <div class="carousel-slide">
+      <img src="{{ url_for('static', filename='img/carrusel5.jpg') }}" alt="Detalle" loading="lazy">
+      <div class="slide-caption"><span class="caption-tag" data-i18n="gallery_slide5_tag">Naturaleza</span><p data-i18n="gallery_slide5_p">El color que nos distingue</p></div>
+    </div>
+
+    <button class="carousel-btn-nav prev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+    <button class="carousel-btn-nav next" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+
+    <div class="carousel-dots" role="tablist">
+      <button class="dot active" data-slide="0"></button>
+      <button class="dot" data-slide="1"></button>
+      <button class="dot" data-slide="2"></button>
+      <button class="dot" data-slide="3"></button>
+      <button class="dot" data-slide="4"></button>
+    </div>
+    <div class="carousel-progress"><div class="progress-bar"></div></div>
+    <div class="carousel-overlay">
+      <div class="hero-content fade-up">
+        <h1>
+          <span data-i18n="gallery_hero_title1">NUESTRA PITAHAYA</span><br><span class="text-accent" data-i18n="gallery_hero_title2">EN IMÁGENES</span>
+        </h1>
+        <p data-i18n="gallery_hero_p">Desde el cultivo hasta la cosecha, descubre la magia de nuestro proceso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galeria-grid" class="gallery-section">
+  <div class="gallery-header">
+    <h2 data-i18n="gallery_grid_title">Galería Fotográfica</h2>
+    <p data-i18n="gallery_grid_subtitle">Un vistazo a nuestro día a día en el campo</p>
+  </div>
+
+  <div class="gallery-filters fade-up delay-2" role="group">
+    <button class="filter-btn active" data-filter="all" data-i18n="gallery_f_all">Todas</button>
+    <button class="filter-btn" data-filter="cultivo" data-i18n="gallery_f_cultivo">Cultivo</button>
+    <button class="filter-btn" data-filter="floracion" data-i18n="gallery_f_floracion">Floración</button>
+    <button class="filter-btn" data-filter="cosecha" data-i18n="gallery_f_cosecha">Cosecha</button>
+    <button class="filter-btn" data-filter="final" data-i18n="gallery_f_final">Etapa Final</button>
+  </div>
+  <style>
+    .gallery-item {
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+  <style>
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 1.5rem;
+    }
+    @media (min-width: 640px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+ 
+  <div class="gallery-grid">
+    <figure class="gallery-item" data-category="cultivo" onclick="openLightbox(this)">
+      <img src="{{ url_for('static', filename='img/Cosecha selectiva.jpg.jpeg') }}" alt="Plantación">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_cultivo">Cultivo</span><h3 data-i18n="gallery_fig1_title">Plantación</h3><p data-i18n="gallery_fig1_p">Crecimiento con soporte</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="floracion" onclick="openLightbox(this)">
+      <img src="https://i.ibb.co/JjRVjWQ3/FLOR.jpg" alt="Flor inicial">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_floracion">Floración</span><h3 data-i18n="gallery_fig2_title">Etapa inicial</h3><p data-i18n="gallery_fig2_p">Primer plano natural</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="cosecha" onclick="openLightbox(this)">
+      <img src="https://i.ibb.co/C3GCYf9R/IMG-8446.avif" alt="Fruta madura">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_cosecha">Cosecha</span><h3 data-i18n="gallery_fig3_title">Fruta madura</h3><p data-i18n="gallery_fig3_p">Lista para recolección</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="final" onclick="openLightbox(this)">
+      <img src="https://i.ibb.co/0pDQkx0z/IMG-8393.avif" alt="Fruta fresca">
+      <figcaption><span class="fig-tag" data-i18n="gallery_tag_product">Producto</span><h3 data-i18n="gallery_fig4_title">Fruta fresca</h3><p data-i18n="gallery_fig4_p">Color y textura natural</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="cultivo" onclick="openLightbox(this)">
+      <img src="{{ url_for('static', filename='img/IMG_8382 (1).webp') }}" alt="Vista panorámica">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_cultivo">Cultivo</span><h3 data-i18n="gallery_fig5_title">Vista panorámica</h3><p data-i18n="gallery_fig5_p">Valle de Cañete</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="floracion" onclick="openLightbox(this)">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuR5l1Z9RFFie8TbsscuH_YYPomD0DQPC9-ivByk95McXjxqlMzTD43w9gk8Cu6lwCGGUc1gw0fK-o0ObAwUMyG4ecuuE6begsDZB1-TAmmZjJGJxsOxI4CF5vyzPjGXLTQAzRYC7FKGFrbDgRalS_kp4XbpK9P6C5KjEZHj3rFOOjC2QepgSj9_zyztP8sVfTXjNg0K-11tqSo2UIeyBSW3hVO1Li6hv41zRlLKM9gKjHDIIHJgCPvqsYQyAh6Caxjmag3nZJlO0" alt="Flor nocturna">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_floracion">Floración</span><h3 data-i18n="gallery_fig6_title">Flor nocturna</h3><p data-i18n="gallery_fig6_p">Apertura blanca pura</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="cosecha" onclick="openLightbox(this)">
+      <img src="https://i.ibb.co/BSpvSPr/IMG-8484.avif" alt="Recolección">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_cosecha">Cosecha</span><h3 data-i18n="gallery_fig7_title">Recolección</h3><p data-i18n="gallery_fig7_p">Trabajo agrícola manual</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="final" onclick="openLightbox(this)">
+      <img src="{{ url_for('static', filename='img/IMG_20260705_134543.jpg.jpeg') }}" alt="Distribución">
+      <figcaption><span class="fig-tag" data-i18n="gallery_tag_product">Producto</span><h3 data-i18n="gallery_fig8_title">Canasta final</h3><p data-i18n="gallery_fig8_p">Lista para distribución</p></figcaption>
+    </figure>
+
+    <figure class="gallery-item" data-category="cultivo" onclick="openLightbox(this)">
+      <img src="https://rjdavx8ozyznxeyh.public.blob.vercel-storage.com/production/websites/generated-media/3cfc8f95-7217-4c3e-ba1a-b32660da96e4-L3JfWUuZOp6BeBbCGcL5GqfQqHD87H.png" alt="Sistema tecnificado">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_cultivo">Cultivo</span><h3 data-i18n="gallery_fig9_title">Tecnificación</h3><p data-i18n="gallery_fig9_p">Soporte vertical moderno</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="floracion" onclick="openLightbox(this)">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDANUKIavJz32nDOZKsmIQXEwFJ3-ZRMMPOQcASt93-YdCG1vyHyBs_tqfceW9Ojb240VEJJmqDpM8IsVkgD06Oa2ZJiVSgoMXxizNxAFMOgmjxi-GvvV7nX9N-Mg_74QpygAPXBzm48MAr1nq9sZXZ7_NW0QDUex4jBkcp1ICAbwGa_KNuv8mhGpyM4Yuwa-v0DlrTPnVxBAEICxlyxplwH2EQp9FPidRXkYp1GxWaO3CEO86BIf2dbuM0wza34D90zC-8NTVlty8" alt="Apertura">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_floracion">Floración</span><h3 data-i18n="gallery_fig10_title">Apertura elegante</h3><p data-i18n="gallery_fig10_p">Esplendor de noche</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="cosecha" onclick="openLightbox(this)">
+      <img src="https://i.ibb.co/Xktgp8BW/IMG-8370.avif" alt="Producción">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_cosecha">Cosecha</span><h3 data-i18n="gallery_fig11_title">Producción</h3><p data-i18n="gallery_fig11_p">Cosecha seleccionada</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="final" onclick="openLightbox(this)">
+      <img src="{{ url_for('static', filename='img/FRUTE.jpeg') }}" alt="Interior">
+      <figcaption><span class="fig-tag" data-i18n="gallery_tag_product">Producto</span><h3 data-i18n="gallery_fig12_title">Interior de fruta</h3><p data-i18n="gallery_fig12_p">Pulpa de alta calidad</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="cultivo" onclick="openLightbox(this)">
+      <img src="https://i.ibb.co/39KjRpct/IMG-8419.webp" alt="Filas">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_cultivo">Cultivo</span><h3 data-i18n="gallery_fig13_title">Filas organizadas</h3><p data-i18n="gallery_fig13_p">Sistemas de plantación</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="floracion" onclick="openLightbox(this)">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXqXEGzeliBiAUk3oq6ZGkUk7M0g3kh3lON5RC6FEvJXDkp1RWDBRwuQPXBuONNFNrkYj9umJynVIKODi2YeHP7RyE2FC1Hf9ChegGDG0DdUek7FVXx_TLMyLcb8qE-0eRXf8dbyAOq2jWSPRbg1LcsyVa5EGoAJOsLAIg_807i3468OOB-x-bC3uHOMV6I3iVPBL0axPzBxLboeqskdas9vU0SkiCfqctCMKsHTW9OySA42Rz31lxGbyPp2RhMerZOxzwunzQvUo" alt="Botón">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_floracion">Floración</span><h3 data-i18n="gallery_fig14_title">Botón incipiente</h3><p data-i18n="gallery_fig14_p">Primeros brotes</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="cosecha" onclick="openLightbox(this)">
+      <img src="https://i.ibb.co/DDbvTFk4/IMG-8383.avif" alt="Canasta">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_cosecha">Cosecha</span><h3 data-i18n="gallery_fig15_title">En canasta</h3><p data-i18n="gallery_fig15_p">Fruta recién cortada</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="final" onclick="openLightbox(this)">
+      <img src="https://i.ibb.co/d4Mr5vB7/IMG-8402.avif" alt="Exportación">
+      <figcaption><span class="fig-tag" data-i18n="gallery_tag_product">Producto</span><h3 data-i18n="gallery_fig16_title">Exportación</h3><p data-i18n="gallery_fig16_p">Calidad premium fucsia</p></figcaption>
+    </figure>
+
+    <figure class="gallery-item" data-category="cultivo" onclick="openLightbox(this)">
+      <img src="{{ url_for('static', filename='img/FOTO 1.jpeg') }}" alt="Aérea">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_cultivo">Cultivo</span><h3 data-i18n="gallery_fig17_title">Vista aérea</h3><p data-i18n="gallery_fig17_p">Campos de Cañete</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="floracion" onclick="openLightbox(this)">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBH5NhqXfpXYOMWvJmBtY88cfuHIF0bcT-Ihjao5dNpdxVRUbSdCcW_Gy7jhbQJRvTYLYt8aQsSAFrb-0daXEYEy3sjJ9IGE-Mz8vtQN4Ux07v7VNIK8ze8gThdQP4sqgZc-wH4k6RlsUKwW55dte_siWSH10-s-tRXhTKwlijAqyuitH8NrRoV876WK6VSe1YWusOGSBmYpnvvs-GxR7MSngf_IXbNz0wF4psr_nhqePBd4_SUnenl18I830GScpRkmLNnssditbI" alt="Plena">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_floracion">Floración</span><h3 data-i18n="gallery_fig18_title">Floración plena</h3><p data-i18n="gallery_fig18_p">Máxima apertura</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="cosecha" onclick="openLightbox(this)">
+      <img src="https://i.ibb.co/bj3DnH63/IMG-8410.avif" alt="Labor">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_cosecha">Cosecha</span><h3 data-i18n="gallery_fig19_title">Labor de campo</h3><p data-i18n="gallery_fig19_p">Recolección diaria</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="final" onclick="openLightbox(this)">
+      <img src="{{ url_for('static', filename='img/IMG_20260705_133439.jpg.webp') }}" alt="Empaque">
+      <figcaption><span class="fig-tag" data-i18n="gallery_tag_product">Producto</span><h3 data-i18n="gallery_fig20_title">Empaque</h3><p data-i18n="gallery_fig20_p">Preparación moderna</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="cultivo" onclick="openLightbox(this)">
+      <img src="https://i.ibb.co/wZY0MGj1/IMG-8470.webp" alt="Amanecer">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_cultivo">Cultivo</span><h3 data-i18n="gallery_fig21_title">Amanecer</h3><p data-i18n="gallery_fig21_p">Inicio de jornada</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="floracion" onclick="openLightbox(this)">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKIdW8e4RxExewBJO2tHKqDt1c62wZxWjEe5FZcVm1dT68jSUksWtL_y9-SWGhuBrXsxPyYXcHG2-FWtxL3W3KdR35R0nvpkPVGG0Jwp3C6eTnhrq-ylTbPLVdSbIhN0nTA7fDkCeFxxQUGXdRLz_u66aGl6CzAv6XBo1pLCXs04YD9WyGZWkVEvQl4fws7sMnadZEhoxXAklAZBYquuWbhUt17H19yEDevTAXxSuJRo9BZ-LyI0t9lJOnaPyv2CUTYfmU8cI7tOk" alt="Polinización">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_floracion">Floración</span><h3 data-i18n="gallery_fig22_title">Polinización</h3><p data-i18n="gallery_fig22_p">Proceso biológico</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="cosecha" onclick="openLightbox(this)">
+      <img src="{{ url_for('static', filename='img/IMG_8369.webp') }}" alt="Frutos">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_cosecha">Cosecha</span><h3 data-i18n="gallery_fig23_title">Frutos listos</h3><p data-i18n="gallery_fig23_p">Maduración en planta</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="final" onclick="openLightbox(this)">
+      <img src="https://i.ibb.co/LzDSLJ71/IMG-8387.avif" alt="Palora">
+      <figcaption><span class="fig-tag" data-i18n="gallery_tag_product">Producto</span><h3 data-i18n="gallery_fig24_title">Variedad Palora</h3><p data-i18n="gallery_fig24_p">Pulpa blanca</p></figcaption>
+    </figure>
+
+    <figure class="gallery-item" data-category="cultivo" onclick="openLightbox(this)">
+      <img src="{{ url_for('static', filename='img/Control de calidad.jpg.jpeg') }}" alt="Orgánica">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_cultivo">Cultivo</span><h3 data-i18n="gallery_fig25_title">Gestión orgánica</h3><p data-i18n="gallery_fig25_p">Sin químicos</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="floracion" onclick="openLightbox(this)">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_TiE3PS1DftP2rgjZZ8JhgSp79kq-eitaMt7VVc3lxzne7ixF54zGIkdGY8YF7TfQfjyGntlomw86Nv_FEjgo0Aos1QyX72bNpryucr7yzc0yxNTi1Q-n7MpAcjNc95k_xUTtJbhkM-Dsg45_T667JeR9hHh0SEjZ5jtCet865strCrw5WB6Fbv5c4_bK75Tm9Lcdi6agfW6W9WvSrql9mX9O1e2hGBzk_SwxvFUxm63t__ZLlT83Sg_80hxPdkrwtkiaH_pR74g" alt="Arquitectura">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_floracion">Floración</span><h3 data-i18n="gallery_fig26_title">Geometría</h3><p data-i18n="gallery_fig26_p">Arquitectura floral</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="cosecha" onclick="openLightbox(this)">
+      <img src="{{ url_for('static', filename='img/IMG_8363.webp') }}" alt="Sol">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_cosecha">Cosecha</span><h3 data-i18n="gallery_fig27_title">Selección</h3><p data-i18n="gallery_fig27_p">Bajo sol intenso</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="final" onclick="openLightbox(this)">
+      <img src="https://i.ibb.co/kW7zWy9/IMG-8369.avif" alt="Control">
+      <figcaption><span class="fig-tag" data-i18n="gallery_tag_product">Producto</span><h3 data-i18n="gallery_fig28_title">Calidad</h3><p data-i18n="gallery_fig28_p">Selección industrial</p></figcaption>
+    </figure>
+
+    <figure class="gallery-item" data-category="cultivo" onclick="openLightbox(this)">
+      <img src="https://i.ibb.co/8gtv7v15/IMG-8382.webp" alt="Técnico">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_cultivo">Cultivo</span><h3 data-i18n="gallery_fig29_title">Supervisión</h3><p data-i18n="gallery_fig29_p">Control técnico</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="floracion" onclick="openLightbox(this)">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDp5i1fuLt1s6phmKRsrxVoAqSQWlMTi1pp1iADcQjskZ4Vm9ay-R48vWeosjAVrG-mJE-YdtJ1-RCOZ5cAUiQHz0BveHYN7w4ojux7OEJKYDy7yXsTJt8J8piaDvi1_OISF4X0c30IKXgZEeEkMBFUjP37NSG9I_TgD38rPDSQFqNdB4Ux86vrcU5PZF7BmhrzgF3H2rmwNRcs3xDrnLddRK-eQlt7KKlTD00DDA618sNMg-TNHbRPekYChTtxxR97N2gDEFM7f-Q" alt="Fecundación">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_floracion">Floración</span><h3 data-i18n="gallery_fig30_title">Fecundación</h3><p data-i18n="gallery_fig30_p">Comienzo del fruto</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="cosecha" onclick="openLightbox(this)">
+      <img src="{{ url_for('static', filename='img/IMG_8383.webp') }}" alt="Tallos">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_cosecha">Cosecha</span><h3 data-i18n="gallery_fig31_title">Sistema final</h3><p data-i18n="gallery_fig31_p">Tallos y riego</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="final" onclick="openLightbox(this)">
+      <img src="https://i.ibb.co/qLsLngtX/IMG-8363.avif" alt="Consumo">
+      <figcaption><span class="fig-tag" data-i18n="gallery_tag_product">Producto</span><h3 data-i18n="gallery_fig32_title">Consumo</h3><p data-i18n="gallery_fig32_p">Producto final listo</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="cultivo" onclick="openLightbox(this)">
+      <img src="https://rjdavx8ozyznxeyh.public.blob.vercel-storage.com/production/generated-content/businesses/1215974/8d826077-85e2-46b6-aba8-59c424532885-q6XbW0VC7QzJSSoVQCWfMglfJ6pCz2.webp" alt="Análisis de suelo">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_cultivo">Cultivo</span><h3 data-i18n="gallery_fig33_title">Análisis de suelo</h3><p data-i18n="gallery_fig33_p">Nutrición de la tierra</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="floracion" onclick="openLightbox(this)">
+      <img src="https://i.ibb.co/S7JmyCfx/IMG-8412.webp" alt="Perfume natural">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_floracion">Floración</span><h3 data-i18n="gallery_fig34_title">Perfume natural</h3><p data-i18n="gallery_fig34_p">Atractivo para polinizadores</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="cosecha" onclick="openLightbox(this)">
+      <img src="{{ url_for('static', filename='img/IMG_8365.webp') }}" alt="Punto óptimo">
+      <figcaption><span class="fig-tag" data-i18n="gallery_f_cosecha">Cosecha</span><h3 data-i18n="gallery_fig35_title">Punto óptimo</h3><p data-i18n="gallery_fig35_p">Coloración ideal para corte</p></figcaption>
+    </figure>
+    <figure class="gallery-item" data-category="final" onclick="openLightbox(this)">
+      <img src="https://i.ibb.co/96JY58t/IMG-8466.avif" alt="Presentación">
+      <figcaption><span class="fig-tag" data-i18n="gallery_tag_product">Producto</span><h3 data-i18n="gallery_fig36_title">Presentación</h3><p data-i18n="gallery_fig36_p">Directo de Cañete a su mesa</p></figcaption>
+    </figure>
+</div>
+</section>
+
+
+
+
+
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Cerrar">×</button>
+  <button class="lightbox-nav prev" onclick="changeLightbox(-1)" aria-label="Anterior">❮</button>
+  <button class="lightbox-nav next" onclick="changeLightbox(1)" aria-label="Siguiente">❯</button>
+  <div class="lightbox-content">
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption">
+      <h3 id="lightbox-title"></h3>
+      <p id="lightbox-desc"></p>
+    </div>
+  </div>
+<div class="lightbox-counter"><span id="lightbox-current">1</span> / <span id="lightbox-total">9</span></div>
+</div>
+
+<section class="gallery-cta" style="background-image: url('https://rjdavx8ozyznxeyh.public.blob.vercel-storage.com/production/websites/generated-media/efdd7fee-9896-4a81-acd1-a784508d5cd9-0oV2Plrx0vLan6bHE3GnFYuA6cnH0D.png'); position: relative; padding: 120px 20px; background-size: cover; background-position: center; background-attachment: fixed; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden;">
+  <div class="cta-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); z-index: 1;"></div>
+  <div class="cta-content fade-up" style="position: relative; z-index: 2; color: #ffffff;">
+    <h2 style="color: #ffffff; font-size: 2.5rem; margin-bottom: 15px; font-weight: 700;" data-i18n="gallery_cta_title">¿Quieres conocer más?</h2>
+    <p style="color: #ffffff; font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;" data-i18n="gallery_cta_p">
+      Descubre todos nuestros productos elaborados con la mejor pitahaya orgánica del Perú.
+    </p>
+    <a href="{{ url_for('productos') }}" class="cta-btn" data-i18n="gallery_cta_btn">Ver Productos</a>
+  </div>
+</section>
+
+<section class="seccion-videos">
+    <div class="blob-decorativo"></div>
+
+    <div class="contenedor-videos">
+        <header class="header-videos">
+            <span class="badge" data-i18n="gallery_media_badge">MEDIA CENTER</span>
+            <h2 data-i18n="gallery_media_title">Experiencia <span class="italica-rosa">Visual</span></h2>
+            <p class="subtitulo-premium" data-i18n="gallery_media_p">
+                Documentamos cada proceso para garantizar la excelencia que nos define como líderes en el sector.
+            </p>
+        </header>
+
+        <div class="grid-videos">
+
+            <!-- VIDEO 1 -->
+            <article class="video-card">
+                <div class="video-inner">
+
+                    <div class="video-wrapper">
+
+                        <!-- YouTube dentro del “cuadro” -->
+                        <iframe
+                            src="https://www.youtube.com/embed/s1jh0-aloZ4"
+                            title="Video 1"
+                            allowfullscreen>
+                        </iframe>
+
+                        <div class="overlay-brillo"></div>
+
+                        <!-- Botón play decorativo encima -->
+                        <div class="play-button-container">
+                            <div class="play-button-pulse"></div>
+                            <div class="play-button"></div>
+                        </div>
+
+                        <span class="video-duration">03:45</span>
+                    </div>
+
+                    <div class="video-info">
+                        <div class="meta-row">
+                            <span class="meta-tag" data-i18n="gallery_v1_tag">PRODUCCIÓN</span>
+                            <span class="meta-date" data-i18n="gallery_v1_year">2024</span>
+                        </div>
+
+                        <h3 data-i18n="gallery_v1_title">Innovación en el Cultivo</h3>
+                        <p data-i18n="gallery_v1_p">Explora técnicas de agricultura de precisión en nuestros campos.</p>
+
+                        <div class="video-footer">
+                            <a href="https://www.youtube.com/watch?v=s1jh0-aloZ4"
+                               target="_blank"
+                               class="btn-video-more" data-i18n="gallery_v_btn">
+                                <span>REPRODUCIR AHORA</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+
+            <!-- VIDEO 2 -->
+            <article class="video-card">
+                <div class="video-inner">
+
+                    <div class="video-wrapper">
+
+                        <iframe
+                            src="https://www.youtube.com/embed/2QFeigxjMRs"
+                            title="Video 2"
+                            allowfullscreen>
+                        </iframe>
+
+                        <div class="overlay-brillo"></div>
+
+                        <div class="play-button-container">
+                            <div class="play-button-pulse"></div>
+                            <div class="play-button"></div>
+                        </div>
+
+                        <span class="video-duration">05:12</span>
+                    </div>
+
+                    <div class="video-info">
+                        <div class="meta-row">
+                            <span class="meta-tag" data-i18n="gallery_v2_tag">COMMUNITY</span>
+                            <span class="meta-date" data-i18n="gallery_v2_year">2024</span>
+                        </div>
+
+                        <h3 data-i18n="gallery_v2_title">Legado y Compromiso</h3>
+                        <p data-i18n="gallery_v2_p">Impacto social y desarrollo sostenible con agricultores locales.</p>
+
+                        <div class="video-footer">
+                            <a href="https://www.youtube.com/watch?v=2QFeigxjMRs"
+                               target="_blank"
+                               class="btn-video-more" data-i18n="gallery_v_btn">
+                                <span>REPRODUCIR AHORA</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/carousel.js') }}?v=20260421" defer></script>
+<script src="{{ url_for('static', filename='js/galeria.js') }}?v=20260421" defer></script>
+{% endblock %}

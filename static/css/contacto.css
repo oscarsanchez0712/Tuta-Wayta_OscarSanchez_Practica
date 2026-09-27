@@ -1,0 +1,517 @@
+:root {
+  --primary: #b90060;
+  --primary-dark: #8a0048;
+  --secondary: #10b981;
+  --text-dark: #1f2937;
+  --bg-light: #f9fafb;
+}
+
+/* Base */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-light);
+}
+
+.headline {
+  font-family: 'Playfair Display', serif;
+}
+
+/* HERO CARRUSEL */
+.hero-carousel {
+  position: relative;
+  height: 60vh;
+  min-height: 500px;
+  overflow: hidden;
+  background: #000;
+}
+
+.carousel-container {
+  height: 100%;
+  position: relative;
+}
+
+.carousel-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+/* BOTONES NAVEGACION CARRUSEL */
+.carousel-btn-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(5px);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 24px;
+  z-index: 10;
+  transition: all 0.3s;
+}
+
+.carousel-btn-nav:hover { background: var(--primary); }
+.carousel-btn-nav.prev { left: 20px; }
+.carousel-btn-nav.next { right: 20px; }
+
+/* FORMULARIO PROFESIONAL */
+.input-field {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid #f3f4f6;
+  border-radius: 16px;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #fdfdfd;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(185, 0, 96, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  font-weight: 700;
+  padding: 18px;
+  border-radius: 16px;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(185, 0, 96, 0.4);
+}
+
+/* ANIMACIONES */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fade-up.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
+
+/* MAPA */
+#map {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .hero-carousel { height: 50vh; }
+}
+
+/* contenedor */
+.social {
+  margin-top: 25px;
+}
+
+.social h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #065f46;
+}
+
+/* fila */
+.social-icons {
+  display: flex;
+  gap: 20px;
+}
+
+/* círculo */
+.circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: block;
+
+  /* estilo moderno */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+/* imagen ocupa TODO */
+.circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* hover */
+.circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+.social {
+  margin-top: 30px;
+}
+
+.social h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #064e3b;
+  margin-bottom: 15px;
+}
+
+/* contenedor centrado */
+.social-icons {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+
+/* botón */
+.circle {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 👇 clave para look pro */
+  box-shadow: 
+    0 8px 20px rgba(0,0,0,0.08),
+    inset 0 0 0 1px #eee;
+
+  transition: all 0.3s ease;
+}
+
+/* imagen bien centrada */
+.circle img {
+  width: 65%;
+  height: 65%;
+  object-fit: contain;
+  display: block;
+}
+
+/* hover elegante */
+.circle:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 
+    0 12px 30px rgba(0,0,0,0.15),
+    inset 0 0 0 1px #ddd;
+}
+
+/* =======================================================
+   REDES SOCIALES - PROFESIONAL CON COLORES REALES
+   ======================================================= */
+
+.social {
+  margin-top: 35px;
+}
+
+.social h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 18px;
+}
+
+/* contenedor */
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* botón base */
+.circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+  transition: all 0.25s ease;
+}
+
+/* imagen */
+.circle img {
+  width: 55%;
+  height: 55%;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+
+/* hover base */
+.circle:hover {
+  transform: translateY(-4px);
+}
+
+/* 🔥 COLOR POR RED (ELEGANTE, NO EXAGERADO) */
+
+/* TikTok */
+.circle:nth-child(1):hover {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15),
+              0 0 0 2px #000;
+}
+
+/* YouTube */
+.circle:nth-child(2):hover {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15),
+              0 0 0 2px #ff0000;
+}
+
+/* Facebook */
+.circle:nth-child(3):hover {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15),
+              0 0 0 2px #1877f2;
+}
+
+/* =======================================================
+   🌙 MODO OSCURO - PÁGINA DE CONTACTO
+   ======================================================= */
+
+/* Fondo general */
+body.dark {
+    background-color: #0b1020;
+}
+
+/* Títulos y textos */
+body.dark .text-gray-800,
+body.dark h2 {
+    color: #f8fafc;
+}
+
+body.dark .text-gray-600,
+body.dark p {
+    color: #94a3b8;
+}
+
+/* Formulario */
+body.dark .input-field {
+    background: #111827;
+    border-color: #334155;
+    color: #f8fafc;
+}
+
+body.dark .input-field:focus {
+    border-color: var(--primary);
+    background: #1f2937;
+    box-shadow: 0 0 0 4px rgba(185, 0, 96, 0.25);
+}
+
+/* Botón de Enviar */
+body.dark .btn-primary {
+    background: linear-gradient(135deg, var(--primary), #ff4d8d);
+    box-shadow: 0 12px 25px rgba(185, 0, 96, 0.5);
+}
+
+body.dark .btn-primary:hover {
+    box-shadow: 0 15px 30px rgba(185, 0, 96, 0.6);
+}
+
+/* Iconos de Redes Sociales */
+body.dark .social h4 {
+    color: #f8fafc;
+}
+
+body.dark .circle {
+    background: #111827;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+/* Formulario de contacto específico */
+body.dark .bg-white {
+    background-color: #111827 !important;
+    border-color: #334155 !important;
+}
+
+body.dark .text-gray-400 {
+    color: #94a3b8 !important;
+}
+
+body.dark .bg-gray-50 {
+    background-color: #1f2937 !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+}
+
+/* animación del logo */
+.circle:hover img {
+  transform: scale(1.08);
+}
+
+/* =======================================================
+   NOTIFICACIONES (TOAST) Y MENSAJES DE FORMULARIO
+   ======================================================= */
+
+.toast-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 14px 22px;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 600;
+  z-index: 10000;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.toast-notification.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.toast-notification.success {
+  background-color: #10b981; /* Verde éxito */
+}
+
+.toast-notification.error {
+  background-color: #ef4444; /* Rojo error */
+}
+
+.form-message {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.form-message.success { background-color: #ecfdf5; color: #065f46; }
+.form-message.error { background-color: #fee2e2; color: #991b1b; }
+
+/* =======================================================
+   PANTALLA DE CONFIRMACIÓN (MODAL/OVERLAY)
+   ======================================================= */
+
+.confirmation-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(25, 15, 20, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.confirmation-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.confirmation-card {
+  background: white;
+  border-radius: 24px;
+  padding: 40px 35px;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transform: scale(0.92) translateY(15px);
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.confirmation-overlay.visible .confirmation-card {
+  transform: scale(1) translateY(0);
+}
+
+/* --- ICONO DE ÉXITO MEJORADO --- */
+.confirmation-icon {
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(145deg, var(--primary, #b90060), var(--primary-dark, #8a0048));
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+
+.confirmation-icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+.confirmation-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #1f2937;
+  margin-bottom: 12px;
+}
+
+.confirmation-text {
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.confirmation-btn {
+  background: var(--primary, #b90060);
+  color: white;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(185, 0, 96, 0.25);
+}
+
+.confirmation-btn:hover {
+  background: var(--primary-dark, #8a0048);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(185, 0, 96, 0.35);
+}

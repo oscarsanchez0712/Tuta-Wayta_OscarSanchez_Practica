@@ -1,0 +1,36 @@
+{
+  "name": "tuta-wayta",
+  "version": "1.0.0",
+  "description": "Sitio web Tuta Wayta - Pitahaya orgánica",
+  "main": "app.py",
+  "scripts": {
+    "build:css": "npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css",
+    "watch:css": "npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch"
+  },
+  "keywords": [
+    "pitahaya",
+    "organico",
+    "peru",
+    "flask"
+  ],
+  "author": "Valle Grande",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.11"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^3.4.19"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vallegrande/ASE252S2_T05_wp.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/vallegrande/ASE252S2_T05_wp/issues"
+  },
+  "homepage": "https://github.com/vallegrande/ASE252S2_T05_wp#readme"
+}
+

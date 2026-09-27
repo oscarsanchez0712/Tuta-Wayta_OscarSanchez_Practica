@@ -1,0 +1,532 @@
+{% extends "base.html" %}
+{% block title %}Nuestra Historia - Tuta Wayta{% endblock %}
+
+{% block content %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/historia.css') }}?v=20260420"/>
+<section class="history-hero">
+    <div class="history-hero-overlay"></div>
+    <div class="history-hero-content">
+        <span class="badge-date" data-i18n="history_badge_date">Desde 2018</span>
+        <h1 class="history-main-title"><span data-i18n="history_hero_title1">Nuestra</span> <span class="italic-text" data-i18n="history_hero_title2">Historia</span></h1>
+        <p class="history-hero-p" data-i18n="history_hero_p">
+            De agricultores independientes a asociación formal. Cada año cuenta una historia de 
+            perseverancia, comunidad y sueños que se hacen realidad en el valle de Cañete.
+        </p>
+    </div>
+</section>
+<section class="origins-section">
+    <div class="origins-container">
+
+        <div class="origins-text-side">
+            <span class="badge-origins" data-i18n="history_origins_badge">Los Orígenes</span>
+
+            <h2 class="origins-title" >
+                <span data-i18n="history_origins_title1">Una idea nació en el</span> <span class="italic-pink" data-i18n="history_origins_title2">campo</span>
+            </h2>
+
+            <div class="origins-description">
+                <p data-i18n="history_origins_p1">
+                    Hace más de seis años, en el valle de Cañete, un grupo de agricultores comenzó a cultivar
+                    pitahaya de forma independiente. Sin papeles, sin formalidad, sin precios justos.
+                    Solo tierra fértil, sol costeño y la convicción de que esta fruta exótica podía cambiar sus vidas.
+                </p>
+
+                <p data-i18n="history_origins_p2">
+                    Durante años vendieron a intermediarios que dictaban precios bajos. La falta de
+                    documentación los dejaba fuera de los apoyos del Estado. Eran simples agricultores,
+                    invisibles para el sistema.
+                </p>
+
+                <p class="highlight-paragraph" data-i18n="history_origins_p3">
+                    Todo cambió cuando Kelly Carvajal y Talia Rodríguez Rojas decidieron formalizarse.
+                    Bajo un algarrobo, entre conversas de vecinos, nació una pregunta:
+                    ¿por qué no unirnos?
+                </p>
+            </div>
+
+            <a href="{{ url_for('equipo') }}" class="btn-historia" data-i18n="history_origins_btn">
+                <i class="fas fa-book-open"></i>
+           Conoce a nuestro equipo
+            </a>
+        </div>
+
+        <div class="origins-image-side">
+            <img src="https://i.ibb.co/qLsLngtX/IMG-8363.avif"
+                 alt="Agricultor en el campo de Cañete">
+        </div>
+    </div>
+</section>
+<section class="quote-section">
+    <div class="quote-container">
+        <div class="quote-icon">“</div>
+        <blockquote class="quote-text" data-i18n="history_quote_text">
+            Nosotros éramos simples agricultores. No teníamos papeles, no teníamos precios justos, no teníamos voz. El día que nos formalizamos, recuperamos nuestra dignidad y nuestro futuro.
+        </blockquote>
+        
+       <div class="quote-author">
+    <div class="author-img">
+        <img src="{{ url_for('static', filename='img/presidenta.png') }}" alt="Kelly Carvajal" data-i18n-alt="history_quote_author_name">
+    </div>
+    <div class="author-info">
+        <span class="author-name" data-i18n="history_quote_author_name">Kelly Carvajal</span>
+        <span class="author-role" data-i18n="history_quote_author_role">Fundadora y Presidenta</span>
+    </div>
+</div>
+</section>
+<!-- =======================================================
+     HEADER TIMELINE PREMIUM
+======================================================= -->
+
+<section class="timeline-hero">
+    <div class="timeline-hero-bg"></div>
+    <div class="timeline-header">
+        <!-- Badge -->
+        <div class="timeline-badge" data-i18n="history_timeline_badge">
+            ✦ Línea de Tiempo
+        </div>
+        <!-- Título -->
+        <h2>
+            <span data-i18n="history_timeline_title1">El camino de</span>
+            <span data-i18n="history_timeline_title2">Tuta Wayta</span>
+        </h2>
+        <!-- Línea decorativa -->
+        <div class="timeline-line-deco"></div>
+
+        <!-- Descripción -->
+        <p data-i18n="history_timeline_p">
+            Cada año cuenta una historia de perseverancia,
+            aprendizaje y crecimiento colectivo en el
+            valle de Cañete, fortaleciendo nuestras raíces,
+            el trabajo comunitario y el compromiso con
+            un futuro sostenible.
+        </p>
+    </div>
+</section>
+  </div>
+
+  <div class="timeline-container reveal">
+
+    <!-- 2018 -->
+    <div class="timeline-item left reveal">
+      <div class="timeline-content"
+           data-title="2018: El Primer Sueño"
+           data-text="Carlos Quispe y 5 familias productoras de Cañete Alto deciden unirse para comercializar conjuntamente su pitahaya, cansados de los precios abusivos de los intermediarios."
+           data-img="https://i.ibb.co/JjRVjWQ3/FLOR.jpg">
+
+
+        <span class="timeline-year" data-i18n="history_t1_year">2018</span>
+        <h3 data-i18n="history_t1_title">El Primer Sueño</h3>
+        <p data-i18n="history_t1_p">
+          Carlos Quispe y 5 familias productoras de Cañete Alto deciden unirse para comercializar conjuntamente su pitahaya, cansados de los precios abusivos de los intermediarios.
+        </p>
+      </div>
+
+
+      <div class="timeline-image">
+        <img src="https://i.ibb.co/JjRVjWQ3/FLOR.jpg" alt="El Primer Sueño">
+      </div>
+    </div>
+
+
+    <!-- 2019 -->
+    <div class="timeline-item right reveal">
+
+
+      <div class="timeline-image">
+        <img src="https://i.ibb.co/BSpvSPr/IMG-8484.avif" alt="Nace Tuta Wayta">
+      </div>
+
+      <div class="timeline-content"
+           data-title="2019: Nace Tuta Wayta"
+           data-text="La asociación se formaliza ante la municipalidad de San Vicente de Cañete con 12 socios fundadores. 'Tuta Wayta' significa 'flor de la noche' en quechua."
+           data-img="https://i.ibb.co/BSpvSPr/IMG-8484.avif">
+
+
+        <span class="timeline-year" data-i18n="history_t2_year">2019</span>
+        <h3 data-i18n="history_t2_title">Nace Tuta Wayta</h3>
+        <p data-i18n="history_t2_p">
+          La asociación se formaliza ante la municipalidad de San Vicente de Cañete con 12 socios fundadores. "Tuta Wayta" significa "flor de la noche" en quechua, en honor a las flores de pitahaya.
+        </p>
+      </div>
+    </div>
+
+
+    <!-- 2020 -->
+    <div class="timeline-item left reveal">
+      <div class="timeline-content"
+           data-title="2020: Primera Certificación"
+           data-text="Obtenemos la certificación orgánica grupal del SENASA, un hito que abre puertas a mercados formales. Las ventas aumentan un 65% en el primer año."
+           data-img="https://readdy.ai/api/search-image?query=organic-certification-document-with-official-seal-displayed-next-to-fresh-dragon-fruits-on-wooden-table-warm-natural-light-ca%C3%B1ete-peru-documentary-style&width=500&height=350&seq=72&orientation=landscape">
+
+
+        <span class="timeline-year" data-i18n="history_t3_year">2020</span>
+        <h3 data-i18n="history_t3_title">Primera Certificación</h3>
+        <p data-i18n="history_t3_p">
+          Obtenemos la certificación orgánica grupal del SENASA, un hito que abre puertas a mercados formales. Las ventas aumentan un 65% en el primer año.
+        </p>
+      </div>
+
+
+      <div class="timeline-image">
+        <img src="https://readdy.ai/api/search-image?query=organic-certification-document-with-official-seal-displayed-next-to-fresh-dragon-fruits-on-wooden-table-warm-natural-light-ca%C3%B1ete-peru-documentary-style&width=500&height=350&seq=72&orientation=landscape" alt="Certificación">
+      </div>
+    </div>
+
+
+    <!-- 2021 -->
+    <div class="timeline-item right reveal">
+
+
+      <div class="timeline-image">
+        <img src="https://i.ibb.co/gZn2Dn13/IMG-8361.avif" alt="Expansión">
+      </div>
+
+      <div class="timeline-content"
+           data-title="2021: Expansión de Socios"
+           data-text="  La asociación crece a 25 socios productores y se crea un fondo de apoyo ante emergencias climáticas."
+           data-img="https://i.ibb.co/gZn2Dn13/IMG-8361.avif">
+
+
+        <span class="timeline-year" data-i18n="history_t4_year">2021</span>
+        <h3 data-i18n="history_t4_title">Expansión de Socios</h3>
+        <p data-i18n="history_t4_p">
+          La asociación crece a 25 socios productores y se crea un fondo de apoyo ante emergencias climáticas.
+        </p>
+      </div>
+    </div>
+
+
+    <!-- 2022 -->
+    <div class="timeline-item left reveal">
+      <div class="timeline-content"
+           data-title="2022: Productos Derivados"
+           data-text="  Se inaugura una planta artesanal para producir mermeladas, néctares y pulpa deshidratada."
+           data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxI-j-KqLMXyC8LAFGIPJi1U3femIOMpQnhGVSgOvg7A&s=10">
+
+
+        <span class="timeline-year" data-i18n="history_t5_year">2022</span>
+        <h3 data-i18n="history_t5_title">Productos Derivados</h3>
+        <p data-i18n="history_t5_p">
+          Se inaugura una planta artesanal para producir mermeladas, néctares y pulpa deshidratada.
+        </p>
+      </div>
+
+
+      <div class="timeline-image">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxI-j-KqLMXyC8LAFGIPJi1U3femIOMpQnhGVSgOvg7A&s=10" alt="Procesamiento">
+      </div>
+    </div>
+
+
+    <!-- 2023 -->
+    <div class="timeline-item right reveal">
+
+
+      <div class="timeline-image">
+        <img src="https://i.ibb.co/0pDQkx0z/IMG-8393.avif" alt="Mercado">
+      </div>
+
+
+      <div class="timeline-content"
+           data-title="2023: Presencia en Lima"
+           data-text=" Se establecen alianzas con restaurantes y tiendas naturistas en Lima Metropolitana."
+           data-img="https://i.ibb.co/0pDQkx0z/IMG-8393.avif">
+
+
+        <span class="timeline-year" data-i18n="history_t6_year">2023</span>
+        <h3 data-i18n="history_t6_title">Presencia en Lima</h3>
+        <p data-i18n="history_t6_p">
+          Se establecen alianzas con restaurantes y tiendas naturistas en Lima Metropolitana.
+        </p>
+      </div>
+    </div>
+
+
+    <!-- 2024 -->
+    <div class="timeline-item left reveal">
+      <div class="timeline-content"
+           data-title="2024: 30 Familias Fuertes"
+           data-text="Hoy somos más de 30 familias productoras, con producción sostenible y proyección internacional."
+           data-img="https://i.ibb.co/xtPhgxWT/IMG-8353.avif">
+
+
+        <span class="timeline-year" data-i18n="history_t7_year">2024</span>
+        <h3 data-i18n="history_t7_title">30 Familias Fuertes</h3>
+        <p data-i18n="history_t7_p">
+          Hoy somos más de 30 familias productoras, con producción sostenible y proyección internacional.
+        </p>
+      </div>
+      <div class="timeline-image">
+        <img src="https://i.ibb.co/xtPhgxWT/IMG-8353.avif" alt="Familias">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="timeline-modal" class="t-modal">
+    <div class="t-modal-overlay"></div>
+    <div class="t-modal-content">
+        <span class="t-close" title="Cerrar" role="button" aria-label="Cerrar modal">&times;</span>
+        <h2 id="modal-title"></h2>
+        <div class="t-modal-body">
+            <img id="modal-img" src="" alt="Hito Tuta Wayta">
+            <div class="modal-description">
+                <p id="modal-text"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="testimonios-section">
+    <div class="testimonios-container">
+        
+        <div class="testimonios-header reveal">
+            <span class="badge-superior" data-i18n="history_testimonials_badge">En sus propias palabras</span>
+            <h2 class="section-title-dark">
+                <span data-i18n="history_testimonials_title1">Testimonios de</span> <span data-i18n="history_testimonials_title2">socios fundadores</span>
+            </h2>
+            <p class="section-subtitle" data-i18n="history_testimonials_p">
+                Las voces reales de quienes construyeron Tuta Wayta desde la tierra, con las manos y con el corazón.
+            </p>
+        </div>
+<div class="testimonios-grid">
+    
+    <div class="testimonio-card reveal">
+        <span class="quote-mark">“</span>
+        <p class="testimonio-text" data-i18n="history_test1_p">
+            "Antes vendía mi cosecha a lo que daban. Hoy decido el precio. Eso cambió mi vida y la de mis hijos."
+        </p>
+        <div class="testimonio-author">
+            <img src="{{ url_for('static', filename='img/presidenta.png') }}" alt="Kelly Carvajal" data-i18n-alt="history_test1_name">
+            <div class="author-info">
+                <h4 data-i18n="history_test1_name">Kelly Carvajal</h4>
+                <span data-i18n="history_test1_role">Fundadora y Presidenta</span>
+                <div class="author-badge" data-i18n="history_test1_year">DESDE 2018</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="testimonio-card reveal">
+        <span class="quote-mark">“</span>
+        <p class="testimonio-text" data-i18n="history_test2_p">
+            "La unión nos dio fuerza. Solo, no lograba nada. Con mis 29 compañeros, hoy somos dueños de nuestro destino."
+        </p>
+        <div class="testimonio-author">
+            <img src="{{ url_for('static', filename='img/vicepresidenta.png') }}" alt="Talía Rodríguez" data-i18n-alt="history_test2_name">
+            <div class="author-info">
+                <h4 data-i18n="history_test2_name">Talía Rodríguez Rojas</h4>
+                <span data-i18n="history_test2_role">Fundadora y Vicepresidenta</span>
+                <div class="author-badge" data-i18n="history_test2_year">DESDE 2018</div>
+            </div>
+        </div>
+    </div>
+            <div class="testimonio-card reveal">
+                <span class="quote-mark">“</span>
+                <p class="testimonio-text" data-i18n="history_test3_p">
+                    "Cuando llegó SENASA, sentí orgullo. Significaba que nuestro trabajo era serio, limpio y digno de respeto."
+                </p>
+                <div class="testimonio-author">
+                    <img src="https://readdy.ai/api/search-image?query=professional-portrait-peruvian-man-50s-rural-farm-background-weathered-hands-warm-smile-natural-lighting-documentary-style-earthy-tones&width=300&height=300&seq=ft3&orientation=squarish" alt="Walter Quintanilla" data-i18n-alt="history_test3_name">
+                    <div class="author-info">
+                        <h4 data-i18n="history_test3_name">Walter Quintanilla</h4>
+                        <span data-i18n="history_test3_role">Fundador y Tesorero</span>
+                        <div class="author-badge" data-i18n="history_test3_year">DESDE 2019</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonio-card reveal">
+                <span class="quote-mark">“</span>
+                <p class="testimonio-text" data-i18n="history_test4_p">
+                    "Mi hijo estudia agronomía porque vio que el campo puede ser un negocio honesto. Eso es el legado de Tuta Wayta."
+                </p>
+                <div class="testimonio-author">
+                    <img src="https://readdy.ai/api/search-image?query=professional-portrait-peruvian-man-40s-in-agricultural-field-dragon-fruit-plants-background-natural-sunlight-confident-look-documentary-photography&width=300&height=300&seq=ft4&orientation=squarish" alt="Henry Pérez" data-i18n-alt="history_test4_name">
+                    <div class="author-info">
+                        <h4 data-i18n="history_test4_name">Henry Pérez</h4>
+                        <span data-i18n="history_test4_role">Fundador y Coordinador de Producción</span>
+                        <div class="author-badge" data-i18n="history_test4_year">DESDE 2019</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonio-card reveal">
+                <span class="quote-mark">“</span>
+                <p class="testimonio-text" data-i18n="history_test5_p">
+                    "Las mujeres tenemos voz aquí. No somos esposas de agricultores: somos agricultoras, líderes y decisionistas."
+                </p>
+                <div class="testimonio-author">
+                    <img src="https://readdy.ai/api/search-image?query=professional-portrait-peruvian-woman-35s-warm-friendly-smile-outdoor-farm-background-natural-lighting-documentary-style-earth-tones&width=300&height=300&seq=ft5&orientation=squarish" alt="Astrid Guardia" data-i18n-alt="history_test5_name">
+                    <div class="author-info">
+                        <h4 data-i18n="history_test5_name">Astrid Guardia</h4>
+                        <span data-i18n="history_test5_role">Fundadora y Relaciones Comunitarias</span>
+                        <div class="author-badge" data-i18n="history_test5_year">DESDE 2020</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonio-card reveal">
+                <span class="quote-mark">“</span>
+                <p class="testimonio-text" data-i18n="history_test6_p">
+                    "Tuta Wayta no es solo una empresa, es nuestra familia. Juntos demostramos que el valle de Cañete tiene un potencial infinito."
+                </p>
+                <div class="testimonio-author">
+                    <img src="https://readdy.ai/api/search-image?query=peruvian-male-farmer-leader-portrait-confident-expression-wearing-simple-clothes-agricultural-field-background-warm-natural-light-authentic-documentary-style-ca%C3%B1ete-peru&width=400&height=450&seq=90&orientation=portrait" alt="Socio Fundador" data-i18n-alt="history_test6_name">
+                    <div class="author-info">
+                        <h4 data-i18n="history_test6_name">Ricardo Zúñiga</h4>
+                        <span data-i18n="history_test6_role">Fundador y Vocal</span>
+                        <div class="author-badge" data-i18n="history_test6_year">DESDE 2018</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="seccion-fundadoras-final">
+    <div class="header-fundadoras reveal">
+        <div class="badge-superior-verde">
+            <span data-i18n="history_founders_badge">LAS FUNDADORAS</span>
+        </div>
+        <h2 class="titulo-elegante">
+            <span data-i18n="history_founders_title1">Quienes lo hicieron</span> <span data-i18n="history_founders_title2">posible</span>
+        </h2>
+        <p class="subtitulo-limpio" data-i18n="history_founders_p">
+            Kelly y Talía no solo fundaron una asociación. Encendieron una llama que<br>
+            hoy alumbra a 30 familias productoras.
+        </p>
+    </div>
+
+    <div class="grid-fundadoras-cards">
+    
+    <div class="card-fundadora reveal">
+        <div class="card-foto">
+            <img src="{{ url_for('static', filename='img/presidenta.png') }}" alt="Kelly Carvajal" data-i18n-alt="history_founder1_name">
+        </div>
+        <div class="card-info">
+            <span class="badge-rol rol-rosa" data-i18n="history_founder1_role_badge">PRESIDENTA</span>
+            <h3 data-i18n="history_founder1_name">Kelly Carvajal</h3>
+            <p data-i18n="history_founder1_p">Líder visionaria que guió a Tuta Wayta desde sus inicios informales hasta la formalización. Su compromiso con la agricultura sostenible define cada decisión.</p>
+        </div>
+    </div>
+
+    <div class="card-fundadora reveal">
+        <div class="card-foto">
+            <img src="{{ url_for('static', filename='img/vicepresidenta.png') }}" alt="Talía Rodríguez" data-i18n-alt="history_founder2_name">
+        </div>
+        <div class="card-info">
+            <span class="badge-rol rol-verde" data-i18n="history_founder2_role_badge">VICEPRESIDENTA</span>
+            <h3 data-i18n="history_founder2_name">Talía Rodríguez Rojas</h3>
+            <p data-i18n="history_founder2_p">Productora de pitahaya desde hace más de seis años. Combina su experiencia en el campo con una visión estratégica para la comercialización.</p>
+        </div>
+    </div>
+
+    <div class="card-fundadora reveal">
+        <div class="card-foto">
+            <img src="{{ url_for('static', filename='img/TESORERO.png') }}" alt="Kelly Maynard" data-i18n-alt="history_founder3_name">
+        </div>
+        <div class="card-info">
+            <span class="badge-rol rol-azul" data-i18n="history_founder3_role_badge">TESORERO</span>
+            <h3 data-i18n="history_founder3_name">Kelly Maynard</h3>
+            <p data-i18n="history_founder3_p">Productor comprometido que asegura la transparencia y el soporte administrativo, fundamental para la sostenibilidad de la organización.</p>
+        </div>
+    </div>
+
+</div>
+</section>
+<section class="stats-section">
+    <div class="stats-container reveal">
+        
+        <div class="stat-item">
+            <h2 class="stat-number" data-i18n="history_stat1_num">2018</h2>
+            <p class="stat-label" data-i18n="history_stat1_label">AÑO DE FUNDACIÓN</p>
+        </div>
+
+        <div class="stat-item">
+            <h2 class="stat-number" data-i18n="history_stat2_num">6+</h2>
+            <p class="stat-label" data-i18n="history_stat2_label">AÑOS DE HISTORIA</p>
+        </div>
+
+        <div class="stat-item">
+            <h2 class="stat-number" data-i18n="history_stat3_num">30+</h2>
+            <p class="stat-label" data-i18n="history_stat3_label">SOCIOS PRODUCTORES</p>
+        </div>
+
+        <div class="stat-item">
+            <h2 class="stat-number" data-i18n="history_stat4_num">4</h2>
+            <p class="stat-label" data-i18n="history_stat4_label">VARIEDADES CULTIVADAS</p>
+        </div>
+
+    </div>
+</section>
+
+<section class="comunidad-section reveal">
+    <div class="container-comunidad">
+        
+        <div class="comunidad-header">
+            <h2 class="comunidad-title">
+                <span data-i18n="history_community_title1">Somos</span> <span data-i18n="history_community_title2">comunidad</span>
+            </h2>
+            <p class="comunidad-subtitle" data-i18n="history_community_p">
+                Detrás de cada pitahaya hay una familia. Detrás de cada cosecha hay 30<br>
+                historias de esfuerzo, dignidad y esperanza.
+            </p>
+        </div>
+
+        <div class="comunidad-carousel-container">
+            <div class="comunidad-slider">
+                <div class="comunidad-slide active">
+                    <img src="https://i.ibb.co/C3GCYf9R/IMG-8446.avif" alt="Cosecha en familia" data-i18n-alt="history_community_alt1">
+                </div>
+                <div class="comunidad-slide">
+                    <img src="https://i.ibb.co/Xktgp8BW/IMG-8370.avif" alt="Nuestros productores" data-i18n-alt="history_community_alt2">
+                </div>
+                <div class="comunidad-slide">
+                    <img src="https://i.ibb.co/B5Wjrn88/IMG-8425.avif" alt="El campo peruano" data-i18n-alt="history_community_alt3">
+                </div>
+            </div>
+            <button class="carousel-nav prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="carousel-nav next" onclick="moveSlide(1)">&#10095;</button>
+            
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+            </div>
+        </div>
+    </div>
+</section>  
+
+
+<section class="final-cta-section reveal">
+    <div class="cta-container">
+        
+        <h2 class="cta-main-title">
+            <span data-i18n="history_cta_title1">La historia continúa</span> <span data-i18n="history_cta_title2">contigo</span>
+        </h2>
+
+        <p class="cta-description" data-i18n="history_cta_p">
+        Cada pitahaya que compras apoya a 30 familias productoras. Cada pedido fortalece <br>
+            comunidad rural que creyó en la formalidad, la calidad y el futuro del campo peruano.
+        </p>
+
+        <div class="cta-button-group">
+            <a href="{{ url_for('productos') }}" class="btn-primary-pink" data-i18n="history_cta_btn1">
+                <i class="fas fa-shopping-basket"></i> Ver Productos
+            </a>
+            
+            <a href="{{ url_for('contacto') }}" class="btn-secondary-white" data-i18n="history_cta_btn2">
+                <i class="far fa-envelope"></i> Contáctanos
+            </a>
+        </div>
+
+    </div>
+</section>
+
+
+
+<script src="{{ url_for('static', filename='js/Historia.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/galeria.js') }}" defer></script>
+
+
+
+{% endblock %}

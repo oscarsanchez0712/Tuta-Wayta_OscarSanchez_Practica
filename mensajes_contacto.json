@@ -1,0 +1,29 @@
+[
+  {
+    "nombre": "Maria",
+    "correo": "jorge.vilcapuma.t@vallegrande.edu.pe",
+    "telefono": "999394996",
+    "asunto": "Comprar productos",
+    "mensaje": "n",
+    "creado_at": "2026-09-14 11:03:55",
+    "id": 13
+  },
+  {
+    "nombre": "Maria",
+    "correo": "jorge.vilcapuma.t@vallegrande.edu.pe",
+    "telefono": "999394996",
+    "asunto": "Comprar productos",
+    "mensaje": "bnb",
+    "creado_at": "2026-09-11 23:00:08",
+    "id": 12
+  },
+  {
+    "nombre": "Maria",
+    "correo": "jorge.vilcapuma.t@vallegrande.edu.pe",
+    "telefono": "999394996",
+    "asunto": "Pedido mayorista",
+    "mensaje": "m",
+    "creado_at": "2026-09-11 20:54:15",
+    "id": 11
+  }
+]

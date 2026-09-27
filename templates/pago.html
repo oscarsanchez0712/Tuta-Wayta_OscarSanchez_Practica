@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/pago.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/modooscuro.css') }}">
+  <title data-i18n="pay_page_title">Formulario de Pago</title>
+</head>
+<body>
+
+  <div class="modal-overlay">
+    
+    <div class="card">
+      <h2 data-i18n="pay_title">Pago</h2>
+
+      <form id="paymentForm" novalidate>
+        <div class="field">
+          <label for="name" data-i18n="pay_label_name">Nombre completo</label>
+          <input id="name" name="name" type="text" required placeholder="Juan Pérez" />
+        </div>
+
+        <div class="field">
+          <label for="email" data-i18n="pay_label_email">Correo electrónico</label>
+          <input id="email" name="email" type="email" required placeholder="correo@dominio.com" />
+        </div>
+
+        <div class="field">
+          <label for="direccion" data-i18n="pay_label_address">Dirección</label>
+          <input id="direccion" name="direccion" type="text" required placeholder="Calle, número, distrito" />
+        </div>
+
+        <div class="field">
+          <label for="telefono" data-i18n="pay_label_phone">Teléfono</label>
+          <input id="telefono" name="telefono" type="tel" inputmode="numeric" required placeholder="987654321" maxlength="9" />
+        </div>
+
+        <div class="payment-methods">
+          <label class="pay-option">
+            <input type="radio" name="paymethod" value="visa" checked>
+            <img src="{{ url_for('static', filename='img/visa.png') }}" alt="Visa">
+            <span>Visa</span>
+          </label>
+
+          <label class="pay-option">
+            <input type="radio" name="paymethod" value="mastercard">
+            <img src="{{ url_for('static', filename='img/mastercard.png') }}" alt="Mastercard">
+            <span>Mastercard</span>
+          </label>
+
+          <label class="pay-option">
+            <input type="radio" name="paymethod" value="yape">
+            <img src="{{ url_for('static', filename='img/yape.png') }}" alt="Yape">
+            <span>Yape</span>
+          </label>
+
+          <label class="pay-option">
+            <input type="radio" name="paymethod" value="plin">
+            <img src="{{ url_for('static', filename='img/plin.png') }}" alt="Plin">
+            <span>Plin</span>
+          </label>
+        </div>
+
+        <div class="field">
+          <label for="amount" data-i18n="pay_label_amount">Monto (PEN)</label>
+          <input id="amount" name="amount" type="number" min="0.01" step="0.01" value="0.00" required readonly />
+          <small class="hint" data-i18n="pay_hint_amount">El monto se toma automáticamente del carrito.</small>
+          
+          <div id="amount-summary" class="payment-summary" style="display:none;margin-top:8px;padding:10px;"></div>
+        </div>
+
+        <div id="wallet-fields" style="display:none;">
+          <div class="field">
+            <label for="walletNumber" data-i18n="pay_label_wallet_num">Número (Yape / Plin)</label>
+            <input id="walletNumber" name="walletNumber" type="text" placeholder="Ej: 987654321" />
+            <small class="hint" data-i18n="pay_hint_wallet_num">Ingresa el número asociado a la billetera móvil.</small>
+          </div>
+
+          <div id="approval-code-field" class="field">
+            <label for="approvalCode" data-i18n="pay_label_approval">Código de aprobación</label>
+            <input id="approvalCode" name="approvalCode" type="text" placeholder="Ej: ABC123456" />
+            <small class="hint" data-i18n="pay_hint_approval">Ingresa el código de aprobación de la transacción.</small>
+          </div>
+        </div>
+
+        <hr />
+
+        <div id="credit-card-fields">
+          <div class="field">
+            <label for="cardNumber" data-i18n="pay_label_card">Número de tarjeta</label>
+            <input id="cardNumber" name="cardNumber" type="text" inputmode="numeric" autocomplete="cc-number" placeholder="4242 4242 4242 4242" maxlength="19" required />
+            <small class="hint" data-i18n="pay_hint_card">Usa 4242 4242 4242 4242 para pruebas</small>
+          </div>
+
+          <div class="row">
+            <div class="col field">
+              <label for="expiry" data-i18n="pay_label_expiry">MM/AA</label>
+              <input id="expiry" name="expiry" type="text" placeholder="08/25" maxlength="5" required />
+            </div>
+            <div class="col field">
+              <label for="cvc" data-i18n="pay_label_cvc">CVC</label>
+              <input id="cvc" name="cvc" type="text" inputmode="numeric" maxlength="4" required placeholder="123" />
+            </div>
+          </div>
+        </div>
+
+        <button id="payBtn" class="btn" type="submit" data-i18n="pay_btn_submit">Pagar</button>
+      </form>
+
+      <div id="output"></div>
+    </div>
+    
+  </div>
+
+  <script src="{{ url_for('static', filename='js/carrito.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/modooscuro.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/pago.js') }}"></script>
+</body>
+</html>

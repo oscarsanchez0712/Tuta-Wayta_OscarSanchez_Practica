@@ -1,0 +1,566 @@
+{% extends "base.html" %}
+{% block title %}Tuta Wayta - Productos{% endblock %}
+{% block content %}
+
+<main>
+  <section class="productos-hero">
+    <p class="productos-eyebrow" data-i18n="Catálogo Orgánico">
+      Catálogo Orgánico
+    </p>
+
+    <h1 class="productos-title" data-i18n="Nuestros PRODUCTOS">
+      Nuestros <span>PRODUCTOS</span>
+    </h1>
+  </section>
+
+
+  <p class="productos-desc" style="text-align: center; max-width: 800px; margin: 2rem auto;" data-i18n="Descubre la esencia de la pitahaya peruana transformada en delicias artesanales, cultivadas con prácticas 100% sostenibles.">
+    Descubre la esencia de la pitahaya peruana transformada en delicias artesanales, cultivadas con prácticas 100% sostenibles.
+  </p>
+
+  <div class="productos-filtros">
+    <button class="filtro-btn active" data-filter="all" data-i18n="Todos">Todos</button>
+    <button class="filtro-btn" data-filter="fruta" data-i18n="Fruta">Fruta</button>
+    <button class="filtro-btn" data-filter="derivados" data-i18n="Derivados">Derivados</button>
+    <button class="filtro-btn" data-filter="organicos" data-i18n="Orgánicos">Orgánicos</button>
+  </div>
+
+  <div class="productos-grid">
+    <div class="product-card reveal" data-category="all">
+      <img src="{{ url_for('static', filename='img/Pitahaya_fresca.avif') }}" alt="Jugo Refrescante de Pitahaya Fucsia"/>
+      <div class="product-info">
+        <h3 data-i18n="Jugo Refrescante de Pitahaya Fucsia">Jugo Refrescante de Pitahaya Fucsia</h3>
+        <p data-i18n="Cosechada en su punto exacto de madurez para máximo sabor y nutrición.">Cosechada en su punto exacto de madurez para máximo sabor y nutrición.</p>
+          <a href="{{ url_for('detalles') }}?p=1" class="product-btn" data-i18n="Ver detalles">Ver detalles</a>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="derivados">
+<img src="{{ url_for('static', filename='img/Helado de Pitahaya.webp') }}" alt="Helado de Pitahaya">      
+<div class="product-info">
+        <h3 data-i18n="Helado de Pitahaya">Helado de Pitahaya</h3>
+        <p data-i18n="Refrescante helado artesanal elaborado con pulpa natural de pitahaya.">Refrescante helado artesanal elaborado con pulpa natural de pitahaya.</p>
+          <a href="{{ url_for('detalles') }}?p=9" class="product-btn" data-i18n="Ver detalles">Ver detalles</a>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="derivados">
+      <img src="{{ url_for('static', filename='img/mermelada artesanal.png') }}" alt="Mermelada"/>
+      <div class="product-info">
+        <h3 data-i18n="Mermelada Artesanal">Mermelada Artesanal</h3>
+        <p data-i18n="Elaborada sin conservantes, con pitahaya orgánica 100% peruana.">Elaborada sin conservantes, con pitahaya orgánica 100% peruana.</p>
+          <a href="{{ url_for('detalles') }}?p=3" class="product-btn" data-i18n="Ver detalles">Ver detalles</a>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="derivados">
+      <img src="{{ url_for('static', filename='img/MermeladaP.png') }}" alt="Mermelada Premium"/>
+      <div class="product-info">
+        <h3 data-i18n="Mermelada Premium">Mermelada Premium</h3>
+        <p data-i18n="Edición especial con mayor concentración de fruta y sabor intenso.">Edición especial con mayor concentración de fruta y sabor intenso.</p>
+          <a href="{{ url_for('detalles') }}?p=4" class="product-btn" data-i18n="Ver detalles">Ver detalles</a>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="derivados">
+      <img src="{{ url_for('static', filename='img/Nectar Natural.png') }}" alt="Néctar Natural"/>
+      <div class="product-info">
+        <h3 data-i18n="Néctar Natural">Néctar Natural</h3>
+        <p data-i18n="Bebida refrescante con jugo puro de pitahaya, sin azúcar añadida.">Bebida refrescante con jugo puro de pitahaya, sin azúcar añadida.</p>
+          <a href="{{ url_for('detalles') }}?p=5" class="product-btn" data-i18n="Ver detalles">Ver detalles</a>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="organicos">
+      <img src="{{ url_for('static', filename='img/packEspecial.jpeg') }}" alt="Pack Especial"/>
+      <div class="product-info">
+        <h3 data-i18n="Pack Especial">Pack Especial</h3>
+        <p data-i18n="Combinación curada de nuestros mejores productos en una caja regalo.">Combinación curada de nuestros mejores productos en una caja regalo.</p>
+          <a href="{{ url_for('detalles') }}?p=6" class="product-btn" data-i18n="Ver detalles">Ver detalles</a>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="derivados">
+      <img src="{{ url_for('static', filename='img/pulpa deshidratada.png') }}" alt="Pulpa Deshidratada"/>
+      <div class="product-info">
+        <h3 data-i18n="Pulpa Deshidratada">Pulpa Deshidratada</h3>
+        <p data-i18n="Concentrado de pitahaya para smoothies, postres y recetas saludables.">Concentrado de pitahaya para smoothies, postres y recetas saludables.</p>
+          <a href="{{ url_for('detalles') }}?p=7.5" class="product-btn" data-i18n="Ver detalles">Ver detalles</a>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="derivados">
+      <img src="{{ url_for('static', filename='img/yogurt_de_pitahaya.png') }}" alt="Yogurt"/>
+      <div class="product-info">
+        <h3 data-i18n="Yogurt de Pitahaya">Yogurt de Pitahaya</h3>
+        <p data-i18n="Cremoso, natural y lleno del sabor único de nuestra pitahaya orgánica.">Cremoso, natural y lleno del sabor único de nuestra pitahaya orgánica.</p>
+        <a href="{{ url_for('detalles') }}?p=7" class="product-btn" data-i18n="Ver detalles">Ver detalles</a>
+      </div>
+    </div>
+<div class="product-card reveal" data-category="derivados">
+    <img src="{{ url_for('static', filename='img/yogurt_Premium.png') }}" alt="Yogurt Premium">
+    <div class="product-info">
+        <h3 data-i18n="Yogurt Premium">Yogurt Premium</h3>
+        <p data-i18n="Con trozos reales de pitahaya fresca y sin colorantes artificiales.">Con trozos reales de pitahaya fresca y sin colorantes artificiales.</p>
+        <a href="{{ url_for('detalles') }}?p=8" class="product-btn" data-i18n="Ver detalles">Ver detalles</a>
+    </div>
+</div>
+
+<div class="product-card reveal" data-category="fruta">
+    <img src="{{ url_for('static', filename='img/Pitahaya American Beauty.png') | replace(' ', '%20') }}" alt="Pitahaya American Beauty">
+
+    <div class="product-info">
+        <h3 data-i18n="Pitahaya American Beauty">Pitahaya American Beauty</h3>
+
+        <p data-i18n="Exquisito sabor dulce con notas de bayas y pulpa fucsia.">
+            Exquisito sabor dulce con notas de bayas y pulpa fucsia.
+        </p>
+
+        <div class="product-footer">
+            <span class="product-price">S/ 23.90</span>
+
+            <button
+                class="product-btn add-cart"
+                data-id="101"
+                data-name="Pitahaya American Beauty"
+                data-price="23.90"
+                data-image="{{ url_for('static', filename='img/Pitahaya American Beauty.png') | replace(' ', '%20') }}">
+                <span data-i18n="Agregar al carrito">Agregar al carrito</span>
+            </button>
+        </div>
+
+        <a href="{{ url_for('detalles') }}?p=101" class="details-btn" data-i18n="Ver detalles">
+            Ver detalles
+        </a>
+    </div>
+</div>
+
+<div class="product-card reveal" data-category="organicos">
+    <img src="{{ url_for('static', filename='img/nectar-pitahaya-100-natural.png') }}" alt="Néctar Orgánico">
+
+    <div class="product-info">
+        <h3 data-i18n="Néctar de Pitahaya 100% Natural Orgánico">Néctar de Pitahaya 100% Natural Orgánico</h3>
+        <p data-i18n="Bebida prensada en frío, sin azúcar ni conservantes.">Bebida prensada en frío, sin azúcar ni conservantes.</p>
+
+        <a href="{{ url_for('detalles') }}?p=109" class="product-btn" data-i18n="Ver detalles">
+            Ver detalles
+        </a>
+    </div>
+</div>
+
+   <div class="product-card reveal" data-category="organicos">
+    <img src="{{ url_for('static', filename='img/Mermelada Artesanal Orgánica.png') }}" alt="Mermelada Orgánica">
+    <div class="product-info">
+        <h3 data-i18n="Mermelada Artesanal Orgánica">Mermelada Artesanal Orgánica</h3>
+        <p data-i18n="Elaborada con fruta orgánica y panela natural.">Elaborada con fruta orgánica y panela natural.</p>
+        <a href="{{ url_for('detalles') }}?p=110" class="product-btn" data-i18n="Ver detalles">Ver detalles</a>
+    </div>
+</div>
+
+<div class="product-card reveal" data-category="organicos">
+    <img src="{{ url_for('static', filename='img/Yogur Griego con Pitahaya Orgánica.png') }}" alt="Yogur Orgánico">
+    <div class="product-info">
+        <h3 data-i18n="Yogur Griego con Pitahaya Orgánica">Yogur Griego con Pitahaya Orgánica</h3>
+        <p data-i18n="Yogur probiótico con pitahaya fresca.">Yogur probiótico con pitahaya fresca.</p>
+        <a href="{{ url_for('detalles') }}?p=111" class="product-btn" data-i18n="Ver detalles">Ver detalles</a>
+    </div>
+</div>
+
+<div class="product-card reveal" data-category="organicos">
+    <img src="{{ url_for('static', filename='img/Pulpa Deshidratada Orgánica.png') }}" alt="Pulpa Orgánica">
+    <div class="product-info">
+        <h3 data-i18n="Pulpa Deshidratada Orgánica">Pulpa Deshidratada Orgánica</h3>
+        <p data-i18n="Snack natural que conserva sus nutrientes.">Snack natural que conserva sus nutrientes.</p>
+        <a href="{{ url_for('detalles') }}?p=112" class="product-btn" data-i18n="Ver detalles">Ver detalles</a>
+    </div>
+</div>
+
+<div class="product-card reveal" data-category="organicos">
+    <img src="{{ url_for('static', filename='img/Extracto de Pitahaya Concentrado Orgánico.png') }}" alt="Extracto Orgánico">
+    <div class="product-info">
+        <h3 data-i18n="Extracto de Pitahaya Concentrado Orgánico">Extracto de Pitahaya Concentrado Orgánico</h3>
+        <p data-i18n="Súper alimento rico en antioxidantes.">Súper alimento rico en antioxidantes.</p>
+        <a href="{{ url_for('detalles') }}?p=113" class="product-btn" data-i18n="Ver detalles">Ver detalles</a>
+    </div>
+</div>
+
+<div class="product-card reveal" data-category="organicos">
+    <img src="{{ url_for('static', filename='img/Pitahaya Híbrida Orgánica Seleccionada.png') }}" alt="Pitahaya Orgánica" data-i18n-alt="Pitahaya Orgánica">
+    <div class="product-info">
+        <h3 data-i18n="Pitahaya Híbrida Orgánica Seleccionada">Pitahaya Híbrida Orgánica Seleccionada</h3>
+        <p data-i18n="Variedad orgánica sin químicos, más carnosa y grande.">Variedad orgánica sin químicos, más carnosa y grande.</p>
+        <a href="{{ url_for('detalles') }}?p=114" class="product-btn" data-i18n="Ver detalles">Ver detalles</a>
+    </div>
+</div>
+
+  <div class="product-card reveal" data-category="organicos">
+    <img src="{{ url_for('static', filename='img/Néctar Premium Orgánico.png') }}" alt="Néctar Premium" data-i18n-alt="Néctar Premium">
+    <div class="product-info">
+        <h3 data-i18n="Néctar Premium Orgánico">Néctar Premium Orgánico</h3>
+        <p data-i18n="Extraído en frío para conservar vitaminas y enzimas naturales.">Extraído en frío para conservar vitaminas y enzimas naturales.</p>
+        <a href="{{ url_for('detalles') }}?p=115" class="product-btn" data-i18n="Ver detalles">Ver detalles</a>
+    </div>
+</div>
+
+<div class="product-card reveal" data-category="organicos">
+    <img src="{{ url_for('static', filename='img/Snacks Deshidratados Orgánicos.png') }}" alt="Snacks" data-i18n-alt="Snacks">
+    <div class="product-info">
+        <h3 data-i18n="Snacks Deshidratados Orgánicos">Snacks Deshidratados Orgánicos</h3>
+        <p data-i18n="Láminas crujientes sin aditivos, deshidratadas a baja temperatura.">Láminas crujientes sin aditivos, deshidratadas a baja temperatura.</p>
+        <a href="{{ url_for('detalles') }}?p=116" class="product-btn" data-i18n="Ver detalles">Ver detalles</a>
+    </div>
+</div>
+
+<div class="product-card reveal" data-category="organicos">
+    <img src="{{ url_for('static', filename='img/Jarabe Botánico Orgánico.png') }}" alt="Jarabe">
+    <div class="product-info">
+        <h3 data-i18n="Jarabe Botánico Orgánico">Jarabe Botánico Orgánico</h3>
+        <p data-i18n="Endulzante natural rico en fibra prebiótica.">Endulzante natural rico en fibra prebiótica.</p>
+        <a href="{{ url_for('detalles') }}?p=117" class="product-btn" data-i18n="Ver detalles">Ver detalles</a>
+    </div>
+</div>
+
+<div class="product-card reveal" data-category="derivados">
+    <img src="{{ url_for('static', filename='img/Pulpa Concentrada de Pitahaya.png') }}" alt="Pulpa Concentrada">
+    <div class="product-info">
+        <h3 data-i18n="Pulpa Concentrada de Pitahaya">Pulpa Concentrada de Pitahaya</h3>
+        <p data-i18n="100% natural, sin azúcares añadidos ni conservantes.">100% natural, sin azúcares añadidos ni conservantes.</p>
+        <a href="{{ url_for('detalles') }}?p=118" class="product-btn" data-i18n="Ver detalles">Ver detalles</a>
+    </div>
+</div>
+
+<div class="product-card reveal" data-category="derivados">
+    <img src="{{ url_for('static', filename='img/Mermelada de Pitahaya Artesanal.png') }}" alt="Mermelada">
+    <div class="product-info">
+        <h3 data-i18n="Mermelada de Pitahaya Artesanal">Mermelada de Pitahaya Artesanal</h3>
+        <p data-i18n="Elaborada a fuego lento con fruta natural.">Elaborada a fuego lento con fruta natural.</p>
+        <a href="{{ url_for('detalles') }}?p=119" class="product-btn" data-i18n="Ver detalles">Ver detalles</a>
+    </div>
+</div>
+
+<!-- Pitahaya Amarilla Palora -->
+<div class="product-card reveal" data-category="fruta">
+    <img src="{{ url_for('static', filename='img/Pitahaya Amarilla Palora.png') }}" alt="Pitahaya Amarilla Palora">
+
+    <div class="product-info">
+        <h3 data-i18n="Pitahaya Amarilla Palora">Pitahaya Amarilla Palora</h3>
+
+        <p data-i18n="La más dulce, ideal para digestión y energía natural saludable.">
+            La más dulce, ideal para digestión y energía natural saludable.
+        </p>
+
+        <div class="product-footer">
+            <span class="product-price">S/ 19.90</span>
+
+            <button
+                class="product-btn add-cart"
+                data-id="102"
+                data-name="Pitahaya Amarilla Palora"
+                data-price="19.90"
+                data-image="{{ url_for('static', filename='img/Pitahaya Amarilla Palora.png') }}">
+                <span data-i18n="Agregar al carrito">Agregar al carrito</span>
+            </button>
+        </div>
+
+        <a href="{{ url_for('detalles') }}?p=102" class="details-btn" data-i18n="Ver detalles">
+            Ver detalles
+        </a>
+    </div>
+</div>
+
+<!-- Pitahaya Híbrida Tesoro -->
+<div class="product-card reveal" data-category="fruta">
+
+    <img src="{{ url_for('static', filename='img/Pitahaya Híbrida Tesoro.png') }}" alt="Pitahaya Híbrida Tesoro">
+
+    <div class="product-info">
+
+        <h3 data-i18n="Pitahaya Híbrida Tesoro">Pitahaya Híbrida Tesoro</h3>
+
+        <p data-i18n="Equilibrio perfecto entre dulzor y acidez con pulpa refrescante.">
+            Equilibrio perfecto entre dulzor y acidez con pulpa refrescante.
+        </p>
+
+        <div class="product-footer">
+
+            <span class="product-price">S/ 18.50</span>
+
+            <button
+                class="product-btn add-cart"
+                data-id="103"
+                data-name="Pitahaya Híbrida Tesoro"
+                data-price="18.50"
+                data-image="{{ url_for('static', filename='img/Pitahaya Híbrida Tesoro.png') }}">
+                <span data-i18n="Agregar al carrito">Agregar al carrito</span>
+            </button>
+
+        </div>
+
+        <a href="{{ url_for('detalles') }}?p=103" class="details-btn" data-i18n="Ver detalles">
+            Ver detalles
+        </a>
+
+    </div>
+
+</div>
+
+<!-- Pitahaya Blanca -->
+<div class="product-card reveal" data-category="fruta">
+
+    <img src="{{ url_for('static', filename='img/Pitahaya Blanca.jpg') }}" alt="Pitahaya Blanca">
+
+    <div class="product-info">
+
+        <h3 data-i18n="Pitahaya Blanca">Pitahaya Blanca</h3>
+
+        <p data-i18n="Ligera, refrescante y perfecta para dietas saludables y frescas.">
+            Ligera, refrescante y perfecta para dietas saludables y frescas.
+        </p>
+
+        <div class="product-footer">
+
+            <span class="product-price">S/ 14.90</span>
+
+            <button
+                class="product-btn add-cart"
+                data-id="104"
+                data-name="Pitahaya Blanca"
+                data-price="14.90"
+                data-image="{{ url_for('static', filename='img/Pitahaya Blanca.jpg') }}">
+                <span data-i18n="Agregar al carrito">Agregar al carrito</span>
+            </button>
+
+        </div>
+
+        <a href="{{ url_for('detalles') }}?p=104" class="details-btn" data-i18n="Ver detalles">
+            Ver detalles
+        </a>
+
+    </div>
+
+</div>
+
+<!-- Pitahaya Roja -->
+<!-- Pitahaya Roja -->
+<div class="product-card reveal" data-category="fruta">
+
+    <img src="{{ url_for('static', filename='img/Pitahaya Roja.png') }}"
+         alt="Pitahaya Roja">
+
+    <div class="product-info">
+
+        <h3 data-i18n="Pitahaya Roja">Pitahaya Roja</h3>
+
+        <p data-i18n="Piel roja intensa y pulpa blanca, cargada de vitamina C.">
+            Piel roja intensa y pulpa blanca, cargada de vitamina C.
+        </p>
+
+        <div class="product-footer">
+
+            <span class="product-price">S/ 21.90</span>
+
+            <button
+                class="product-btn add-cart"
+                data-id="105"
+                data-name="Pitahaya Roja"
+                data-price="21.90"
+                data-image="{{ url_for('static', filename='img/Pitahaya Roja.png') }}">
+                <span data-i18n="Agregar al carrito">Agregar al carrito</span>
+            </button>
+
+        </div>
+
+        <a href="{{ url_for('detalles') }}?p=105" data-i18n="Ver detalles"
+           class="details-btn">
+            Ver detalles
+        </a>
+
+    </div>
+
+</div>
+
+<!-- Pitahaya Golden Dragon -->
+<div class="product-card reveal" data-category="fruta">
+
+    <img src="{{ url_for('static', filename='img/Pitahaya Golden Dragon.png') }}" alt="Golden Dragon">
+
+    <div class="product-info">
+
+        <h3 data-i18n="Pitahaya Golden Dragon">Pitahaya Golden Dragon</h3>
+
+        <p data-i18n="Variedad dorada de piel lisa y aroma floral muy suave.">
+            Variedad dorada de piel lisa y aroma floral muy suave.
+        </p>
+
+        <div class="product-footer">
+
+            <span class="product-price">S/ 24.90</span>
+
+            <button
+                class="product-btn add-cart"
+                data-id="106"
+                data-name="Pitahaya Golden Dragon"
+                data-price="24.90"
+                data-image="{{ url_for('static', filename='img/Pitahaya Golden Dragon.webp') }}">
+                <span data-i18n="Agregar al carrito">Agregar al carrito</span>
+            </button>
+
+        </div>
+
+        <a href="{{ url_for('detalles') }}?p=106" class="details-btn" data-i18n="Ver detalles">
+            Ver detalles
+        </a>
+
+    </div>
+
+</div>
+
+<!-- Pitahaya Purpúrea -->
+<div class="product-card reveal" data-category="fruta">
+
+    <img src="{{ url_for('static', filename='img/Pitahaya Purpúrea.png') }}" alt="Pitahaya Purpúrea">
+
+    <div class="product-info">
+
+        <h3 data-i18n="Pitahaya Purpúrea">Pitahaya Purpúrea</h3>
+
+        <p data-i18n="Rica en antocianinas y color vibrante de sabor intenso.">
+            Rica en antocianinas y color vibrante de sabor intenso.
+        </p>
+
+        <div class="product-footer">
+
+            <span class="product-price">S/ 22.50</span>
+
+            <button
+                class="product-btn add-cart"
+                data-id="107"
+                data-name="Pitahaya Purpúrea"
+                data-price="22.50"
+                data-image="{{ url_for('static', filename='img/Pitahaya Purpúrea.png') }}">
+                <span data-i18n="Agregar al carrito">Agregar al carrito</span>
+            </button>
+
+        </div>
+
+        <a href="{{ url_for('detalles') }}?p=107" class="details-btn" data-i18n="Ver detalles">
+            Ver detalles
+        </a>
+
+    </div>
+
+</div>
+
+<!-- Pitahaya Vietnam -->
+<div class="product-card reveal" data-category="fruta">
+
+    <img src="{{ url_for('static', filename='img/Pitahaya Vietnam.jpg') }}" alt="Pitahaya Vietnam">
+
+    <div class="product-info">
+
+        <h3 data-i18n="Pitahaya Vietnam">Pitahaya Vietnam</h3>
+
+        <p data-i18n="Alta frescura y gran tiempo de conservación para exportación.">
+            Alta frescura y gran tiempo de conservación para exportación.
+        </p>
+
+        <div class="product-footer">
+
+            <span class="product-price">S/ 17.90</span>
+
+            <button
+                class="product-btn add-cart"
+                data-id="108"
+                data-name="Pitahaya Vietnam"
+                data-price="17.90"
+                data-image="{{ url_for('static', filename='img/Pitahaya Vietnam.jpg') }}">
+                <span data-i18n="Agregar al carrito">Agregar al carrito</span>
+            </button>
+
+        </div>
+
+        <a href="{{ url_for('detalles') }}?p=108" class="details-btn" data-i18n="Ver detalles">
+            Ver detalles
+        </a>
+
+    </div>
+
+</div>
+
+<!-- Pitahaya Costa Rica -->
+<div class="product-card reveal" data-category="fruta">
+
+  <img src="{{ url_for('static', filename='img/Pitahaya Costa Rica.png') }}" alt="Pitahaya Costa Rica"/>
+
+  <div class="product-info">
+
+    <h3 data-i18n="Pitahaya Costa Rica">Pitahaya Costa Rica</h3>
+
+    <p data-i18n="Frutos grandes y sabor sumamente intenso con pulpa jugosa.">
+      Frutos grandes y sabor sumamente intenso con pulpa jugosa.
+    </p>
+
+    <div class="product-footer">
+
+      <span class="product-price">S/ 25.90</span>
+
+      <button 
+        class="product-btn add-cart"
+        data-id="120"
+        data-name="Pitahaya Costa Rica"
+        data-price="25.90"
+        data-image="{{ url_for('static', filename='img/Pitahaya Costa Rica.png') }}">
+        <span data-i18n="Agregar al carrito">Agregar al carrito</span>
+      </button>
+
+    </div>
+
+    <a href="{{ url_for('detalles') }}?p=120" class="details-btn" data-i18n="Ver detalles">
+      Ver detalles
+    </a>
+
+  </div>
+
+</div>
+</div>
+</main>
+<section class="beneficios">
+    <div class="contenedor-beneficios">
+        
+        <div class="header-beneficios">
+            <span class="badge-beneficios" data-i18n="POR QUÉ ELEGIRNOS">POR QUÉ ELEGIRNOS</span>
+            <h2 class="titulo-seccion" data-i18n="Calidad desde la raíz">Calidad desde la <span class="italica-rosa">raíz</span></h2>
+        </div>
+
+        <div class="grid-beneficios">
+            <div class="card-beneficio">
+                <div class="icono-circular">🌱</div>
+                <h3 data-i18n="100% Orgánica">100% Orgánica</h3>
+                <p data-i18n="Cultivada sin químicos dañinos en los campos de Cañete.">Cultivada sin químicos dañinos en los campos de Cañete.</p>
+            </div>
+
+            <div class="card-beneficio">
+                <div class="icono-circular">🤲</div>
+                <h3 data-i18n="Cosechada a Mano">Cosechada a Mano</h3>
+                <p data-i18n="Cada fruta es seleccionada cuidadosamente por nuestros socios.">Cada fruta es seleccionada cuidadosamente por nuestros socios.</p>
+            </div>
+
+            <div class="card-beneficio">
+                <div class="icono-circular">🚚</div>
+                <h3 data-i18n="Entrega Local">Entrega Local</h3>
+                <p data-i18n="Distribución directa en Cañete y Lima Metropolitana.">Distribución directa en Cañete y Lima Metropolitana.</p>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script src="{{ url_for('static', filename='js/producto.js') }}?v=20260620-2"></script>
+<script src="{{ url_for('static', filename='js/producto2.js') }}"></script>
+<script src="{{ url_for('static', filename='js/carrito.js') }}"></script>
+<script src="{{ url_for('static', filename='js/detalle.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,244 @@
+{% extends "base.html" %}
+
+{% block title %}Mi Carrito - Tuta Wayta{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pago.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<main class="cart-container">
+
+    <div class="cart-layout">
+
+        <section class="cart-products">
+
+            <div class="cart-header">
+                <h2 class="cart-title" data-i18n="cart_title_main">
+                    Tu Carrito de Pitahayas
+                </h2>
+
+                <button onclick="vaciarCarritoConfirm()" id="btnVaciarCarrito" class="btn-delete-cart">
+                    <span class="material-symbols-outlined">delete_sweep</span>
+                    <span data-i18n="cart_btn_empty">Vaciar Carrito</span>
+                </button>
+            </div>
+
+            <div id="carrito-items" class="cart-items"></div>
+
+        </section>
+
+        <aside class="summary-card">
+
+            <h3 class="summary-title" data-i18n="cart_summary_title">
+                Resumen del Pedido
+            </h3>
+
+            <div class="summary-row">
+                <span data-i18n="cart_summary_subtotal">Subtotal:</span>
+                <span id="subtotal">S/ 0.00</span>
+            </div>
+
+            <div class="summary-row border-bottom">
+                <span data-i18n="cart_summary_shipping">Envío:</span>
+                <span id="envio" class="pink">S/ 15.00</span>
+            </div>
+
+            <div class="summary-total">
+                <span data-i18n="cart_summary_total">Total:</span>
+                <span id="total">S/ 0.00</span>
+            </div>
+
+            <button type="button" id="abrirModalPago" class="btn-checkout" data-i18n="cart_btn_checkout">
+                Finalizar Compra
+            </button>
+
+        </aside>
+
+    </div>
+
+</main>
+
+<template id="template-carrito-item">
+
+    <div class="cart-item">
+
+        <img class="carrito-img" src="" alt="Producto">
+
+        <div class="cart-item-info">
+
+            <h3 class="carrito-nombre"></h3>
+
+            <p class="carrito-precio"></p>
+
+            <div class="quantity-controls">
+                <button class="carrito-btn-menos">-</button>
+
+                <span class="carrito-cantidad"></span>
+
+                <button class="carrito-btn-mas">+</button>
+            </div>
+
+            <p class="carrito-subtotal"></p>
+
+        </div>
+
+        <button class="carrito-btn-eliminar" data-i18n="cart_btn_delete_item">
+            Eliminar
+        </button>
+
+    </div>
+
+</template>
+
+<template id="template-carrito-vacio">
+
+    <div class="empty-cart">
+        <h2 data-i18n="cart_empty_title">Tu carrito está vacío</h2>
+        <p data-i18n="cart_empty_p">Agrega productos para comenzar tu compra</p>
+    </div>
+
+</template>
+
+<div id="modalPago" class="modal-overlay hidden">
+
+    <div class="modal-box">
+
+        <button id="cerrarModalPago" type="button" class="modal-close">
+            &times;
+        </button>
+
+        <h2 class="modal-title" data-i18n="pay_modal_title">Pago</h2>
+
+        <form id="paymentForm" novalidate class="payment-form">
+
+            <div class="field">
+                <label data-i18n="pay_label_name">Nombre completo</label>
+                <input id="name" type="text" required placeholder="Juan Pérez">
+            </div>
+
+            <div class="field">
+                <label data-i18n="pay_label_email">Correo electrónico</label>
+                <input id="email" type="email" required placeholder="correo@dominio.com">
+            </div>
+
+            <div class="field">
+                <label data-i18n="pay_label_address">Dirección</label>
+                <input id="direccion" type="text" required placeholder="Calle, número, distrito">
+            </div>
+
+            <div class="field">
+                <label data-i18n="pay_label_phone">Teléfono</label>
+                <input id="telefono" type="tel" inputmode="numeric" required placeholder="987654321" maxlength="9">
+            </div>
+
+            <div class="field">
+
+                <label data-i18n="pay_label_method">Método de pago</label>
+
+                <div class="payment-methods">
+
+                    <label class="pay-option">
+                        <input type="radio" name="paymethod" value="visa" checked>
+                        <img src="{{ url_for('static', filename='img/visa.png') }}" alt="Visa">
+                        <span>Visa</span>
+                    </label>
+
+                    <label class="pay-option">
+                        <input type="radio" name="paymethod" value="mastercard">
+                        <img src="{{ url_for('static', filename='img/mastercard.png') }}" alt="Mastercard">
+                        <span>Mastercard</span>
+                    </label>
+
+                    <label class="pay-option">
+                        <input type="radio" name="paymethod" value="yape">
+                        <img src="{{ url_for('static', filename='img/yape.png') }}" alt="Yape">
+                        <span>Yape</span>
+                    </label>
+
+                    <label class="pay-option">
+                        <input type="radio" name="paymethod" value="plin">
+                        <img src="{{ url_for('static', filename='img/plin.png') }}" alt="Plin">
+                        <span>Plin</span>
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div class="field">
+                <label data-i18n="pay_label_amount">Monto (PEN)</label>
+
+                <input id="amount" type="number" readonly>
+
+                <div id="amount-summary" class="amount-summary"></div>
+            </div>
+
+            <div id="wallet-fields" class="wallet-fields">
+
+                <div class="field">
+                    <label data-i18n="pay_label_wallet_num">Número Yape / Plin</label>
+                    <input id="walletNumber" type="text" placeholder="987654321">
+                </div>
+
+                <div class="field">
+                    <label data-i18n="pay_label_approval">Código de aprobación</label>
+                    <input id="approvalCode" type="text" placeholder="123456">
+                </div>
+
+            </div>
+
+            <div id="credit-card-fields" class="credit-card-fields">
+
+                <div class="field">
+                    <label data-i18n="pay_label_card_num">Número de tarjeta</label>
+
+                    <input id="cardNumber"
+                           type="text"
+                           inputmode="numeric"
+                           placeholder="4242 4242 4242 4242"
+                           maxlength="19">
+                </div>
+
+                <div class="card-grid">
+
+                    <div class="field">
+                        <label data-i18n="pay_label_expiry">MM/AA</label>
+
+                        <input id="expiry"
+                               type="text"
+                               placeholder="12/28"
+                               maxlength="5">
+                    </div>
+
+                    <div class="field">
+                        <label>CVC</label>
+
+                        <input id="cvc"
+                               type="text"
+                               inputmode="numeric"
+                               placeholder="123"
+                               maxlength="4">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button id="payBtn" type="submit" class="btn-pay">
+                <span data-i18n="pay_btn_text">Pagar</span> S/ 0.00
+            </button>
+
+        </form>
+
+        <div id="output"></div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/carrito.js') }}"></script>
+<script src="{{ url_for('static', filename='js/pago.js') }}"></script>
+
+{% endblock %}

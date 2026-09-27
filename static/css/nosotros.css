@@ -1,0 +1,1054 @@
+/* =======================================================
+   ESTILOS GLOBALES & VARIABLES (RÚSTICO)
+   ======================================================= */
+:root {
+  --rustic-cream: #f9f5f0;
+  --rustic-dark: #4a3728;
+  --rustic-text: #8b7d6b;
+  --rustic-gold: #c4a484;
+  --rustic-clay: #c66039;
+  --rustic-clay-hover: #a34d2d;
+  --white: #ffffff;
+  --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  --shadow-light: 0 4px 15px rgba(0,0,0,0.02);
+  --shadow-hover: 0 15px 35px rgba(74, 55, 40, 0.1);
+}
+
+/* --- TÍTULOS Y REVEAL --- */
+.section-title {
+  font-size: 42px;
+  color: var(--rustic-dark);
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.section-subtitle {
+  color: var(--rustic-text);
+  max-width: 650px;
+  margin: 0 auto 50px;
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =======================================================
+   1. SECCIÓN EQUIPO (BORRADO +30 INTEGRANTES)
+   ======================================================= */
+.equipo-v2 {
+  padding: 100px 20px;
+  background-color: var(--rustic-cream);
+}
+
+.equipo-grid-v2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 35px;
+  max-width: 1150px;
+  margin: 0 auto 60px;
+}
+
+.card-miembro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: var(--transition);
+  text-align: center;
+}
+
+.photo-container {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 25px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  position: relative;
+  box-shadow: var(--shadow-light);
+  background: #e5e5e5;
+}
+
+.photo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.card-miembro:hover .photo-container img {
+  transform: scale(1.08);
+}
+
+.card-miembro h4 {
+  font-size: 22px;
+  color: var(--rustic-dark);
+  margin: 5px 0;
+  font-weight: 700;
+}
+
+.card-miembro .role {
+  font-size: 15px;
+  color: var(--rustic-gold);
+  font-weight: 600;
+}
+
+/* Botón Arcilla */
+.equipo-footer { text-align: center; margin-top: 20px; }
+.btn-naranja {
+  display: inline-block;
+  background-color: var(--rustic-clay);
+  color: #fff !important;
+  text-decoration: none;
+  padding: 16px 40px;
+  border-radius: 50px;
+  font-weight: 700;
+  transition: var(--transition);
+}
+
+.btn-naranja:hover {
+  background-color: var(--rustic-clay-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(198, 96, 57, 0.3);
+}
+
+/* =======================================================
+   NUEVAS FUNCIONES VALORES 2 DE INTERACTIVIDAD (SIN BORRAR NADA)
+   ======================================================= */
+
+/* Color de marca para interacciones */
+:root {
+  --brand-clic: #a21942;
+}
+
+/* 1. ESTADO ACTIVO AL CLIC (Color #a21942) */
+.valor-card.active {
+  background-color: var(--brand-clic) !important;
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(162, 25, 66, 0.25);
+  border-color: var(--brand-clic);
+}
+
+/* 2. CAMBIO DE TEXTOS A BLANCO EN ESTADO ACTIVO */
+.valor-card.active h4,
+.valor-card.active .desc p {
+  color: #ffffff !important;
+}
+
+/* 3. AJUSTE DEL CÍRCULO EN ESTADO ACTIVO */
+.valor-card.active .icon-circle {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  color: #ffffff !important;
+  transform: scale(1.1) rotate(-5deg);
+}
+
+/* 4. LÓGICA DE APERTURA (ACORDEÓN) */
+/* Asegura que la descripción se desplace suavemente */
+.valor-card .desc {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  width: 100%;
+}
+
+/* 1. ESTADO ACTIVO AL CLIC (Color #a21942) */
+.valor-card.active {
+  background-color: var(--brand-clic) !important;
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(162, 25, 66, 0.25);
+  border-color: var(--brand-clic);
+}
+
+/* 2. CAMBIO DE TEXTOS A BLANCO EN ESTADO ACTIVO */
+.valor-card.active h4,
+.valor-card.active .desc p {
+  color: #ffffff !important;
+}
+
+/* 3. AJUSTE DEL CÍRCULO EN ESTADO ACTIVO */
+.valor-card.active .icon-circle {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  color: #ffffff !important;
+  transform: scale(1.1) rotate(-5deg);
+}
+
+/* 4. LÓGICA DE APERTURA (ACORDEÓN) */
+/* Asegura que la descripción se desplace suavemente */
+.valor-card .desc {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  width: 100%;
+}
+
+.valor-card.active .desc {
+  max-height: 200px; /* Altura suficiente para el texto */
+  opacity: 1;
+  margin-top: 10px;
+}
+
+/* 5. HOVER PREVIO (Para invitar al clic) */
+.valor-card:hover:not(.active) {
+  border-color: var(--brand-clic);
+}
+
+/* 6. ADAPTACIÓN DARK MODE PARA ESTADO ACTIVO */
+body.dark .valor-card.active {
+  background-color: var(--brand-clic) !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Soporte para que los emojis no se pierdan en el cambio de color */
+.valor-card.active .icon-circle span {
+    filter: brightness(0) invert(1); /* Solo si usas iconos vectoriales, si son emojis se verán normales */
+}
+
+/* =======================================================
+   3. RESPONSIVO (MÓVILES Y TABLETS)
+   ======================================================= */
+@media (max-width: 1024px) {
+  .valores-grid-v2, .equipo-grid-v2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+/* Tarjeta especial +30 Integrantes */
+.family-bg {
+  background-color: #2c2c2c;
+}
+
+.family-bg img {
+  filter: brightness(0.4) grayscale(0.2);
+}
+
+.counter-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  color: #ffffff;
+  width: 100%;
+  text-align: center;
+}
+
+.counter-overlay .num {
+  font-size: 3.8rem;
+  font-weight: 800;
+  display: block;
+  line-height: 1;
+}
+.equipo-tag {
+  display: block;        /* Esto hace que ocupe todo el ancho y se pueda centrar */
+  text-align: center;    /* Centra el texto */
+  font-size: 13px;
+  letter-spacing: 3px;   /* Espaciado entre letras como en la imagen */
+  color: #8b7d6b;        /* El color café suave de la referencia */
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.equipo-header {
+  text-align: center;    /* Asegura que todo el bloque de encabezado esté centrado */
+  margin-bottom: 50px;
+}
+.counter-overlay .label {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  opacity: 0.9;
+}
+@media (max-width: 650px) {
+  .valores-v2, .equipo-v2 { padding: 60px 15px; }
+  .section-title { font-size: 28px; }
+  .valores-grid-v2, .equipo-grid-v2 {
+    grid-template-columns: 1fr;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+  .btn-naranja { width: 100%; max-width: 280px; }
+}
+
+/* =======================================================
+   ADAPTACIÓN MODO OSCURO PARA NUEVAS SECCIONES
+   ======================================================= */
+
+/* Fondos de sección */
+body.dark .equipo-v2,
+body.dark .valores-v2 {
+    background-color: #0b1020 !important; /* El color de fondo que ya usas */
+    color: #e5e7eb !important;
+}
+
+/* Tarjetas de Equipo y Fotos */
+body.dark .card-miembro h4,
+body.dark .valores-v2 .section-title,
+body.dark .equipo-v2 .section-title {
+    color: #f8fafc !important;
+}
+
+body.dark .photo-container {
+    background: #111827 !important;
+    border: 1px solid #243042 !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark .equipo-tag,
+body.dark .valores-tag,
+body.dark .section-subtitle {
+    color: #cbd5e1 !important;
+}
+
+/* Tarjetas de Valores (Cambiamos el blanco por el gris oscuro de tu sistema) */
+body.dark .valor-card {
+    background: #111827 !important; /* Coincide con tus pilares y productos */
+    border: 1px solid #243042 !important;
+    color: #e5e7eb !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28) !important;
+}
+
+body.dark .valor-card h4 {
+    color: #f8fafc !important;
+}
+
+body.dark .valor-card p {
+    color: #cbd5e1 !important;
+}
+
+/* Círculo de Icono en modo oscuro */
+body.dark .icon-circle {
+    background-color: #1f2937 !important;
+    border-color: #374151 !important;
+}
+
+/* El rol se mantiene en color marca o cambia al rosa de tu dark mode */
+body.dark .card-miembro .role {
+    color: #ff5ca7 !important; /* El color rosa que usas en dark mode */
+}
+
+/* Ajuste para la tarjeta de Familia (bloque oscuro) */
+body.dark .family-bg {
+    background-color: #000 !important;
+}
+/* SECCIÓN VALORES V2 */
+.valores-v2 {
+  padding: 100px 20px;
+  background-color: #f9f5f0;
+  text-align: center;
+}
+
+.valores-tag {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #8b7d6b;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.valores-grid-v2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.valor-card {
+  background: #fff;
+  padding: 40px 25px;
+  border-radius: 18px;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0.03);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-circle {
+  width: 60px;
+  height: 60px;
+  background: #fcf9f5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  border: 1px solid #f2ede7;
+}
+
+.valor-card h4 {
+  font-size: 20px;
+  color: #4a3728;
+  margin: 0;
+  font-weight: 700;
+}
+
+/* Lógica del Acordeón (Oculto por defecto) */
+.valor-card .desc {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.valor-card .desc p {
+  font-size: 14.5px;
+  color: #666;
+  margin-top: 15px;
+  line-height: 1.6;
+}
+
+/* MODO OSCURO (Integrado con tu body.dark) */
+body.dark .valores-v2 { background-color: #0b1020 !important; }
+body.dark .valor-card { 
+  background: #111827 !important; 
+  border-color: #243042 !important; 
+}
+body.dark .valor-card h4 { color: #f8fafc !important; }
+body.dark .valor-card .desc p { color: #cbd5e1 !important; }
+body.dark .icon-circle { background: #1f2937 !important; border-color: #374151 !important; }
+
+/* RESPONSIVO */
+@media (max-width: 992px) { .valores-grid-v2 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .valores-grid-v2 { grid-template-columns: 1fr; } }
+
+/* =======================================================
+   ORÍGENES - DISEÑO PREMIUM COMPLETO
+   ======================================================= */
+
+.origenes-container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; /* más espacio a la imagen */
+    gap: 70px;
+    align-items: center;
+}
+
+/* TAG */
+.origenes-tag {
+    color: #B90060;
+    border: 1px solid rgba(185,0,96,.3);
+    padding: 6px 18px;
+    border-radius: 999px;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    display: inline-block;
+    margin-bottom: 25px;
+}
+
+/* TITULO */
+.origenes-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 5vw, 3.6rem);
+    color: #2D312D;
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+.origenes-title i {
+    color: #B90060;
+    font-weight: 400;
+}
+
+/* TEXTO */
+.origenes-text {
+    color: #5f6368;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    max-width: 540px;
+}
+
+/* BOTÓN */
+.btn-historia {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #B90060;
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 15px;
+    transition: .35s ease;
+    box-shadow: 0 8px 20px rgba(185,0,96,.2);
+}
+
+.btn-historia:hover {
+    background: #8A0048;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(185,0,96,.3);
+}
+
+/* IMAGEN */
+.origenes-visual {
+    transform: scale(1.03); /* leve protagonismo */
+}
+
+.origenes-visual .img-wrapper {
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0,0,0,.12);
+    height: 420px; /* clave para tamaño */
+}
+
+.origenes-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .7s ease;
+}
+
+.origenes-visual:hover img {
+    transform: scale(1.08);
+}
+
+/* =======================================================
+   DARK MODE
+   ======================================================= */
+
+body.dark .origenes-title {
+    color: #ffffff;
+}
+
+body.dark .origenes-text {
+    color: #a1a1aa;
+}
+
+body.dark .origenes-tag {
+    color: #ff4d8d;
+    border-color: rgba(255, 77, 141, 0.4);
+}
+
+body.dark .btn-historia {
+    background: #B90060;
+    box-shadow: 0 10px 25px rgba(185,0,96,.4);
+}
+
+body.dark .btn-historia:hover {
+    background: #ff2f7a;
+}
+
+body.dark .origenes-visual .img-wrapper {
+    box-shadow: 0 30px 60px rgba(0,0,0,.6);
+}
+
+/* =======================================================
+   RESPONSIVE
+   ======================================================= */
+
+@media (max-width: 992px) {
+    .origenes-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .origenes-text {
+        margin: auto;
+    }
+
+    .btn-historia {
+        justify-content: center;
+    }
+
+    .origenes-visual {
+        transform: none;
+    }
+
+    .origenes-visual .img-wrapper {
+        height: 300px;
+    }
+}
+
+/* =======================================================
+   3. CICLO DEL CULTIVO (DISEÑO BOUTIQUE)
+   ======================================================= */
+
+.timeline-container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Línea vertical minimalista */
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  left: 45px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, #f0f0f0 15%, #f0f0f0 85%, transparent);
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 100px;
+  margin-bottom: 30px; /* Más unido */
+}
+
+/* El número (Indicador del paso) */
+.timeline-num {
+  position: absolute;
+  left: 25px;
+  width: 42px;
+  height: 42px;
+  background: var(--brand-clic); /* #a21942 */
+  color: #ffffff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.9rem;
+  z-index: 2;
+  box-shadow: 0 8px 15px rgba(162, 25, 66, 0.2);
+  transition: var(--transition);
+}
+
+/* Tarjeta: Empieza Blanca, Cambia al "clic" (#a21942) al Hover */
+.timeline-content {
+  background: #ffffff; 
+  padding: 30px;
+  border-radius: 22px;
+  border: 1px solid #f0edeb; /* Borde muy sutil */
+  transition: var(--transition);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+/* --- EFECTO HOVER (EL CLIC VISUAL) --- */
+.timeline-item:hover .timeline-content {
+  background: var(--brand-clic) !important; /* Cambia a #a21942 */
+  transform: translateX(15px);
+  box-shadow: 0 15px 35px rgba(162, 25, 66, 0.25);
+  border-color: var(--brand-clic);
+}
+
+/* Cambio de color de texto en hover */
+.timeline-item:hover .timeline-content h3,
+.timeline-item:hover .timeline-content p {
+  color: #ffffff !important;
+}
+
+.timeline-item:hover .timeline-num {
+  transform: scale(1.1) rotate(-5deg);
+  background: var(--rustic-dark); /* El número resalta en café oscuro */
+}
+
+.timeline-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--rustic-dark);
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
+}
+
+.timeline-content p {
+  font-size: 0.9rem;
+  color: var(--rustic-text);
+  line-height: 1.6;
+  transition: color 0.3s ease;
+}
+
+/* =======================================================
+   RESPONSIVO AJUSTADO
+   ======================================================= */
+@media (max-width: 600px) {
+  .timeline-container::before { left: 20px; }
+  .timeline-item { padding-left: 60px; margin-bottom: 25px; }
+  .timeline-num { left: 0; width: 36px; height: 36px; font-size: 0.8rem; }
+  .timeline-content { padding: 20px; }
+  
+  .timeline-item:hover .timeline-content {
+    transform: translateX(8px);
+  }
+}
+/* =======================================================
+   2. SECCIÓN FRANJA DE STATS (VERDE NATURALEZA)
+   ======================================================= */
+.stats-section {
+  background-color: #3d5a44; /* El verde profundo de la imagen */
+  padding: 60px 20px;
+  color: #ffffff;
+  margin: 40px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Sutil textura orgánica para que no sea un color plano aburrido */
+.stats-section::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1; /* Para estar sobre la textura */
+}
+
+.stat-item {
+  text-align: center;
+  padding: 10px;
+}
+
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 4vw, 3.8rem); /* Tamaño dinámico impactante */
+  font-weight: 700;
+  display: block;
+  line-height: 1;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  display: block;
+}
+
+/* --- AJUSTE RESPONSIVO PARA MÓVILES --- */
+@media (max-width: 900px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .stat-num {
+    font-size: 3rem;
+  }
+}
+
+/* =======================================================
+   CERTIFICACIONES (AISLADO Y PROFESIONAL)
+   ======================================================= */
+
+
+/* HEADER */
+.certificaciones .equipo-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 50px;
+}
+
+.certificaciones .section-subtitle {
+  text-align: center;
+  margin: 0 auto;
+  color: var(--rustic-text);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 650px;
+}
+
+/* GRID */
+.certificaciones .certificaciones-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* CARDS */
+.certificaciones .pilar-card {
+  background: rgba(255, 255, 255, 0.85); 
+  backdrop-filter: blur(10px);
+  padding: 45px 30px;
+  border-radius: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* HOVER */
+.certificaciones .pilar-card:hover {
+  background-color: var(--brand-clic) !important;
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 20px 45px rgba(162, 25, 66, 0.25);
+}
+
+/* TEXTO HOVER */
+.certificaciones .pilar-card:hover h3,
+.certificaciones .pilar-card:hover p,
+.certificaciones .pilar-card:hover .pilar-icon {
+  color: #ffffff !important;
+}
+
+/* =======================================================
+   VALORES (SOLO SI ESTÁ DENTRO)
+   ======================================================= */
+.certificaciones .valores-v2 .desc {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.35s ease;
+}
+
+/* =======================================================
+   🌙 DARK MODE (AISLADO)
+   ======================================================= */
+
+
+/* Cards */
+body.dark .certificaciones .pilar-card {
+  background: rgba(30, 30, 30, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Textos */
+body.dark .certificaciones h3 {
+  color: #ffffff;
+}
+
+body.dark .certificaciones p {
+  color: #b5b5b5;
+}
+
+body.dark .certificaciones .pilar-icon {
+  color: #ffffff;
+}
+
+/* Header */
+body.dark .certificaciones .section-title {
+  color: #ffffff;
+}
+
+body.dark .certificaciones .section-subtitle {
+  color: #b5b5b5;
+}
+
+/* Hover */
+body.dark .certificaciones .pilar-card:hover {
+  background-color: var(--brand-clic) !important;
+  box-shadow: 0 25px 50px rgba(162, 25, 66, 0.4);
+}
+
+/* =======================================================
+   RESPONSIVO
+   ======================================================= */
+@media (max-width: 992px) {
+  .certificaciones .certificaciones-grid { 
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
+
+@media (max-width: 600px) {
+  .certificaciones .certificaciones-grid { 
+    grid-template-columns: 1fr; 
+  }
+
+  .certificaciones .section-subtitle { 
+    font-size: 1rem; 
+    padding: 0 10px; 
+  }
+}
+/* =======================================================
+   SECCIÓN: CICLO DEL CULTIVO (CON TÍTULO Y MODO OSCURO)
+   ======================================================= */
+
+/* 1. Encabezado de la Sección */
+.ciclo-cultivo .equipo-header {
+    text-align: center;
+    margin-bottom: 60px;
+    padding: 0 20px;
+}
+
+/* 2. Título con Estilo Playfair (Como en tus fotos) */
+.ciclo-cultivo .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    color: var(--rustic-dark, #4a3728);
+    margin-bottom: 15px;
+}
+
+.ciclo-cultivo .section-title i {
+    color: var(--brand-clic, #a21942); /* Color de marca para el itálico */
+    font-weight: 400;
+}
+
+/* 3. Subtítulo centrado */
+.ciclo-cultivo .section-subtitle {
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--rustic-text, #8b7d6b);
+    line-height: 1.6;
+}
+
+/* 4. ADAPTACIÓN MODO OSCURO (CORREGIDO) */
+body.dark .ciclo-cultivo {
+    background-color: #0b1020 !important;
+}
+
+/* Títulos en Dark Mode */
+body.dark .ciclo-cultivo .section-title {
+    color: #ffffff !important;
+}
+
+body.dark .ciclo-cultivo .section-title i {
+    color: #ff4d8d !important; /* Rosa vibrante en modo oscuro */
+}
+
+body.dark .ciclo-cultivo .section-subtitle {
+    color: #94a3b8 !important;
+}
+
+/* Tarjetas en Dark Mode */
+body.dark .timeline-content {
+    background: #111827 !important;
+    border: 1px solid #243042 !important;
+}
+
+body.dark .timeline-content h3 {
+    color: #ffffff !important;
+}
+
+body.dark .timeline-content p {
+    color: #cbd5e1 !important;
+}
+
+/* Interacción "Clic" en Dark Mode */
+body.dark .timeline-item:hover .timeline-content {
+    background: var(--brand-clic, #a21942) !important;
+    border-color: #a21942 !important;
+    box-shadow: 0 15px 35px rgba(162, 25, 66, 0.4) !important;
+}
+
+body.dark .timeline-item:hover .timeline-num {
+    background: #ffffff !important;
+    color: #a21942 !important;
+}
+
+/* Línea conectora en Dark Mode */
+body.dark .timeline-container::before {
+    background: linear-gradient(to bottom, transparent, #243042 15%, #243042 85%, transparent) !important;
+}
+
+
+/* =========================================================
+   ICONO DE LOS PILARES
+   =========================================================
+   Controla el tamaño y la apariencia de las imágenes de los
+   pilares de la sección.
+   ========================================================= */
+
+.pilar-icon{
+    width: 70px;              /* Ancho de la imagen */
+    height: 70px;             /* Alto de la imagen */
+    object-fit: contain;      /* Mantiene la proporción */
+    display: inline-block;    /* Mejor alineación */
+    vertical-align: middle;   /* Centra verticalmente */
+    transition: transform 0.3s ease;
+}
+
+/* =========================================================
+   EFECTO AL PASAR EL CURSOR
+   ========================================================= */
+
+.pilar-icon:hover{
+    transform: scale(1.1);
+}
+
+/* Contenedor principal: Distribución equilibrada 50% / 50% */
+.about-section-custom .origenes-container {
+  display: flex !important;
+  align-items: center; /* Centra verticalmente el texto y la imagen */
+  justify-content: space-between;
+  gap: 3rem; /* Espacio limpio entre el texto y la imagen */
+  width: 100%;
+  max-width: 1200px; /* Evita que el contenido se estire demasiado en pantallas gigantes */
+  margin: 0 auto !important;
+  padding: 3rem 1.5rem;
+}
+
+/* Columna de Texto: Ocupa el 50% del ancho */
+.about-section-custom .origenes-content {
+  flex: 1 1 50%;
+  max-width: 50%;
+}
+
+/* Columna Visual: Ocupa el 50% del ancho (no más) */
+.about-section-custom .origenes-visual {
+  flex: 1 1 50%;
+  max-width: 50%;
+  position: relative !important;
+  top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Contenedor de la Imagen con buen encuadre */
+.about-section-custom .origenes-visual .img-wrapper {
+  width: 100%;
+  max-height: 400px; /* Altura controlada para no saturar la pantalla */
+  aspect-ratio: 16 / 10; /* Proporción horizontal más estilizada */
+  overflow: hidden;
+  border-radius: 20px; /* Bordes suaves estilo tarjeta moderna */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Sombra elegante */
+}
+
+.about-section-custom .origenes-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Ajustes para Celulares y Tablets */
+@media (max-width: 892px) {
+  .about-section-custom .origenes-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .about-section-custom .origenes-content,
+  .about-section-custom .origenes-visual {
+    flex: 1 1 100%;
+    max-width: 100%; /* En móviles ambas columnas usan todo el ancho */
+  }
+
+  .about-section-custom.reversed .origenes-visual {
+    order: -1; /* Coloca la imagen arriba en vista móvil si lleva la clase reversed */
+  }
+}
