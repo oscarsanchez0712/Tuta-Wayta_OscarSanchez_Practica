@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.setAttribute('data-theme', modoOscuroActivo ? 'dark' : 'light');
     localStorage.setItem('modo', modoOscuroActivo ? 'oscuro' : 'claro');
 
-    if (iconToggle) iconToggle.textContent = 'dark_mode';
+    if (iconToggle) iconToggle.textContent = modoOscuroActivo ? 'dark_mode' : 'light_mode';
+    if (btnToggle) btnToggle.setAttribute('aria-checked', String(modoOscuroActivo));
 
     actualizarTexto(modoOscuroActivo);
   };

@@ -1037,79 +1037,10 @@ body.dark #themeToggle:active {
 }
 
 #themeToggle {
-  background: transparent !important; 
-  border: none !important;            
-  box-shadow: none !important;        
-  padding: 0 !important;              
-  width: 44px !important;              
-  height: 44px !important;            
-  min-width: auto !important;          
-  cursor: pointer;                    
-  display: inline-flex;                
-  align-items: center;                 
-  justify-content: center;             
+  cursor: pointer;
   vertical-align: middle;
 }
-
-#themeLabel {
-  position: relative;                  
-  width: 44px;                         
-  height: 44px;
-  border-radius: 50%;                  
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0px !important;           
-  color: transparent !important;       
-  overflow: hidden;                    
-  transition: all 0.3s ease;           
-  background: #ffffff !important;      
-  border: 2px solid #e2e8f0 !important;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); 
-}
-
-#themeLabel::before {
-  content: "";                         
-  position: absolute;                  
-  width: 14px;                         
-  height: 14px;
-  border-radius: 50%;                  
-  background: #facc15;                 
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-  opacity: 1;                          
-  transform: scale(1);                 
-  box-shadow: 
-    0 -9px 0 -1px #facc15,   
-    0 9px 0 -1px #facc15,    
-    -9px 0 0 -1px #facc15,   
-    9px 0 0 -1px #facc15,    
-    -6px -6px 0 -1px #facc15,
-    6px 6px 0 -1px #facc15,  
-    -6px 6px 0 -1px #facc15, 
-    6px -6px 0 -1px #facc15; 
-}
-
-body.dark #themeLabel {
-  background: #1e293b !important;      
-  border: 2px solid rgba(255, 255, 255, 0.2) !important; 
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35); 
-}
-
-body.dark #themeLabel::before {
-  background: transparent;             
-  width: 18px;                         
-  height: 18px;
-  box-shadow: -6px 6px 0 0 #fbbf24;    
-  transform: rotate(-15deg) translate(2px, -2px); 
-}
-
-#themeToggle:hover #themeLabel {
-  transform: scale(1.06);              
-}
-
-#themeToggle:active #themeLabel {
-  transform: scale(0.96);              
-}
+/* (Se eliminó el sol/luna dibujado con CSS sobre #themeLabel: ahora es un switch, ver style.css) */
 
 body.dark .nav-theme-btn,
 body.dark .nav-actions .nav-btn,

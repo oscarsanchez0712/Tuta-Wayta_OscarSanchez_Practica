@@ -148,104 +148,13 @@ body.dark #themeToggle:active {
 }
 
 /* ===================================================
-   3. BOTÓN INTERACTIVO CONTENEDOR (#themeToggle)
+   3-7. (ELIMINADO) Antes aquí se dibujaba un sol/luna con CSS sobre
+   #themeLabel y se forzaba #themeToggle a 44x44px. Ahora el botón es un
+   switch (ver .theme-switch en style.css) y el icono lo cambia modooscuro.js.
    =================================================== */
 #themeToggle {
-  background: transparent !important; /* Elimina fondos nativos del botón HTML */
-  border: none !important;             /* Elimina bordes por defecto del botón */
-  box-shadow: none !important;         /* Elimina sombras residuales del contenedor */
-  padding: 0 !important;               /* Quita espaciados internos */
-  width: 44px !important;              /* Define el ancho exacto del área interactiva */
-  height: 44px !important;             /* Define el alto exacto del área interactiva */
-  min-width: auto !important;          /* Sobrescribe anchos mínimos de otros botones */
-  cursor: pointer;                     /* Cambia el cursor a indicador de clic */
-  display: inline-flex;                /* Alineación flexible interna */
-  align-items: center;                 /* Centra el círculo de forma vertical */
-  justify-content: center;             /* Centra el círculo de forma horizontal */
+  cursor: pointer;
   vertical-align: middle;
-}
-
-/* ===================================================
-   4. CÍRCULO VISIBLE DEL CONMUTADOR (#themeLabel)
-   =================================================== */
-#themeLabel {
-  position: relative;                  /* Clave para posicionar el Sol/Luna adentro de manera absoluta */
-  width: 44px;                         /* Dimensiones del círculo blanco/azul */
-  height: 44px;
-  border-radius: 50%;                  /* Lo vuelve un círculo perfecto */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0px !important;           /* Oculta textos inyectados por JavaScript */
-  color: transparent !important;       /* Hace el texto residual invisible */
-  overflow: hidden;                    /* Previene que los gráficos se salgan del contorno */
-  transition: all 0.3s ease;           /* Suaviza las transiciones de color y tamaño */
-  
-  /* --- CONFIGURACIÓN BASE: MODO CLARO --- */
-  background: #ffffff !important;      /* Fondo del círculo en color blanco */
-  border: 2px solid #e2e8f0 !important;/* Borde gris minimalista */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Sombra de elevación sutil */
-}
-
-/* ===================================================
-   5. DIBUJO GEOMÉTRICO DEL SOL (MODO CLARO)
-   =================================================== */
-#themeLabel::before {
-  content: "";                         /* Activa el pseudo-elemento en el navegador */
-  position: absolute;                  /* Posicionamiento flotante en el centro exacto */
-  width: 14px;                         /* Diámetro de la esfera central del Sol */
-  height: 14px;
-  border-radius: 50%;                  /* Esfera central redonda */
-  background: #facc15;                 /* COLOR DEL SOL: Amarillo brillante */
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Curva de animación fluida y profesional */
-  opacity: 1;                          /* Visible por defecto */
-  transform: scale(1);                 /* Escala normal */
-  
-  /* RAYOS DEL SOL: Dibujados de manera exacta con sombras múltiples */
-  box-shadow: 
-    0 -9px 0 -1px #facc15,   /* Rayo arriba */
-    0 9px 0 -1px #facc15,    /* Rayo abajo */
-    -9px 0 0 -1px #facc15,   /* Rayo izquierda */
-    9px 0 0 -1px #facc15,    /* Rayo derecha */
-    -6px -6px 0 -1px #facc15,/* Diagonal arriba-izquierda */
-    6px 6px 0 -1px #facc15,  /* Diagonal abajo-derecha */
-    -6px 6px 0 -1px #facc15, /* Diagonal abajo-izquierda */
-    6px -6px 0 -1px #facc15; /* Diagonal arriba-derecha */
-}
-
-/* ===================================================
-   6. TRANSFORMACIÓN AUTOMÁTICA AL MODO OSCURO
-   =================================================== */
-   
-/* Modificación del círculo contenedor al entrar el Modo Oscuro */
-body.dark #themeLabel {
-  background: #1e293b !important;      /* Cambia el fondo del círculo a azul oscuro pizarra */
-  border: 2px solid rgba(255, 255, 255, 0.2) !important; /* Borde iluminado translúcido */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35); /* Sombra nocturna reforzada */
-}
-
-/* Transformación de los rayos del sol en la LUNA CRECIENTE */
-body.dark #themeLabel::before {
-  background: transparent;             /* Vacía el centro para dar el efecto cóncavo de la luna */
-  width: 18px;                         /* Modifica las dimensiones para dar la curva perfecta */
-  height: 18px;
-  
-  /* LUNA CRECIENTE: Se logra proyectando una única sombra hacia el borde inferior izquierdo */
-  box-shadow: -6px 6px 0 0 #fbbf24;    /* COLOR DE LA LUNA: Oro / Dorado cálido */
-  
-  /* Aplica rotación y desplazamiento para inclinar la luna estéticamente */
-  transform: rotate(-15deg) translate(2px, -2px); 
-}
-
-/* ===================================================
-   7. EFECTOS DINÁMICOS AL INTERACTUAR (HOVER Y CLICK)
-   =================================================== */
-#themeToggle:hover #themeLabel {
-  transform: scale(1.06);              /* Aumenta un 6% el tamaño al posar el mouse (Hover) */
-}
-
-#themeToggle:active #themeLabel {
-  transform: scale(0.96);              /* Efecto de hundimiento táctil al hacer clic */
 }
 
 /* ===================================================
