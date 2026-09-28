@@ -1,2081 +1,597 @@
 /* =============================================
    TUTA WAYTA - Libro de Reclamaciones
-   Adaptado para usar navbar y footer de base.html
+   Todo va acotado a .libro para no afectar otras páginas.
    ============================================= */
 
-:root {
-  --pink: #ff00aa;
-  --pink-light: #ffe0f7;
-  --pink-hover: #cc0088;
-  --green: #4caf50;
-  --green-light: #e8f5e9;
-  --yellow: #fff8e1;
-  --yellow-border: #f59e0b;
-  --blue-border: #ff00aa;
-  --gray: #6b7280;
-  --gray-light: #f3f4f6;
-  --border: #e5e7eb;
-  --error: #e53935;
-  --error-bg: #fdecea;
-  --radius: 10px;
-  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  --font: 'DM Sans', sans-serif;
-  --font-display: 'Playfair Display', serif;
+.libro {
+  --accent: #b90060;        /* textos, bordes y foco */
+  --btn: #b90060;           /* fondo de botones */
+  --btn-hover: #8f004a;
+  --tint: #fdeaf3;
+  --ink: #22151b;
+  --muted: #5f5157;
+  --line: #e3d5dc;
+  --surface: #ffffff;
+  --page: #fbf7f9;
+  --field: #ffffff;
+  --warn: #7a4e00;
+  --warn-bg: #fff6df;
+  --warn-line: #e9b949;
+  --err: #c62828;
+  --err-bg: #fdecec;
+  --ok: #1b7a43;
+  --star: #f5a300;
+  --radius: 12px;
+  --shadow: 0 10px 30px rgba(34, 21, 27, 0.08);
+
+  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: var(--ink);
+  background: var(--page);
+  line-height: 1.5;
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
+body.dark .libro {
+  --accent: #ff8bc7;
+  --tint: #3a1528;
+  --ink: #f3ecef;
+  --muted: #c9bcc2;
+  --line: #3b2c34;
+  --surface: #1b1418;
+  --page: #131013;
+  --field: #241b21;
+  --warn: #f3d28a;
+  --warn-bg: #2d2413;
+  --warn-line: #7a5a1c;
+  --err: #ff8a80;
+  --err-bg: #3a1a1a;
+  --ok: #6fd39a;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
 }
 
-body {
-  background: #f5f5f5;
+.libro *, .libro *::before, .libro *::after { box-sizing: border-box; }
+
+.libro [hidden] { display: none !important; }
+
+/* Oculto visualmente, disponible para lectores de pantalla */
+.libro .vh {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-.flash-wrap {
-  max-width: 960px;
-  margin: 16px auto;
-  padding: 0 16px;
+.libro :focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
 }
 
-.flash {
+/* ---------- Avisos del servidor ---------- */
+.libro .flash-wrap { max-width: 1120px; margin: 0 auto; padding: 16px 20px 0; }
+.libro .flash {
   padding: 12px 16px;
   border-radius: var(--radius);
-  font-size: 13px;
+  font-size: 0.9rem;
   margin-bottom: 8px;
+  border-left: 4px solid var(--accent);
+  background: var(--surface);
 }
+.libro .flash--success { border-left-color: var(--ok); }
+.libro .flash--error { border-left-color: var(--err); color: var(--err); background: var(--err-bg); }
 
-.flash--success {
-  background: var(--green-light);
-  border-left: 4px solid var(--green);
-  color: #2e7d32;
+/* ---------- Hero ---------- */
+.libro .hero {
+  background: linear-gradient(135deg, #b90060 0%, #8f004a 100%);
+  color: #fff;
+  padding: 44px 20px 40px;
 }
-
-.flash--error {
-  background: var(--error-bg);
-  border-left: 4px solid var(--error);
-  color: var(--error);
-}
-
-.hero {
-  position: relative;
-  min-height: auto;
-  overflow: hidden;
-  text-align: left;
-  background: linear-gradient(135deg, #ff00aa 0%, #cc0088 100%) !important;
-  background-image: linear-gradient(135deg, #ff00aa 0%, #cc0088 100%) !important;
-  color: white;
-  padding: 42px 24px;
-}
-
-.hero::before,
-.hero::after {
-  content: none !important;
-  display: none !important;
-  background: none !important;
-  animation: none !important;
-}
-
-.hero__inner {
-  position: relative;
-  z-index: 1;
-  max-width: 960px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.hero__icon {
-  font-size: 48px;
-}
-
-.hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3.2rem);
+.libro .hero__inner { max-width: 1120px; margin: 0 auto; }
+.libro .hero h1 {
+  margin: 0 0 8px;
+  font-family: 'Playfair Display', serif;
   font-weight: 900;
+  font-size: clamp(1.9rem, 4.5vw, 2.8rem);
   line-height: 1.1;
   color: #fff;
 }
-
-.hero h1 span,
-.hero h1 em {
-  color: #fff8e1;
-  font-style: normal;
+.libro .hero p {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.92);
 }
 
-.hero p {
-  color: #fff;
-  font-size: 14px;
-  margin-top: 8px;
-}
-
-.main {
-  max-width: 960px;
-  margin: 28px auto 60px;
-  padding: 0 16px;
-}
-
-.layout {
+/* ---------- Estructura ---------- */
+.libro .layout {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 32px 20px 72px;
   display: grid;
-  grid-template-columns: 1fr 220px;
-  gap: 20px;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 28px;
   align-items: start;
 }
 
-.card {
-  background: white;
+.libro .card {
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: 16px;
   box-shadow: var(--shadow);
-  overflow: hidden;
+  padding: 32px;
 }
 
-.card__head {
-  padding: 22px 26px 6px;
-}
-
-.card__head h2 {
-  font-size: 18px;
+.libro .card__head { margin-bottom: 22px; }
+.libro .card__head h2 {
+  margin: 0 0 4px;
+  font-family: 'Playfair Display', serif;
   font-weight: 700;
-  font-family: var(--font-display);
-  color: #222;
+  font-size: 1.7rem;
+  color: var(--ink);
 }
+.libro .card__head p { margin: 0; font-size: 0.92rem; color: var(--muted); }
 
-.card__head p {
-  color: var(--gray);
-  font-size: 13px;
-  margin-top: 4px;
-}
+.libro .req { color: var(--err); font-weight: 700; }
 
-.req {
-  color: var(--pink);
-  font-weight: 700;
-}
+/* ---------- Selector Reclamación / Queja ---------- */
+.libro fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 
-.tipo {
+.libro .tipo {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
 }
-
-.tipo__opt {
+.libro .tipo__opt { position: relative; display: block; cursor: pointer; }
+.libro .tipo__opt input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
   cursor: pointer;
-}
-
-.tipo__opt input {
-  display: none;
-}
-
-.tipo__card {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 72px;
-  padding: 14px 20px;
-  background: var(--gray-light);
-  border-bottom: 3px solid transparent;
-  border-right: 1px solid var(--border);
-  transition: all 0.2s;
-}
-
-.tipo__opt:last-child .tipo__card {
-  border-right: none;
-}
-
-.tipo__opt input:checked + .tipo__card {
-  background: white;
-  border-bottom-color: var(--pink);
-}
-
-.tipo__emoji {
-  font-size: 22px;
-}
-
-.tipo__card strong {
-  font-size: 14px;
-  font-weight: 600;
-  display: block;
-  color: #222;
-}
-
-.tipo__card small {
-  color: var(--gray);
-  font-size: 11px;
-}
-
-.tipo-banner {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 12px 20px;
-  margin: 16px 26px;
-  background: var(--yellow);
-  border: 1px solid var(--yellow-border);
-  border-radius: var(--radius);
-  font-size: 13px;
-  transition: background 0.3s, border-color 0.3s;
-}
-
-.tipo-banner > span {
-  font-size: 22px;
-  flex-shrink: 0;
-}
-
-.tipo-banner strong {
-  display: block;
-  font-weight: 600;
-  color: #222;
-}
-
-.tipo-banner p {
-  color: var(--gray);
   margin: 0;
-  font-size: 12px;
 }
-
-.queja-info {
-  display: none;
-  flex-direction: column;
-  gap: 8px;
-  margin: 0 26px 16px;
-  padding: 14px 18px;
-  background: #fff0f7;
-  border: 1px solid var(--pink);
+.libro .tipo__card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 100%;
+  padding: 16px 18px;
+  border: 2px solid var(--line);
   border-radius: var(--radius);
-  font-size: 13px;
-  animation: slideDown 0.3s ease;
+  background: var(--field);
+  transition: border-color 0.15s, background-color 0.15s;
+}
+.libro .tipo__icon { font-size: 28px; color: var(--muted); }
+.libro .tipo__txt { display: flex; flex-direction: column; }
+.libro .tipo__txt strong { font-size: 1rem; color: var(--ink); }
+.libro .tipo__txt small { font-size: 0.85rem; color: var(--muted); }
+.libro .tipo__opt:hover .tipo__card { border-color: var(--accent); }
+.libro .tipo__opt input:checked + .tipo__card {
+  border-color: var(--accent);
+  background: var(--tint);
+}
+.libro .tipo__opt input:checked + .tipo__card .tipo__icon { color: var(--accent); }
+.libro .tipo__opt input:focus-visible + .tipo__card {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
 }
 
-.queja-info h4 {
-  color: var(--pink);
-  font-size: 13px;
-  font-weight: 700;
-  margin-bottom: 4px;
+/* ---------- Aviso del tipo elegido ---------- */
+.libro .banner {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  border: 1px solid var(--warn-line);
+  border-left-width: 4px;
+  border-radius: var(--radius);
+  background: var(--warn-bg);
+  color: var(--warn);
 }
-
-.queja-info ul {
-  padding-left: 18px;
-  color: #555;
-  line-height: 1.9;
+.libro .banner strong { display: block; font-size: 0.98rem; color: var(--warn); }
+.libro .banner p { margin: 2px 0 0; font-size: 0.9rem; color: var(--warn); }
+.libro .banner__icon { font-size: 24px; }
+.libro .banner.is-queja {
+  border-color: var(--accent);
+  background: var(--tint);
+  color: var(--accent);
 }
+.libro .banner.is-queja strong,
+.libro .banner.is-queja p { color: var(--ink); }
 
-#libroForm {
-  padding: 0 26px 26px;
+.libro .queja-info {
+  margin-bottom: 16px;
+  padding: 14px 18px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  font-size: 0.92rem;
+  color: var(--muted);
 }
+.libro .queja-info h4 { margin: 0 0 6px; font-size: 0.98rem; color: var(--ink); }
+.libro .queja-info ul { margin: 0; padding-left: 20px; }
 
-fieldset {
-  border: none;
-  margin-bottom: 24px;
+/* ---------- Secciones (numeradas con contador CSS) ---------- */
+.libro form { counter-reset: paso; }
+
+.libro .sec {
+  counter-increment: paso;
+  margin-top: 20px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
+.libro .sec[disabled] { opacity: 1; }
 
-legend {
+/* Truco para que la leyenda no corte el borde */
+.libro .sec > legend {
+  float: left;
+  width: 100%;
+  margin: 0 0 18px;
+  padding: 0;
   display: flex;
   align-items: center;
   gap: 10px;
+  font-size: 1.1rem;
   font-weight: 700;
-  font-size: 14px;
-  padding: 10px 0 12px;
-  width: 100%;
-  border-bottom: 2px solid var(--border);
-  margin-bottom: 18px;
-  color: #222;
+  color: var(--ink);
 }
-
-.num {
-  background: #1a1a2e;
-  color: white;
-  min-width: 26px;
-  height: 26px;
+.libro .sec > legend + * { clear: both; }
+.libro .sec > legend::before {
+  content: counter(paso);
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
+  background: var(--btn);
+  color: #fff;
+  font-size: 0.85rem;
   font-weight: 700;
-  flex-shrink: 0;
 }
 
-.num--pink {
-  background: var(--pink);
-}
+.libro .sec--queja { border-color: var(--accent); }
 
-.grid {
+/* ---------- Campos ---------- */
+.libro .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  gap: 18px 20px;
 }
+.libro .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.libro .field--full { grid-column: 1 / -1; }
 
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.field--full {
-  grid-column: 1 / -1;
-}
-
-.field label,
-.check-label {
-  font-size: 12px;
+.libro .field > label,
+.libro .lbl {
+  font-size: 0.92rem;
   font-weight: 600;
-  color: #333;
+  color: var(--ink);
 }
 
-.field input,
-.field select,
-.field textarea {
-  border: 1.5px solid var(--border);
-  border-radius: 8px;
-  padding: 9px 12px;
-  font-size: 13px;
-  font-family: var(--font);
-  transition: border 0.2s, box-shadow 0.2s;
-  outline: none;
+.libro input[type="text"],
+.libro input[type="email"],
+.libro input[type="tel"],
+.libro input[type="number"],
+.libro input[type="date"],
+.libro input[type="time"],
+.libro select,
+.libro textarea {
   width: 100%;
-  background: #fafafa;
-  color: #222;
+  min-height: 46px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  background: var(--field);
+  color: var(--ink);
+  font: inherit;
+  font-size: 1rem; /* 16px evita el zoom automático en iPhone */
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.libro textarea { resize: vertical; min-height: 110px; line-height: 1.5; }
+.libro ::placeholder { color: var(--muted); opacity: 0.7; }
+
+.libro input:hover,
+.libro select:hover,
+.libro textarea:hover { border-color: #c9a9b9; }
+
+.libro input:focus,
+.libro select:focus,
+.libro textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
 }
 
-.field input:focus,
-.field select:focus,
-.field textarea:focus {
-  border-color: var(--pink);
-  box-shadow: 0 0 0 3px rgba(255, 0, 170, 0.15);
-  background: white;
+.libro .bad {
+  border-color: var(--err) !important;
 }
-
-.field input.invalid,
-.field select.invalid,
-.field textarea.invalid,
-.field input.bad,
-.field select.bad,
-.field textarea.bad {
-  border-color: var(--error);
-  background: var(--error-bg);
-}
-
-.field input.valid,
-.field select.valid,
-.field textarea.valid {
-  border-color: var(--green);
-}
-
-.field textarea {
-  resize: vertical;
-}
-
-.err {
-  color: var(--error);
-  font-size: 11px;
-  min-height: 15px;
-  display: block;
-  font-weight: 500;
-}
-
-.counter {
-  color: var(--gray);
-  font-size: 11px;
-  text-align: right;
-  margin-top: 2px;
-}
-
-.field-hint {
-  color: var(--gray);
-  font-size: 11px;
-  font-style: italic;
-}
-
-.radio-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 4px;
-}
-
-.radio-chip {
-  cursor: pointer;
-}
-
-.radio-chip input {
-  display: none;
-}
-
-.radio-chip span {
-  display: inline-block;
-  padding: 7px 15px;
-  border: 1.5px solid var(--border);
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 500;
-  transition: all 0.2s;
-  background: #fafafa;
-  user-select: none;
-  color: #333;
-}
-
-.radio-chip input:checked + span {
-  background: var(--pink);
-  color: white;
-  border-color: var(--pink);
-}
-
-.radio-group.invalid-group .radio-chip span {
-  border-color: var(--error);
-}
-
-.check-multi {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 6px;
-}
-
-.check-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  font-size: 13px;
-  padding: 8px 12px;
+.libro .chips.bad,
+.libro .checks.bad,
+.libro .stars.bad {
+  outline: 2px solid var(--err);
+  outline-offset: 4px;
   border-radius: 8px;
-  border: 1.5px solid var(--border);
-  transition: all 0.2s;
-  background: #fafafa;
-  color: #333;
 }
 
-.check-item:hover {
-  border-color: var(--pink);
-  background: #fff0f7;
+.libro .err {
+  min-height: 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--err);
 }
+.libro .err:empty { display: none; }
 
-.check-item input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  accent-color: var(--pink);
-  flex-shrink: 0;
-}
+.libro .hint { font-size: 0.85rem; color: var(--muted); }
 
-.check-multi.invalid-group .check-item {
-  border-color: var(--error);
-}
-
-.stars {
+.libro .field__foot {
   display: flex;
-  gap: 8px;
-  margin-top: 6px;
+  justify-content: space-between;
+  gap: 12px;
+}
+.libro .field__foot .err:empty { display: block; }
+.libro .counter { margin-left: auto; font-size: 0.82rem; color: var(--muted); }
+.libro .counter.is-near { color: var(--err); font-weight: 600; }
+
+/* ---------- Chips (opciones únicas) ---------- */
+.libro .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.libro .chip { cursor: pointer; }
+.libro .chip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 8px 16px;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  background: var(--field);
+  font-size: 0.95rem;
+  color: var(--ink);
+  transition: border-color 0.15s, background-color 0.15s, color 0.15s;
+}
+.libro .chip:hover span { border-color: var(--accent); }
+.libro .chip input:checked + span {
+  background: var(--btn);
+  border-color: var(--btn);
+  color: #fff;
+}
+.libro .chip input:focus-visible + span {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
 }
 
-.star {
-  font-size: 32px;
-  cursor: pointer;
-  color: #ddd;
-  transition: color 0.15s, transform 0.1s;
-  user-select: none;
-}
-
-.star:hover,
-.star.hover {
-  color: #f59e0b;
-  transform: scale(1.1);
-}
-
-.star.active {
-  color: #f59e0b;
-}
-
-.cal-label {
-  font-size: 12px;
-  color: var(--gray);
-  margin-top: 4px;
-  font-style: italic;
-}
-
-.stars.invalid-stars .star {
-  color: #f8d7da;
-}
-
-.queja-section {
-  display: none;
-  animation: slideDown 0.35s ease;
-  background: #fffafa;
-  border: 1.5px dashed var(--pink);
-  border-radius: 12px;
-  padding: 18px 20px;
-  margin-bottom: 24px;
-}
-
-.check-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 12px;
-}
-
-.check-label {
+/* ---------- Checks (opciones múltiples) ---------- */
+.libro .checks { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.libro .check,
+.libro .declare {
   display: flex;
   align-items: flex-start;
   gap: 10px;
   cursor: pointer;
+  font-size: 0.95rem;
+}
+.libro .check {
+  padding: 10px 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  background: var(--field);
+}
+.libro .check:has(input:checked) { border-color: var(--accent); background: var(--tint); }
+.libro .check input,
+.libro .declare input {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin: 2px 0 0;
+  accent-color: var(--btn);
+  cursor: pointer;
 }
 
-.check-label input[type="checkbox"] {
-  width: 17px;
-  height: 17px;
-  accent-color: var(--pink);
-  margin-top: 1px;
-  flex-shrink: 0;
+/* ---------- Estrellas ---------- */
+.libro .rating { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.libro .stars { display: inline-flex; flex-direction: row-reverse; gap: 2px; }
+.libro .stars label {
+  padding: 2px 3px;
+  font-size: 2.1rem;
+  line-height: 1;
+  color: var(--line);
+  cursor: pointer;
+  transition: color 0.12s;
+}
+.libro .stars input:checked ~ label,
+.libro .stars label:hover,
+.libro .stars label:hover ~ label { color: var(--star); }
+.libro .stars input:focus-visible + label {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+.libro .rating__label { font-size: 0.92rem; color: var(--muted); }
+
+/* ---------- Confirmación ---------- */
+.libro .declare { padding: 4px 0; }
+.libro .fecha-reg { margin: 12px 0 0; font-size: 0.9rem; color: var(--muted); }
+.libro .fecha-reg strong { color: var(--ink); }
+
+/* ---------- Errores generales y botones ---------- */
+.libro .form-alert {
+  margin-top: 20px;
+  padding: 12px 16px;
+  border: 1px solid var(--err);
+  border-left-width: 4px;
+  border-radius: var(--radius);
+  background: var(--err-bg);
+  color: var(--err);
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
-.fecha-reg {
-  font-size: 12px;
-  color: var(--gray);
-}
-
-.actions {
+.libro .actions {
   display: flex;
   justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.libro .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   gap: 10px;
-  padding-top: 10px;
-  border-top: 1px solid var(--border);
-}
-
-.btn {
-  padding: 11px 24px;
-  border-radius: 8px;
-  border: none;
-  font-size: 13px;
-  font-weight: 600;
+  min-height: 48px;
+  padding: 12px 26px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s;
-  font-family: var(--font);
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
 }
+.libro .btn--primary { background: var(--btn); color: #fff; }
+.libro .btn--primary:hover { background: var(--btn-hover); }
+.libro .btn--ghost { background: transparent; border-color: var(--line); color: var(--ink); }
+.libro .btn--ghost:hover { border-color: var(--accent); color: var(--accent); }
+.libro .btn[disabled] { opacity: 0.7; cursor: progress; }
 
-.btn--sec {
-  background: var(--gray-light);
-  color: #333;
+.libro .btn__spin {
+  display: none;
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: libro-spin 0.7s linear infinite;
 }
+.libro .btn.is-busy .btn__spin { display: inline-block; }
+@keyframes libro-spin { to { transform: rotate(360deg); } }
 
-.btn--sec:hover {
-  background: #e5e7eb;
-}
-
-.btn--pri {
-  background: var(--pink);
-  color: white;
-}
-
-.btn--pri:hover {
-  background: var(--pink-hover);
-  transform: translateY(-1px);
-}
-
-.btn--pri:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.aside {
+/* ---------- Columna lateral ---------- */
+.libro .aside {
+  position: sticky;
+  top: 96px;
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
-
-.info {
-  background: white;
-  border-radius: 12px;
-  padding: 16px;
-  box-shadow: var(--shadow);
-}
-
-.info h3 {
-  font-size: 13px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: #222;
-}
-
-.info p {
-  font-size: 12px;
-  color: var(--gray);
-  line-height: 1.6;
-}
-
-.info--green {
-  border-top: 4px solid var(--green);
-}
-
-.info--pink {
-  border-top: 4px solid var(--pink);
-}
-
-.info--blue {
-  border-top: 4px solid var(--blue-border);
-}
-
-.num-hoja {
-  font-size: 28px;
-  font-weight: 700;
-  font-family: var(--font-display);
-  color: var(--pink);
-  margin-top: 4px;
-}
-
-.modal-bg {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  z-index: 9999;
-  align-items: center;
-  justify-content: center;
-  animation: fadeIn 0.2s ease;
-}
-
-.modal-bg.open,
-.modal-bg.show {
-  display: flex;
-}
-
-.modal {
-  background: white;
-  border-radius: 18px;
-  padding: 36px 32px;
-  max-width: 380px;
-  width: 90%;
-  text-align: center;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-  animation: scaleIn 0.25s ease;
-}
-
-.modal__icon {
-  font-size: 52px;
-  margin-bottom: 12px;
-}
-
-.modal h2 {
-  font-size: 20px;
-  font-family: var(--font-display);
-  margin-bottom: 8px;
-  color: #222;
-}
-
-.modal p {
-  color: var(--gray);
-  font-size: 13px;
-}
-
-.modal__num {
-  margin: 16px 0 8px;
-  font-size: 15px;
-  background: var(--gray-light);
-  border-radius: 8px;
-  padding: 10px 16px;
-}
-
-.modal__num strong {
-  color: var(--pink);
-  font-size: 20px;
-  font-family: var(--font-display);
-}
-
-.modal__nota {
-  font-size: 12px;
-  color: var(--gray);
-  margin-bottom: 20px;
-}
-
-.modal__btns {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-
-@media (max-width: 700px) {
-  .layout {
-    grid-template-columns: 1fr;
-  }
-
-  .aside {
-    order: -1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-}
-
-@media (max-width: 560px) {
-  .hero__inner {
-    align-items: flex-start;
-  }
-
-  .hero__icon {
-    display: none;
-  }
-
-  .tipo__card {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
-  .field--full {
-    grid-column: 1;
-  }
-
-  .actions,
-  .modal__btns {
-    flex-direction: column;
-  }
-
-  .aside {
-    grid-template-columns: 1fr;
-  }
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    transform: scale(0.92);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@media print {
-  nav,
-  .hero,
-  .aside,
-  .actions,
-  .modal-bg,
-  footer {
-    display: none !important;
-  }
-
-  .layout {
-    grid-template-columns: 1fr;
-  }
-
-  .card {
-    box-shadow: none;
-    border: 1px solid #ccc;
-  }
-}
-
-
-/* ELIMINACIÓN TOTAL DE LA SOMBRA INICIAL */
-.modal-bg {
-  display: none !important; /* Prohibido mostrarse al cargar */
-  visibility: hidden;       /* Doble seguridad */
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.8); 
-  z-index: -1;              /* Se va al fondo de todo */
-}
-
-/* SOLO APARECE CUANDO EL FORMULARIO SE ENVÍA CON ÉXITO */
-/* CORREGIDO: el JS (libro.js) usa modal.classList.add('open') para abrir
-   el modal, pero esta regla solo escuchaba la clase .show, que nunca se
-   asigna desde el JS. Por eso el modal nunca se hacía visible aunque no
-   hubiera errores en consola. Se agrega .open junto a .show para que
-   ambas clases funcionen igual. No se quita ni se reemplaza nada más. */
-.modal-bg.open,
-.modal-bg.show {
-  display: flex !important;
-  visibility: visible;
-  z-index: 9999;            /* Sube al frente solo al final */
-}
-
-/* ==========================================================================
-   🎯 RIGOROUS ADAPTATION: MODO OSCURO (body.dark) - LIBRO DE RECLAMACIONES
-   ========================================================================== */
-
-body.dark {
-  background-color: #0f172a; /* Fondo oscuro profundo general */
-  color: #f8fafc;
-}
-
-/* --- Layout y Tarjetas Principal --- */
-body.dark .card,
-body.dark .info {
-  background-color: #1e293b !important; /* Tarjeta gris oscuro pizarra */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25) !important;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-body.dark .card__head h2,
-body.dark .info h3 {
-  color: #ffffff !important;
-}
-
-body.dark .card__head p,
-body.dark .info p,
-body.dark .field-hint,
-body.dark .counter,
-body.dark .fecha-reg {
-  color: #94a3b8 !important; /* Texto secundario gris suavizado */
-}
-
-/* --- Selectores de Tipo (Reclamación / Queja) --- */
-body.dark .tipo__card {
-  background-color: #151f32 !important;
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
-  border-bottom: 3px solid transparent;
-}
-
-body.dark .tipo__card strong {
-  color: #ffffff !important;
-}
-
-body.dark .tipo__card small {
-  color: #94a3b8 !important;
-}
-
-body.dark .tipo__opt input:checked + .tipo__card {
-  background-color: #1e293b !important;
-  border-bottom-color: var(--pink) !important;
-}
-
-/* --- Banner de Estado Informativo --- */
-body.dark .tipo-banner {
-  background-color: rgba(245, 158, 11, 0.1) !important; /* Ámbar translúcido */
-  border: 1px solid rgba(245, 158, 11, 0.3) !important;
-}
-body.dark .tipo-banner strong {
-  color: #f59e0b !important;
-}
-body.dark .tipo-banner p {
-  color: #cbd5e1 !important;
-}
-
-/* --- Panel Desplegable de Detalles de Queja --- */
-/* --- Sección Desplegable de Detalles de Queja --- */
-body.dark .queja-info {
-  background-color: rgba(255, 0, 170, 0.05) !important;
-  border: 1px solid rgba(255, 0, 170, 0.25) !important;
-}
-body.dark .queja-info ul {
-  color: #cbd5e1 !important;
-}
-
-body.dark .queja-section {
-  background-color: #151f32 !important;
-  border: 1.5px dashed rgba(255, 0, 170, 0.4) !important;
-}
-
-/* --- Campos de Formulario (Inputs, Selects, Textareas) --- */
-body.dark legend {
-  color: #ffffff !important;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-body.dark .field label,
-body.dark .check-label {
-  color: #cbd5e1 !important;
-}
-
-body.dark .field input,
-body.dark .field select,
-body.dark .field textarea {
-  background-color: #151f32 !important; /* Fondo de entrada oscuro */
-  border: 1.5px solid rgba(255, 255, 255, 0.1) !important;
-  color: #ffffff !important;
-}
-
-body.dark .field input:focus,
-body.dark .field select:focus,
-body.dark .field textarea:focus {
-  border-color: var(--pink) !important;
-  box-shadow: 0 0 0 3px rgba(255, 0, 170, 0.25) !important;
-  background-color: #1e293b !important;
-}
-
-/* --- Validación de Errores y Aciertos --- */
-body.dark .field input.invalid,
-body.dark .field select.invalid,
-body.dark .field textarea.invalid {
-  border-color: #ef4444 !important;
-  background-color: rgba(239, 68, 68, 0.1) !important;
-}
-
-body.dark .field input.valid,
-body.dark .field select.valid,
-body.dark .field textarea.valid {
-  border-color: #10b981 !important;
-}
-
-/* --- Chips de Selección de Radio y Checkbox --- */
-body.dark .radio-chip span,
-body.dark .check-item {
-  background-color: #151f32 !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.1) !important;
-  color: #cbd5e1 !important;
-}
-
-body.dark .check-item:hover {
-  border-color: var(--pink) !important;
-  background-color: rgba(255, 0, 170, 0.08) !important;
-}
-
-body.dark .radio-chip input:checked + span {
-  background-color: var(--pink) !important;
-  color: #ffffff !important;
-  border-color: var(--pink) !important;
-}
-
-/* --- Estrellas de Calificación --- */
-body.dark .star {
-  color: #334155 !important; /* Estrellas inactivas oscurecidas */
-}
-body.dark .star:hover,
-body.dark .star.hover,
-body.dark .star.active {
-  color: #fbbf24 !important; /* Color dorado brillante al seleccionar */
-}
-
-body.dark .cal-label {
-  color: #94a3b8 !important;
-}
-
-/* --- Botones --- */
-body.dark .btn--sec {
-  background-color: #334155 !important;
-  color: #f8fafc !important;
-}
-body.dark .btn--sec:hover {
-  background-color: #475569 !important;
-}
-
-/* --- Modal Final de Éxito --- */
-body.dark .modal-bg {
-  background-color: rgba(0, 0, 0, 0.8) !important;
-}
-
-body.dark .modal {
-  background-color: #1e293b !important;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
-}
-
-body.dark .modal h2 {
-  color: #ffffff !important;
-}
-
-body.dark .modal__num {
-  background-color: #151f32 !important;
-  color: #cbd5e1 !important;
-}
-
-/* ══════════════════════════════════════════════════════
-   MEJORAS — diseño más profesional y elegante
-   (todo lo anterior se mantiene intacto; estas reglas
-   refinan look & feel, modo claro y oscuro)
-   ══════════════════════════════════════════════════════ */
-
-/* --- Hero: textura sutil tipo papel oficial + sombra de profundidad --- */
-.hero {
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.07) 0%, transparent 45%),
-    linear-gradient(135deg, #ff00aa 0%, #a3006e 100%) !important;
-  background-image:
-    linear-gradient(135deg, rgba(255,255,255,.07) 0%, transparent 45%),
-    linear-gradient(135deg, #ff00aa 0%, #a3006e 100%) !important;
-  box-shadow: 0 8px 30px rgba(179,0,110,.25);
-}
-.hero h1 {
-  letter-spacing: .2px;
-  text-shadow: 0 2px 18px rgba(0,0,0,.12);
-}
-.hero p {
-  opacity: .92;
-}
-
-/* --- Card principal: sombra más profunda y borde casi invisible --- */
-.card {
-  border: 1px solid rgba(0,0,0,.04);
-  box-shadow:
-    0 1px 2px rgba(0,0,0,.04),
-    0 16px 40px rgba(0,0,0,.08);
-}
-
-.card__head h2 {
-  letter-spacing: .15px;
-}
-
-/* --- Legend / numeración de secciones: más "expediente oficial" --- */
-legend {
-  position: relative;
-}
-.num {
-  box-shadow: 0 2px 6px rgba(26,26,46,.25);
-  font-family: var(--font-display);
-  font-size: 12px;
-}
-.num--pink {
-  box-shadow: 0 2px 8px rgba(255,0,170,.35);
-}
-
-/* --- Tipo selector (Reclamación/Queja): hover más elegante --- */
-.tipo__card {
-  transition: background .2s ease, border-color .2s ease, transform .15s ease;
-}
-.tipo__opt:hover .tipo__card {
-  background: #fff7fc;
-}
-.tipo__opt input:checked + .tipo__card {
-  box-shadow: inset 0 -3px 0 var(--pink);
-}
-
-/* --- Campos de formulario: foco más refinado --- */
-.field input,
-.field select,
-.field textarea {
-  transition: border .2s ease, box-shadow .2s ease, background .2s ease;
-}
-.field input:hover:not(:focus),
-.field select:hover:not(:focus),
-.field textarea:hover:not(:focus) {
-  border-color: #d8d8de;
-}
-
-/* --- Radio chips y checkboxes: micro-interacción al elegir --- */
-.radio-chip input:checked + span {
-  box-shadow: 0 3px 10px rgba(255,0,170,.3);
-  transform: translateY(-1px);
-}
-.check-item {
-  transition: all .2s ease, transform .15s ease;
-}
-.check-item:has(input:checked) {
-  border-color: var(--pink);
-  background: #fff0f7;
-  box-shadow: 0 2px 8px rgba(255,0,170,.12);
-}
-
-/* --- Estrellas: easing más suave --- */
-.star {
-  transition: color .15s ease, transform .15s cubic-bezier(.34,1.56,.64,1);
-}
-
-/* --- Botones: elevación y feedback más profesional --- */
-.btn--pri {
-  box-shadow: 0 4px 14px rgba(255,0,170,.3);
-}
-.btn--pri:hover {
-  box-shadow: 0 6px 18px rgba(255,0,170,.4);
-}
-.btn--pri:active:not(:disabled) {
-  transform: translateY(0) scale(.98);
-}
-.btn--sec:active {
-  transform: scale(.98);
-}
-
-/* --- Aside / tarjetas info: leve elevación al hover --- */
-.info {
-  transition: box-shadow .25s ease, transform .25s ease;
-  border: 1px solid rgba(0,0,0,.04);
-}
-.info:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(0,0,0,.1);
-}
-.num-hoja {
-  letter-spacing: .3px;
-}
-
-/* --- Modal de confirmación: entrada más elegante + ícono con halo --- */
-.modal {
-  border: 1px solid rgba(0,0,0,.04);
-}
-.modal__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  animation: modalIconPop .45s cubic-bezier(.34,1.56,.64,1);
-}
-@keyframes modalIconPop {
-  0%   { transform: scale(.4); opacity: 0; }
-  60%  { transform: scale(1.15); opacity: 1; }
-  100% { transform: scale(1); }
-}
-.modal__num {
-  border: 1px solid rgba(255,0,170,.12);
-}
-.modal__btns .btn--pri {
-  box-shadow: 0 4px 14px rgba(255,0,170,.3);
-}
-
-/* --- Modo oscuro: ajustes finos para coherencia con las mejoras --- */
-body.dark .hero {
-  box-shadow: 0 8px 34px rgba(0,0,0,.45);
-}
-body.dark .card {
-  border: 1px solid rgba(255,255,255,.05);
-}
-body.dark .info {
-  border: 1px solid rgba(255,255,255,.05);
-}
-body.dark .info:hover {
-  box-shadow: 0 12px 30px rgba(0,0,0,.35);
-}
-body.dark .tipo__opt:hover .tipo__card {
-  background-color: #182338 !important;
-}
-body.dark .check-item:has(input:checked) {
-  border-color: var(--pink) !important;
-  background-color: rgba(255,0,170,.1) !important;
-}
-body.dark .modal {
-  border: 1px solid rgba(255,255,255,.07);
-}
-
-/* --- Accesibilidad: foco visible consistente con el resto del sitio --- */
-.btn:focus-visible,
-.quick-btn:focus-visible,
-.radio-chip input:focus-visible + span,
-.check-item input:focus-visible {
-  outline: 2px solid var(--pink);
-  outline-offset: 2px;
-}
-
-/* --- Respeta preferencia de reducción de movimiento --- */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
-  }
-}
-
-/* ══════════════════════════════════════════════════════
-   MEJORAS 2 — pulido específico de Reclamación y Queja
-   (se suma a las mejoras anteriores, sin reemplazar nada)
-   ══════════════════════════════════════════════════════ */
-
-/* --- Banner de tipo (amarillo): más cálido y con ícono destacado --- */
-.tipo-banner {
-  position: relative;
-  box-shadow: 0 2px 10px rgba(245,158,11,.1);
-}
-.tipo-banner > span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  background: rgba(245,158,11,.12);
-  border-radius: 50%;
-}
-
-/* --- Panel "¿Qué es una Queja?": tarjeta más definida --- */
-.queja-info {
-  box-shadow: 0 2px 12px rgba(255,0,170,.06);
-}
-.queja-info h4 {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.queja-info li {
-  position: relative;
-}
-
-/* --- Sección de Queja (fieldset punteado): más "carpeta especial" --- */
-.queja-section {
-  box-shadow: 0 2px 14px rgba(255,0,170,.05);
-  position: relative;
-}
-.queja-section legend {
-  border-bottom-color: rgba(255,0,170,.25);
-}
-
-/* --- Radio chips de Tipo de Atención / Primera vez: tamaño táctil mejor --- */
-.radio-chip span {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-/* --- Checkboxes de motivos: alineación e ícono más cuidados --- */
-.check-item {
-  line-height: 1.4;
-}
-.check-item input[type="checkbox"] {
-  transition: transform .15s ease;
-}
-.check-item input[type="checkbox"]:checked {
-  transform: scale(1.08);
-}
-
-/* --- Bloque de estrellas: contenedor con leve respiro visual --- */
-.stars {
-  padding: 2px 0;
-}
-
-/* --- Referencia de queja anterior: aparece con más cuidado --- */
-#ref-anterior {
-  animation: slideDown .25s ease;
-}
-
-/* --- Textareas (Descripción / Pedido): foco más generoso --- */
-.field textarea:focus {
-  box-shadow: 0 0 0 4px rgba(255,0,170,.1);
-}
-
-/* --- Checkbox de aceptación final: más prominente --- */
-.check-wrap {
-  padding: 12px 14px;
-  background: #fafafa;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  transition: border-color .2s ease, background .2s ease;
-}
-.check-wrap:has(input:checked) {
-  border-color: rgba(255,0,170,.3);
-  background: #fff7fc;
-}
-
-/* --- Botón Limpiar: menos competencia visual con el primario --- */
-.btn--sec {
-  border: 1px solid var(--border);
-}
-
-/* --- Modo oscuro: complementos para los elementos de Queja --- */
-body.dark .tipo-banner > span {
-  background: rgba(245,158,11,.15);
-}
-body.dark .check-wrap {
-  background-color: #151f32 !important;
-  border-color: rgba(255,255,255,.08) !important;
-}
-body.dark .check-wrap:has(input:checked) {
-  border-color: rgba(255,0,170,.35) !important;
-  background-color: rgba(255,0,170,.07) !important;
-}
-body.dark .btn--sec {
-  border: 1px solid rgba(255,255,255,.08);
-}
-
-/* ══════════════════════════════════════════════════════
-   MEJORAS 3 — acabado premium
-   (acento dorado de cortesía, tipografía editorial con
-   más protagonismo, sombras cinematográficas. Se suma a
-   todo lo anterior sin reemplazar nada)
-   ══════════════════════════════════════════════════════ */
-
-:root {
-  --gold: #c9a04a;
-  --gold-soft: rgba(201,160,74,.35);
-}
-
-/* --- Hero: línea dorada fina como detalle de papelería oficial --- */
-.hero {
-  border-bottom: 1px solid var(--gold-soft);
-}
-.hero__icon {
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,.25));
-}
-
-/* --- Card: filete dorado sutil en el borde superior --- */
-.card {
-  position: relative;
-}
-.card::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--pink) 0%, var(--gold) 50%, var(--pink) 100%);
-  opacity: .55;
-  border-radius: 16px 16px 0 0;
-}
-
-/* --- Encabezado de tarjeta: jerarquía editorial más marcada --- */
-.card__head h2 {
-  font-size: 20px;
-  position: relative;
+.libro .info {
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.libro .info h3 { margin: 0 0 8px; font-size: 1rem; font-weight: 700; color: var(--ink); }
+.libro .info p { margin: 0; font-size: 0.93rem; color: var(--muted); }
+.libro .info p strong { color: var(--ink); }
+.libro .info__links { display: flex; flex-direction: column; gap: 4px; margin-top: 10px !important; }
+.libro .info__links a { color: var(--accent); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+.libro .info__links a:hover { text-decoration: underline; }
+
+.libro .num-hoja {
   display: inline-block;
-}
-
-/* --- Legend: tipografía display con tracking más cuidado --- */
-legend {
-  font-family: var(--font-display);
-  font-size: 15px;
+  padding: 8px 14px;
+  border: 1.5px solid var(--accent);
+  border-radius: 999px;
+  background: var(--tint);
+  color: var(--accent);
+  font-size: 1.1rem;
   font-weight: 700;
-  letter-spacing: .2px;
+  letter-spacing: 0.02em;
 }
+.libro .num-hoja.is-empty { font-size: 0.9rem; font-weight: 500; letter-spacing: 0; color: var(--muted); border-style: dashed; background: transparent; }
 
-/* --- Num: anillo dorado fino alrededor del círculo numerado --- */
-.num {
-  box-shadow:
-    0 2px 6px rgba(26,26,46,.25),
-    0 0 0 2px rgba(201,160,74,.25);
-}
-.num--pink {
-  box-shadow:
-    0 2px 8px rgba(255,0,170,.35),
-    0 0 0 2px rgba(201,160,74,.3);
-}
+.libro .prov { margin: 0; font-size: 0.9rem; }
+.libro .prov dt { margin-top: 8px; font-size: 0.8rem; font-weight: 600; color: var(--muted); }
+.libro .prov dt:first-child { margin-top: 0; }
+.libro .prov dd { margin: 0; color: var(--ink); }
 
-/* --- Nro. de Hoja: tratamiento de "sello" editorial --- */
-.info--pink {
-  position: relative;
-  overflow: hidden;
-}
-.num-hoja {
-  font-size: 30px;
-  font-weight: 800;
-}
-
-/* --- Botón primario: gradiente sutil en vez de color plano --- */
-.btn--pri {
-  background: linear-gradient(135deg, var(--pink) 0%, var(--pink-hover) 100%);
-  position: relative;
-}
-.btn--pri:hover {
-  background: linear-gradient(135deg, #ff2bb8 0%, var(--pink-hover) 100%);
-}
-
-/* --- Modal de éxito: borde dorado fino + sombra más profunda y suave --- */
-.modal {
-  box-shadow:
-    0 30px 80px rgba(0,0,0,.25),
-    0 0 0 1px var(--gold-soft);
-}
-.modal h2 {
-  font-size: 22px;
-}
-.modal__num {
-  background: linear-gradient(135deg, #fff7fc 0%, var(--gray-light) 100%);
-}
-
-/* --- Tarjetas del aside: tipografía display en los títulos --- */
-.info h3 {
-  font-family: var(--font-display);
-  font-size: 14px;
-  letter-spacing: .1px;
-}
-
-/* --- Estrellas activas: leve resplandor dorado --- */
-.star.active {
-  filter: drop-shadow(0 0 3px rgba(245,158,11,.4));
-}
-
-/* --- Inputs: sombra interior muy sutil para sensación de profundidad --- */
-.field input,
-.field select,
-.field textarea {
-  box-shadow: inset 0 1px 2px rgba(0,0,0,.02);
-}
-
-/* --- Modo oscuro: ajustes del acabado premium --- */
-body.dark .hero {
-  border-bottom-color: rgba(201,160,74,.25);
-}
-body.dark .card::before {
-  opacity: .4;
-}
-body.dark .num {
-  box-shadow:
-    0 2px 6px rgba(0,0,0,.4),
-    0 0 0 2px rgba(201,160,74,.2);
-}
-body.dark .modal {
-  box-shadow:
-    0 30px 80px rgba(0,0,0,.5),
-    0 0 0 1px rgba(201,160,74,.18);
-}
-body.dark .modal__num {
-  background: linear-gradient(135deg, #1e293b 0%, #151f32 100%) !important;
-}
-
-/* ══════════════════════════════════════════════════════
-   MEJORAS 4 — jerarquía y presencia (salto premium real)
-   Separación clara entre secciones, tratamiento de
-   íconos en legend, botón de envío con más peso visual.
-   Se suma a todo lo anterior sin reemplazar nada.
-   ══════════════════════════════════════════════════════ */
-
-/* --- Separación fuerte entre fieldsets: cada sección respira --- */
-fieldset.section {
-  padding-bottom: 4px;
-}
-fieldset.section + fieldset.section {
-  margin-top: 8px;
-}
-
-/* --- Legend: emoji/ícono dentro de un contenedor con identidad propia --- */
-legend {
-  gap: 12px;
-  padding: 6px 0 14px;
-  margin-bottom: 22px;
-  border-bottom: 1.5px solid var(--border);
-}
-legend::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -1.5px;
-  width: 48px;
-  height: 1.5px;
-  background: linear-gradient(90deg, var(--pink), var(--gold));
-}
-
-/* Si el legend trae un emoji como primer carácter de texto suelto
-   (ej. "📋 Datos del Consumidor"), lo envolvemos visualmente dándole
-   tamaño propio sin tocar el HTML: */
-legend {
-  font-size: 16px;
-}
-
-/* --- El número circular se separa más claramente del título --- */
-.num {
-  margin-right: 2px;
-}
-
-/* --- Campos: más aire vertical entre filas para sensación premium --- */
-.grid {
-  gap: 18px 16px;
-}
-.field {
-  gap: 7px;
-}
-
-/* --- Inputs: altura ligeramente mayor, tacto más cómodo --- */
-.field input,
-.field select,
-.field textarea {
-  padding: 11px 14px;
-  font-size: 13.5px;
-}
-
-/* --- Botón de envío: el protagonista real del formulario --- */
-.actions {
-  margin-top: 8px;
-  padding-top: 18px;
-}
-.btn--pri {
-  padding: 13px 32px;
-  font-size: 14px;
-  letter-spacing: .2px;
-  box-shadow: 0 6px 20px rgba(255,0,170,.35);
-}
-.btn--pri:hover {
-  box-shadow: 0 8px 26px rgba(255,0,170,.45);
-  transform: translateY(-2px);
-}
-
-/* --- Card head: separación más clara antes del selector tipo --- */
-.card__head {
-  padding: 28px 28px 14px;
-}
-#libroForm {
-  padding: 0 28px 28px;
-}
-
-/* --- Tipo selector: altura y presencia mayor --- */
-.tipo__card {
-  min-height: 80px;
-  padding: 16px 22px;
-}
-.tipo__emoji {
-  font-size: 26px;
-}
-
-/* --- Banner de tipo: tipografía más definida --- */
-.tipo-banner strong {
-  font-size: 14px;
-  font-family: var(--font-display);
-}
-
-/* --- Aside: títulos con más jerarquía, números/datos más grandes --- */
-.info {
-  padding: 18px 16px;
-}
-.info h3 {
-  font-size: 13.5px;
-  margin-bottom: 10px;
-}
-
-/* --- Modo oscuro: ajustes de esta capa de jerarquía --- */
-body.dark legend {
-  border-bottom-color: rgba(255,255,255,.1);
-}
-
-/* ══════════════════════════════════════════════════════
-   MEJORAS 5 — ejecución premium definitiva
-   Mismo magenta de marca, pero con tipografía protagonista,
-   espaciado generoso deliberado y un sello de documento
-   oficial para el número de hoja. Se monta sobre todo lo
-   anterior sin reemplazar ni eliminar nada.
-   ══════════════════════════════════════════════════════ */
-
-:root {
-  --ink: #2b1220;
-  --paper: #faf8f9;
-}
-
-body {
-  background: var(--paper);
-}
-
-/* --- HERO: tipografía mucho más protagonista --- */
-.hero {
-  padding: 56px 32px 50px;
-}
-.hero__inner {
-  gap: 24px;
-}
-.hero__icon {
-  font-size: 56px;
-}
-.hero h1 {
-  font-size: clamp(2.3rem, 5.5vw, 3.6rem);
-  font-weight: 800;
-  letter-spacing: -.3px;
-}
-.hero p {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 15.5px;
-  margin-top: 10px;
-  opacity: .95;
-}
-
-/* --- MAIN: más aire general, composición menos apretada --- */
-.main {
-  margin: 40px auto 80px;
-}
-.layout {
-  gap: 28px;
-}
-
-/* --- CARD: respiro generoso --- */
-.card__head {
-  padding: 34px 34px 16px;
-}
-.card__head h2 {
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: -.2px;
-}
-.card__head p {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 13.5px;
-  margin-top: 6px;
-}
-#libroForm {
-  padding: 0 34px 34px;
-}
-
-/* --- Legend: tamaño y tracking editorial reales --- */
-legend {
-  font-size: 18px;
-  letter-spacing: .1px;
-  padding: 8px 0 16px;
-  margin-bottom: 26px;
-}
-fieldset.section {
-  margin-bottom: 32px;
-}
-
-/* --- Labels: tracking tipo formulario legal fino --- */
-.field label {
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: .4px;
-  text-transform: uppercase;
+/* ---------- Diálogos ---------- */
+.libro dialog.dlg {
+  width: min(560px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  padding: 28px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--surface);
   color: var(--ink);
-  opacity: .75;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  overflow: auto;
 }
-.check-label {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink);
-  opacity: .85;
+.libro dialog.dlg--sm { width: min(420px, calc(100vw - 32px)); }
+.libro dialog.dlg::backdrop { background: rgba(20, 8, 14, 0.6); }
+.libro dialog.dlg h2 { margin: 0 0 8px; font-family: 'Playfair Display', serif; font-size: 1.5rem; }
+.libro dialog.dlg p { margin: 0 0 10px; color: var(--muted); }
+
+.libro .constancia { text-align: left; }
+.libro .dlg__icon { font-size: 44px; color: var(--ok); margin-bottom: 4px; }
+.libro .modal__num {
+  display: inline-block;
+  margin: 6px 0 14px;
+  padding: 8px 16px;
+  border: 1.5px solid var(--accent);
+  border-radius: 999px;
+  background: var(--tint);
+  color: var(--accent);
+  font-size: 1.05rem;
+}
+.libro .modal__num strong { font-size: 1.2rem; }
+.libro .modal__nota { font-size: 0.88rem; }
+
+.libro .resumen {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 14px;
+  margin: 0 0 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+.libro .resumen dt { font-weight: 600; color: var(--muted); }
+.libro .resumen dd { margin: 0; color: var(--ink); overflow-wrap: anywhere; white-space: pre-line; }
+
+.libro .dlg__btns { display: flex; justify-content: flex-end; gap: 12px; margin-top: 18px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .libro .layout { grid-template-columns: 1fr; }
+  .libro .aside { position: static; order: 2; }
 }
 
-/* --- Grid: más espacio entre campos --- */
-.grid {
-  gap: 22px 20px;
+@media (max-width: 640px) {
+  .libro .hero { padding: 32px 16px 28px; }
+  .libro .layout { padding: 20px 12px 56px; }
+  .libro .card { padding: 20px 16px; border-radius: 14px; }
+  .libro .sec { padding: 18px 14px; }
+  .libro .grid,
+  .libro .checks,
+  .libro .tipo { grid-template-columns: 1fr; }
+  .libro .actions { flex-direction: column-reverse; }
+  .libro .actions .btn { width: 100%; }
+  .libro dialog.dlg { padding: 22px 18px; }
+  .libro .dlg__btns { flex-direction: column-reverse; }
+  .libro .dlg__btns .btn { width: 100%; }
 }
 
-/* --- Tipo selector: mayor presencia y peso --- */
-.tipo__card {
-  min-height: 88px;
-  padding: 18px 24px;
-}
-.tipo__card strong {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 700;
-}
-.tipo__card small {
-  font-size: 11.5px;
+@media (prefers-reduced-motion: reduce) {
+  .libro * { transition: none !important; animation-duration: 0.01ms !important; }
 }
 
-/* --- Banner de tipo: más presencia, tipografía coherente --- */
-.tipo-banner {
-  padding: 16px 22px;
-  margin: 20px 34px;
-}
-.tipo-banner strong {
-  font-size: 15px;
-}
-.tipo-banner p {
-  font-size: 12.5px;
-  margin-top: 2px;
-}
-
-/* --- ASIDE: títulos editoriales, datos con mono para look "expediente" --- */
-.info {
-  padding: 22px 20px;
-}
-.info h3 {
-  font-size: 14.5px;
-  font-weight: 700;
-  letter-spacing: .1px;
-}
-.info p {
-  font-size: 12.5px;
-  line-height: 1.7;
-}
-
-/* --- SELLO DE DOCUMENTO: número de hoja como timbre oficial --- */
-.info--pink {
-  text-align: center;
-  padding: 24px 16px;
-}
-.info--pink h3 {
-  text-align: left;
-}
-.num-hoja {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--ink);
-  background: #fff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 110px;
-  padding: 14px 18px;
-  margin-top: 10px;
-  border: 2.5px solid var(--pink);
-  border-radius: 50%;
-  transform: rotate(-3deg);
-  box-shadow:
-    0 0 0 3px rgba(255,0,170,.08),
-    0 8px 18px rgba(255,0,170,.18);
-  position: relative;
-}
-.num-hoja::before {
-  content: "Nº";
-  position: absolute;
-  top: -9px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--gold);
-  color: #fff;
-  font-family: var(--font);
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: .5px;
-  padding: 2px 8px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,.2);
-}
-
-/* --- Botón primario: mayor presencia tipográfica --- */
-.btn--pri {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 15px;
-  padding: 14px 36px;
-}
-
-/* --- Modal: tipografía con más peso editorial --- */
-.modal {
-  padding: 44px 38px;
-}
-.modal h2 {
-  font-size: 25px;
-  font-weight: 800;
-}
-.modal p {
-  font-family: var(--font-display);
-  font-style: italic;
-}
-
-/* --- Modo oscuro: ajustes del sello y tipografía premium --- */
-body.dark {
-  background-color: #0f172a;
-}
-body.dark .field label,
-body.dark .check-label {
-  color: #e2e8f0 !important;
-  opacity: .8;
-}
-body.dark .num-hoja {
-  background: #151f32;
-  color: #f8fafc;
-  border-color: var(--pink);
-  box-shadow:
-    0 0 0 3px rgba(255,0,170,.12),
-    0 8px 18px rgba(0,0,0,.4);
-}
-
-@media (max-width: 560px) {
-  .hero {
-    padding: 40px 22px 36px;
+/* ---------- Impresión: solo la constancia ---------- */
+@media print {
+  body * { visibility: hidden !important; }
+  #constancia, #constancia * { visibility: visible !important; }
+  .libro dialog.dlg#modal {
+    position: absolute !important;
+    inset: 0 auto auto 0 !important;
+    width: 100% !important;
+    max-height: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    background: #fff !important;
   }
-  .card__head,
-  #libroForm {
-    padding-left: 22px;
-    padding-right: 22px;
-  }
-  .tipo-banner {
-    margin-left: 22px;
-    margin-right: 22px;
-  }
-}
-
-/* ══════════════════════════════════════════════════════
-   MEJORAS 6 — rediseño estructural (solo CSS, sin tocar HTML)
-   Cada sección se convierte en un panel propio tipo "página
-   de expediente" con número en marca de agua. Cambia la
-   sensación de layout sin reordenar el markup. Se monta
-   sobre todo lo anterior sin reemplazar ni eliminar nada.
-   ══════════════════════════════════════════════════════ */
-
-/* --- Fondo general más cálido y neutro detrás de la card --- */
-.main {
-  background: transparent;
-}
-
-/* --- Cada fieldset.section se convierte en un panel propio --- */
-fieldset.section {
-  position: relative;
-  background: #fcfafb;
-  border: 1px solid rgba(0,0,0,.05);
-  border-radius: 14px;
-  padding: 28px 26px 26px;
-  margin-bottom: 26px;
-  overflow: hidden;
-  box-shadow: 0 1px 0 rgba(0,0,0,.02);
-}
-
-/* --- Marca de agua: el número de sección a tamaño gigante de fondo --- */
-fieldset.section legend .num {
-  position: relative;
-  z-index: 2;
-}
-fieldset.section::after {
-  position: absolute;
-  top: -28px;
-  right: -6px;
-  font-family: var(--font-display);
-  font-size: 110px;
-  font-weight: 900;
-  line-height: 1;
-  color: var(--pink);
-  opacity: .045;
-  pointer-events: none;
-  z-index: 1;
-  user-select: none;
-}
-/* Asignamos el contenido de la marca de agua por orden de aparición,
-   sin necesidad de tocar el HTML: */
-fieldset.section:nth-of-type(1)::after { content: "01"; }
-fieldset.section:nth-of-type(2)::after { content: "02"; }
-fieldset.section:nth-of-type(3)::after { content: "Q"; font-size: 140px; top: -38px; }
-fieldset.section:nth-of-type(4)::after { content: "03"; }
-fieldset.section:nth-of-type(5)::after { content: "04"; }
-
-/* --- Legend dentro del panel: ya no necesita línea inferior propia,
-       el panel mismo hace de separador --- */
-legend {
-  border-bottom: none;
-  margin-bottom: 20px;
-  padding: 0 0 4px;
-  position: relative;
-  z-index: 2;
-}
-legend::after {
-  display: none;
-}
-
-/* --- Contenido del panel por encima de la marca de agua --- */
-fieldset.section .grid,
-fieldset.section .check-wrap,
-fieldset.section .fecha-reg {
-  position: relative;
-  z-index: 2;
-}
-
-/* --- Sección de Queja: panel con tinte propio para diferenciarla --- */
-.queja-section.section {
-  background: #fffaf9;
-  border: 1.5px solid rgba(255,0,170,.18);
-  box-shadow: 0 4px 16px rgba(255,0,170,.06);
-}
-
-/* --- Selector Reclamación/Queja: más contraste activo/inactivo --- */
-.tipo {
-  border-radius: 14px;
-  overflow: hidden;
-  border: 1px solid rgba(0,0,0,.06);
-  margin-bottom: 4px;
-}
-.tipo__card {
-  background: #f7f5f6;
-}
-.tipo__opt input:checked + .tipo__card {
-  background: #fff;
-  box-shadow: inset 0 -4px 0 var(--pink);
-  position: relative;
-}
-.tipo__opt input:checked + .tipo__card::after {
-  content: "✓";
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  width: 20px;
-  height: 20px;
-  background: var(--pink);
-  color: #fff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  font-weight: 700;
-}
-
-/* --- Inputs: blanco puro + borde definido, ya no grises planos --- */
-.field input,
-.field select,
-.field textarea {
-  background: #ffffff;
-  border: 1.5px solid #e2dfe2;
-}
-.field input:hover:not(:focus),
-.field select:hover:not(:focus),
-.field textarea:hover:not(:focus) {
-  border-color: #c9c5c9;
-}
-
-/* --- Corrige el color dorado/extraño del <select> placeholder --- */
-.field select {
-  color: #222;
-}
-.field select:invalid,
-.field select option[value=""] {
-  color: #8a8a8a;
-}
-
-/* --- Card head y form ya no necesitan tanto padding extra, porque
-       ahora los paneles internos aportan su propia separación --- */
-#libroForm {
-  padding-top: 6px;
-}
-
-/* --- Modo oscuro: paneles, marca de agua y selector --- */
-body.dark fieldset.section {
-  background: #19233a;
-  border-color: rgba(255,255,255,.06);
-}
-body.dark fieldset.section::after {
-  color: var(--pink);
-  opacity: .07;
-}
-body.dark .queja-section.section {
-  background: #1f1830;
-  border-color: rgba(255,0,170,.25);
-}
-body.dark .tipo__card {
-  background: #151f32;
-}
-body.dark .tipo__opt input:checked + .tipo__card {
-  background: #1e293b;
-}
-body.dark .field input,
-body.dark .field select,
-body.dark .field textarea {
-  background-color: #151f32 !important;
-  border-color: rgba(255,255,255,.12) !important;
-}
-body.dark .field select {
-  color: #fff;
-}
-
-/* ══════════════════════════════════════════════════════
-   FIX FINAL — Modal de confirmación "Enviado"
-   Se agrega al final para tener prioridad sobre todas las
-   capas anteriores y garantizar que el modal se vea bien
-   (overlay + tarjeta blanca + texto + botones visibles).
-   No se elimina ni reemplaza ninguna regla anterior.
-   ══════════════════════════════════════════════════════ */
-
-.modal-bg.open,
-.modal-bg.show {
-  display: flex !important;
-  visibility: visible !important;
-  position: fixed !important;
-  inset: 0 !important;
-  z-index: 2147483647 !important;
-  background: rgba(15, 10, 20, 0.65) !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 16px !important;
-  isolation: isolate !important;
-  transform: none !important;
-  filter: none !important;
-}
-
-.modal-bg.open .modal,
-.modal-bg.show .modal {
-  position: relative !important;
-  z-index: 2147483647 !important;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  background: #ffffff !important;
-  border-radius: 20px !important;
-  padding: 40px 32px !important;
-  max-width: 400px !important;
-  width: 100% !important;
-  text-align: center !important;
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35) !important;
-  border: 1px solid rgba(255, 0, 170, 0.15) !important;
-}
-
-.modal-bg.open .modal__icon,
-.modal-bg.show .modal__icon {
-  font-size: 56px !important;
-  margin-bottom: 14px !important;
-  line-height: 1 !important;
-}
-
-.modal-bg.open .modal h2,
-.modal-bg.show .modal h2 {
-  color: #1a1a1a !important;
-  font-size: 24px !important;
-  font-weight: 800 !important;
-  margin-bottom: 10px !important;
-}
-
-.modal-bg.open .modal p,
-.modal-bg.show .modal p {
-  color: #6b7280 !important;
-  font-size: 14px !important;
-  line-height: 1.5 !important;
-}
-
-.modal-bg.open .modal__num,
-.modal-bg.show .modal__num {
-  background: #fdf2f9 !important;
-  border: 1px solid rgba(255, 0, 170, 0.18) !important;
-  color: #333 !important;
-  border-radius: 10px !important;
-  padding: 12px 16px !important;
-  margin: 18px 0 10px !important;
-  font-size: 15px !important;
-}
-
-.modal-bg.open .modal__num strong,
-.modal-bg.show .modal__num strong {
-  color: #ff00aa !important;
-  font-size: 20px !important;
-}
-
-.modal-bg.open .modal__nota,
-.modal-bg.show .modal__nota {
-  color: #6b7280 !important;
-  font-size: 12.5px !important;
-  margin-bottom: 24px !important;
-}
-
-.modal-bg.open .modal__btns,
-.modal-bg.show .modal__btns {
-  display: flex !important;
-  gap: 10px !important;
-  justify-content: center !important;
-}
-
-.modal-bg.open .modal__btns .btn,
-.modal-bg.show .modal__btns .btn {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 12px 26px !important;
-  border-radius: 10px !important;
-  font-weight: 700 !important;
-  font-size: 13.5px !important;
-  border: none !important;
-  cursor: pointer !important;
-}
-
-.modal-bg.open .modal__btns .btn--sec,
-.modal-bg.show .modal__btns .btn--sec {
-  background: #f3f4f6 !important;
-  color: #333 !important;
-}
-
-.modal-bg.open .modal__btns .btn--pri,
-.modal-bg.show .modal__btns .btn--pri {
-  background: linear-gradient(135deg, #ff00aa 0%, #cc0088 100%) !important;
-  color: #fff !important;
-  box-shadow: 0 6px 18px rgba(255, 0, 170, 0.35) !important;
-}
-
-body.dark .modal-bg.open .modal,
-body.dark .modal-bg.show .modal {
-  background: #1e293b !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-}
-
-body.dark .modal-bg.open .modal h2,
-body.dark .modal-bg.show .modal h2 {
-  color: #ffffff !important;
-}
-
-body.dark .modal-bg.open .modal__num,
-body.dark .modal-bg.show .modal__num {
-  background: #151f32 !important;
-  border-color: rgba(255, 0, 170, 0.25) !important;
-}
-
-body.dark .modal-bg.open .modal__btns .btn--sec,
-body.dark .modal-bg.show .modal__btns .btn--sec {
-  background: #334155 !important;
-  color: #f8fafc !important;
+  #constancia { color: #000 !important; }
+  #constancia * { color: #000 !important; }
 }

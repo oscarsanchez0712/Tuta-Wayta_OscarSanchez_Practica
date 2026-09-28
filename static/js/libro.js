@@ -1,393 +1,484 @@
 (function () {
   'use strict';
 
-  // Base path del servidor: vacio en local, "/tutawayta" en produccion.
-  const libroBasePath = window.TUTA_BASE_PATH || (window.location.pathname.startsWith('/tutawayta') ? '/tutawayta' : '');
+  const basePath = window.TUTA_BASE_PATH ||
+    (window.location.pathname.startsWith('/tutawayta') ? '/tutawayta' : '');
 
-  const form = document.getElementById('libroForm');
-  if (!form) {
-    console.error("El formulario 'libroForm' no fue encontrado.");
-    return;
+  const $ = id => document.getElementById(id);
+  const form = $('libroForm');
+  if (!form) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---------------------------------------------------------------------
+  // Traducciones: usa el caché de i18n.js y cae al texto en español.
+  // ---------------------------------------------------------------------
+  function currentLang() {
+    return localStorage.getItem('tuta_lang') || document.documentElement.lang || 'es';
   }
 
-  const modal = document.getElementById('modal');
-  const modalNum = document.getElementById('modalNum');
-  const numHojaEl = document.getElementById('numero-hoja');
-  const fechaHoyEl = document.getElementById('fecha-hoy');
-  const counter = document.getElementById('char-counter');
-  const detalle = document.getElementById('detalle');
-  const tipoHid = document.getElementById('tipo');
-  const quejaExtra = document.getElementById('queja-extra');
-  const quejaInfo = document.getElementById('queja-info');
-  const banner = document.getElementById('tipo-banner');
-  const bannerIcon = document.getElementById('banner-icon');
-  const bannerTitle = document.getElementById('banner-title');
-  const bannerDesc = document.getElementById('banner-desc');
-  const numDetalle = document.getElementById('num-detalle');
-  const numConf = document.getElementById('num-confirmacion');
-  const btnEnviar = document.getElementById('btnEnviar');
-  const modalTitulo = document.getElementById('modal-titulo');
-  const modalIconEl = document.getElementById('modal-icon');
-  const modalPlazo = document.getElementById('modal-plazo');
-  const refAnterior = document.getElementById('ref-anterior');
-  const calificacion = document.getElementById('calificacion');
-  const calLabel = document.getElementById('cal-label');
+  function t(key, fallback, vars) {
+    const dict = (window.i18nData && window.i18nData[currentLang()]) || {};
+    let text = dict[key] || fallback;
+    if (vars) {
+      Object.keys(vars).forEach(k => { text = text.replace('{' + k + '}', vars[k]); });
+    }
+    return text;
+  }
+
+  // Cambia el texto y también la clave, para que un cambio de idioma lo retraduzca solo.
+  function setText(el, key, fallback) {
+    if (!el) return;
+    el.setAttribute('data-i18n', key);
+    el.textContent = t(key, fallback);
+  }
+
+  // ---------------------------------------------------------------------
+  // Referencias
+  // ---------------------------------------------------------------------
+  const tipoHid = $('tipo');
+  const quejaSec = $('queja-extra');
+  const quejaInfo = $('queja-info');
+  const banner = $('tipo-banner');
+  const bannerIcon = $('banner-icon');
+  const btnEnviar = $('btnEnviar');
+  const btnLabel = $('btnLabel');
+  const formAlert = $('formAlert');
+  const refAnterior = $('ref-anterior');
+  const numHojaEl = $('numero-hoja');
+  const modal = $('modal');
+  const dlgClear = $('dlgClear');
+  const calLabel = $('cal-label');
+
   let esQueja = false;
+  let enviando = false;
 
-  const hoy = new Date();
-  const hoyIso = hoy.toISOString().split('T')[0];
+  // ---------------------------------------------------------------------
+  // Fechas (hora local de la persona, no UTC)
+  // ---------------------------------------------------------------------
+  const pad = n => String(n).padStart(2, '0');
+  const isoLocal = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  const hoyIso = () => isoLocal(new Date());
 
+  const fechaHoyEl = $('fecha-hoy');
   if (fechaHoyEl) {
-    fechaHoyEl.textContent = hoy.toLocaleDateString('es-PE', {
-      day: '2-digit',
-      month: 'long',
-      year: 'numeric'
+    fechaHoyEl.textContent = new Date().toLocaleDateString('es-PE', {
+      day: '2-digit', month: 'long', year: 'numeric'
     });
   }
-
   ['fecha_compra', 'fecha_incidente'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.setAttribute('max', hoyIso);
+    const el = $(id);
+    if (el) el.max = hoyIso();
   });
 
-  const soloLetrasRegex = /[^a-záéíóúüñA-ZÁÉÍÓÚÜÑ\s]/g;
-  const soloNumerosRegex = /\D/g;
+  // ---------------------------------------------------------------------
+  // Documento de identidad según el tipo elegido
+  // ---------------------------------------------------------------------
+  const DOCS = {
+    DNI: {
+      re: /^\d{8}$/, max: 8, mode: 'numeric', ph: '12345678',
+      clean: v => v.replace(/\D/g, ''),
+      key: 'book_err_dni', fb: 'El DNI debe tener 8 dígitos.'
+    },
+    CE: {
+      re: /^[A-Za-z0-9]{9,12}$/, max: 12, mode: 'text', ph: '001234567',
+      clean: v => v.replace(/[^A-Za-z0-9]/g, ''),
+      key: 'book_err_ce', fb: 'El carnet de extranjería debe tener entre 9 y 12 caracteres.'
+    },
+    Pasaporte: {
+      re: /^[A-Za-z0-9]{6,12}$/, max: 12, mode: 'text', ph: 'AB123456',
+      clean: v => v.replace(/[^A-Za-z0-9]/g, ''),
+      key: 'book_err_pasaporte', fb: 'El pasaporte debe tener entre 6 y 12 caracteres.'
+    }
+  };
+  const DOC_DEFAULT = {
+    re: /^[A-Za-z0-9]{6,12}$/, max: 12, mode: 'text', ph: '12345678',
+    clean: v => v.replace(/[^A-Za-z0-9]/g, ''),
+    key: 'book_err_docnum', fb: 'Número de documento inválido.'
+  };
+  const docActual = () => DOCS[$('doc_tipo').value] || DOC_DEFAULT;
 
-  ['nombres', 'apellidos'].forEach(id => {
-    const input = document.getElementById(id);
+  function aplicarTipoDocumento() {
+    const cfg = docActual();
+    const input = $('doc_num');
+    input.maxLength = cfg.max;
+    input.inputMode = cfg.mode;
+    input.placeholder = cfg.ph;
+    input.value = cfg.clean(input.value).slice(0, cfg.max);
+    setError('doc_num', '');
+  }
+
+  // ---------------------------------------------------------------------
+  // Limpieza de texto mientras se escribe (sin bloquear teclas)
+  // ---------------------------------------------------------------------
+  const limpiadores = {
+    nombres: v => v.replace(/[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s'’-]/g, ''),
+    apellidos: v => v.replace(/[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s'’-]/g, ''),
+    telefono: v => v.replace(/\D/g, '').slice(0, 9),
+    doc_num: v => docActual().clean(v).slice(0, docActual().max)
+  };
+
+  Object.keys(limpiadores).forEach(id => {
+    const input = $(id);
     if (!input) return;
-
-    input.addEventListener('keydown', event => {
-      if (event.ctrlKey || event.metaKey || event.altKey || !event.key || event.key.length > 1) return;
-      if (!/^[a-záéíóúüñA-ZÁÉÍÓÚÜÑ\s]$/.test(event.key)) event.preventDefault();
-    });
-
     input.addEventListener('input', () => {
-      input.value = input.value.replace(soloLetrasRegex, '');
-    });
-
-    input.addEventListener('paste', event => {
-      const texto = (event.clipboardData || window.clipboardData).getData('text');
-      if (soloLetrasRegex.test(texto)) event.preventDefault();
+      const limpio = limpiadores[id](input.value);
+      if (limpio !== input.value) input.value = limpio;
     });
   });
 
-  ['doc_num', 'telefono'].forEach(id => {
-    const input = document.getElementById(id);
-    if (!input) return;
+  $('doc_tipo').addEventListener('change', aplicarTipoDocumento);
 
-    input.addEventListener('keydown', event => {
-      if (event.ctrlKey || event.metaKey || event.altKey || !event.key || event.key.length > 1) return;
-      if (!/^\d$/.test(event.key)) event.preventDefault();
-    });
+  // ---------------------------------------------------------------------
+  // Validación
+  // ---------------------------------------------------------------------
+  const requerido = () => t('book_err_required', 'Este campo es obligatorio.');
+  const minimo = n => t('book_err_min', 'Escribe al menos {n} caracteres.', { n });
 
-    input.addEventListener('input', () => {
-      input.value = input.value.replace(soloNumerosRegex, '');
-    });
-
-    input.addEventListener('paste', event => {
-      const texto = (event.clipboardData || window.clipboardData).getData('text');
-      if (soloNumerosRegex.test(texto)) event.preventDefault();
-    });
-  });
-
-  document.querySelectorAll('input[name="tipo_sel"]').forEach(radio => {
-    radio.addEventListener('change', () => actualizarTipo(radio.value));
-  });
-
-  document.querySelectorAll('input[name="primera_vez"]').forEach(radio => {
-    radio.addEventListener('change', () => {
-      if (refAnterior) refAnterior.style.display = radio.value === 'no' ? 'flex' : 'none';
-      setError('primera_vez', '');
-    });
-  });
-
-  if (detalle && counter) {
-    detalle.addEventListener('input', () => {
-      const length = detalle.value.length;
-      counter.textContent = `${length} / 1000 caracteres`;
-      counter.style.color = length > 900 ? '#d93025' : '';
-    });
-  }
-
-  function actualizarTipo(tipo) {
-    esQueja = tipo === 'queja';
-    tipoHid.value = tipo;
-
-    if (quejaExtra) quejaExtra.style.display = esQueja ? 'block' : 'none';
-    if (quejaInfo) quejaInfo.style.display = esQueja ? 'flex' : 'none';
-    if (banner) banner.className = 'tipo-banner' + (esQueja ? ' queja-mode' : '');
-
-    bannerIcon.textContent = esQueja ? '📢' : '⚠';
-    bannerTitle.textContent = esQueja ? 'Estas registrando una Queja' : 'Estas registrando una Reclamacion';
-    bannerDesc.textContent = esQueja
-      ? 'Malestar o descontento con la atencion recibida.'
-      : 'Disconformidad con productos o servicios.';
-
-    if (numDetalle) numDetalle.textContent = esQueja ? '04' : '03';
-    if (numConf) numConf.textContent = esQueja ? '05' : '04';
-
-    btnEnviar.textContent = esQueja ? 'Enviar Queja ->' : 'Enviar Reclamacion ->';
-    btnEnviar.classList.toggle('queja-mode', esQueja);
-
-    if (!esQueja) limpiarCamposQueja();
-  }
-
-  function setCalificacion(value) {
-    calificacion.value = value || '';
-    document.querySelectorAll('.star').forEach(star => {
-      star.classList.toggle('active', value && Number(star.dataset.val) <= Number(value));
-    });
-
-    const labels = { 1: 'Muy mala', 2: 'Mala', 3: 'Regular', 4: 'Buena', 5: 'Excelente' };
-    calLabel.textContent = labels[value] || 'Haz clic para calificar';
-    setError('calificacion', '');
-  }
-
-  document.querySelectorAll('input[name="tipo_atencion"]').forEach(radio => {
-    radio.addEventListener('change', () => setError('tipo_atencion', ''));
-  });
-
-  document.querySelectorAll('input[name="motivo[]"]').forEach(check => {
-    check.addEventListener('change', () => setError('motivos', ''));
-  });
-
-  document.querySelectorAll('.star').forEach(star => {
-    star.addEventListener('click', () => setCalificacion(star.dataset.val));
-  });
-
-  // =======================================================================
-  // VALIDACIÓN DE FORMULARIO (LA PIEZA CLAVE QUE FALTABA)
-  // =======================================================================
-
-  const reglasBase = {
-    nombres: { label: 'Nombres', minLen: 3 },
-    apellidos: { label: 'Apellidos', minLen: 3 },
-    doc_tipo: { label: 'Tipo de documento' },
-    doc_num: { label: 'Numero de documento', pattern: /^[0-9]{8,12}$/ },
-    email: { label: 'Correo', type: 'email' },
-    telefono: { label: 'Telefono', pattern: /^[0-9]{7,9}$/ },
-    fecha_compra: { label: 'Fecha de compra' },
-    bien: { label: 'Descripción del bien o servicio', minLen: 5 },
-    detalle: { label: 'Descripcion', minLen: 20 },
-    pedido: { label: 'Pedido', minLen: 10 }
+  const validadores = {
+    nombres: v => !v ? requerido() : v.length < 2 ? minimo(2) : '',
+    apellidos: v => !v ? requerido() : v.length < 2 ? minimo(2) : '',
+    doc_tipo: v => v ? '' : t('book_err_select', 'Selecciona una opción.'),
+    doc_num: v => {
+      if (!v) return requerido();
+      const cfg = docActual();
+      return cfg.re.test(v) ? '' : t(cfg.key, cfg.fb);
+    },
+    email: v => !v ? requerido()
+      : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? '' : t('book_err_email', 'Escribe un correo válido, por ejemplo nombre@correo.com.'),
+    telefono: v => !v ? requerido()
+      : /^\d{7,9}$/.test(v) ? '' : t('book_err_phone', 'El teléfono debe tener entre 7 y 9 dígitos.'),
+    direccion: v => !v ? requerido() : v.length < 5 ? minimo(5) : '',
+    monto: v => {
+      if (v === '') return '';
+      const n = Number(v);
+      return n >= 0 && n <= 99999 ? '' : t('book_err_amount', 'Escribe un monto entre 0 y 99999.');
+    },
+    fecha_compra: v => !v ? requerido()
+      : v > hoyIso() ? t('book_err_future', 'La fecha no puede ser futura.') : '',
+    bien: v => !v ? requerido() : v.length < 5 ? minimo(5) : '',
+    fecha_incidente: v => !v ? requerido()
+      : v > hoyIso() ? t('book_err_future', 'La fecha no puede ser futura.') : '',
+    detalle: v => !v ? requerido() : v.length < 20 ? minimo(20) : '',
+    pedido: v => !v ? requerido() : v.length < 10 ? minimo(10) : ''
   };
 
   function setError(id, msg) {
-    const error = document.getElementById('err-' + id);
-    const field = document.getElementById(id);
-    if (error) error.textContent = msg;
-    if (field) field.classList.toggle('bad', Boolean(msg));
+    const err = $('err-' + id);
+    const el = $(id);
+    if (err) err.textContent = msg || '';
+    if (!el) return;
+    el.classList.toggle('bad', Boolean(msg));
+    if (el.matches('input, select, textarea')) {
+      if (msg) el.setAttribute('aria-invalid', 'true');
+      else el.removeAttribute('aria-invalid');
+    }
   }
 
   function validarCampo(id) {
-    const regla = reglasBase[id];
-    const field = document.getElementById(id);
-    if (!regla || !field) return true;
-
-    const value = field.value.trim();
-    if (!value) {
-      setError(id, `El campo '${regla.label}' es obligatorio.`);
-      return false;
-    }
-    if (regla.minLen && value.length < regla.minLen) {
-      setError(id, `Mínimo ${regla.minLen} caracteres.`);
-      return false;
-    }
-    if (regla.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-      setError(id, 'El formato del correo es inválido.');
-      return false;
-    }
-    if (regla.pattern && !regla.pattern.test(value)) {
-      setError(id, `${regla.label} invalido.`);
-      return false;
-    }
-
-    setError(id, '');
-    return true;
+    const el = $(id);
+    if (!el || !validadores[id]) return true;
+    const msg = validadores[id](el.value.trim());
+    setError(id, msg);
+    return !msg;
   }
 
-  Object.keys(reglasBase).forEach(id => {
-    const field = document.getElementById(id);
-    if (!field) return;
-    field.addEventListener('blur', () => validarCampo(id));
-    field.addEventListener('input', () => {
-      if (field.classList.contains('bad')) validarCampo(id);
+  Object.keys(validadores).forEach(id => {
+    const el = $(id);
+    if (!el) return;
+    el.addEventListener('blur', () => {
+      // No molestar con "obligatorio" en campos que la persona nunca tocó.
+      if (el.value.trim() || el.classList.contains('bad')) validarCampo(id);
+    });
+    const evento = el.tagName === 'SELECT' || el.type === 'date' ? 'change' : 'input';
+    el.addEventListener(evento, () => {
+      if (el.classList.contains('bad')) validarCampo(id);
     });
   });
 
-  form.addEventListener('submit', event => {
-    event.preventDefault();
+  function validarGruposQueja() {
+    let ok = true;
+    if (!form.querySelector('input[name="tipo_atencion"]:checked')) {
+      setError('tipo_atencion', t('book_err_atencion', 'Selecciona el tipo de atención.'));
+      ok = false;
+    }
+    if (!form.querySelector('input[name="motivo[]"]:checked')) {
+      setError('motivos', t('book_err_motivo', 'Selecciona al menos un motivo.'));
+      ok = false;
+    }
+    if (!form.querySelector('input[name="calificacion"]:checked')) {
+      setError('calificacion', t('book_err_rating', 'Selecciona una calificación.'));
+      ok = false;
+    }
+    if (!form.querySelector('input[name="primera_vez"]:checked')) {
+      setError('primera_vez', t('book_err_first', 'Selecciona una opción.'));
+      ok = false;
+    }
+    return ok;
+  }
+
+  function validarTodo() {
+    const ids = ['nombres', 'apellidos', 'doc_tipo', 'doc_num', 'email', 'telefono', 'direccion',
+      'monto', 'fecha_compra', 'bien', 'detalle', 'pedido'];
+    if (esQueja) ids.push('fecha_incidente');
 
     let ok = true;
+    ids.forEach(id => { if (!validarCampo(id)) ok = false; });
+    if (esQueja && !validarGruposQueja()) ok = false;
 
-    if (esQueja) {
-      const tipoAtencion = document.querySelector('input[name="tipo_atencion"]:checked');
-      const motivos = document.querySelectorAll('input[name="motivo[]"]:checked');
-      const primeraVez = document.querySelector('input[name="primera_vez"]:checked');
-      const fechaIncidente = document.getElementById('fecha_incidente');
-
-      if (!fechaIncidente.value) {
-        setError('fecha_incidente', 'Fecha del incidente es obligatoria.');
-        ok = false;
-      } else {
-        setError('fecha_incidente', '');
-      }
-      if (!tipoAtencion) {
-        setError('tipo_atencion', 'Selecciona el tipo de atención.');
-        ok = false;
-      }
-      if (!motivos.length) {
-        setError('motivos', 'Selecciona al menos un motivo.');
-        ok = false;
-      }
-      if (!calificacion.value) {
-        setError('calificacion', 'Selecciona una calificación.');
-        ok = false;
-      }
-      if (!primeraVez) {
-        setError('primera_vez', 'Selecciona una opción.');
-        ok = false;
-      }
-    } else {
-      // Si NO es queja, solo validamos los campos base
-      Object.keys(reglasBase).forEach(id => {
-        if (!validarCampo(id)) ok = false;
-      });
-    }
-
-    const acepto = document.getElementById('acepto');
-    if (!acepto.checked) {
-      setError('acepto', 'Debes aceptar la declaración.');
+    if (!$('acepto').checked) {
+      setError('acepto', t('book_err_accept', 'Debes aceptar la declaración para enviar.'));
       ok = false;
     } else {
       setError('acepto', '');
     }
+    return ok;
+  }
 
-    if (!ok) {
-      const bad = form.querySelector('.bad');
-      if (bad) {
-        bad.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        bad.focus();
-      }
+  // Los grupos quitan su error al elegir algo
+  [['tipo_atencion', 'tipo_atencion'], ['motivos', 'motivo[]'], ['primera_vez', 'primera_vez']].forEach(([grupo, name]) => {
+    form.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
+      inp.addEventListener('change', () => setError(grupo, ''));
+    });
+  });
+  $('acepto').addEventListener('change', () => setError('acepto', ''));
+
+  // ---------------------------------------------------------------------
+  // Calificación, "primera vez" y contadores
+  // ---------------------------------------------------------------------
+  const ratingFallback = { 1: 'Muy mala', 2: 'Mala', 3: 'Regular', 4: 'Buena', 5: 'Excelente' };
+
+  function actualizarRating() {
+    const marcado = form.querySelector('input[name="calificacion"]:checked');
+    if (marcado) {
+      const v = marcado.value;
+      setText(calLabel, 'book_rating_' + v, ratingFallback[v]);
+      setError('calificacion', '');
+    } else {
+      setText(calLabel, 'book_rating_hint', 'Haz clic para calificar');
+    }
+  }
+  form.querySelectorAll('input[name="calificacion"]').forEach(r => r.addEventListener('change', actualizarRating));
+
+  form.querySelectorAll('input[name="primera_vez"]').forEach(r => {
+    r.addEventListener('change', () => { refAnterior.hidden = r.value !== 'no'; });
+  });
+
+  function contador(id, contId, max) {
+    const campo = $(id);
+    const cont = $(contId);
+    const pintar = () => {
+      const n = campo.value.length;
+      cont.textContent = t('book_char_count', '{n} / {max}', { n, max });
+      cont.classList.toggle('is-near', n > max * 0.9);
+    };
+    campo.addEventListener('input', pintar);
+    pintar();
+    return pintar;
+  }
+  const pintarDetalle = contador('detalle', 'cnt-detalle', 1000);
+  const pintarPedido = contador('pedido', 'cnt-pedido', 500);
+
+  // ---------------------------------------------------------------------
+  // Reclamación / Queja
+  // ---------------------------------------------------------------------
+  function resetQueja() {
+    quejaSec.querySelectorAll('input').forEach(inp => {
+      if (inp.type === 'radio' || inp.type === 'checkbox') inp.checked = false;
+      else inp.value = '';
+    });
+    refAnterior.hidden = true;
+    ['tipo_atencion', 'fecha_incidente', 'motivos', 'calificacion', 'primera_vez'].forEach(id => setError(id, ''));
+    actualizarRating();
+  }
+
+  function setTipo(tipo) {
+    esQueja = tipo === 'queja';
+    tipoHid.value = tipo;
+
+    // Un fieldset deshabilitado no envía sus campos al servidor.
+    quejaSec.hidden = !esQueja;
+    quejaSec.disabled = !esQueja;
+    quejaInfo.hidden = !esQueja;
+    banner.classList.toggle('is-queja', esQueja);
+    bannerIcon.textContent = esQueja ? 'campaign' : 'info';
+
+    setText($('banner-title'),
+      esQueja ? 'book_banner_complaint_title' : 'book_banner_claim_title',
+      esQueja ? 'Estás registrando una Queja' : 'Estás registrando una Reclamación');
+    setText($('banner-desc'),
+      esQueja ? 'book_banner_complaint_desc' : 'book_banner_claim_desc',
+      esQueja ? 'Malestar o descontento con la atención recibida.' : 'Disconformidad con productos o servicios.');
+
+    if (!enviando) {
+      setText(btnLabel,
+        esQueja ? 'book_btn_submit_complaint' : 'book_btn_submit',
+        esQueja ? 'Enviar Queja' : 'Enviar Reclamación');
+    }
+    if (!esQueja) resetQueja();
+  }
+
+  document.querySelectorAll('input[name="tipo_sel"]').forEach(r => {
+    r.addEventListener('change', () => { if (r.checked) setTipo(r.value); });
+  });
+
+  // ---------------------------------------------------------------------
+  // Envío
+  // ---------------------------------------------------------------------
+  function mostrarAlerta(msg) {
+    formAlert.textContent = msg;
+    formAlert.hidden = false;
+    formAlert.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+  }
+  function ocultarAlerta() {
+    formAlert.hidden = true;
+    formAlert.textContent = '';
+  }
+
+  function ocupado(si) {
+    enviando = si;
+    btnEnviar.disabled = si;
+    btnEnviar.classList.toggle('is-busy', si);
+    btnEnviar.setAttribute('aria-busy', String(si));
+    if (si) {
+      setText(btnLabel, 'book_sending', 'Enviando...');
+    } else {
+      setText(btnLabel,
+        esQueja ? 'book_btn_submit_complaint' : 'book_btn_submit',
+        esQueja ? 'Enviar Queja' : 'Enviar Reclamación');
+    }
+  }
+
+  function enfocarPrimerError() {
+    const bad = form.querySelector('.bad');
+    if (!bad) return;
+    bad.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+    const foco = bad.matches('input, select, textarea') ? bad : bad.querySelector('input');
+    if (foco) foco.focus({ preventScroll: true });
+  }
+
+  // El servidor guarda estos datos de la queja en campos propios.
+  function completarCamposServidor(fd) {
+    if (!esQueja) return;
+    const val = sel => (form.querySelector(sel) || {}).value || '';
+    const motivos = Array.from(form.querySelectorAll('input[name="motivo[]"]:checked')).map(el => el.value);
+    const partes = [
+      `Motivos: ${motivos.join(', ')}`,
+      `Calificacion: ${val('input[name="calificacion"]:checked')}/5`,
+      `Fecha incidente: ${val('#fecha_incidente')}`,
+      val('#hora_incidente') ? `Hora: ${val('#hora_incidente')}` : '',
+      `Primera vez: ${val('input[name="primera_vez"]:checked')}`,
+      val('#ref_queja').trim() ? `Referencia: ${val('#ref_queja').trim()}` : ''
+    ].filter(Boolean);
+
+    fd.set('area_queja', val('input[name="tipo_atencion"]:checked'));
+    fd.set('personal_queja', val('#personal').trim() || 'No especificado');
+    fd.set('gravedad', partes.join(' | '));
+  }
+
+  function llenarConstancia(numeroHoja) {
+    const v = id => $(id).value.trim();
+    $('modalNum').textContent = numeroHoja;
+    $('c-fecha').textContent = fechaHoyEl.textContent;
+    $('c-nombre').textContent = `${v('nombres')} ${v('apellidos')}`;
+    $('c-doc').textContent = `${$('doc_tipo').value} ${v('doc_num')}`;
+    $('c-bien').textContent = v('bien');
+    $('c-detalle').textContent = v('detalle');
+    $('c-pedido').textContent = v('pedido');
+
+    $('modal-icon').textContent = esQueja ? 'campaign' : 'check_circle';
+    setText($('modal-titulo'),
+      esQueja ? 'book_modal_complaint_title' : 'book_modal_title',
+      esQueja ? 'Queja registrada' : 'Reclamación registrada');
+
+    numHojaEl.removeAttribute('data-i18n');
+    numHojaEl.textContent = numeroHoja;
+    numHojaEl.classList.remove('is-empty');
+  }
+
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (enviando) return;
+    ocultarAlerta();
+
+    if (!validarTodo()) {
+      mostrarAlerta(t('book_err_form', 'Revisa los campos marcados en rojo antes de enviar.'));
+      enfocarPrimerError();
       return;
     }
 
-    const formData = new FormData(form);
-    completarCamposServidor(formData);
+    const fd = new FormData(form);
+    completarCamposServidor(fd);
 
-    // Usamos la ruta base dinamica para que funcione tanto en local como
-    // detras del subpath /tutawayta en produccion.
-    fetch(`${libroBasePath}/libro`, {
-      method: 'POST',
-      body: formData
-    })
-      .then(async response => {
-        let data;
-        try {
-          data = await response.json();
-        } catch (parseError) {
-          throw new Error(`El servidor respondio de forma inesperada (codigo ${response.status}). Avisa al equipo tecnico.`);
-        }
-        return data;
-      })
-      .then(data => {
-        btnEnviar.disabled = false; // Reactivar botón
-        if (data.ok) {
-          mostrarModal(esQueja, data.numero_hoja);
-          limpiar();
-        } else {
-          alert(data.msg || 'Error al registrar el formulario. Intenta nuevamente.');
-        }
-      })
-      .catch(error => {
-        btnEnviar.disabled = false; // Reactivar botón
-        alert('Error al conectar con el servidor: ' + error.message);
-      });
-  });
+    ocupado(true);
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 20000);
 
-  function completarCamposServidor(formData) {
-    if (tipoHid.value !== 'queja') return;
+    try {
+      const res = await fetch(`${basePath}/libro`, { method: 'POST', body: fd, signal: ctrl.signal });
+      let data = null;
+      try { data = await res.json(); } catch (_) { /* respuesta no JSON */ }
 
-    const tipoAtencion = document.querySelector('input[name="tipo_atencion"]:checked')?.value || '';
-    const motivos = Array.from(document.querySelectorAll('input[name="motivo[]"]:checked')).map(el => el.value);
-    const fechaIncidente = document.getElementById('fecha_incidente').value;
-    const horaIncidente = document.getElementById('hora_incidente').value;
-    const primeraVez = document.querySelector('input[name="primera_vez"]:checked')?.value || '';
-    const refQueja = document.getElementById('ref_queja').value.trim();
-    const personal = document.getElementById('personal').value.trim();
-
-    formData.set('area_queja', tipoAtencion);
-    formData.set('personal_queja', personal || 'No especificado');
-    formData.set(
-      'gravedad',
-      [
-        `Motivos: ${motivos.join(', ')}`,
-        `Calificacion: ${calificacion.value}/5`,
-        `Fecha incidente: ${fechaIncidente}`,
-        horaIncidente ? `Hora: ${horaIncidente}` : '',
-        `Primera vez: ${primeraVez}`,
-        refQueja ? `Referencia: ${refQueja}` : ''
-      ].filter(Boolean).join(' | ')
-    );
-  }
-
-  function mostrarModal(esQueja, numeroHojaServidor) {
-    const numHoja = numeroHojaServidor || generarNumHojaLocal();
-    if (numHojaEl) numHojaEl.textContent = numHoja;
-    if (modalNum) modalNum.textContent = numHoja;
-    if (modalIconEl) modalIconEl.textContent = esQueja ? '📢' : '✅';
-    if (modalTitulo) modalTitulo.textContent = esQueja ? 'Queja Registrada!' : 'Reclamacion Registrada!';
-    if (modalPlazo) modalPlazo.textContent = '15 dias habiles';
-    if (modal) modal.classList.add('open');
-  }
-
-  function generarNumHojaLocal() {
-    const correlativo = parseInt(localStorage.getItem('tw_cor') || '1', 10);
-    const numero = `${hoy.getFullYear()}-${String(correlativo).padStart(4, '0')}`;
-    localStorage.setItem('tw_cor', String(correlativo + 1));
-    return numero;
-  }
-
-  function limpiarCamposQueja() {
-    document.querySelectorAll('#queja-extra input').forEach(input => {
-      if (input.type === 'radio' || input.type === 'checkbox') input.checked = false;
-      else input.value = '';
-    });
-    setCalificacion('');
-    if (refAnterior) refAnterior.style.display = 'none';
-    ['tipo_atencion', 'fecha_incidente', 'motivos', 'calificacion', 'primera_vez'].forEach(id => setError(id, ''));
-  }
-
-  function limpiar() {
-    form.reset();
-    tipoHid.value = 'reclamacion';
-    document.querySelector('input[name="tipo_sel"][value="reclamacion"]').checked = true;
-    actualizarTipo('reclamacion');
-    if (counter) {
-      counter.textContent = '0 / 1000 caracteres';
-      counter.style.color = '';
+      if (res.ok && data && data.ok && data.numero_hoja) {
+        llenarConstancia(data.numero_hoja); // antes de limpiar el formulario
+        limpiarFormulario();
+        modal.showModal();
+      } else {
+        console.error('Libro de reclamaciones: respuesta inesperada', res.status, data);
+        mostrarAlerta(t('book_send_error',
+          'No pudimos registrar tu hoja. Inténtalo de nuevo en unos minutos o escríbenos por WhatsApp.'));
+      }
+    } catch (error) {
+      console.error('Libro de reclamaciones:', error);
+      mostrarAlerta(error.name === 'AbortError'
+        ? t('book_timeout', 'El servidor tardó demasiado en responder. Inténtalo de nuevo.')
+        : t('book_network_error', 'No hay conexión con el servidor. Revisa tu internet e inténtalo de nuevo.'));
+    } finally {
+      clearTimeout(timer);
+      ocupado(false);
     }
-    document.querySelectorAll('.err').forEach(el => { el.textContent = ''; });
-    document.querySelectorAll('.bad').forEach(el => { el.classList.remove('bad'); });
+  });
+
+  // ---------------------------------------------------------------------
+  // Limpiar y diálogos
+  // ---------------------------------------------------------------------
+  function limpiarFormulario() {
+    form.reset();
+    document.querySelector('input[name="tipo_sel"][value="reclamacion"]').checked = true;
+    setTipo('reclamacion');
+    aplicarTipoDocumento();
+    pintarDetalle();
+    pintarPedido();
+    form.querySelectorAll('.err').forEach(el => { el.textContent = ''; });
+    form.querySelectorAll('.bad').forEach(el => el.classList.remove('bad'));
+    form.querySelectorAll('[aria-invalid]').forEach(el => el.removeAttribute('aria-invalid'));
+    ocultarAlerta();
   }
 
-  document.getElementById('btnCerrar').addEventListener('click', () => {
-    modal.classList.remove('open');
+  $('btnLimpiar').addEventListener('click', () => dlgClear.showModal());
+  $('btnClearNo').addEventListener('click', () => dlgClear.close());
+  $('btnClearYes').addEventListener('click', () => {
+    dlgClear.close();
+    limpiarFormulario();
   });
 
-  modal.addEventListener('click', event => {
-    if (event.target === modal) modal.classList.remove('open');
+  $('btnCerrar').addEventListener('click', () => modal.close());
+  $('btnImprimir').addEventListener('click', () => window.print());
+
+  // Cerrar al hacer clic en el fondo oscuro
+  [modal, dlgClear].forEach(dlg => {
+    dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
   });
 
-  document.getElementById('btnImprimir').addEventListener('click', () => {
-    modal.classList.remove('open');
-    setTimeout(() => window.print(), 300);
+  // Al cambiar de idioma, refrescar los textos que arma el script
+  window.addEventListener('languageChanged', () => {
+    setTimeout(() => {
+      pintarDetalle();
+      pintarPedido();
+      actualizarRating();
+    }, 250);
   });
 
-  document.getElementById('btnLimpiar').addEventListener('click', () => {
-    if (confirm('Limpiar todos los campos?')) limpiar();
-  });
-
-  actualizarTipo('reclamacion');
+  setTipo('reclamacion');
+  aplicarTipoDocumento();
 })();
