@@ -515,3 +515,103 @@ body.dark .bg-gray-50 {
   transform: translateY(-3px);
   box-shadow: 0 12px 28px rgba(185, 0, 96, 0.35);
 }
+.floating-social {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.floating-social-icons {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 12px;
+}
+
+.floating-social-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #e0006e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  box-shadow: 0 4px 16px rgba(224, 0, 110, 0.3);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity 0.2s ease,
+              background 0.2s ease,
+              color 0.2s ease;
+  opacity: 0;
+  transform: scale(0.4) translateY(10px);
+  pointer-events: none;
+}
+
+.floating-social-btn:hover {
+  background: #e0006e;
+  color: #ffffff;
+  transform: scale(1.1) translateY(-2px);
+}
+
+.floating-social.open .floating-social-btn {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+
+.floating-social.open .floating-social-icons a:nth-child(1) { transition-delay: 0.12s; }
+.floating-social.open .floating-social-icons a:nth-child(2) { transition-delay: 0.08s; }
+.floating-social.open .floating-social-icons a:nth-child(3) { transition-delay: 0.04s; }
+.floating-social.open .floating-social-icons a:nth-child(4) { transition-delay: 0s; }
+
+.floating-social-toggle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #e0006e, #b00057);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: 0 4px 24px rgba(224, 0, 110, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floating-social-toggle:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 32px rgba(224, 0, 110, 0.7);
+}
+
+.floating-social-toggle i {
+  transition: transform 0.3s ease;
+}
+.floating-social.open .floating-social-toggle i {
+  transform: rotate(135deg);
+}
+
+@media (max-width: 768px) {
+  .floating-social {
+    left: 12px;
+    bottom: 12px;
+    gap: 8px;
+  }
+  .floating-social-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  .floating-social-toggle {
+    width: 46px;
+    height: 46px;
+    font-size: 1.1rem;
+  }
+}

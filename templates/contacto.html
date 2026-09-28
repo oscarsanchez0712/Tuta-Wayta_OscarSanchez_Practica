@@ -204,6 +204,50 @@
 
 {% include "chatbox.html" %}
 
+<!-- ══════════════════════════════════════
+     REDES SOCIALES FLOTANTES DESPLEGABLES (borde izquierdo)
+══════════════════════════════════════ -->
+<div class="floating-social" id="floatingSocial">
+  <div class="floating-social-icons" id="floatingSocialIcons">
+    <a href="https://www.instagram.com/reel/DV8zRACjObT/?hl=es-la" target="_blank" rel="noopener" class="floating-social-btn" title="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://www.facebook.com/groups/pitahayaesquejes/?locale=es_LA" target="_blank" rel="noopener" class="floating-social-btn" title="Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://www.youtube.com/watch?v=3quk9SvEgz0&t=11s" target="_blank" rel="noopener" class="floating-social-btn" title="YouTube">
+      <i class="fab fa-youtube"></i>
+    </a>
+    <a href="https://www.tiktok.com/@germancaballeroz/video/7279862021737254150?q=sobre%20pitahaya%20ca%C3%B1ete&t=1781152511204" target="_blank" rel="noopener" class="floating-social-btn" title="TikTok">
+      <i class="fab fa-tiktok"></i>
+    </a>
+  </div>
+  <button type="button" class="floating-social-toggle" id="floatingSocialToggle" title="Síguenos en redes" aria-expanded="false">
+    <i class="fas fa-share-alt"></i>
+  </button>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const wrap = document.getElementById('floatingSocial');
+    const toggleBtn = document.getElementById('floatingSocialToggle');
+    if (!wrap || !toggleBtn) return;
+
+    toggleBtn.addEventListener('click', function () {
+      const isOpen = wrap.classList.toggle('open');
+      toggleBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Cierra el menú si el usuario hace clic fuera de él
+    document.addEventListener('click', function (e) {
+      if (!wrap.contains(e.target)) {
+        wrap.classList.remove('open');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+</script>
+
 <!-- =======================================================
      PANTALLA DE CONFIRMACIÓN DE ENVÍO
      ======================================================= -->
