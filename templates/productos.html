@@ -25,6 +25,23 @@
     <button class="filtro-btn" data-filter="organicos" data-i18n="Orgánicos">Orgánicos</button>
   </div>
 
+  <div class="productos-herramientas" id="productosHerramientas">
+    <div class="prod-buscador">
+      <span class="material-symbols-outlined" aria-hidden="true">search</span>
+      <input type="search" id="prodBuscador" placeholder="Buscar producto por nombre..." autocomplete="off" aria-label="Buscar producto">
+      <button type="button" id="prodBuscadorLimpiar" class="prod-limpiar" aria-label="Limpiar búsqueda" hidden>&times;</button>
+    </div>
+    <div class="prod-orden">
+      <label for="prodOrden" data-i18n="prod_orden_label">Ordenar por</label>
+      <select id="prodOrden">
+        <option value="default" data-i18n="prod_orden_default">Relevancia</option>
+        <option value="asc" data-i18n="prod_orden_menor">Precio: menor a mayor</option>
+        <option value="desc" data-i18n="prod_orden_mayor">Precio: mayor a menor</option>
+        <option value="az" data-i18n="prod_orden_az">Nombre: A-Z</option>
+      </select>
+    </div>
+  </div>
+
   <div class="productos-grid">
     <div class="product-card reveal" data-category="all">
       <img src="{{ url_for('static', filename='img/Pitahaya_fresca.avif') }}" alt="Jugo Refrescante de Pitahaya Fucsia"/>
@@ -523,6 +540,17 @@
 
 </div>
 </div>
+
+<div class="prod-sin-resultados" id="prodSinResultados" hidden>
+  <span class="material-symbols-outlined" aria-hidden="true">search_off</span>
+  <p data-i18n="prod_sin_resultados">No encontramos productos que coincidan con tu búsqueda.</p>
+  <button type="button" id="prodRestablecer" class="product-btn" data-i18n="prod_restablecer">Ver todos los productos</button>
+</div>
+
+<div class="prod-ver-mas-wrap" id="prodVerMasWrap" hidden>
+  <p class="prod-contador" id="prodContador" aria-live="polite"></p>
+  <button type="button" id="prodVerMas" class="product-btn" data-i18n="prod_ver_mas">Ver más productos</button>
+</div>
 </main>
 <section class="beneficios">
     <div class="contenedor-beneficios">
@@ -558,7 +586,7 @@
 </div>
 
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-<script src="{{ url_for('static', filename='js/producto.js') }}?v=20260620-2"></script>
+<script src="{{ url_for('static', filename='js/producto.js') }}?v=20260927"></script>
 <script src="{{ url_for('static', filename='js/producto2.js') }}"></script>
 <script src="{{ url_for('static', filename='js/carrito.js') }}"></script>
 <script src="{{ url_for('static', filename='js/detalle.js') }}"></script>

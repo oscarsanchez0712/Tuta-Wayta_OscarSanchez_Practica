@@ -1787,7 +1787,15 @@
 "about_vision_p": "To be recognized nationally and internationally as the leading dragon fruit producer association, standing out for technical excellence, innovation, and strengthening Cañete's agricultural identity."
 
 ,
-  "team_m6_name": "Ricardo Zúñiga"
+  "team_m6_name": "Ricardo Zúñiga",
+  "prod_buscar_ph": "Search product by name...",
+  "prod_orden_label": "Sort by",
+  "prod_orden_default": "Relevance",
+  "prod_orden_menor": "Price: low to high",
+  "prod_orden_mayor": "Price: high to low",
+  "prod_orden_az": "Name: A-Z",
+  "prod_sin_resultados": "We couldn't find any products matching your search.",
+  "prod_restablecer": "View all products",
+  "prod_ver_mas": "Show more products",
+  "prod_mostrando": "Showing {a} of {b} products"
 }
-
-

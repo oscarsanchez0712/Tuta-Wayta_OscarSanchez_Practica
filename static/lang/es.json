@@ -1939,9 +1939,15 @@
 "about_vision_title2": "y sostenibilidad",
 "about_vision_p": "Ser reconocidos a nivel nacional e internacional como la asociación líder en la producción de pitahaya, destacando por nuestra excelencia técnica e innovación y el fortalecimiento de la identidad agrícola de Cañete."
 ,
-"team_m6_name": "Ricardo Zúñiga"
+"team_m6_name": "Ricardo Zúñiga",
+  "prod_buscar_ph": "Buscar producto por nombre...",
+  "prod_orden_label": "Ordenar por",
+  "prod_orden_default": "Relevancia",
+  "prod_orden_menor": "Precio: menor a mayor",
+  "prod_orden_mayor": "Precio: mayor a menor",
+  "prod_orden_az": "Nombre: A-Z",
+  "prod_sin_resultados": "No encontramos productos que coincidan con tu búsqueda.",
+  "prod_restablecer": "Ver todos los productos",
+  "prod_ver_mas": "Ver más productos",
+  "prod_mostrando": "Mostrando {a} de {b} productos"
 }
-
-
-
-

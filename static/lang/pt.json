@@ -1721,6 +1721,15 @@
 "about_vision_title2": "e sustentabilidade",
 "about_vision_p": "Ser reconhecida nacional e internacionalmente como a associação líder na produção de pitaya, destacando-nos por nossa excelência técnica, inovação e pelo fortalecimento da identidade agrícola de Cañete."
 ,
-"team_m6_name": "Ricardo Zúñiga"
-
+"team_m6_name": "Ricardo Zúñiga",
+  "prod_buscar_ph": "Buscar produto pelo nome...",
+  "prod_orden_label": "Ordenar por",
+  "prod_orden_default": "Relevância",
+  "prod_orden_menor": "Preço: menor para maior",
+  "prod_orden_mayor": "Preço: maior para menor",
+  "prod_orden_az": "Nome: A-Z",
+  "prod_sin_resultados": "Não encontramos produtos que correspondam à sua busca.",
+  "prod_restablecer": "Ver todos os produtos",
+  "prod_ver_mas": "Ver mais produtos",
+  "prod_mostrando": "Mostrando {a} de {b} produtos"
 }

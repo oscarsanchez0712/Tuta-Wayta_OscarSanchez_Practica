@@ -1666,5 +1666,15 @@
  "team_m2_name": "塔利亚·罗德里格斯·罗哈斯",
   "team_m3_name": "凯莉·梅纳德",
   "team_m5_name": "阿斯特丽德·瓜迪亚",
-  "team_m4_name": "亨利·佩雷斯"
+  "team_m4_name": "亨利·佩雷斯",
+  "prod_buscar_ph": "按名称搜索产品...",
+  "prod_orden_label": "排序方式",
+  "prod_orden_default": "默认",
+  "prod_orden_menor": "价格：从低到高",
+  "prod_orden_mayor": "价格：从高到低",
+  "prod_orden_az": "名称：A-Z",
+  "prod_sin_resultados": "没有找到与您的搜索匹配的产品。",
+  "prod_restablecer": "查看所有产品",
+  "prod_ver_mas": "查看更多产品",
+  "prod_mostrando": "显示 {b} 个产品中的 {a} 个"
 }

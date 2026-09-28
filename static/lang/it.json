@@ -2166,5 +2166,15 @@
 "about_vision_p": "Essere riconosciuti a livello nazionale e internazionale come l'associazione leader nella produzione di pitahaya, distinguendoci per l'eccellenza tecnica, l'innovazione e il rafforzamento dell'identità agricola di Cañete."
 
 ,
-"team_m6_name": "Ricardo Zúñiga"
+"team_m6_name": "Ricardo Zúñiga",
+  "prod_buscar_ph": "Cerca prodotto per nome...",
+  "prod_orden_label": "Ordina per",
+  "prod_orden_default": "Rilevanza",
+  "prod_orden_menor": "Prezzo: dal più basso",
+  "prod_orden_mayor": "Prezzo: dal più alto",
+  "prod_orden_az": "Nome: A-Z",
+  "prod_sin_resultados": "Non abbiamo trovato prodotti corrispondenti alla tua ricerca.",
+  "prod_restablecer": "Vedi tutti i prodotti",
+  "prod_ver_mas": "Mostra altri prodotti",
+  "prod_mostrando": "Visualizzati {a} di {b} prodotti"
 }

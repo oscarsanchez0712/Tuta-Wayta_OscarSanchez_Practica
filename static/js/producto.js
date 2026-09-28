@@ -407,3 +407,208 @@ botones.forEach(boton => {
 
 // Inicial
 renderProductos();
+
+// ==========================================================================
+// MEJORAS DE LA PÁGINA DE PRODUCTOS (agregado al final; el código de arriba no se modificó)
+// - Buscador por nombre (ignora tildes y mayúsculas)
+// - Orden por precio (menor a mayor / mayor a menor) y por nombre A-Z
+// - Mensaje de "sin resultados"
+// - Botón "Ver más" (reemplaza el límite fijo de 9 productos)
+// Trabaja junto a producto.js: no lo modifica, solo toma el control final de
+// qué tarjetas se muestran (se carga después de producto.js).
+// ==========================================================================
+(function () {
+  const PAGE_SIZE = 9;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.querySelector('.productos-grid');
+    const input = document.getElementById('prodBuscador');
+    const clearBtn = document.getElementById('prodBuscadorLimpiar');
+    const select = document.getElementById('prodOrden');
+    const noResults = document.getElementById('prodSinResultados');
+    const resetBtn = document.getElementById('prodRestablecer');
+    const moreWrap = document.getElementById('prodVerMasWrap');
+    const moreBtn = document.getElementById('prodVerMas');
+    const counter = document.getElementById('prodContador');
+    const filterBtns = document.querySelectorAll('.filtro-btn');
+    if (!grid || !input || !select) return;
+
+    let categoria = 'all';
+    let texto = '';
+    let orden = 'default';
+    let visibles = PAGE_SIZE;
+
+    const active = document.querySelector('.filtro-btn.active');
+    if (active) categoria = (active.dataset.filter || 'all').toLowerCase();
+
+    // ---------- utilidades ----------
+    const normalizar = (v) => String(v || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
+
+    const cards = () => Array.from(grid.querySelectorAll(':scope > .product-card'));
+
+    // Guarda el orden original para poder volver a "Relevancia"
+    let ordenOriginal = new Map();
+    function guardarOrdenOriginal() {
+      cards().forEach((c) => {
+        if (!ordenOriginal.has(c)) ordenOriginal.set(c, ordenOriginal.size);
+      });
+    }
+
+    function nombreCard(c) {
+      const h3 = c.querySelector('h3');
+      if (!h3) return '';
+      // Nombre actual (idioma activo) + nombre original en español
+      return `${h3.textContent} ${h3.getAttribute('data-i18n') || ''}`;
+    }
+
+    function descCard(c) {
+      const p = c.querySelector('.product-info p');
+      return p ? p.textContent : '';
+    }
+
+    function precioCard(c) {
+      const el = c.querySelector('.product-price');
+      if (!el) return null;
+      const m = el.textContent.replace(',', '.').match(/[\d.]+/);
+      const n = m ? parseFloat(m[0]) : NaN;
+      return isNaN(n) ? null : n;
+    }
+
+    function coincide(c) {
+      const cat = (c.dataset.category || '').toLowerCase();
+      if (categoria !== 'all' && cat !== categoria) return false;
+      if (!texto) return true;
+      const q = normalizar(texto);
+      return normalizar(nombreCard(c)).includes(q) || normalizar(descCard(c)).includes(q);
+    }
+
+    // ---------- traducciones de los textos nuevos ----------
+    function idioma() {
+      return document.documentElement.lang || localStorage.getItem('tuta_lang') || 'es';
+    }
+    function t(key, fallback) {
+      const dict = (window.i18nData || {})[idioma()];
+      return (dict && dict[key]) || fallback;
+    }
+    function aplicarPlaceholder() {
+      input.placeholder = t('prod_buscar_ph', 'Buscar producto por nombre...');
+    }
+
+    // ---------- render principal ----------
+    function ordenar(lista) {
+      const arr = lista.slice();
+      if (orden === 'asc' || orden === 'desc') {
+        arr.sort((a, b) => {
+          const pa = precioCard(a), pb = precioCard(b);
+          // Los productos sin precio (solo tienen "Ver detalles") van al final
+          if (pa === null && pb === null) return ordenOriginal.get(a) - ordenOriginal.get(b);
+          if (pa === null) return 1;
+          if (pb === null) return -1;
+          return orden === 'asc' ? pa - pb : pb - pa;
+        });
+      } else if (orden === 'az') {
+        arr.sort((a, b) => normalizar(a.querySelector('h3')?.textContent)
+          .localeCompare(normalizar(b.querySelector('h3')?.textContent)));
+      } else {
+        arr.sort((a, b) => ordenOriginal.get(a) - ordenOriginal.get(b));
+      }
+      return arr;
+    }
+
+    function render() {
+      guardarOrdenOriginal();
+      const todas = cards();
+      const ordenadas = ordenar(todas);
+
+      // Reordena el DOM siguiendo el orden elegido
+      ordenadas.forEach((c) => grid.appendChild(c));
+
+      const filtradas = ordenadas.filter(coincide);
+      const totalOk = filtradas.length;
+      const mostrar = new Set(filtradas.slice(0, visibles));
+
+      ordenadas.forEach((c) => {
+        if (mostrar.has(c)) {
+          c.style.display = 'block';
+          c.classList.add('active', 'visible');   // que la animación "reveal" no las deje ocultas
+        } else {
+          c.style.display = 'none';
+        }
+      });
+
+      const sinResultados = totalOk === 0;
+      if (noResults) noResults.hidden = !sinResultados;
+      grid.style.display = sinResultados ? 'none' : '';
+
+      const hayMas = totalOk > mostrar.size;
+      if (moreWrap) moreWrap.hidden = sinResultados || (!hayMas && totalOk <= PAGE_SIZE);
+      if (moreBtn) moreBtn.hidden = !hayMas;
+      if (counter) {
+        counter.textContent = t('prod_mostrando', 'Mostrando {a} de {b} productos')
+          .replace('{a}', mostrar.size).replace('{b}', totalOk);
+      }
+      if (clearBtn) clearBtn.hidden = !texto;
+    }
+
+    function reiniciar() { visibles = PAGE_SIZE; render(); }
+
+    // ---------- eventos (se registran después de los de producto.js) ----------
+    let timer;
+    input.addEventListener('input', () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => { texto = input.value; reiniciar(); }, 150);
+    });
+
+    if (clearBtn) clearBtn.addEventListener('click', () => {
+      input.value = ''; texto = ''; input.focus(); reiniciar();
+    });
+
+    select.addEventListener('change', () => { orden = select.value; reiniciar(); });
+
+    filterBtns.forEach((b) => b.addEventListener('click', () => {
+      categoria = (b.dataset.filter || 'all').toLowerCase();
+      reiniciar();
+    }));
+
+    if (moreBtn) moreBtn.addEventListener('click', () => { visibles += PAGE_SIZE; render(); });
+
+    if (resetBtn) resetBtn.addEventListener('click', () => {
+      input.value = ''; texto = ''; select.value = 'default'; orden = 'default';
+      categoria = 'all';
+      filterBtns.forEach((b) => b.classList.toggle('active', (b.dataset.filter || 'all') === 'all'));
+      reiniciar();
+    });
+
+    // Cambio de idioma: el nombre visible cambia, así que se vuelve a evaluar
+    window.addEventListener('languageChanged', () => {
+      let intentos = 0;
+      const esperar = setInterval(() => {
+        intentos++;
+        if ((window.i18nData || {})[idioma()] || intentos > 15) {
+          clearInterval(esperar);
+          aplicarPlaceholder();
+          render();
+        }
+      }, 100);
+    });
+
+    // Los precios pueden actualizarse después (precios del admin desde el servidor)
+    let timerPrecios;
+    const observador = new MutationObserver(() => {
+      if (orden !== 'asc' && orden !== 'desc') return;
+      clearTimeout(timerPrecios);
+      timerPrecios = setTimeout(render, 150);
+    });
+    grid.querySelectorAll('.product-price').forEach((el) =>
+      observador.observe(el, { childList: true, characterData: true, subtree: true }));
+
+    aplicarPlaceholder();
+    render();
+    // Reintento por si las traducciones se cargan después del primer render
+    setTimeout(() => { aplicarPlaceholder(); render(); }, 600);
+  });
+})();

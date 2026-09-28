@@ -1783,5 +1783,15 @@
 "about_vision_title2": "und Nachhaltigkeit",
 "about_vision_p": "Nationale und internationale Anerkennung als führende Vereinigung in der Drachenfruchtproduktion zu erlangen, ausgezeichnet durch technische Exzellenz, Innovation und die Stärkung der landwirtschaftlichen Identität von Cañete."
 ,
-  "team_m6_name": "Ricardo Zúñiga"
+  "team_m6_name": "Ricardo Zúñiga",
+  "prod_buscar_ph": "Produkt nach Name suchen...",
+  "prod_orden_label": "Sortieren nach",
+  "prod_orden_default": "Relevanz",
+  "prod_orden_menor": "Preis: aufsteigend",
+  "prod_orden_mayor": "Preis: absteigend",
+  "prod_orden_az": "Name: A-Z",
+  "prod_sin_resultados": "Wir haben keine Produkte zu Ihrer Suche gefunden.",
+  "prod_restablecer": "Alle Produkte anzeigen",
+  "prod_ver_mas": "Mehr Produkte anzeigen",
+  "prod_mostrando": "{a} von {b} Produkten angezeigt"
 }

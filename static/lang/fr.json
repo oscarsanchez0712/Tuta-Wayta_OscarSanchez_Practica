@@ -1768,5 +1768,15 @@
 "about_vision_title2": "et durabilité",
 "about_vision_p": "Être reconnu à l'échelle nationale et internationale comme l'association leader dans la production de pitahayas, se distinguant par notre excellence technique, notre innovation et le renforcement de l'identité agricole de Cañete."
 ,
-"team_m6_name": "Ricardo Zúñiga"
+"team_m6_name": "Ricardo Zúñiga",
+  "prod_buscar_ph": "Rechercher un produit par nom...",
+  "prod_orden_label": "Trier par",
+  "prod_orden_default": "Pertinence",
+  "prod_orden_menor": "Prix : croissant",
+  "prod_orden_mayor": "Prix : décroissant",
+  "prod_orden_az": "Nom : A-Z",
+  "prod_sin_resultados": "Aucun produit ne correspond à votre recherche.",
+  "prod_restablecer": "Voir tous les produits",
+  "prod_ver_mas": "Voir plus de produits",
+  "prod_mostrando": "Affichage de {a} sur {b} produits"
 }
