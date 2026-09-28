@@ -1175,18 +1175,3 @@ body.dark .btn-escribenos:hover {
     gap: 40px;
   }
 }
-
-/* ===================================================
-   MEJORAS PÁGINA DE PRODUCTOS (MODO OSCURO): buscador, orden,
-   sin resultados y "Ver más"
-   =================================================== */
-body.dark .prod-buscador input,
-body.dark .prod-orden select {
-  background: #182133;
-  color: #e5e7eb;
-  border-color: #273247;
-}
-body.dark .prod-buscador input::placeholder { color: #8b95a7; }
-body.dark .prod-orden label,
-body.dark .prod-contador,
-body.dark .prod-sin-resultados { color: #aab3c2; }
