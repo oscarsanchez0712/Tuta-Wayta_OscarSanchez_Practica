@@ -1175,3 +1175,332 @@ body.dark .btn-escribenos:hover {
     gap: 40px;
   }
 }
+
+
+/* =====================================================================
+   ===== NUEVO: MEJORAS DEL TEMA (agregado al final, no reemplaza nada) =====
+   Variables (--bg, --accent), acentos (claro y oscuro), foco visible,
+   animación del ícono, transición global, reduced-motion y panel.
+   Nota: se respeta tu variable --text de style.css (no se redefine).
+   ===================================================================== */
+
+/* ---------- A. Variables de diseño ---------- */
+:root {
+  --bg: #ffffff;
+  --tema-texto: #1f2937;
+  --accent: #e0006e;
+  --accent-strong: #e0006e;
+  --accent-soft: #ff4d8d;
+  --nav-1: #7a0040;
+  --nav-2: #aa0056;
+  --nav-3: #5c0f3a;
+  --panel-bg: #ffffff;
+  --panel-borde: #e2e8f0;
+}
+
+html.dark {
+  --bg: #0b1020;
+  --tema-texto: #e5e7eb;
+  --accent: #ff5ca7;
+  --panel-bg: #111827;
+  --panel-borde: #243042;
+}
+
+/* Acento azul (también reasigna --magenta, que usa todo style.css) */
+html[data-acento="azul"] {
+  --magenta: #2563eb; --magenta-dark: #1d4ed8;
+  --accent: #2563eb; --accent-strong: #1d4ed8; --accent-soft: #3b82f6;
+  --nav-1: #1e3a8a; --nav-2: #1d4ed8; --nav-3: #172554;
+}
+html[data-acento="azul"].dark { --accent: #60a5fa; }
+
+/* Acento verde */
+html[data-acento="verde"] {
+  --magenta: #0ca678; --magenta-dark: #099268;
+  --accent: #0ca678; --accent-strong: #099268; --accent-soft: #20c997;
+  --nav-1: #065f46; --nav-2: #0b8a63; --nav-3: #064e3b;
+}
+html[data-acento="verde"].dark { --accent: #34d399; }
+
+/* Fondo/texto base en oscuro (igual al actual) */
+html.dark body {
+  background-color: var(--bg);
+  color: var(--tema-texto);
+}
+
+/* ---------- B. Acento en MODO OSCURO (rosa por defecto = igual que antes) ---------- */
+body.dark nav {
+  background: linear-gradient(90deg, var(--nav-1) 0%, var(--nav-2) 55%, var(--nav-3) 100%) !important;
+}
+
+body.dark .footer-brand h3,
+body.dark .footer-col h4,
+body.dark .footer-col ul li a:hover,
+body.dark .productos-title span,
+body.dark .miembro .role,
+body.dark a:hover,
+body.dark .productos-eyebrow,
+body.dark .catalog-subtitle,
+body.dark .detalle-page .eyebrow,
+body.dark .detalle-page .btn-secondary,
+body.dark .btn-ver-detalles,
+body.dark .view-details-btn,
+body.dark .dropdown-menu a:hover,
+body.dark .summary-total-value,
+body.dark .resumen-total .total-price {
+  color: var(--accent) !important;
+}
+
+body.dark .product-price,
+body.dark .price-tag {
+  color: var(--accent-soft) !important;
+}
+
+body.dark .product-btn,
+body.dark .productos-filtros .filtro-btn.active,
+body.dark .filtro-btn.active,
+body.dark .filter-button.active,
+body.dark .btn-agregar-carrito,
+body.dark .add-to-cart-btn,
+body.dark .detalle-page .btn-primary,
+body.dark .btn-finalizar-compra,
+body.dark .checkout-btn {
+  background: linear-gradient(135deg, var(--accent-strong) 0%, var(--accent-soft) 100%) !important;
+  color: #ffffff !important;
+}
+
+body.dark .filtro-btn:hover,
+body.dark .filter-button:hover,
+body.dark .btn-vaciar:hover,
+body.dark .btn-ver-detalles,
+body.dark .view-details-btn,
+body.dark .detalle-page .btn-secondary {
+  border-color: var(--accent) !important;
+}
+
+/* ---------- C. Acento en MODO CLARO (solo azul/verde; rosa no se toca) ---------- */
+html[data-acento="azul"]:not(.dark) nav {
+  background: linear-gradient(135deg, rgba(37,99,235,0.96), rgba(29,78,216,0.96)) !important;
+}
+html[data-acento="verde"]:not(.dark) nav {
+  background: linear-gradient(135deg, rgba(12,166,120,0.96), rgba(9,146,104,0.96)) !important;
+}
+
+html:is([data-acento="azul"], [data-acento="verde"]) .theme-switch-track {
+  background: linear-gradient(135deg, var(--accent-strong), var(--accent-soft));
+}
+html:is([data-acento="azul"], [data-acento="verde"]):not(.dark) .theme-switch-icon {
+  color: var(--accent-strong);
+}
+html:is([data-acento="azul"], [data-acento="verde"]) .btn-historia {
+  background: linear-gradient(135deg, var(--accent-strong), var(--accent-soft));
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+html:is([data-acento="azul"], [data-acento="verde"]) .btn-servicios-contacto,
+html:is([data-acento="azul"], [data-acento="verde"]) #scrollTopBtn {
+  background-color: var(--accent-strong);
+}
+html:is([data-acento="azul"], [data-acento="verde"]) .btn-servicios-contacto:hover,
+html:is([data-acento="azul"], [data-acento="verde"]) #scrollTopBtn:hover {
+  filter: brightness(0.9);
+}
+html:is([data-acento="azul"], [data-acento="verde"]) .card-beneficio:hover {
+  background-color: var(--accent-strong);
+}
+html:is([data-acento="azul"], [data-acento="verde"]):not(.dark) .badge-beneficios {
+  color: var(--accent-strong);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+html:is([data-acento="azul"], [data-acento="verde"]):not(.dark) .italica-rosa {
+  color: var(--accent-strong);
+}
+html:is([data-acento="azul"], [data-acento="verde"]) .prod-buscador input:focus,
+html:is([data-acento="azul"], [data-acento="verde"]) .prod-orden select:focus {
+  border-color: var(--accent);
+}
+
+/* ---------- D. Interruptor: sombra/borde al círculo + foco visible ---------- */
+.theme-switch-knob {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(255, 255, 255, 0.35);
+}
+
+/* Más específico que la regla "outline: none !important" del modo oscuro */
+html body #themeToggle:focus-visible,
+html body.dark #themeToggle:focus-visible,
+html body #themeToggleMobile:focus-visible,
+html body.dark #themeToggleMobile:focus-visible {
+  outline: 3px solid #ffffff !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.45) !important;
+  border-radius: 999px;
+}
+
+/* Foco visible para el resto de controles */
+a:focus-visible,
+button:focus-visible,
+[role="switch"]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ---------- E. Ícono sol/luna: rotación + fade ---------- */
+.tema-icono {
+  display: inline-block;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.tema-icono-salida {
+  transform: rotate(90deg) scale(0.5);
+  opacity: 0;
+}
+
+/* ---------- F. Transición suave al cambiar de tema ---------- */
+html.tema-transicion,
+html.tema-transicion *:not(.tema-icono),
+html.tema-transicion *::before,
+html.tema-transicion *::after {
+  transition: background-color 0.3s ease, color 0.3s ease,
+              border-color 0.3s ease, fill 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* ---------- G. Panel de apariencia ---------- */
+.tema-panel {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 9999;
+  font-family: inherit;
+}
+
+.tema-panel-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--panel-borde);
+  background: var(--panel-bg);
+  color: var(--tema-texto);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+  transition: transform 0.2s ease;
+}
+.tema-panel-btn:hover { transform: scale(1.06); }
+
+.tema-panel-cuerpo {
+  position: absolute;
+  left: 0;
+  bottom: 56px;
+  width: 240px;
+  padding: 14px;
+  border-radius: 16px;
+  background: var(--panel-bg);
+  color: var(--tema-texto);
+  border: 1px solid var(--panel-borde);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+  animation: tema-panel-in 0.2s ease;
+}
+.tema-panel-cuerpo[hidden] { display: none; }
+
+.tema-panel-titulo {
+  margin: 10px 0 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.75;
+}
+.tema-panel-titulo:first-child { margin-top: 0; }
+
+.tema-panel-fila {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tema-panel-fila button {
+  flex: 1;
+  min-height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--panel-borde);
+  background: transparent;
+  color: var(--tema-texto);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.tema-panel-fila button[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.tema-swatch { flex: 0 0 36px !important; width: 36px; }
+.tema-swatch[data-acento="rosa"]  { background: #e0006e !important; }
+.tema-swatch[data-acento="azul"]  { background: #2563eb !important; }
+.tema-swatch[data-acento="verde"] { background: #0ca678 !important; }
+.tema-swatch[aria-pressed="true"] {
+  outline: 3px solid var(--tema-texto);
+  outline-offset: 2px;
+}
+
+.tema-tam-valor {
+  min-width: 48px;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+@keyframes tema-panel-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- H. Reducir movimiento ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html.tema-transicion,
+  html.tema-transicion *,
+  html.tema-transicion *::before,
+  html.tema-transicion *::after {
+    transition: none !important;
+  }
+  .tema-icono,
+  .tema-panel-btn,
+  .theme-switch-knob { transition: none !important; }
+  .tema-panel-cuerpo { animation: none !important; }
+}
+
+
+/* ---------- I. Panel dentro del menú (no tapa redes ni botones flotantes) ---------- */
+.tema-panel.tema-panel-nav {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  z-index: 1002;
+}
+.tema-panel.tema-panel-nav .tema-panel-btn {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: none;
+}
+.tema-panel.tema-panel-nav .tema-panel-cuerpo {
+  top: calc(100% + 12px);
+  bottom: auto;
+  left: auto;
+  right: 0;
+}
+
+.tema-panel.tema-panel-movil {
+  position: static;
+  padding: 12px 24px;
+}
+.tema-panel.tema-panel-movil .tema-panel-cuerpo {
+  position: static;
+  width: 100%;
+  margin-top: 10px;
+}
