@@ -21,3 +21,5 @@ venv/
 .venv/
 __pycache__/
 *.pyc
+docker-compose.yml
+docker-compose.yml

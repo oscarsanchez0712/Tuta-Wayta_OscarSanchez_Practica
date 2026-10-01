@@ -1,4 +1,5 @@
 // ─── ESTADO GLOBAL DEL CHAT ───
+document.addEventListener('DOMContentLoaded', function () {
 let isLoading = false;
 let hasWelcomed = false;
 
@@ -440,8 +441,22 @@ function showWelcome() {
   addMessage('bot', chatboxTranslations[lang].welcome);
 }
 
+// ─── MEJORA 8: FEEDBACK DEL USUARIO (útil / no útil) ───
+const FEEDBACK_STATS_KEY = 'tutawayta_chat_feedback';
+
+function saveFeedback(helpful) {
+  try {
+    const raw = localStorage.getItem(FEEDBACK_STATS_KEY);
+    const stats = raw ? JSON.parse(raw) : { helpful: 0, notHelpful: 0 };
+    if (helpful) stats.helpful += 1; else stats.notHelpful += 1;
+    localStorage.setItem(FEEDBACK_STATS_KEY, JSON.stringify(stats));
+  } catch (e) {
+    console.warn('No se pudo guardar el feedback:', e);
+  }
+}
+
 // ─── ENVIAR / RENDERIZAR MENSAJES ───
-function addMessage(role, text, persist = true) {
+function addMessage(role, text, persist = true, options = {}) {
   const msg = document.createElement('div');
   msg.classList.add('msg', role);
 
@@ -456,6 +471,51 @@ function addMessage(role, text, persist = true) {
   time.textContent = new Date().toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit' });
 
   msg.appendChild(bubble);
+
+  // MEJORA 8: feedback 👍/👎 debajo de cada respuesta nueva del bot
+  if (role === 'bot' && options.showFeedback) {
+    const feedbackRow = document.createElement('div');
+    feedbackRow.classList.add('msg-feedback');
+
+    const btnUp = document.createElement('button');
+    btnUp.type = 'button';
+    btnUp.className = 'feedback-btn';
+    btnUp.textContent = '👍';
+    btnUp.title = 'Respuesta útil';
+
+    const btnDown = document.createElement('button');
+    btnDown.type = 'button';
+    btnDown.className = 'feedback-btn';
+    btnDown.textContent = '👎';
+    btnDown.title = 'Respuesta no útil';
+
+    const markVoted = (chosenBtn) => {
+      feedbackRow.classList.add('voted');
+      chosenBtn.classList.add('selected');
+      btnUp.disabled = true;
+      btnDown.disabled = true;
+    };
+
+    btnUp.addEventListener('click', () => { saveFeedback(true); markVoted(btnUp); });
+    btnDown.addEventListener('click', () => { saveFeedback(false); markVoted(btnDown); });
+
+    feedbackRow.appendChild(btnUp);
+    feedbackRow.appendChild(btnDown);
+    msg.appendChild(feedbackRow);
+  }
+
+  // MEJORA 7: botón de escalamiento a humano
+  if (role === 'bot' && options.escalate) {
+    const lang = getCurrentLang();
+    const escalateBtn = document.createElement('a');
+    escalateBtn.href = `https://wa.me/51906561608?text=${encodeURIComponent(escalationPrefillText[lang] || escalationPrefillText.es)}`;
+    escalateBtn.target = '_blank';
+    escalateBtn.rel = 'noopener';
+    escalateBtn.className = 'escalate-btn';
+    escalateBtn.textContent = escalationBtnText[lang] || escalationBtnText.es;
+    msg.appendChild(escalateBtn);
+  }
+
   msg.appendChild(time);
   chatMessages.appendChild(msg);
   chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -489,6 +549,40 @@ function pickRandom(items) {
   return items[Math.floor(Math.random() * items.length)];
 }
 
+// ─── MEJORA 5: TOLERANCIA A ERRORES DE ESCRITURA (Levenshtein) ───
+// Calcula cuántos cambios (letras) hacen falta para convertir una palabra en otra.
+function levenshteinDistance(a, b) {
+  const matrix = Array.from({ length: a.length + 1 }, (_, i) => [i]);
+  for (let j = 0; j <= b.length; j++) matrix[0][j] = j;
+
+  for (let i = 1; i <= a.length; i++) {
+    for (let j = 1; j <= b.length; j++) {
+      if (a[i - 1] === b[j - 1]) {
+        matrix[i][j] = matrix[i - 1][j - 1];
+      } else {
+        matrix[i][j] = 1 + Math.min(
+          matrix[i - 1][j],     // eliminar
+          matrix[i][j - 1],     // insertar
+          matrix[i - 1][j - 1]  // sustituir
+        );
+      }
+    }
+  }
+  return matrix[a.length][b.length];
+}
+
+// Revisa si alguna palabra del mensaje se parece lo suficiente a una palabra clave,
+// permitiendo hasta 1-2 letras de diferencia según el largo de la palabra.
+function fuzzyIncludes(text, keyword) {
+  if (text.includes(keyword)) return true;
+  const maxDistance = keyword.length <= 4 ? 1 : 2;
+  const words = text.split(/\s+/);
+  return words.some(word => {
+    if (Math.abs(word.length - keyword.length) > maxDistance) return false;
+    return levenshteinDistance(word, keyword) <= maxDistance;
+  });
+}
+
 // ─── MEJORA 4: HORARIO DINÁMICO CON Date() ───
 // Horario real del negocio: Lunes(1) a Sábado(6), 8:00 a 18:00. Domingo(0) cerrado.
 function isBusinessOpenNow() {
@@ -517,15 +611,60 @@ function getDynamicHoursReply(lang) {
   return `${status}\n${baseReply}`;
 }
 
-// ─── PROCESADOR DE RESPUESTAS SIMULADAS ───
+// ─── MEJORA 6: MEMORIA DE CONTEXTO ───
+// Recuerda el último tema relevante del que se habló, para responder
+// preguntas de seguimiento cortas como "y el precio?" o "cuanto cuesta?".
+let currentContext = null;
+
+const followUpCues = [
+  'precio', 'cuesta', 'costo', 'cuanto', 'vale', 'mas info', 'informacion',
+  'price', 'cost', 'how much', 'more info',
+  'preco', 'quanto custa', 'mais informacoes',
+  'preis', 'wie viel', 'kostet',
+  'prezzo', 'quanto costa',
+  'prix', 'combien coute'
+];
+
+// ─── MEJORA 7: ESCALAMIENTO A HUMANO TRAS FALLOS REPETIDOS ───
+let consecutiveFallbacks = 0;
+
+const escalationText = {
+  es: 'Veo que no estoy entendiendo bien tu consulta. Si prefieres, puedes hablar directamente con una persona de nuestro equipo.',
+  en: "I see I'm not quite understanding your question. If you prefer, you can talk directly to a member of our team.",
+  zh: '我注意到我可能没有理解您的问题。如果您愿意，可以直接与我们的工作人员联系。',
+  pt: 'Percebo que não estou entendendo bem sua dúvida. Se preferir, você pode falar diretamente com alguém da nossa equipe.',
+  de: 'Ich habe den Eindruck, Ihre Anfrage nicht richtig zu verstehen. Wenn Sie möchten, können Sie direkt mit einer Person aus unserem Team sprechen.',
+  it: 'Vedo che non sto capendo bene la tua richiesta. Se preferisci, puoi parlare direttamente con una persona del nostro team.',
+  fr: "Je vois que je ne comprends pas bien votre demande. Si vous préférez, vous pouvez parler directement à une personne de notre équipe."
+};
+
+const escalationBtnText = {
+  es: '💬 Hablar con una persona', en: '💬 Talk to a person', zh: '💬 联系人工客服',
+  pt: '💬 Falar com uma pessoa', de: '💬 Mit einer Person sprechen',
+  it: '💬 Parlare con una persona', fr: '💬 Parler à une personne'
+};
+
+// Mensaje precargado que el usuario verá listo para enviar en WhatsApp
+const escalationPrefillText = {
+  es: 'Hola, estaba hablando con el asistente virtual de Tuta Wayta y necesito ayuda de una persona.',
+  en: 'Hi, I was talking to the Tuta Wayta virtual assistant and I need help from a person.',
+  zh: '您好，我刚才在和Tuta Wayta的智能助理交流，现在需要人工帮助。',
+  pt: 'Olá, eu estava falando com o assistente virtual da Tuta Wayta e preciso da ajuda de uma pessoa.',
+  de: 'Hallo, ich habe gerade mit dem virtuellen Assistenten von Tuta Wayta gesprochen und brauche die Hilfe einer Person.',
+  it: "Ciao, stavo parlando con l'assistente virtuale di Tuta Wayta e ho bisogno dell'aiuto di una persona.",
+  fr: "Bonjour, je discutais avec l'assistant virtuel de Tuta Wayta et j'ai besoin de l'aide d'une personne."
+};
+
 function getSimulatedReply(userText) {
   const lang = getCurrentLang();
   const i18n = chatboxTranslations[lang] || chatboxTranslations.es;
   const text = normalizeText(userText);
 
   if (i18n[userText]) {
-    if (userText === 'hours') return getDynamicHoursReply(lang);
-    return pickRandom(i18n[userText]);
+    if (userText === 'hours') return { text: getDynamicHoursReply(lang) };
+    currentContext = userText;
+    consecutiveFallbacks = 0;
+    return { text: pickRandom(i18n[userText]) };
   }
 
   // Palabras clave extendidas balanceadas para todos los idiomas
@@ -540,20 +679,21 @@ function getSimulatedReply(userText) {
     benefits: ['beneficio', 'beneficios', 'pitahaya', 'salud', 'nutricion', 'benefit', 'benefits', 'dragon fruit', 'health', 'nutrition', 'pitaya', 'saude', 'nutricao', 'vorteile', 'gesundheit', 'benefici', 'salute', 'bienfaits', 'sante']
   };
 
-  if (keywords.greetings.some(k => text.includes(k))) return pickRandom(i18n.greetings);
+  if (keywords.greetings.some(k => fuzzyIncludes(text, k))) {
+    consecutiveFallbacks = 0;
+    return { text: pickRandom(i18n.greetings) };
+  }
 
-  // MEJORA 2: detección de intención por puntaje.
+  // MEJORA 2: detección de intención por puntaje (ahora con tolerancia a errores — MEJORA 5).
   // En vez de responder con la PRIMERA categoría que coincide, contamos
-  // cuántas palabras clave de cada categoría aparecen en el mensaje y
-  // elegimos la de mayor puntaje. Esto evita respuestas incorrectas cuando
-  // un mensaje toca varios temas (ej. "precio de envio a lima" menciona
-  // "products", "shipping" y "location" a la vez).
+  // cuántas palabras clave de cada categoría aparecen en el mensaje (permitiendo
+  // pequeños errores de escritura) y elegimos la de mayor puntaje.
   const scoreCategories = ['order', 'hours', 'products', 'shipping', 'contact', 'location', 'benefits'];
   let bestCategory = null;
   let bestScore = 0;
 
   scoreCategories.forEach(category => {
-    const matches = keywords[category].filter(k => text.includes(k)).length;
+    const matches = keywords[category].filter(k => fuzzyIncludes(text, k)).length;
     if (matches > bestScore) {
       bestScore = matches;
       bestCategory = category;
@@ -561,11 +701,31 @@ function getSimulatedReply(userText) {
   });
 
   if (bestCategory) {
-    if (bestCategory === 'hours') return getDynamicHoursReply(lang);
-    return pickRandom(i18n[bestCategory]);
+    currentContext = bestCategory;
+    consecutiveFallbacks = 0;
+    if (bestCategory === 'hours') return { text: getDynamicHoursReply(lang) };
+    return { text: pickRandom(i18n[bestCategory]) };
   }
 
-  return pickRandom(i18n.fallback);
+  // MEJORA 6: memoria de contexto — si no hubo coincidencia pero el mensaje
+  // parece un seguimiento ("y el precio?", "cuanto cuesta?") y hay un tema
+  // previo en la conversación, respondemos sobre ese mismo tema.
+  if (currentContext && followUpCues.some(cue => text.includes(cue))) {
+    consecutiveFallbacks = 0;
+    if (currentContext === 'hours') return { text: getDynamicHoursReply(lang) };
+    return { text: pickRandom(i18n[currentContext]) };
+  }
+
+  // MEJORA 7: escalamiento a humano tras fallos repetidos
+  consecutiveFallbacks += 1;
+  if (consecutiveFallbacks >= 2) {
+    return {
+      text: escalationText[lang] || escalationText.es,
+      escalate: true
+    };
+  }
+
+  return { text: pickRandom(i18n.fallback) };
 }
 
 // ─── LOGICA DE ENVIO CON TIEMPO NATURAL ───
@@ -607,7 +767,8 @@ async function sendMessage(userText, textToDisplay = null) {
 
   setTimeout(() => {
     removeTyping();
-    addMessage('bot', getSimulatedReply(userText));
+    const reply = getSimulatedReply(userText);
+    addMessage('bot', reply.text, true, { showFeedback: true, escalate: reply.escalate });
     replayQuickRepliesAnimation();
     isLoading = false;
     sendBtn.disabled = false;
@@ -706,4 +867,6 @@ document.addEventListener('languageChanged', () => {
       if (btn) btn.textContent = currentMap[key];
     });
   }
+});
+  window.sendQuick = sendQuick; // necesario porque el HTML usa onclick="sendQuick(...)"
 });

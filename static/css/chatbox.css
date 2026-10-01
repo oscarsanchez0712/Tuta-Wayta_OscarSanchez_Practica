@@ -306,8 +306,6 @@
 
 /* ══════════════════════════════════════
    MEJORAS — versión elegante / profesional
-   (todo lo anterior se mantiene intacto;
-   estas reglas refinan look & feel)
 ══════════════════════════════════════ */
 
 /* Botón flotante: halo sutil + transición más suave */
@@ -329,7 +327,7 @@
   50%      { box-shadow: 0 4px 28px rgba(224,0,110,.55), 0 0 0 6px rgba(224,0,110,0); }
 }
 
-/* Ventana del chat: vidrio esmerilado + sombra más profunda y elegante */
+/* Ventana del chat: vidrio esmerilado + sombra más profunda */
 #chat-window {
   background: linear-gradient(180deg, rgba(22,22,22,.97), rgba(18,18,18,.99));
   backdrop-filter: blur(18px) saturate(140%);
@@ -341,7 +339,7 @@
     inset 0 1px 0 rgba(255,255,255,.04);
 }
 
-/* Header más refinado, con leve textura y borde inferior degradado */
+/* Header más refinado, con borde inferior degradado */
 .chat-header {
   position: relative;
   background: linear-gradient(135deg, rgba(224,0,110,.16), rgba(224,0,110,.02));
@@ -355,7 +353,7 @@
   background: linear-gradient(90deg, transparent, rgba(224,0,110,.5), transparent);
 }
 
-/* Avatar con anillo animado tipo "estado premium" */
+/* Avatar con anillo animado */
 .chat-avatar {
   position: relative;
   box-shadow: 0 2px 10px rgba(224,0,110,.4);
@@ -378,7 +376,7 @@
   letter-spacing: .2px;
 }
 
-/* Punto "en línea" con halo pulsante más elegante */
+/* Punto "en línea" con halo pulsante */
 .online-dot {
   position: relative;
   box-shadow: 0 0 0 0 rgba(74,222,128,.6);
@@ -390,7 +388,7 @@
   100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
 }
 
-/* Mensajes: entrada suave escalonada */
+/* Mensajes: entrada suave */
 .msg {
   animation: msgFadeIn .35s cubic-bezier(.2,.8,.2,1) both;
 }
@@ -399,7 +397,7 @@
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Burbujas con sombra discreta y mejor contraste tipográfico */
+/* Burbujas con sombra discreta */
 .msg-bubble {
   letter-spacing: .1px;
   box-shadow: 0 1px 2px rgba(0,0,0,.15);
@@ -412,14 +410,14 @@
   box-shadow: 0 3px 12px rgba(224,0,110,.35);
 }
 
-/* Check de "enviado" sutil y opcional en mensajes de usuario */
+/* Check de "enviado" en mensajes de usuario */
 .msg.user .msg-time::after {
   content: " ✓";
   color: var(--magenta-light);
   opacity: .7;
 }
 
-/* Quick replies: bordes y hover más pulidos */
+/* Quick replies: hover más pulido */
 .quick-btn {
   backdrop-filter: blur(4px);
   transition: background .2s ease, border-color .2s ease, transform .15s ease;
@@ -431,7 +429,7 @@
   transform: translateY(0);
 }
 
-/* Input: foco más elegante con halo */
+/* Input: foco con halo */
 #chat-input {
   transition: border-color .25s ease, box-shadow .25s ease;
 }
@@ -439,7 +437,7 @@
   box-shadow: 0 0 0 3px rgba(224,0,110,.12);
 }
 
-/* Botón enviar: micro-interacción al presionar */
+/* Botón enviar: micro-interacción */
 #send-btn {
   box-shadow: 0 2px 8px rgba(224,0,110,.3);
 }
@@ -447,18 +445,18 @@
   transform: scale(.92);
 }
 
-/* Scrollbar un poco más visible al hover, sigue siendo discreta */
+/* Scrollbar más visible al hover */
 .chat-messages:hover::-webkit-scrollbar-thumb {
   background: rgba(224,0,110,.45);
 }
 
-/* Indicador de escritura con fondo coherente al nuevo estilo de burbuja bot */
+/* Indicador de escritura */
 #typing .msg-bubble {
   background: linear-gradient(180deg, var(--dark3), #1a1a1a);
   border: 1px solid rgba(255,255,255,.04);
 }
 
-/* Animación de entrada escalonada para los botones de respuesta rápida */
+/* Entrada escalonada de los botones de respuesta rápida */
 .quick-replies.qr-animate .quick-btn {
   opacity: 0;
   transform: translateY(10px) scale(.92);
@@ -476,15 +474,12 @@
 
 /* ══════════════════════════════════════
    FLORES CON LATIDO — fondo decorativo
-   del área de mensajes
 ══════════════════════════════════════ */
 
-/* El área de mensajes necesita position relative para anclar las flores */
 .chat-messages {
   position: relative;
 }
 
-/* Base de cada flor */
 .chat-flower {
   position: absolute;
   pointer-events: none;
@@ -492,7 +487,6 @@
   z-index: 0;
 }
 
-/* Posiciones */
 .chat-flower-1 {
   top: 20px;
   left: 14px;
@@ -536,4 +530,86 @@
 .msg {
   position: relative;
   z-index: 1;
+}
+
+/* ══════════════════════════════════════
+   NUEVO — Feedback 👍👎 y escalamiento
+   a una persona (WhatsApp)
+══════════════════════════════════════ */
+
+.msg-feedback {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+  padding-left: 2px;
+}
+
+.feedback-btn {
+  background: transparent;
+  border: 1px solid rgba(224,0,110,.25);
+  border-radius: 8px;
+  color: var(--cream);
+  font-size: .78rem;
+  line-height: 1;
+  padding: 4px 8px;
+  cursor: pointer;
+  opacity: .65;
+  font-family: inherit;
+  transition: background .2s ease, border-color .2s ease, opacity .2s ease, transform .15s ease;
+}
+.feedback-btn:hover:not(:disabled) {
+  opacity: 1;
+  background: rgba(224,0,110,.15);
+  border-color: var(--magenta);
+  transform: translateY(-1px);
+}
+
+/* Botón votado */
+.feedback-btn.selected {
+  opacity: 1;
+  background: rgba(224,0,110,.25);
+  border-color: var(--magenta);
+  cursor: default;
+  transform: none;
+}
+
+/* Una vez votado, el otro botón se apaga */
+.msg-feedback.voted .feedback-btn:not(.selected) {
+  opacity: .25;
+  cursor: default;
+}
+.feedback-btn:disabled {
+  cursor: default;
+}
+
+/* Botón "💬 Hablar con una persona" */
+.escalate-btn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 6px;
+  background: linear-gradient(135deg, var(--magenta), var(--magenta-dark));
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: .78rem;
+  font-weight: 600;
+  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(224,0,110,.4);
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+  animation: msgFadeIn .35s cubic-bezier(.2,.8,.2,1) both;
+}
+.escalate-btn:hover {
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 6px 18px rgba(224,0,110,.55);
+  filter: brightness(1.08);
+}
+.escalate-btn:active {
+  transform: scale(.97);
 }

@@ -1,5 +1,14 @@
 [
   {
+    "nombre": "Oscar",
+    "correo": "oscar.sanchez@vallegrande.edu.pe",
+    "telefono": "906561608",
+    "asunto": "Consulta general",
+    "mensaje": "sdads",
+    "creado_at": "2026-09-29 09:01:33",
+    "id": 16
+  },
+  {
     "nombre": "Maria",
     "correo": "jorge.vilcapuma.t@vallegrande.edu.pe",
     "telefono": "999394996",

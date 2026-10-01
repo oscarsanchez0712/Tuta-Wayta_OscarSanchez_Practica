@@ -7,7 +7,7 @@ CREATE DATABASE IF NOT EXISTS tutawayta
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
 
-USE tutawayta; 
+USE tutawayta;
 
 
 CREATE TABLE IF NOT EXISTS libro (
@@ -100,26 +100,23 @@ CREATE TABLE IF NOT EXISTS contacto (
     INDEX idx_estado (estado)
 );
 
+-- =========================
+-- PRECIOS PERSONALIZADOS
+-- (sin clave foránea: la tabla `products` no existe y app.py
+--  crea esta tabla igual, sin relación)
+-- =========================
 CREATE TABLE IF NOT EXISTS product_price_overrides (
     product_name VARCHAR(180) NOT NULL,
     price DECIMAL(10,2) NOT NULL,
     updated_at DATETIME NOT NULL,
-    PRIMARY KEY (product_name),
-    CONSTRAINT fk_price_override_product
-        FOREIGN KEY (product_name)
-        REFERENCES products (name)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
+    PRIMARY KEY (product_name)
 ) ENGINE=InnoDB
 COMMENT='Precios personalizados de productos';
-
-
 
 -- -----------------------------------------------------
 -- Tabla `analytics_visits`
 -- Registra las visitas a las páginas para una analítica simple.
 -- -----------------------------------------------------
-
 CREATE TABLE IF NOT EXISTS analytics_visits (
     id INT NOT NULL AUTO_INCREMENT,
     visit_date DATE NOT NULL,
@@ -130,17 +127,3 @@ CREATE TABLE IF NOT EXISTS analytics_visits (
     PRIMARY KEY (id),
     INDEX idx_visit_date (visit_date)
 ) ENGINE=InnoDB;
-
-
-
-
-SELECT * FROM contacto;
-SELECT * FROM libro;
-SELECT * FROM product_price_overrides;
-SELECT * FROM analytics_visits;
-
-
-TRUNCATE TABLE contacto;
-TRUNCATE TABLE libro;
-TRUNCATE TABLE product_price_overrides;
-TRUNCATE TABLE analytics_visits;
