@@ -182,7 +182,7 @@ const chatboxTranslations = {
       '如果您愿意，我可以快速提供关于订单、产品或如何联系我们的信息。'
     ]
   },
-  pt: { // ─── PORTUGUÉS ───
+  pt: {
     welcome: 'Olá! 🌺 Sou o assistente da **Tuta Wayta**.\nComo posso ajudar você hoje? Posso falar sobre nossos produtos, quem somos, benefícios da pitaya ou como entrar em contato.',
     greetings: [
       'Olá, que prazer cumprimentar você. Sou o assistente da **Tuta Wayta** e posso ajudar com horários, produtos, envios, localização e contato.',
@@ -230,7 +230,7 @@ const chatboxTranslations = {
       'Se desejar, posso te dar informações rápidas sobre pedidos, produtos ou como entrar em contato.'
     ]
   },
-  de: { // ─── ALEMÁN ───
+  de: {
     welcome: 'Hallo! 🌺 Ich bin der Assistent von **Tuta Wayta**.\nWie kann ich Ihnen heute helfen? Ich kann Ihnen von unseren Produkten erzählen, wer wir sind, welche Vorteile die Drachenfrucht hat oder wie Sie uns kontaktieren können.',
     greetings: [
       'Hallo, schön Sie kennenzulernen. Ich bin der Assistent von **Tuta Wayta** und kann Ihnen bei Öffnungszeiten, Produkten, Versand, Standort und Kontakt helfen.',
@@ -270,7 +270,7 @@ const chatboxTranslations = {
     benefits: [
       'Drachenfrucht liefert Antioxidantien, Ballaststoffe und Vitamin C. Sie kann auch die Verdauung und Hydratation unterstützen.',
       'Es ist eine leichte und nahrhafte Frucht, reich an Ballaststoffen, Antioxidantien und Vitamin C.',
-      "Drachenfrucht ist aufgrund ihres Gehalts an Ballaststoffen, Antioxidantien und ihrer natürlichen Frische eine ausgezeichnete Wahl."
+      'Drachenfrucht ist aufgrund ihres Gehalts an Ballaststoffen, Antioxidantien und ihrer natürlichen Frische eine ausgezeichnete Wahl.'
     ],
     fallback: [
       'Vielen Dank für Ihre Nachricht. Wenn Sie möchten, kann ich Ihnen bei **Öffnungszeiten**, **Produkten**, **Versand**, **Standort** oder **Kontakt** helfen.',
@@ -278,8 +278,8 @@ const chatboxTranslations = {
       'Auf Wunsch gebe ich Ihnen schnelle Informationen zu Bestellungen, Produkten oder wie Sie uns kontaktieren können.'
     ]
   },
-  it: { // ─── ITALIANO ───
-    welcome: "Ciao! 🌺 Sono l'assistente di **Tuta Wayta**.\nCome posso aiutarti oggi? Posso parlarti dos nostri prodotti, di chi siamo, dei benefici della pitaya o di come contattarci.",
+  it: {
+    welcome: "Ciao! 🌺 Sono l'assistente di **Tuta Wayta**.\nCome posso aiutarti oggi? Posso parlarti dei nostri prodotti, di chi siamo, dei benefici della pitaya o di come contattarci.",
     greetings: [
       "Ciao, che piacere salutarti. Sono l'assistente di **Tuta Wayta** e posso aiutarti con orari, prodotti, spedizioni, posizione e contatti.",
       "Ciao, benvenuto in **Tuta Wayta**. Se vuoi, ti do informazioni rapide su ordini, orari o prodotti.",
@@ -287,7 +287,7 @@ const chatboxTranslations = {
     ],
     order: [
       "Certo, ti aiuto io. Puoi scriverci tramite il modulo o al numero **+51 987 654 321** e coordineremo il tuo ordine.",
-      "Perfetto. Se desideri effettuare un ordine, lasciaci il teu nome, quartiere e prodotto di interesse per orientarti al meglio.",
+      "Perfetto. Se desideri effettuare un ordine, lasciaci il tuo nome, quartiere e prodotto di interesse per orientarti al meglio.",
       "Con piacere. Scrivici in chat o a **contacto@tutawayta.org** e ti guideremo passo dopo passo."
     ],
     hours: [
@@ -298,7 +298,7 @@ const chatboxTranslations = {
     products: [
       "Questi sono i nostri prodotti principali:\n- **Pitaya Fresca** (1 kg): S/ 25.00\n- **Pitaya Disidratata** (100 g): S/ 18.00\n- **Polpa Congelata** (400 g): S/ 20.00\n- **Pacchetto Degustazione**: S/ 35.00",
       "Offriamo pitaya fresca, disidratata, polpa congelata e un pacchetto degustazione. Se vuoi, ti parlo di ognuno singolarmente.",
-      "Abbiamo varie presentazioni di pitaya. Se ti interessa, ti mostro l'opzione più conveniente in base a ciò que cerchi."
+      "Abbiamo varie presentazioni di pitaya. Se ti interessa, ti mostro l'opzione più conveniente in base a ciò che cerchi."
     ],
     shipping: [
       "Sì, effettuiamo spedizioni. A **Lima** il tempo stimato è di **24 ore** e nelle **province** da **48 a 72 ore**.",
@@ -326,12 +326,12 @@ const chatboxTranslations = {
       "Se lo desideri, posso darti informazioni rapide su ordini, prodotti o su come contattarci."
     ]
   },
-  fr: { // ─── FRANCÉS ───
+  fr: {
     welcome: "Bonjour ! 🌺 Je suis l'assistant de **Tuta Wayta**.\nComment puis-je vous aider aujourd'hui ? Je peux vous parler de nos produits, de qui nous sommes, des bienfaits de la pitaya ou de la façon de nous contacter.",
     greetings: [
       "Bonjour, ravi de vous saluer. Je suis l'assistant de **Tuta Wayta** et je peux vous aider avec les horaires, les produits, les expéditions, l'emplacement et les contacts.",
       "Bonjour, bienvenue chez **Tuta Wayta**. Si vous le souhaitez, je peux vous donner des détails rapides sur les commandes, les horaires ou les produits.",
-      "Bonjour, je suis là pour vous aider. Posez-moi des questions sur les horaires, l'emplacement, les contacts ou los produits que nous proposons."
+      "Bonjour, je suis là pour vous aider. Posez-moi des questions sur les horaires, l'emplacement, les contacts ou les produits que nous proposons."
     ],
     order: [
       "Bien sûr, je peux vous aider. Vous pouvez nous écrire via le formulaire ou au **+51 987 654 321** et nous coordonnerons votre commande.",
@@ -369,7 +369,7 @@ const chatboxTranslations = {
       "La pitaya est une excellente option pour son apport en fibres, en antioxydants et sa fraîcheur naturelle."
     ],
     fallback: [
-      "Merci pour votre message. Si vous le souhaitez, je peux vous aider avec les **horaires**, les **produits**, les **expéditions**, l'**emplacement** ou los **contacts**.",
+      "Merci pour votre message. Si vous le souhaitez, je peux vous aider avec les **horaires**, les **produits**, les **expéditions**, l'**emplacement** ou les **contacts**.",
       "Je ne suis pas sûr de cette demande, mais si vous m'interrogez sur les horaires, les commandes ou les contacts, je vous répondrai instantanément.",
       "Si vous le souhaitez, je peux vous donner des informations rapides sur les commandes, les produits ou la façon de nous contacter."
     ]
@@ -402,6 +402,15 @@ function getCurrentLang() {
   return document.documentElement.lang || 'es';
 }
 
+// ─── MANEJO DE HORA EN LA CABECERA ───
+function actualizarHoraCabecera() {
+  const statusTimeElement = document.getElementById('chat-status-time');
+  if (statusTimeElement) {
+    const ahora = new Date();
+    statusTimeElement.textContent = ahora.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+  }
+}
+
 // ─── MANEJO DE ESTADOS DE APERTURA ───
 function openState(isOpen) {
   chatWindow.classList.toggle('open', isOpen);
@@ -416,7 +425,6 @@ toggle.addEventListener('click', () => {
   if (isOpen && !hasWelcomed && chatMessages.children.length === 0) {
     const history = loadChatHistory();
     if (history.length > 0) {
-      // MEJORA 1: restaurar conversación guardada en localStorage
       history.forEach(item => addMessage(item.role, item.text, false));
     } else {
       showWelcome();
@@ -489,14 +497,26 @@ function pickRandom(items) {
   return items[Math.floor(Math.random() * items.length)];
 }
 
-// ─── MEJORA 4: HORARIO DINÁMICO CON Date() ───
+// ─── HORARIO DINÁMICO CON Date() ───
 // Horario real del negocio: Lunes(1) a Sábado(6), 8:00 a 18:00. Domingo(0) cerrado.
 function isBusinessOpenNow() {
   const now = new Date();
   const day = now.getDay();
   const hour = now.getHours();
-  if (day === 0) return false;
-  return hour >= 8 && hour < 18;
+  
+  const isOpen = day !== 0 && hour >= 8 && hour < 18;
+
+  // Actualizar también el texto del estado de la cabecera si existe
+  const headerStatus = document.querySelector('[data-i18n="chat_header_status"]');
+  const onlineDot = document.querySelector('.online-dot');
+  if (headerStatus) {
+    headerStatus.textContent = isOpen ? 'En línea' : 'Fuera de línea';
+  }
+  if (onlineDot) {
+    onlineDot.style.backgroundColor = isOpen ? '#00e676' : '#888';
+  }
+
+  return isOpen;
 }
 
 const scheduleStatusText = {
@@ -517,6 +537,14 @@ function getDynamicHoursReply(lang) {
   return `${status}\n${baseReply}`;
 }
 
+function replayQuickRepliesAnimation() {
+  if (quickReplies) {
+    quickReplies.classList.remove('animate');
+    void quickReplies.offsetWidth; // Forzar reflow
+    quickReplies.classList.add('animate');
+  }
+}
+
 // ─── PROCESADOR DE RESPUESTAS SIMULADAS ───
 function getSimulatedReply(userText) {
   const lang = getCurrentLang();
@@ -528,182 +556,84 @@ function getSimulatedReply(userText) {
     return pickRandom(i18n[userText]);
   }
 
-  // Palabras clave extendidas balanceadas para todos los idiomas
   const keywords = {
     greetings: ['hola', 'buenas', 'buenos dias', 'buenas tardes', 'buenas noches', 'hello', 'hi', 'good morning', 'good afternoon', 'good evening', 'ola', 'bom dia', 'boa tarde', 'boa noite', 'hallo', 'guten tag', 'ciao', 'buongiorno', 'bonjour', 'salut'],
     order: ['pedido', 'comprar', 'compra', 'quiero un pedido', 'hacer un pedido', 'order', 'buy', 'purchase', 'i want to order', 'compras', 'bestellen', 'bestellung', 'ordinare', 'ordine', 'commander', 'commande'],
     hours: ['hora', 'horario', 'abren', 'atienden', 'atencion', 'hours', 'opening', 'open', 'attention', 'horarios', 'uhrzeit', 'offnungszeiten', 'geoffnet', 'orari', 'orario', 'aperto', 'horaires', 'horaire', 'ouvert'],
-    products: ['producto', 'productos', 'precio', 'precios', 'catalogo', 'product', 'products', 'price', 'prices', 'catalog', 'preço', 'preços', 'catalogo', 'produkte', 'preis', 'preise', 'katalog', 'prodotto', 'prodotti', 'prezzo', 'prezzi', 'produit', 'produits', 'prix'],
-    shipping: ['envio', 'envios', 'delivery', 'entrega', 'reparto', 'shipping', 'shipment', 'send', 'entregas', 'versand', 'lieferung', 'spedizione', 'spedizioni', 'livraison', 'expedition'],
-    contact: ['contacto', 'correo', 'email', 'telefono', 'whatsapp', 'numero', 'llamar', 'contact', 'phone', 'number', 'call', 'telefone', 'kontakt', 'telefon', 'nummer', 'contatto', 'telefono', 'numero', 'telephone'],
-    location: ['donde', 'ubicacion', 'direccion', 'canete', 'cañete', 'lima', 'where', 'location', 'address', 'onde', 'localizacao', 'standort', 'adresse', 'wo', 'dove', 'posizione', 'indirizzo', 'ou', 'emplacement'],
-    benefits: ['beneficio', 'beneficios', 'pitahaya', 'salud', 'nutricion', 'benefit', 'benefits', 'dragon fruit', 'health', 'nutrition', 'pitaya', 'saude', 'nutricao', 'vorteile', 'gesundheit', 'benefici', 'salute', 'bienfaits', 'sante']
+    products: ['producto', 'productos', 'precio', 'precios', 'catalogo', 'product', 'products', 'price', 'prices', 'catalog', 'preço', 'preços', 'produkt', 'produkte', 'prodotto', 'prodotti', 'produit', 'produits'],
+    shipping: ['envio', 'envios', 'despacho', 'delivery', 'shipping', 'entrega', 'envio', 'envios', 'versand', 'lieferung', 'spedizione', 'spedizioni', 'livraison', 'expedition'],
+    contact: ['contacto', 'telefono', 'celular', 'correo', 'email', 'contact', 'phone', 'call', 'contato', 'telefone', 'kontakt', 'telefon', 'contatti', 'telefono', 'telephone'],
+    location: ['ubicacion', 'donde estan', 'direccion', 'mapa', 'location', 'where', 'address', 'map', 'localização', 'onde', 'endereço', 'standort', 'adresse', 'posizione', 'dove', 'emplacement', 'adresse'],
+    benefits: ['beneficio', 'beneficios', 'salud', 'propiedades', 'benefit', 'benefits', 'health', 'benefícios', 'saúde', 'vorteile', 'gesundheit', 'benefici', 'salute', 'bienfaits', 'sante']
   };
 
-  if (keywords.greetings.some(k => text.includes(k))) return pickRandom(i18n.greetings);
-
-  // MEJORA 2: detección de intención por puntaje.
-  // En vez de responder con la PRIMERA categoría que coincide, contamos
-  // cuántas palabras clave de cada categoría aparecen en el mensaje y
-  // elegimos la de mayor puntaje. Esto evita respuestas incorrectas cuando
-  // un mensaje toca varios temas (ej. "precio de envio a lima" menciona
-  // "products", "shipping" y "location" a la vez).
-  const scoreCategories = ['order', 'hours', 'products', 'shipping', 'contact', 'location', 'benefits'];
-  let bestCategory = null;
-  let bestScore = 0;
-
-  scoreCategories.forEach(category => {
-    const matches = keywords[category].filter(k => text.includes(k)).length;
-    if (matches > bestScore) {
-      bestScore = matches;
-      bestCategory = category;
+  for (const [key, wordList] of Object.entries(keywords)) {
+    if (wordList.some(word => text.includes(word))) {
+      if (key === 'hours') return getDynamicHoursReply(lang);
+      return pickRandom(i18n[key]);
     }
-  });
-
-  if (bestCategory) {
-    if (bestCategory === 'hours') return getDynamicHoursReply(lang);
-    return pickRandom(i18n[bestCategory]);
   }
 
   return pickRandom(i18n.fallback);
 }
 
-// ─── LOGICA DE ENVIO CON TIEMPO NATURAL ───
-let lastSentText = '';
-let lastSentAt = 0;
+// ─── ENVÍO DE MENSAJES ───
+function handleSend() {
+  if (isLoading) return;
+  const rawText = input.value;
+  const userText = rawText.trim();
+  if (!userText) return;
 
-async function sendMessage(userText, textToDisplay = null) {
-  const cleanText = userText.trim();
-
-  // MEJORA 3: validación de entrada
-  if (!cleanText || isLoading) return;
-
-  if (cleanText.length > CHAT_MAX_CHARS) {
-    userText = cleanText.slice(0, CHAT_MAX_CHARS);
-  }
-
-  const now = Date.now();
-  const isDuplicate = cleanText === lastSentText && (now - lastSentAt) < 2000;
-  if (isDuplicate) {
-    // Evita envíos duplicados accidentales (doble clic / doble Enter)
-    return;
-  }
-  lastSentText = cleanText;
-  lastSentAt = now;
-
-  isLoading = true;
-  quickReplies.style.display = 'none';
-  
-  const displayMessage = textToDisplay || userText;
-  addMessage('user', displayMessage);
-  
+  addMessage('user', userText);
   input.value = '';
-  input.style.height = 'auto';
-  updateCharCounter();
-  sendBtn.disabled = true;
+  if (charCounter) charCounter.textContent = `0/${CHAT_MAX_CHARS}`;
+  isLoading = true;
   showTyping();
-
-  const naturalDelay = 450 + Math.random() * 450;
 
   setTimeout(() => {
     removeTyping();
-    addMessage('bot', getSimulatedReply(userText));
-    replayQuickRepliesAnimation();
+    const botReply = getSimulatedReply(userText);
+    addMessage('bot', botReply);
     isLoading = false;
-    sendBtn.disabled = false;
-    input.focus();
-  }, naturalDelay);
+  }, 600);
 }
 
 function sendQuick(key) {
+  if (isLoading) return;
   const lang = getCurrentLang();
-  const textToDisplay = (buttonTextMapping[lang] && buttonTextMapping[lang][key]) || key;
-  sendMessage(key, textToDisplay);
+  const mapping = buttonTextMapping[lang] || buttonTextMapping.es;
+  const userLabel = mapping[key] || key;
+
+  addMessage('user', userLabel);
+  isLoading = true;
+  showTyping();
+
+  setTimeout(() => {
+    removeTyping();
+    const botReply = getSimulatedReply(key);
+    addMessage('bot', botReply);
+    isLoading = false;
+  }, 600);
 }
 
-// ─── ESCUCHADORES DE EVENTOS DE ENTRADA ───
-function updateCharCounter() {
-  if (!charCounter) return;
-  const len = input.value.length;
-  charCounter.textContent = `${len}/${CHAT_MAX_CHARS}`;
-  charCounter.classList.toggle('limit-near', len >= CHAT_MAX_CHARS * 0.85 && len < CHAT_MAX_CHARS);
-  charCounter.classList.toggle('limit-reached', len >= CHAT_MAX_CHARS);
-}
+// ─── EVENTOS DE ENTRADA Y CONTADOR ───
+if (sendBtn) sendBtn.addEventListener('click', handleSend);
+if (input) {
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  });
 
-input.addEventListener('input', () => {
-  input.style.height = 'auto';
-  input.style.height = Math.min(input.scrollHeight, 100) + 'px';
-  updateCharCounter();
-});
-
-input.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault();
-    sendMessage(input.value);
-  }
-});
-
-sendBtn.addEventListener('click', () => sendMessage(input.value));
-
-function replayQuickRepliesAnimation() {
-  quickReplies.style.display = 'flex';
-  quickReplies.classList.remove('qr-animate');
-  void quickReplies.offsetWidth; 
-  quickReplies.classList.add('qr-animate');
-}
-
-// ─── CONTROLADOR DEL SELECTOR MULTI-IDIOMA NATIVO ───
-if (langSelector) {
-  langSelector.addEventListener('change', (e) => {
-    const selectedLang = e.target.value;
-    document.documentElement.lang = selectedLang;
-
-    const event = new CustomEvent('languageChanged', {
-      detail: { language: selectedLang }
-    });
-    document.dispatchEvent(event);
+  input.addEventListener('input', () => {
+    if (charCounter) {
+      charCounter.textContent = `${input.value.length}/${CHAT_MAX_CHARS}`;
+    }
   });
 }
 
-// ─── ESCUCHADOR ASÍNCRONO DE CAMBIO DE IDIOMA EN VIVO ───
-document.addEventListener('languageChanged', () => {
-  const lang = getCurrentLang();
-  const translations = chatboxTranslations[lang];
-  const i18nData = window.i18nData ? (window.i18nData[lang] || {}) : {};
-
-  if (!translations) return;
-
-  const firstMsgBubble = chatMessages.querySelector('.msg.bot .msg-bubble');
-  if (firstMsgBubble && chatMessages.children.length === 1) {
-    firstMsgBubble.innerHTML = translations.welcome
-      .replace(/\*\*(.*?)\*\"/g, '<strong>$1</strong>')
-      .replace(/\n/g, '<br>');
-  }
-
-  const headerTitle = document.querySelector('#chat-window .chat-info h3');
-  const headerStatus = document.querySelector('#chat-window .chat-info p span:last-child');
-  const inputEl = document.getElementById('chat-input');
-
-  const fallbacks = {
-    es: { title: 'Asistente Tuta Wayta', status: 'En línea', placeholder: 'Escribe tu pregunta…' },
-    en: { title: 'Tuta Wayta Assistant', status: 'Online', placeholder: 'Type your question…' },
-    zh: { title: 'Tuta Wayta 助手', status: '在线', placeholder: '输入您的问题…' },
-    pt: { title: 'Assistente Tuta Wayta', status: 'On-line', placeholder: 'Digite sua pergunta…' },
-    de: { title: 'Tuta Wayta Assistent', status: 'Online', placeholder: 'Stellen Sie eine Frage…' },
-    it: { title: 'Assistente Tuta Wayta', status: 'Online', placeholder: 'Scrivi la tua domanda…' },
-    fr: { title: 'Assistant Tuta Wayta', status: 'En ligne', placeholder: 'Posez votre question…' }
-  };
-  const fallbackLang = fallbacks[lang] || fallbacks.es;
-
-  if (headerTitle) headerTitle.textContent = i18nData['chat_header_title'] || fallbackLang.title;
-  if (headerStatus) headerStatus.textContent = i18nData['chat_header_status'] || fallbackLang.status;
-  if (inputEl) inputEl.placeholder = i18nData['chat_input_ph'] || fallbackLang.placeholder;
-
-  const currentMap = buttonTextMapping[lang];
-  if (currentMap) {
-    Object.keys(currentMap).forEach(key => {
-      const btn = document.querySelector(`.quick-btn[onclick*="${key}"]`);
-      if (btn) btn.textContent = currentMap[key];
-    });
-  }
-});
+// ─── INICIALIZACIÓN ───
+actualizarHoraCabecera();
+isBusinessOpenNow();
+setInterval(actualizarHoraCabecera, 30000);

@@ -1,163 +1,548 @@
+```javascript
 document.addEventListener("DOMContentLoaded", () => {
 
-    // =========================================
-    // ANIMACIÓN TIMELINE
-    // =========================================
+    /* =========================================================
+       TIMELINE
+    ========================================================= */
 
-    const timelineItems = document.querySelectorAll(".timeline-item");
+    const timelineItems =
+        document.querySelectorAll(".timeline-item");
 
-    const observer = new IntersectionObserver((entries) => {
 
-        entries.forEach((entry) => {
+    if (timelineItems.length > 0) {
 
-            if (entry.isIntersecting) {
-                entry.target.classList.add("active");
-            }
+        const observer =
+            new IntersectionObserver(
+                (entries, observer) => {
+
+                    entries.forEach((entry) => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add("active");
+
+                            // No volver a observar
+                            // una tarjeta ya animada
+                            observer.unobserve(
+                                entry.target
+                            );
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.35
+                }
+            );
+
+
+        timelineItems.forEach((item) => {
+
+            observer.observe(item);
 
         });
+    }
 
-    }, {
-        threshold: 0.7  //esto controlar movieno linia de tienpo carts 
-    });
 
-    timelineItems.forEach((item) => {
-        observer.observe(item);
-    });
+    /* =========================================================
+       MODAL
+    ========================================================= */
 
-    // =========================================
-    // MODAL
-    // =========================================
+    const modal =
+        document.getElementById(
+            "timeline-modal"
+        );
 
-    const modal = document.getElementById("timeline-modal");
 
-    if (!modal) return;
+    if (modal) {
 
-    const modalTitle = document.getElementById("modal-title");
-    const modalText = document.getElementById("modal-text");
-    const modalImg = document.getElementById("modal-img");
+        const modalTitle =
+            document.getElementById(
+                "modal-title"
+            );
 
-    const closeBtn = document.querySelector(".t-close");
-    const overlay = document.querySelector(".t-modal-overlay");
+        const modalText =
+            document.getElementById(
+                "modal-text"
+            );
 
-    const cards = document.querySelectorAll(".timeline-content");
+        const modalImg =
+            document.getElementById(
+                "modal-img"
+            );
 
-    cards.forEach((card) => {
+        const closeBtn =
+            document.querySelector(
+                ".t-close"
+            );
 
-        card.style.cursor = "pointer";
+        const overlay =
+            document.querySelector(
+                ".t-modal-overlay"
+            );
 
-        card.addEventListener("click", () => {
+        const cards =
+            document.querySelectorAll(
+                ".timeline-content"
+            );
 
-            const title = card.dataset.title;
-            const text = card.dataset.text;
-            const img = card.dataset.img;
 
-            modalTitle.textContent = title;
-            modalText.textContent = text;
-            modalImg.src = img;
+        /* =====================================================
+           ABRIR MODAL
+        ===================================================== */
+
+        function openModal(card) {
+
+            const title =
+                card.dataset.title ||
+                "Nuestra historia";
+
+            const text =
+                card.dataset.text ||
+                "";
+
+            const img =
+                card.dataset.img ||
+                "";
+
+
+            if (modalTitle) {
+
+                modalTitle.textContent =
+                    title;
+            }
+
+
+            if (modalText) {
+
+                modalText.textContent =
+                    text;
+            }
+
+
+            if (modalImg) {
+
+                if (img) {
+
+                    modalImg.src = img;
+
+                    modalImg.alt = title;
+
+                    modalImg.style.display =
+                        "block";
+
+                } else {
+
+                    modalImg.style.display =
+                        "none";
+                }
+            }
+
 
             modal.classList.add("active");
 
-            document.body.style.overflow = "hidden";
-        });
+            modal.setAttribute(
+                "aria-hidden",
+                "false"
+            );
 
-    });
 
-    // CERRAR
-
-    function closeModal() {
-        modal.classList.remove("active");
-        document.body.style.overflow = "auto";
-    }
-
-    closeBtn.addEventListener("click", closeModal);
-
-    overlay.addEventListener("click", closeModal);
-
-    document.addEventListener("keydown", (e) => {
-
-        if (e.key === "Escape") {
-            closeModal();
+            document.body.style.overflow =
+                "hidden";
         }
 
-    });
 
-});
+        /* =====================================================
+           CERRAR MODAL
+        ===================================================== */
 
-/* =========================================================
-   NUESTRA HISTORIA
-   Carrusel visual de la historia y crecimiento
-   de la Asociación de Productores de Pitahaya
-========================================================= */
+        function closeModal() {
 
-(function() {
+            modal.classList.remove(
+                "active"
+            );
 
-    const slider = document.querySelector('.comunidad-slider');
-    const prevBtn = document.querySelector('.prev');
-    const nextBtn = document.querySelector('.next');
-    const dots = document.querySelectorAll('.dot');
+            modal.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+
+            document.body.style.overflow =
+                "";
+        }
+
+
+        /* =====================================================
+           TARJETAS
+        ===================================================== */
+
+        cards.forEach((card) => {
+
+            card.style.cursor =
+                "pointer";
+
+
+            card.addEventListener(
+                "click",
+                () => {
+
+                    openModal(card);
+
+                }
+            );
+
+        });
+
+
+        /* =====================================================
+           BOTÓN CERRAR
+        ===================================================== */
+
+        if (closeBtn) {
+
+            closeBtn.addEventListener(
+                "click",
+                closeModal
+            );
+        }
+
+
+        /* =====================================================
+           OVERLAY
+        ===================================================== */
+
+        if (overlay) {
+
+            overlay.addEventListener(
+                "click",
+                closeModal
+            );
+        }
+
+
+        /* =====================================================
+           ESC
+        ===================================================== */
+
+        document.addEventListener(
+            "keydown",
+            (event) => {
+
+                if (
+                    event.key === "Escape" &&
+                    modal.classList.contains(
+                        "active"
+                    )
+                ) {
+
+                    closeModal();
+
+                }
+
+            }
+        );
+    }
+
+
+    /* =========================================================
+       CARRUSEL
+    ========================================================= */
+
+    const slider =
+        document.querySelector(
+            ".comunidad-slider"
+        );
+
+    const slides =
+        document.querySelectorAll(
+            ".comunidad-slide"
+        );
+
+    const prevBtn =
+        document.querySelector(
+            ".prev"
+        );
+
+    const nextBtn =
+        document.querySelector(
+            ".next"
+        );
+
+    const dots =
+        document.querySelectorAll(
+            ".dot"
+        );
+
+
+    if (
+        !slider ||
+        slides.length === 0
+    ) {
+
+        return;
+    }
+
 
     let currentIndex = 0;
-    const totalSlides = document.querySelectorAll('.comunidad-slide').length;
-    let timer;
 
-    function move(index) {
+    let timer = null;
+
+    const totalSlides =
+        slides.length;
+
+    const AUTO_PLAY_TIME =
+        5000;
+
+
+    /* =========================================================
+       MOVER SLIDE
+    ========================================================= */
+
+    function moveToSlide(index) {
+
+        if (index < 0) {
+
+            index =
+                totalSlides - 1;
+        }
+
+
+        if (index >= totalSlides) {
+
+            index = 0;
+        }
+
 
         currentIndex = index;
+
 
         slider.style.transform =
             `translateX(-${currentIndex * 100}%)`;
 
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === currentIndex);
-        });
+
+        /* Actualizar dots */
+
+        dots.forEach(
+            (dot, dotIndex) => {
+
+                dot.classList.toggle(
+                    "active",
+                    dotIndex ===
+                    currentIndex
+                );
+            }
+        );
+
+
+        /* Accesibilidad */
+
+        slides.forEach(
+            (slide, slideIndex) => {
+
+                slide.setAttribute(
+                    "aria-hidden",
+                    slideIndex !==
+                    currentIndex
+                );
+            }
+        );
     }
+
+
+    /* =========================================================
+       SIGUIENTE
+    ========================================================= */
 
     function nextSlide() {
 
-        currentIndex =
-            (currentIndex + 1) % totalSlides;
-
-        move(currentIndex);
+        moveToSlide(
+            currentIndex + 1
+        );
     }
 
-    function startTimer() {
-        timer = setInterval(nextSlide, 5000);
+
+    /* =========================================================
+       ANTERIOR
+    ========================================================= */
+
+    function previousSlide() {
+
+        moveToSlide(
+            currentIndex - 1
+        );
     }
 
-    nextBtn.addEventListener('click', () => {
 
-        clearInterval(timer);
+    /* =========================================================
+       INICIAR AUTOPLAY
+    ========================================================= */
 
-        nextSlide();
+    function startAutoPlay() {
 
-        startTimer();
-    });
+        stopAutoPlay();
 
-    prevBtn.addEventListener('click', () => {
 
-        clearInterval(timer);
+        timer = setInterval(
+            nextSlide,
+            AUTO_PLAY_TIME
+        );
+    }
 
-        currentIndex =
-            (currentIndex - 1 + totalSlides) % totalSlides;
 
-        move(currentIndex);
+    /* =========================================================
+       DETENER AUTOPLAY
+    ========================================================= */
 
-        startTimer();
-    });
+    function stopAutoPlay() {
 
-    dots.forEach((dot, index) => {
-
-        dot.addEventListener('click', () => {
+        if (timer) {
 
             clearInterval(timer);
 
-            move(index);
+            timer = null;
+        }
+    }
 
-            startTimer();
-        });
 
-    });
+    /* =========================================================
+       BOTÓN SIGUIENTE
+    ========================================================= */
 
-    startTimer();
+    if (nextBtn) {
 
-})();
+        nextBtn.addEventListener(
+            "click",
+            () => {
+
+                stopAutoPlay();
+
+                nextSlide();
+
+                startAutoPlay();
+            }
+        );
+    }
+
+
+    /* =========================================================
+       BOTÓN ANTERIOR
+    ========================================================= */
+
+    if (prevBtn) {
+
+        prevBtn.addEventListener(
+            "click",
+            () => {
+
+                stopAutoPlay();
+
+                previousSlide();
+
+                startAutoPlay();
+            }
+        );
+    }
+
+
+    /* =========================================================
+       DOTS
+    ========================================================= */
+
+    dots.forEach(
+        (dot, index) => {
+
+            dot.addEventListener(
+                "click",
+                () => {
+
+                    stopAutoPlay();
+
+                    moveToSlide(index);
+
+                    startAutoPlay();
+                }
+            );
+
+        }
+    );
+
+
+    /* =========================================================
+       PAUSAR CON MOUSE
+    ========================================================= */
+
+    slider.addEventListener(
+        "mouseenter",
+        stopAutoPlay
+    );
+
+    slider.addEventListener(
+        "mouseleave",
+        startAutoPlay
+    );
+
+
+    /* =========================================================
+       PESTAÑA INACTIVA
+    ========================================================= */
+
+    document.addEventListener(
+        "visibilitychange",
+        () => {
+
+            if (document.hidden) {
+
+                stopAutoPlay();
+
+            } else {
+
+                startAutoPlay();
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       TECLADO
+    ========================================================= */
+
+    document.addEventListener(
+        "keydown",
+        (event) => {
+
+            if (event.key === "ArrowRight") {
+
+                stopAutoPlay();
+
+                nextSlide();
+
+                startAutoPlay();
+            }
+
+
+            if (event.key === "ArrowLeft") {
+
+                stopAutoPlay();
+
+                previousSlide();
+
+                startAutoPlay();
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       INICIALIZAR
+    ========================================================= */
+
+    moveToSlide(0);
+
+    startAutoPlay();
+
+});
+```
