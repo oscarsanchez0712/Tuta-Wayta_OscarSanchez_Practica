@@ -14,10 +14,7 @@
     <div class="chat-avatar">🌺</div>
     <div class="chat-info">
       <h3 data-i18n="chat_header_title">Asistente Tuta Wayta</h3>
-      <p>
-        <span class="online-dot"></span> 
-        <span data-i18n="chat_header_status">En línea</span> • <span id="chat-status-time"></span>
-      </p>
+      <p><span class="online-dot"></span> <span data-i18n="chat_header_status">En línea</span></p>
     </div>
     <button id="chat-clear-btn" title="Borrar conversación" data-i18n-title="chat_clear_title">🗑️</button>
   </div>
@@ -98,20 +95,3 @@
   </div>
   <div id="char-counter" class="char-counter">0/300</div>
 </div>
-
-<!-- Script para actualizar la hora de la cabecera en tiempo real -->
-<script>
-  function actualizarHoraChat() {
-    const statusTimeElement = document.getElementById('chat-status-time');
-    if (statusTimeElement) {
-      const ahora = new Date();
-      statusTimeElement.textContent = ahora.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
-    }
-  }
-  
-  // Muestra la hora inmediatamente al cargar
-  actualizarHoraChat();
-  
-  // Actualiza la hora cada 30 segundos
-  setInterval(actualizarHoraChat, 30000);
-</script>
