@@ -4,6 +4,8 @@
    Claves de localStorage: 'modo' (claro|oscuro|auto), 'acento', 'tamano'
    Mantiene los IDs originales: themeToggle, themeToggleMobile,
    themeLabel, themeIcon.
+   El panel de apariencia ya NO se crea aquí: su HTML está en base.html
+   (ver panel_apariencia.html, id="temaPanel").
    ===================================================================== */
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.documentElement;
@@ -125,37 +127,19 @@ document.addEventListener('DOMContentLoaded', () => {
     root.style.fontSize = valor === TAM_DEF ? '' : `${valor}%`;
   };
 
-  /* ---------- Panel de apariencia (se crea solo, no hace falta HTML) ---------- */
-  const panel = document.createElement('div');
-  panel.className = 'tema-panel';
-  panel.innerHTML = `
-    <button type="button" class="tema-panel-btn" aria-expanded="false"
-            aria-controls="temaPanelCuerpo" aria-label="Personalizar apariencia">🎨</button>
-    <div class="tema-panel-cuerpo" id="temaPanelCuerpo" role="group" aria-label="Apariencia" hidden>
-      <p class="tema-panel-titulo">Tema</p>
-      <div class="tema-panel-fila">
-        <button type="button" data-modo="claro" aria-pressed="false">Claro</button>
-        <button type="button" data-modo="auto" aria-pressed="false">Auto</button>
-        <button type="button" data-modo="oscuro" aria-pressed="false">Oscuro</button>
-      </div>
-      <p class="tema-panel-titulo">Color de acento</p>
-      <div class="tema-panel-fila">
-        <button type="button" class="tema-swatch" data-acento="rosa" aria-label="Acento rosa" aria-pressed="false"></button>
-        <button type="button" class="tema-swatch" data-acento="azul" aria-label="Acento azul" aria-pressed="false"></button>
-        <button type="button" class="tema-swatch" data-acento="verde" aria-label="Acento verde" aria-pressed="false"></button>
-      </div>
-      <p class="tema-panel-titulo">Tamaño de letra</p>
-      <div class="tema-panel-fila">
-        <button type="button" data-tam="menos" aria-label="Reducir tamaño de letra">A−</button>
-        <span class="tema-tam-valor" aria-live="polite"></span>
-        <button type="button" data-tam="mas" aria-label="Aumentar tamaño de letra">A+</button>
-        <button type="button" data-tam="reset" aria-label="Restablecer tamaño de letra">↺</button>
-      </div>
-    </div>`;
+  /* ---------- Panel de apariencia (el HTML está en base.html) ---------- */
+  // Si el HTML no está en la página, se usa un div vacío y el panel simplemente no aparece.
+  const panel = document.getElementById('temaPanel') || document.createElement('div');
+  const panelBtn = panel.querySelector('.tema-panel-btn');
+  const panelCuerpo = panel.querySelector('.tema-panel-cuerpo');
+  const tamValor = panel.querySelector('.tema-tam-valor');
+  const hayPanel = Boolean(panelBtn && panelCuerpo && tamValor);
+
   // El panel vive en la barra de navegación (escritorio) o en el menú móvil,
   // así nunca tapa los botones de redes ni otros elementos flotantes.
   const mqMovil = window.matchMedia('(max-width: 768px)');
   const ubicarPanel = () => {
+    if (!hayPanel) return;
     const navAcciones = document.querySelector('.nav-actions');
     const menuMovil = document.getElementById('dropdownMenu');
     panel.classList.remove('tema-panel-nav', 'tema-panel-movil');
@@ -169,17 +153,13 @@ document.addEventListener('DOMContentLoaded', () => {
         navAcciones.appendChild(panel);
       }
       panel.classList.add('tema-panel-nav');
-    } else {
-      document.body.appendChild(panel); // respaldo: flotante
     }
+    // Si no hay barra ni menú, el panel queda donde se pegó el HTML (flotante)
   };
   ubicarPanel();
 
-  const panelBtn = panel.querySelector('.tema-panel-btn');
-  const panelCuerpo = panel.querySelector('.tema-panel-cuerpo');
-  const tamValor = panel.querySelector('.tema-tam-valor');
-
   const actualizarPanel = () => {
+    if (!hayPanel) return;
     panel.querySelectorAll('[data-modo]').forEach((b) => {
       b.setAttribute('aria-pressed', String(b.dataset.modo === modo));
     });
@@ -190,6 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const abrirPanel = (abrir) => {
+    if (!hayPanel) return;
     panelCuerpo.hidden = !abrir;
     panelBtn.setAttribute('aria-expanded', String(abrir));
   };
@@ -257,13 +238,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Cerrar el panel con Escape o al hacer clic fuera
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && !panelCuerpo.hidden) {
+    if (hayPanel && event.key === 'Escape' && !panelCuerpo.hidden) {
       abrirPanel(false);
       panelBtn.focus();
     }
   });
   document.addEventListener('click', (event) => {
-    if (!panelCuerpo.hidden && !panel.contains(event.target)) abrirPanel(false);
+    if (hayPanel && !panelCuerpo.hidden && !panel.contains(event.target)) abrirPanel(false);
   });
 
   // Atajo de teclado: Ctrl + J (o Cmd + J en Mac)
