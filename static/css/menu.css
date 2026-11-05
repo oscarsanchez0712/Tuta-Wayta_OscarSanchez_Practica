@@ -1008,3 +1008,337 @@ body.dark .lang-selector-custom-mobile .lang-options-mobile a:hover {
   color: #d92d20;
   border-color: #fecdca;
 }
+
+/* ==========================================================================
+   12. MEJORAS MENUS DESPLEGABLES (Productos / Nosotros)
+   Se agrego al final para sobreescribir sin borrar nada de lo anterior.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0. VARIABLES (claro / oscuro)
+   El color de acento usa --magenta de tu style.css; si no existe, #e0006e.
+   -------------------------------------------------------------------------- */
+:root {
+  --menu-acento: var(--magenta, #e0006e);
+  --menu-acento-texto: var(--magenta, #e0006e);
+  --menu-acento-suave: #fdf0f6;
+  --menu-fondo: #ffffff;
+  --menu-texto: #1f2937;
+  --menu-borde: rgba(15, 23, 42, 0.1);
+  --menu-sombra: 0 18px 40px rgba(15, 23, 42, 0.22);
+}
+
+@supports (background: color-mix(in srgb, red 10%, white)) {
+  :root {
+    --menu-acento-suave: color-mix(in srgb, var(--menu-acento) 10%, white);
+  }
+}
+
+body.dark {
+  --menu-acento-texto: #ff6aa6;
+  --menu-acento-suave: #2d1b22;
+  --menu-fondo: #1f2937;
+  --menu-texto: #e5e7eb;
+  --menu-borde: rgba(255, 255, 255, 0.12);
+  --menu-sombra: 0 18px 40px rgba(0, 0, 0, 0.55);
+}
+
+/* --------------------------------------------------------------------------
+   1. ICONOS EN LAS OPCIONES (escritorio y móvil)
+   Usa la fuente Material Symbols que ya cargas en base.html.
+   Se asignan por data-i18n, así no hay que tocar el HTML de cada enlace.
+   -------------------------------------------------------------------------- */
+:is(.custom-submenu, .mobile-submenu) a::before {
+  content: var(--ico, 'chevron_right');
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  flex: 0 0 20px;
+  width: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+  font-feature-settings: 'liga';
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+:is(.custom-submenu, .mobile-submenu) a[data-i18n="nav_productos_all"]   { --ico: 'storefront'; }
+:is(.custom-submenu, .mobile-submenu) a[data-i18n="nav_servicios"]       { --ico: 'handyman'; }
+:is(.custom-submenu, .mobile-submenu) a[data-i18n="nav_beneficios"]      { --ico: 'favorite'; }
+:is(.custom-submenu, .mobile-submenu) a[data-i18n="nav_blog"]            { --ico: 'article'; }
+:is(.custom-submenu, .mobile-submenu) a[data-i18n="about_who_we_are_tag"]{ --ico: 'eco'; }
+:is(.custom-submenu, .mobile-submenu) a[data-i18n="about_pillar2_title"] { --ico: 'flag'; }
+:is(.custom-submenu, .mobile-submenu) a[data-i18n="about_pillar3_title"] { --ico: 'visibility'; }
+:is(.custom-submenu, .mobile-submenu) a[data-i18n="nav_historia"]        { --ico: 'history_edu'; }
+:is(.custom-submenu, .mobile-submenu) a[data-i18n="nav_equipo"]          { --ico: 'groups'; }
+:is(.custom-submenu, .mobile-submenu) a[data-i18n="nav_galeria"]         { --ico: 'photo_library'; }
+
+/* --------------------------------------------------------------------------
+   2. ESCRITORIO (más de 992px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 993px) {
+
+  /* Flecha que gira al abrir */
+  .nav-links .dropdown-wrapper .nav-arrow {
+    display: inline-block;
+    transition: transform 0.25s ease;
+  }
+
+  .nav-links .dropdown-wrapper:hover .nav-arrow,
+  .nav-links .dropdown-wrapper:focus-within .nav-arrow {
+    transform: rotate(180deg);
+  }
+
+  /* Caja del submenú: centrada bajo la pestaña, esquinas suaves */
+  .nav-links .dropdown-wrapper .custom-submenu {
+    left: 50%;
+    width: auto;
+    min-width: 230px;
+    margin-top: 14px;
+    padding: 8px;
+    border-radius: 14px;
+    background: var(--menu-fondo);
+    border: 1px solid var(--menu-borde);
+    box-shadow: var(--menu-sombra);
+    overflow: visible;
+    transform: translate(-50%, 10px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+
+  .nav-links .dropdown-wrapper:hover .custom-submenu,
+  .nav-links .dropdown-wrapper:focus-within .custom-submenu {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  /* Puntita superior */
+  .nav-links .dropdown-wrapper .custom-submenu::before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background: var(--menu-fondo);
+    border-left: 1px solid var(--menu-borde);
+    border-top: 1px solid var(--menu-borde);
+    border-radius: 3px 0 0 0;
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  /* Puente invisible para que el menú no se cierre al bajar el mouse */
+  .nav-links .dropdown-wrapper .custom-submenu::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -18px;
+    height: 18px;
+  }
+
+  /* Filas */
+  .nav-links .dropdown-wrapper .custom-submenu li {
+    border-bottom: none;
+    width: 100%;
+  }
+
+  .nav-links .dropdown-wrapper .custom-submenu li a {
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    border-left: 0; 
+ }  
+}
+
+
+/* ==========================================================================
+   13. COLORES POR ICONO (menús de escritorio)
+   ========================================================================== */
+@media (min-width: 993px) {
+
+  .nav-links .dropdown-wrapper .custom-submenu li a[data-i18n]::before {
+    color: var(--ico-color, var(--menu-acento-texto));
+  }
+
+  /* Modo claro */
+  .custom-submenu a[data-i18n="nav_servicios"]        { --ico-color: #2563eb; }
+  .custom-submenu a[data-i18n="nav_beneficios"]       { --ico-color: #e11d48; }
+  .custom-submenu a[data-i18n="nav_blog"]             { --ico-color: #7c3aed; }
+  .custom-submenu a[data-i18n="about_who_we_are_tag"] { --ico-color: #16a34a; }
+  .custom-submenu a[data-i18n="about_pillar2_title"]  { --ico-color: #ea580c; }
+  .custom-submenu a[data-i18n="about_pillar3_title"]  { --ico-color: #0891b2; }
+  .custom-submenu a[data-i18n="nav_historia"]         { --ico-color: #b45309; }
+  .custom-submenu a[data-i18n="nav_equipo"]           { --ico-color: #db2777; }
+  .custom-submenu a[data-i18n="nav_galeria"]          { --ico-color: #4f46e5; }
+
+  /* Modo oscuro (tonos más claros para que se lean) */
+  body.dark .custom-submenu a[data-i18n="nav_servicios"]        { --ico-color: #60a5fa; }
+  body.dark .custom-submenu a[data-i18n="nav_beneficios"]       { --ico-color: #fb7185; }
+  body.dark .custom-submenu a[data-i18n="nav_blog"]             { --ico-color: #a78bfa; }
+  body.dark .custom-submenu a[data-i18n="about_who_we_are_tag"] { --ico-color: #4ade80; }
+  body.dark .custom-submenu a[data-i18n="about_pillar2_title"]  { --ico-color: #fb923c; }
+  body.dark .custom-submenu a[data-i18n="about_pillar3_title"]  { --ico-color: #22d3ee; }
+  body.dark .custom-submenu a[data-i18n="nav_historia"]         { --ico-color: #fbbf24; }
+  body.dark .custom-submenu a[data-i18n="nav_equipo"]           { --ico-color: #f472b6; }
+  body.dark .custom-submenu a[data-i18n="nav_galeria"]          { --ico-color: #818cf8; }
+}
+
+
+
+/* ==========================================================================
+   14. PESTAÑAS: CONTROL SEGMENTADO (opción D)
+   ========================================================================== */
+@media (min-width: 993px) {
+
+  /* Cápsula que agrupa las pestañas */
+  .nav-links {
+    gap: 2px;
+    padding: 4px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.18);
+  }
+
+  /* Se quita el subrayado anterior */
+  .nav-links > li > a::after,
+  .nav-links > li::after {
+    content: none !important;
+  }
+
+  .nav-links > li,
+  .nav-links > li > a {
+    border-bottom: 0 !important;
+  }
+
+  /* Pestañas en forma de pastilla */
+  .nav-links > li > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 8px 16px;
+    border-radius: 999px !important;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  /* Hover o menú abierto */
+  .nav-links > li > a:not(.active):hover,
+  .nav-links .dropdown-wrapper:hover > a:not(.active),
+  .nav-links .dropdown-wrapper:focus-within > a:not(.active) {
+    background: rgba(255, 255, 255, 0.18) !important;
+  }
+
+  /* Página activa */
+  .nav-links > li > a.active {
+    background: #ffffff !important;
+    color: #b90060 !important;
+  }
+
+  /* Flecha: chevron nítido que toma el color de la pestaña */
+  .nav-links .dropdown-wrapper .nav-arrow {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0;
+    line-height: 1;
+    margin-left: 0;
+    opacity: 1;
+    color: inherit;
+  }
+
+  .nav-links .dropdown-wrapper .nav-arrow::before {
+    content: 'expand_more';
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: block;
+    font-feature-settings: 'liga';
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+
+/* ==========================================================================
+   15. ACCIONES DE LA DERECHA: IDIOMA, CUENTA Y CARRITO (uniformes)
+   ========================================================================== */
+@media (min-width: 993px) {
+
+  .nav-actions {
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* Idioma */
+  .lang-selector-custom .current-lang {
+    height: 44px;
+    padding: 0 16px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  /* Cuenta */
+  .nav-login-btn {
+    width: 44px;
+    height: 44px;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  /* Carrito (pisa los estilos en línea de base.html) */
+  .nav-actions .nav-cart-btn {
+    width: 44px !important;
+    height: 44px !important;
+    margin-left: 0 !important;
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.14) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease !important;
+  }
+
+  .nav-actions .nav-cart-btn .material-symbols-outlined {
+    font-size: 24px !important;
+  }
+
+  .nav-actions .nav-cart-btn:hover {
+    background: #ffffff !important;
+    color: #b90060 !important;
+    transform: translateY(-2px);
+  }
+
+  /* Globito: blanco con número rosado */
+  .nav-actions #cart-count-badge {
+    top: -4px !important;
+    right: -4px !important;
+    min-width: 18px !important;
+    height: 18px !important;
+    padding: 0 5px !important;
+    box-sizing: border-box;
+    border-radius: 999px !important;
+    background: #ffffff !important;
+    color: #b90060 !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+  }
+
+  .nav-actions .nav-cart-btn:hover #cart-count-badge {
+    background: #b90060 !important;
+    color: #ffffff !important;
+  }
+}
+
+/* Globito oculto cuando el carrito está vacío */
+#cart-count-badge.hidden {
+  display: none !important;
+}
