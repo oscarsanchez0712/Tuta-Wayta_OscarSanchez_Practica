@@ -32,7 +32,9 @@ def get_db_connection():
     )
 from flask_mail import Mail, Message
 
-app = Flask(__name__)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+APP_DIR = os.path.join(BASE_DIR, 'app')
+app = Flask(__name__, template_folder=os.path.join(APP_DIR, 'templates'), static_folder=os.path.join(APP_DIR, 'static'))
 ##
 
 class SubpathMiddleware:
@@ -70,18 +72,18 @@ app.config['MAIL_DEFAULT_SENDER'] = ('Tuta Wayta', 'jorge.vilcapuma.t@vallegrand
 mail = Mail(app)
 
 # --- 🔥 NUEVO: CONFIGURACIÓN PARA SUBIDA DE ARCHIVOS ---
-UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'static', 'uploads')
+UPLOAD_FOLDER = os.path.join(APP_DIR, 'static', 'uploads')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Asegurarse de que la carpeta de subidas exista
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-ANALYTICS_FILE = os.path.join(os.path.dirname(__file__), "analytics_visits.json")
+ANALYTICS_FILE = os.path.join(APP_DIR, "analytics_visits.json")
 IGNORED_ANALYTICS_PATHS = {"/admin/dashboard", "/dashboard"}
 
 # Archivo seguro para la segunda manera de guardar mensajes de contacto
-CONTACTO_RESPALDO_FILE = os.path.join(os.path.dirname(__file__), "mensajes_contacto.json")
+CONTACTO_RESPALDO_FILE = os.path.join(APP_DIR, "mensajes_contacto.json")
 
 def read_analytics_visits():
     if not os.path.exists(ANALYTICS_FILE):
@@ -787,11 +789,11 @@ def generar_pdf_nutricional():
 
     # --- TU MAPEO DE IMÁGENES ---
     image_mapping = {
-        "American Beauty": os.path.join(os.path.dirname(__file__), "static", "img", "Pitahaya American Beauty.png"),
-        "Híbrida": os.path.join(os.path.dirname(__file__), "static", "img", "Pitahaya Híbrida Tesoro.png"),
-        "Interior Blanco": os.path.join(os.path.dirname(__file__), "static", "img", "Pitahaya Blanca.jpg"),
-        "Amarilla": os.path.join(os.path.dirname(__file__), "static", "img", "Pitahaya Amarilla Palora.png"),
-        "Pitahaya Amarilla": os.path.join(os.path.dirname(__file__), "static", "img", "Pitahaya Amarilla Palora.png")
+        "American Beauty": os.path.join(APP_DIR, "static", "img", "Pitahaya American Beauty.png"),
+        "Híbrida": os.path.join(APP_DIR, "static", "img", "Pitahaya Híbrida Tesoro.png"),
+        "Interior Blanco": os.path.join(APP_DIR, "static", "img", "Pitahaya Blanca.jpg"),
+        "Amarilla": os.path.join(APP_DIR, "static", "img", "Pitahaya Amarilla Palora.png"),
+        "Pitahaya Amarilla": os.path.join(APP_DIR, "static", "img", "Pitahaya Amarilla Palora.png")
     }
 
     # --- TU CONSTRUCCIÓN DE ENCABEZADOS (Iconos compactos para perfecto encaje y estética) ---
@@ -1229,7 +1231,7 @@ def api_libro_reclamaciones():
     except Exception as e:
         print(f"[ERROR] No se pudo leer la tabla 'libro': {e}")
         try:
-            with open('libro_reclamaciones_respaldo.json', 'r', encoding='utf-8') as f:
+            with open(os.path.join(APP_DIR, 'libro_reclamaciones_respaldo.json'), 'r', encoding='utf-8') as f:
                 registros_locales = json.load(f)
             print("[INFO] Sirviendo reclamos desde el archivo de respaldo local.")
             return jsonify({"ok": True, "registros": registros_locales})
